@@ -11,7 +11,7 @@ set('repository', 'git@github.com:chas-academy/berserkers-06-imdb-clone.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true); 
-set('ssh_multiplexing', true);
+set('ssh_multiplexing', false);
 
 // Shared files/dirs between deploys 
 add('shared_files', []);
@@ -28,6 +28,7 @@ host('ssh.binero.se')
 	->set('deploy_path', '~/berzerkers.chas.academy')
 	->user('226728_sgs')
 	->port(22);
+
 host('ssh.binero.se')
 	->stage('dev')
 	->set('branch','dev')
