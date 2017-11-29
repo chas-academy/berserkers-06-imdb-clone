@@ -29,7 +29,7 @@ host('ssh.binero.se')
 	->user('226728_sgs')
 	->port(22);
 host('ssh.binero.se')
-	->stage('development')
+	->stage('dev')
 	->set('branch','dev')
 	->set('deploy_path', '~/dev.berzerkers.chas.academy')
 	->user('226728_sgs')
