@@ -24,7 +24,14 @@ set('allow_anonymous_stats', false);
 // Hosts
 
 host('ssh.binero.se')
+	->set('branch','master')
 	->set('deploy_path', '~/berzerkers.chas.academy')
+	->user('226728_sgs')
+	->port(22);
+host('ssh.binero.se')
+	->stage('development')
+	->set('branch','dev')
+	->set('deploy_path', '~/dev.berzerkers.chas.academy')
 	->user('226728_sgs')
 	->port(22);
     
