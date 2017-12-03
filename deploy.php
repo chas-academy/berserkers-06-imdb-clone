@@ -43,7 +43,7 @@ task('php-fpm:restart', function () {
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
-after('deploy:symlink', 'php-fpm_restart');
+after('deploy:symlink', 'php-fpm:restart');
 // Migrate database before symlink new release.
 
 before('deploy:symlink', 'artisan:migrate');
