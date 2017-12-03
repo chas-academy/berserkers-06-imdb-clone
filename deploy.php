@@ -23,17 +23,10 @@ set('allow_anonymous_stats', false);
 
 // Hosts
 
-host('ssh.binero.se')
+host('berzerkers')
 	->set('branch','master')
-	->set('deploy_path', '~/berzerkers.chas.academy')
-	->user('226728_sgs')
-	->port(22);
-
-host('ssh.binero.se')
-	->stage('dev')
-	->set('branch','dev')
-	->set('deploy_path', '~/dev.berzerkers.chas.academy')
-	->user('226728_sgs')
+	->set('deploy_path', '/var/www/berzerkermovies')
+	->user('deploy')
 	->port(22);
     
 // Tasks
@@ -42,9 +35,15 @@ task('build', function () {
     run('cd {{release_path}} && build');
 });
 
+desc('Restart PHP-FPM service');
+task('php-fpm:restart', function () {
+    run ('sudo service php7.1-fpm reload');
+});
+
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
+after('deploy:symlink', 'php-fpm_restart');
 // Migrate database before symlink new release.
 
 before('deploy:symlink', 'artisan:migrate');
