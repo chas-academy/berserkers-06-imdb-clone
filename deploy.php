@@ -23,12 +23,20 @@ set('allow_anonymous_stats', false);
 
 // Hosts
 
-host('berzerkers')
+host('prod')
+	->hostname('berzerkers')
 	->set('branch','master')
 	->set('deploy_path', '/var/www/berzerkermovies.me')
 	->user('deploy')
 	->port(22);
-    
+
+host('stage')
+	->hostname('berzerkers')
+	->set('branch', 'stage')
+	->set('deploy_path','/var/www/stage.berzerkermovies.me')
+	->user('deploy')
+	->port(22);
+
 // Tasks
 
 task('build', function () {
