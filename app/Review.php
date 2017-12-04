@@ -18,14 +18,14 @@ class Review extends Model
     ];
 
     public function comments(){
-        return $this->hasMany('App\Models\Comment');
+        return $this->hasMany('App\Comment');
     }
 
     public function movie(){
-        return $this->belongsTo('App\Models\Movie');
+        return $this->belongsTo('App\Movie');
     }
 
     public function user(){
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\User');
     }
 }

@@ -14,10 +14,10 @@ class MovieUserRating extends Model
     ];
 
     public function user(){
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\User');
     }
 
     public function movie(){
-        return $this->belongsTo('App\Models\Movie');
+        return $this->belongsTo('App\Movie');
     }
 }
