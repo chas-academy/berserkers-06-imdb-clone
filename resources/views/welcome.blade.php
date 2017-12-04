@@ -69,6 +69,6 @@
             <h1 class="title">
                 Comming soon
             </h1>
-        </articel>
+        </article>
     </body>
 </html>
