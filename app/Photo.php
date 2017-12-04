@@ -14,6 +14,6 @@ class Photo extends Model
     ];
 
     public function movie(){
-        return $this->belongsTo('App\Models\Movie');
+        return $this->belongsTo('App\Movie');
     }
 }

@@ -34,14 +34,14 @@ class User extends Authenticatable
     ];
 
     public function reviews(){
-        return $this->hasMany('App\Models\Review');
+        return $this->hasMany('App\Review');
     }
 
     public function comments(){
-        return $this->hasMany('App\Models\Comment');
+        return $this->hasMany('App\Comment');
     }
 
     public function ratings(){
-        return $this->hasMany('App\Models\MovieUserRating');
+        return $this->hasMany('App\MovieUserRating');
     }
 }

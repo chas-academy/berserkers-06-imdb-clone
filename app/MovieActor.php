@@ -11,12 +11,4 @@ class MovieActor extends Model
         'movie_id',
         'person_id'
     ];
-
-    public function person(){
-        return $this->belongsTo('App\Models\Person');
-    }
-
-    public function movie(){
-        return $this->belongsTo('App\Models\Movie');
-    }
 }

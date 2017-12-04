@@ -12,7 +12,7 @@ class Genre extends Model
         'genre_title'
     ];
 
-    public function genres(){
-        return $this->belongsTo('App\Models\Genre');
+    public function movie_genres(){
+        return $this->belongsToMany('App\Movie', 'movie_genre');
     }
 }

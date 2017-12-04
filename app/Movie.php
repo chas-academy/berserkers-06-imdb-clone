@@ -19,34 +19,34 @@ class Movie extends Model
     ];
 
     public function actors(){
-        return $this->hasMany('App\Models\MovieActor');
+        return $this->belongsToMany('App\Person', 'movie_actor');
     }
 
     public function directors(){
-        return $this->hasMany('App\Models\MovieDirector');
+        return $this->belongsToMany('App\Person', 'movie_director');
     }
 
     public function producers(){
-        return $this->hasMany('App\Models\MovieProducer');
+        return $this->belongsToMany('App\Person', 'movie_producer');
     }
 
     public function screenwriters(){
-        return $this->hasMany('App\Models\MovieScreenwriter');
+        return $this->belongsToMany('App\Person', 'movie_screenwriter');
     }
 
     public function ratings(){
-        return $this->hasMany('App\Models\MovieUserRating');
+        return $this->hasMany('App\MovieUserRating');
     }
 
     public function photos(){
-        return $this->hasMany('App\Models\Photo');
+        return $this->hasMany('App\Photo');
     }
 
     public function genres(){
-        return $this->hasMany('App\Models\MovieGenre');
+        return $this->belongsToMany('App\Genre', 'movie_genre');
     }
 
     public function reviews(){
-        return $this->hasMany('App\Models\Review');
+        return $this->hasMany('App\Review');
     }
 }
