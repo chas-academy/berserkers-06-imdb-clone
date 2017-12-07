@@ -19,6 +19,7 @@ class CreateProfessionsTable extends Migration
             $table->boolean('screenwriter')->default(false);
             $table->boolean('director')->default(false);
             $table->boolean('producer')->default(false);
+            $table->boolean('creator')->default(false);
 
             $table->foreign('person_id')->references('id')->on('people');
         });
