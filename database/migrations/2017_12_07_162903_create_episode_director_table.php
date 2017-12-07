@@ -13,8 +13,12 @@ class CreateEpisodeDirectorTable extends Migration
      */
     public function up()
     {
-        Schema::table('episodes_directors', function (Blueprint $table) {
-            //
+        Schema::table('episode_director', function (Blueprint $table) {
+            $table->integer('episode_id')->unsigned();
+            $table->integer('person_id')->unsigned();
+
+            $table->foreign('episode_id')->references('id')->on('episodes');
+            $table->foreign('person_id')->references('id')->on('people');
         });
     }
 

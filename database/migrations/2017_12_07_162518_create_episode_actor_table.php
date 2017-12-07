@@ -13,8 +13,12 @@ class CreateEpisodeActorTable extends Migration
      */
     public function up()
     {
-        Schema::table('episodes_actors', function (Blueprint $table) {
-            //
+        Schema::table('episode_actor', function (Blueprint $table) {
+            $table->integer('episode_id')->unsigned();
+            $table->integer('person_id')->unsigned();
+
+            $table->foreign('episode_id')->references('id')->on('episodes');
+            $table->foreign('person_id')->references('id')->on('people');
         });
     }
 
@@ -25,7 +29,7 @@ class CreateEpisodeActorTable extends Migration
      */
     public function down()
     {
-        Schema::table('episodes_actors', function (Blueprint $table) {
+        Schema::table('episode_actor', function (Blueprint $table) {
             //
         });
     }

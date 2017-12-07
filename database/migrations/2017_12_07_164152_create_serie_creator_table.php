@@ -13,8 +13,12 @@ class CreateSerieCreatorTable extends Migration
      */
     public function up()
     {
-        Schema::table('series_persons', function (Blueprint $table) {
-            //
+        Schema::table('serie_person', function (Blueprint $table) {
+            $table->integer('serie_id')->unsigned();
+            $table->integer('person_id')->unsigned();
+
+            $table->foreign('serie_id')->references('id')->on('series');
+            $table->foreign('person_id')->references('id')->on('genres');
         });
     }
 

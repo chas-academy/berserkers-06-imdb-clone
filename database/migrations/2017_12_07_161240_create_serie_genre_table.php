@@ -13,8 +13,12 @@ class CreateSerieGenreTable extends Migration
      */
     public function up()
     {
-        Schema::table('series_genres', function (Blueprint $table) {
-            //
+        Schema::table('serie_genre', function (Blueprint $table) {
+            $table->integer('serie_id')->unsigned();
+            $table->integer('genre_id')->unsigned();
+
+            $table->foreign('serie_id')->references('id')->on('series');
+            $table->foreign('genre_id')->references('id')->on('genres');
         });
     }
 

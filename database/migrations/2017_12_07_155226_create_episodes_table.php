@@ -15,7 +15,14 @@ class CreateEpisodesTable extends Migration
     {
         Schema::create('episodes', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
+            $table->integer('season_id')->unsigned();
+            $table->string('name');
+            $table->integer('episode_number');
+            $table->text('plot_summary');
+            $table->date('release_date');
+
+        
+            $table->foreign('season_id')->references('id')->on('seasons');
         });
     }
 

@@ -15,6 +15,15 @@ class CreateSeriesTable extends Migration
     {
         Schema::create('series', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('title');
+            $table->date('release_year');
+            $table->date('end_date')->nullable();
+            $table->text('plot_summary')->nullable();
+            $table->text('countries');
+            $table->string('pg_rating');
+            $table->string('trailer')->nullable();
+            $table->integer('num_of_seasons');
+            $table->integer('num_of_episodes');
             $table->timestamps();
         });
     }

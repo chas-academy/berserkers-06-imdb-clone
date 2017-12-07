@@ -13,8 +13,12 @@ class CreateEpisodeProducerTable extends Migration
      */
     public function up()
     {
-        Schema::table('episodes_producers', function (Blueprint $table) {
-            //
+        Schema::table('episode_producer', function (Blueprint $table) {
+            $table->integer('episode_id')->unsigned();
+            $table->integer('person_id')->unsigned();
+
+            $table->foreign('episode_id')->references('id')->on('episodes');
+            $table->foreign('person_id')->references('id')->on('people');
         });
     }
 
