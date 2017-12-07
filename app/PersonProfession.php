@@ -13,6 +13,7 @@ class PersonProfession extends Model
         'director',
         'producer',
         'screenwriter',
+        'creator'
     ];
 
     
