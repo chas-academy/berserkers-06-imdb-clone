@@ -10,8 +10,8 @@ set('application', 'imdbClone');
 set('repository', 'git@github.com:chas-academy/berserkers-06-imdb-clone.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', true); 
-set('ssh_multiplexing', true);
+set('git_tty', false); 
+set('ssh_multiplexing', false);
 
 // Shared files/dirs between deploys 
 add('shared_files', []);
@@ -54,5 +54,5 @@ after('deploy:failed', 'deploy:unlock');
 after('deploy:symlink', 'php-fpm:restart');
 // Migrate database before symlink new release.
 
-//before('deploy:symlink', 'artisan:migrate');
+before('deploy:symlink', 'artisan:migrate');
 
