@@ -29,8 +29,6 @@ class CreateSerieCreatorTable extends Migration
      */
     public function down()
     {
-        Schema::table('series_persons', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('episode_person');
     }
 }

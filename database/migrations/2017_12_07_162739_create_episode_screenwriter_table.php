@@ -30,8 +30,6 @@ class CreateEpisodeScreenwriterTable extends Migration
      */
     public function down()
     {
-        Schema::table('episodes_screenwriters', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('episode_screenwriter');
     }
 }

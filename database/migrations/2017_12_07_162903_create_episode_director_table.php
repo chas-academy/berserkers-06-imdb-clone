@@ -29,8 +29,6 @@ class CreateEpisodeDirectorTable extends Migration
      */
     public function down()
     {
-        Schema::table('episodes_directors', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('episode_director');
     }
 }

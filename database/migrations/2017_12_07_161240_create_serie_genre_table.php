@@ -29,8 +29,6 @@ class CreateSerieGenreTable extends Migration
      */
     public function down()
     {
-        Schema::table('series_genres', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('serie_genre');
     }
 }

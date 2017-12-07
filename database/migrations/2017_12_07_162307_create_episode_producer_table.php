@@ -29,8 +29,6 @@ class CreateEpisodeProducerTable extends Migration
      */
     public function down()
     {
-        Schema::table('episodes_producers', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('episode_producer');
     }
 }
