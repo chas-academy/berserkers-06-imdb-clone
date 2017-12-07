@@ -14,8 +14,13 @@ class CreateSerieUserRatingTable extends Migration
     public function up()
     {
         Schema::create('serie_user_rating', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->integer('serie_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('rating_id')->unsigned();
+
+            $table->foreign('serie_id')->references('id')->on('series');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('rating_id')->references('id')->on('ratings');
         });
     }
 
