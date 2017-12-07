@@ -16,7 +16,11 @@ class Character extends Model
         return $this->belongsToMany('App\Movie', 'movie_actor_character');
     }
 
-    public function actors(){
+    public function movieActors(){
         return $this->belongsToMany('App\Person', 'movie_actor_character');
+    }
+
+    public function serieActors(){
+        return $this->belongsToMany('App\Person', 'serie_actor_character');
     }
 }
