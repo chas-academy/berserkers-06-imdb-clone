@@ -18,7 +18,7 @@ class CreateMovieScreenwriterTable extends Migration
             $table->integer('person_id')->unsigned();
 
             $table->foreign('movie_id')->references('id')->on('movies');
-            $table->foreign('person_id')->references('id')->on('persons');
+            $table->foreign('person_id')->references('id')->on('people');
         });
     }
 

@@ -16,11 +16,15 @@ class Person extends Model
     ];
 
     public function roles(){
-        return $this->hasOne('App\PersonRole');
+        return $this->hasOne('App\PersonProfession');
     }
 
     public function actor_in_movie(){
-        return $this->belongsToMany('App\Movie', 'movie_actor');
+        return $this->belongsToMany('App\Movie', 'movie_actor_character');
+    }
+
+    public function characters(){
+        return $this->belongsToMany('App\Character', 'movie_actor_character');
     }
 
     public function director_in_movie(){

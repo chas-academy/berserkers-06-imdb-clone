@@ -15,11 +15,15 @@ class Movie extends Model
         'runtime',
         'countries',
         'pg_rating',
-        'trailer'
+        'trailer',
     ];
 
     public function actors(){
-        return $this->belongsToMany('App\Person', 'movie_actor');
+        return $this->belongsToMany('App\Person', 'movie_actor_character');
+    }
+
+    public function characters(){
+        return $this->belongsToMany('App\Character', 'movie_actor_character');
     }
 
     public function directors(){
@@ -35,7 +39,7 @@ class Movie extends Model
     }
 
     public function ratings(){
-        return $this->hasMany('App\MovieUserRating');
+        return $this->belongsToMany('App\Rating', 'movie_user_rating');
     }
 
     public function photos(){
