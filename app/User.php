@@ -15,7 +15,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'firstname',
+        'lastname',
+        'email',
+        'password',
+        'role'
     ];
 
     /**
@@ -24,6 +29,19 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
+
+    public function reviews(){
+        return $this->hasMany('App\Review');
+    }
+
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
+
+    public function ratings(){
+        return $this->belongsToMany('App\Rating', 'movie_user_rating');
+    }
 }

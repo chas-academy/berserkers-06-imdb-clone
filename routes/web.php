@@ -18,7 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/movies', function () {
-    return view('movies');
-});
+Route::resource('movies', 'MoviesController');
+Route::resource('persons', 'PersonsController');
+Route::resource('reviews', 'ReviewsController');
+Route::resource('comments', 'CommentsController');
+Route::resource('users', 'UsersController');
