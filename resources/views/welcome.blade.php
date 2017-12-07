@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
+<!DOCTYPE html>
+<html lang="{{ app()->getLocal() }}">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -67,7 +67,7 @@
     <body  class="flex-center">
         <article class="content">
             <h1 class="title">
-                Comming soon
+                Coming soon
             </h1>
         </article>
     </body>
