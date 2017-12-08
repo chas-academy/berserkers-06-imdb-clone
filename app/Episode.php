@@ -21,7 +21,7 @@ class Episode extends Model
 
     public function actors() 
     {
-        return $this->belongsToMany('App/Person', 'episode_actor_character');
+        return $this->belongsToMany('App\Person', 'episode_actor_character');
     }
 
     public function characters(){
