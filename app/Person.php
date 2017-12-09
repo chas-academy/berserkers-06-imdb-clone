@@ -23,7 +23,7 @@ class Person extends Model
         return $this->belongsToMany('App\Movie', 'movie_actor_character');
     }
 
-    public function movieCharacters(){
+    public function movie_characters(){
         return $this->belongsToMany('App\Character', 'movie_actor_character');
     }
 
@@ -38,23 +38,27 @@ class Person extends Model
     public function screenwriter_in_movie(){
         return $this->belongsToMany('App\Movie', 'movie_screenwriter');
     }
-    public function actor_in_serie(){
-        return $this->belongsToMany('App\Serie', 'serie_actor_character');
+    public function actor_in_episode(){
+        return $this->belongsToMany('App\Serie', 'episode_actor_character');
     }
 
-    public function serieCharacters(){
-        return $this->belongsToMany('App\Character', 'serie_actor_character');
+    public function serie_characters(){
+        return $this->belongsToMany('App\Character', 'episode_actor_character');
     }
 
-    public function director_in_serie(){
-        return $this->belongsToMany('App\Serie', 'serie_director');
+    public function director_in_episode(){
+        return $this->belongsToMany('App\Serie', 'episode_director');
     }
 
-    public function producer_in_serie(){
-        return $this->belongsToMany('App\Serie', 'serie_producer');
+    public function producer_in_episode(){
+        return $this->belongsToMany('App\Serie', 'episode_producer');
     }
 
-    public function screenwriter_in_serie(){
-        return $this->belongsToMany('App\Serie', 'serie_screenwriter');
+    public function screenwriter_in_episode(){
+        return $this->belongsToMany('App\Serie', 'episode_screenwriter');
+    }
+
+    public function creator_in_serie(){
+        return $this->belongsToMany('App\Serie', 'serie_creator');
     }
 }
