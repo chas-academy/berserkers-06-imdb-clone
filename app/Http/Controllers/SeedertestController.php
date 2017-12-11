@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use App\character;
+use App\Character;
 use App\Person;
 use App\Movie;
+use App\Genre;
+use App\Photo;
 
 class SeedertestController extends Controller
 {
@@ -15,8 +17,8 @@ class SeedertestController extends Controller
         $client = new Client(['base_uri' => 'https://theimdbapi.org/api/']);
         $response = $client->request('GET','movie?movie_id=tt0175880');
         $movie = json_decode($response->getBody());
-        if (is_null(Movie::where('title', '=', $movie->title)->first())) {
-            $moviearray = ['title' => $movie->title, 
+        //if (is_null(Movie::where('title', '=', $movie->title)->first())) {
+            $movie_array = ['title' => $movie->title, 
             'release_year' => $movie->release_date,
             'plot_summary' => $movie->storyline, 
             'runtime' => (int) $movie->length, 
@@ -24,16 +26,32 @@ class SeedertestController extends Controller
             'pg_rating' => $movie->content_rating, 
             'trailer' => $movie->trailer];
             $request = [];
-            foreach($moviearray as $key => $value) {
+            foreach($movie_array as $key => $value) {
                 if (isset($value) && $value != null) {
                 $request += [$key => $value];
                 }
             }
            
-            //dd($movie);
-            $new_movie = Movie::create($request);
+            //$new_movie = Movie::create($request);
+            $new_movie = Movie::firstOrCreate($request);
+            if (isset($movie->genre)){
+                foreach($movie->genre as $api_genre){
+                    $genre = Genre::where('genre_title', '=', $api_genre)->first();
+                    if(!isset($genre)) {
+                        $genre = Genre::create(['genre_title' => $api_genre]);
+                    }
+                    $new_movie->genres()->attach($genre->id);
+                }
+            }
+
+            if (isset($movie->poster)){
+                foreach($movie->poster as $photo){
+                    
+                    Photo::create(['movie_id' => $new_movie->id, 'photo_path' => $photo]);
+                    
+                }
+            }
             
-            //dd($movie);
             $person = Person::where('name', '=', $movie->director)->first();
             if (isset($movie->director) && !isset($person)) {
                 $request = [];
@@ -63,7 +81,6 @@ class SeedertestController extends Controller
                     }
                 }
                 $person = Person::create($request);
-                //dd($request);
                 
             }
 
@@ -148,12 +165,12 @@ class SeedertestController extends Controller
                     $character = Character::create(['character_name' => $cast->character]);
                     
                     }
-                    //$person->actor_in_movie()->attach($new_movie->id);
+
                     $person->characters()->attach($character->id, ['movie_id' => $new_movie->id]);
                    
                 }
             }
-        }        
+               
         //https://theimdbapi.org/api/movie?movie_id=tt0175880
 
     }

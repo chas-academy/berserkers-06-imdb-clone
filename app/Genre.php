@@ -12,6 +12,8 @@ class Genre extends Model
         'genre_title'
     ];
 
+    public $timestamps = false;
+    
     public function movie_genres(){
         return $this->belongsToMany('App\Movie', 'movie_genre');
     }

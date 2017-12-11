@@ -13,6 +13,8 @@ class Photo extends Model
         'photo_path'
     ];
 
+    public $timestamps = false;
+    
     public function movie(){
         return $this->belongsTo('App\Movie');
     }
