@@ -14,12 +14,13 @@ class CreateSeasonsTable extends Migration
     public function up()
     {
         Schema::create('seasons', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('serie_id')->unsigned();
+
+            $table->integer('title_id')->unsigned();
+            $table->integer('series_id')->unsigned();
             $table->integer('season_number');
         
-            $table->foreign('serie_id')->references('id')->on('series');
-            
+            $table->foreign('title_id')->references('id')->on('titles');
+            $table->foreign('series_id')->references('title_id')->on('series');
         });
     }
 
