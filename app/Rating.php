@@ -6,27 +6,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rating extends Model
 {
-    //
     protected $fillable = [
         'id',
         'rating'
     ];
 
-    public function movies(){
-        return $this->belongsToMany('App\Movie', 'movie_user_rating');
+    public function titles()
+    {
+        return $this->belongsToMany('App\Movie', 'title_user_rating');
     }
 
-    public function movieUsers(){
-        return $this->belongsToMany('App\User', 'movie_user_rating');
+    public function titleUsers()
+    {
+        return $this->belongsToMany('App\User', 'title_user_rating');
     }
 
-    public function serieUsers(){
-        return $this->belongsToMany('App\User', 'serie_user_rating');
-    } //kommer deta verkligen att fungera?
+    public function seriesUsers()
+    {
+        return $this->belongsToMany('App\User', 'series_user_rating');
+    } // kommer deta verkligen att fungera?
 
-    public function series(){
-        return $this->belongsToMany('App\Serie', 'serie_user_rating');
+    public function series()
+    {
+        return $this->belongsToMany('App\Series', 'title_user_rating');
     }
-
     
 }
