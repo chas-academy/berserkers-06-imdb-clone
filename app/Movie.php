@@ -6,51 +6,59 @@ use Illuminate\Database\Eloquent\Model;
 
 class Movie extends Model
 {
-    //
     protected $fillable = [
-        'id',
+        'title_id',
         'title',
         'release_year',
         'plot_summary',
         'runtime',
         'countries',
         'pg_rating',
-        'trailer',
+        'trailer'
     ];
 
-    public function actors(){
-        return $this->belongsToMany('App\Person', 'movie_actor_character');
+    public function actors()
+    {
+        return $this->belongsToMany('App\Person', 'title_actor_character');
     }
 
-    public function characters(){
-        return $this->belongsToMany('App\Character', 'movie_actor_character');
+    public function characters()
+    {
+        return $this->belongsToMany('App\Character', 'title_actor_character');
     }
 
-    public function directors(){
-        return $this->belongsToMany('App\Person', 'movie_director');
+    public function directors()
+    {
+        return $this->belongsToMany('App\Person', 'title_director');
     }
 
-    public function producers(){
-        return $this->belongsToMany('App\Person', 'movie_producer');
+    public function producers()
+    {
+        return $this->belongsToMany('App\Person', 'title_producer');
     }
 
-    public function screenwriters(){
-        return $this->belongsToMany('App\Person', 'movie_screenwriter');
+    public function screenwriters()
+    {
+        return $this->belongsToMany('App\Person', 'title_screenwriter');
     }
 
-    public function ratings(){
-        return $this->belongsToMany('App\Rating', 'movie_user_rating');
+    public function ratings()
+    {
+        return $this->belongsToMany('App\Rating', 'title_user_rating');
     }
 
-    public function photos(){
+    public function photos()
+    {
         return $this->hasMany('App\Photo');
     }
 
-    public function genres(){
-        return $this->belongsToMany('App\Genre', 'movie_genre');
+    public function genres()
+    {
+        return $this->belongsToMany('App\Genre', 'title_genre');
     }
 
-    public function reviews(){
+    public function reviews()
+    {
         return $this->hasMany('App\Review');
     }
 }

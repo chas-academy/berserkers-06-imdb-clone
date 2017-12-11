@@ -14,7 +14,7 @@ class CreateMoviesTable extends Migration
     public function up()
     {
         Schema::create('movies', function (Blueprint $table) {
-            $table->increments('id');
+            $table->integer('title_id')->unsigned();
             $table->string('title');
             $table->date('release_year');
             $table->text('plot_summary')->nullable();
@@ -23,6 +23,8 @@ class CreateMoviesTable extends Migration
             $table->string('pg_rating');
             $table->string('trailer')->nullable();
             $table->timestamps();
+
+            $table->foreign('title_id')->references('id')->on('titles');
         });
     }
 
