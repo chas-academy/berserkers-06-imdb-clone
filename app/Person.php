@@ -15,6 +15,8 @@ class Person extends Model
         'deathdate',
     ];
 
+    public $timestamps = false;
+
     public function roles(){
         return $this->hasOne('App\PersonProfession');
     }
