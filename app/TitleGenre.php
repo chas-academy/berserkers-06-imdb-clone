@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MovieGenre extends Model
+class TitleGenre extends Model
 {
     //
 }
