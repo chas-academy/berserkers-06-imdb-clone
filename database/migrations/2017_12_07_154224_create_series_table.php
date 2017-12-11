@@ -13,8 +13,9 @@ class CreateSeriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('series', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('series', function (Blueprint $table)
+        {
+            $table->integer('title_id')->unsigned();
             $table->string('title');
             $table->date('release_year');
             $table->date('end_date')->nullable();
@@ -25,6 +26,8 @@ class CreateSeriesTable extends Migration
             $table->integer('num_of_seasons');
             $table->integer('num_of_episodes');
             $table->timestamps();
+
+            $table->foreign('title_id')->references('id')->on('titles');
         });
     }
 
