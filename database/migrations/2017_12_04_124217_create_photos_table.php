@@ -15,10 +15,10 @@ class CreatePhotosTable extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('movie_id')->unsigned();
+            $table->integer('title_id')->unsigned();
             $table->string('photo_path');
             
-            $table->foreign('movie_id')->references('id')->on('movies');
+            $table->foreign('title_id')->references('id')->on('titles');
         });
     }
 
