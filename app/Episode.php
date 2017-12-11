@@ -4,20 +4,22 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Movie extends Model
+class Episode extends Model
 {
     protected $fillable = [
         'title_id',
-        'title',
-        'release_year',
+        'name',
+        'title_number',
         'plot_summary',
-        'runtime',
-        'countries',
-        'pg_rating',
-        'trailer'
+        'release_date',
     ];
 
-    public function actors()
+    public function seasons()
+    {
+        return $this->belongsTo('App\Season', 'seasons');
+    }
+
+    public function actors() 
     {
         return $this->belongsToMany('App\Person', 'title_actor_character');
     }
@@ -40,11 +42,6 @@ class Movie extends Model
     public function screenwriters()
     {
         return $this->belongsToMany('App\Person', 'title_screenwriter');
-    }
-
-    public function ratings()
-    {
-        return $this->belongsToMany('App\Rating', 'title_user_rating');
     }
 
     public function photos()

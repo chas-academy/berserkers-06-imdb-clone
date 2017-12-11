@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateMovieProducerTable extends Migration
+class CreateSerieCreatorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateMovieProducerTable extends Migration
      */
     public function up()
     {
-        Schema::create('movie_producer', function (Blueprint $table) {
-            $table->integer('movie_id')->unsigned();
+        Schema::table('title_creator', function (Blueprint $table)
+        {
+            $table->integer('title_id')->unsigned();
             $table->integer('person_id')->unsigned();
 
-            $table->foreign('movie_id')->references('id')->on('movies');
+            $table->foreign('title_id')->references('id')->on('titles');
             $table->foreign('person_id')->references('id')->on('people');
         });
     }
@@ -29,6 +30,6 @@ class CreateMovieProducerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('movie_producer');
+        Schema::dropIfExists('episode_person');
     }
 }
