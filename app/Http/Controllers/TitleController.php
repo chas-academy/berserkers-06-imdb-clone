@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Title;
 use Illuminate\Http\Request;
 
-class TitlesController extends Controller
+class TitleController extends Controller
 {
     /**
      * Display a listing of the resource.

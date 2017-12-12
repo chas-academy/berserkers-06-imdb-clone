@@ -17,48 +17,12 @@ class Movie extends Model
         'trailer'
     ];
 
-    public function actors()
-    {
-        return $this->belongsToMany('App\Person', 'title_actor_character');
-    }
+    protected $primaryKey = ['title_id'];
 
-    public function characters()
-    {
-        return $this->belongsToMany('App\Character', 'title_actor_character');
-    }
+    public $incrementing = [false];
 
-    public function directors()
+    public function title()
     {
-        return $this->belongsToMany('App\Person', 'title_director');
-    }
-
-    public function producers()
-    {
-        return $this->belongsToMany('App\Person', 'title_producer');
-    }
-
-    public function screenwriters()
-    {
-        return $this->belongsToMany('App\Person', 'title_screenwriter');
-    }
-
-    public function ratings()
-    {
-        return $this->belongsToMany('App\Rating', 'title_user_rating');
-    }
-
-    public function photos()
-    {
-        return $this->hasMany('App\Photo');
-    }
-
-    public function genres()
-    {
-        return $this->belongsToMany('App\Genre', 'title_genre');
-    }
-
-    public function reviews()
-    {
-        return $this->hasMany('App\Review');
+        return $this->belongsTo('App\Title', 'titles');
     }
 }

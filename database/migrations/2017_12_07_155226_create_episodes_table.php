@@ -19,7 +19,7 @@ class CreateEpisodesTable extends Migration
             $table->string('name');
             $table->integer('episode_number');
             $table->text('plot_summary');
-            $table->date('release_date');
+            $table->date('air_date');
 
             $table->foreign('title_id')->references('id')->on('titles');
             $table->foreign('season_id')->references('title_id')->on('seasons');

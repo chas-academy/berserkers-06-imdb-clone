@@ -12,7 +12,15 @@ class Season extends Model
         'season_number',
     ];
 
-
+    protected $primaryKey = ['title_id'];
+    
+    public $incrementing = [false];
+    
+    public function title()
+    {
+            return $this->belongsTo('App\Title', 'titles');
+    }
+   
     public function episodes()
     {
         return $this->hasMany('App\Episode', 'episodes');

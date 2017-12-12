@@ -13,8 +13,7 @@ class CreateTitleCreatorTable extends Migration
      */
     public function up()
     {
-        Schema::create('title_creator', function (Blueprint $table)
-        {
+        Schema::create('title_creator', function (Blueprint $table) {
             $table->integer('title_id')->unsigned();
             $table->integer('person_id')->unsigned();
 
