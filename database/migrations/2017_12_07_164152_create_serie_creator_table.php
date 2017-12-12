@@ -30,6 +30,6 @@ class CreateSerieCreatorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('episode_person');
+        Schema::dropIfExists('serie_person');
     }
 }
