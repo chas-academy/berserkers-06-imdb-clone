@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSerieCreatorTable extends Migration
+class CreateTitleCreatorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSerieCreatorTable extends Migration
      */
     public function up()
     {
-        Schema::table('title_creator', function (Blueprint $table)
+        Schema::create('title_creator', function (Blueprint $table)
         {
             $table->integer('title_id')->unsigned();
             $table->integer('person_id')->unsigned();
@@ -30,6 +30,6 @@ class CreateSerieCreatorTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('episode_person');
+        Schema::dropIfExists('title_creator');
     }
 }
