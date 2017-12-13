@@ -19,7 +19,7 @@ class SerieMoviePersonSeeder extends Seeder
      */
     public function run()
     {
-        $movie_names= ['Magnolia','Up'];
+        $movie_names= ['Magnolia','Up', 'Pulp+Fiction', 'The+Mask','Cowspiracy'];
         $moviedb_client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 300]);
         $imdb_client = new Client(['base_uri' => 'https://theimdbapi.org/api/']);
         foreach($movie_names as $movie_name) {
@@ -126,7 +126,7 @@ class SerieMoviePersonSeeder extends Seeder
                     }
                     if (isset($movie->credits->crew)) {
                         foreach($movie->credits->crew as $crew) {
-                            if ($crew->department === "Directing" || $crew->department === "Production" || $crew->department === "Writing") {
+                            if ($crew->job === "Director" || $crew->department === "Production" || $crew->department === "Writing") {
                                 $person = Person::where('name', '=', $crew->name)->first();
                                 if (!isset($person)) {
             
@@ -158,7 +158,7 @@ class SerieMoviePersonSeeder extends Seeder
                                 }
                                 if (isset($person)) {
 
-                                    if ($crew->department === "Directing") {
+                                    if ($crew->job === "Director") {
                                         $person->director_of_title()->attach($title->id);
                                     }
                                     
