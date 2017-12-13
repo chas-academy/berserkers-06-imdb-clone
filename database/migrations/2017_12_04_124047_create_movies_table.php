@@ -21,7 +21,7 @@ class CreateMoviesTable extends Migration
             $table->integer('runtime')->unsigned();
             $table->text('countries');
             $table->string('pg_rating');
-            $table->string('trailer')->nullable();
+            $table->text('trailer')->nullable();
             $table->timestamps();
 
             $table->foreign('title_id')->references('id')->on('titles');

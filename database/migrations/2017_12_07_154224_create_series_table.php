@@ -22,7 +22,7 @@ class CreateSeriesTable extends Migration
             $table->text('plot_summary')->nullable();
             $table->text('countries');
             $table->string('pg_rating');
-            $table->string('trailer')->nullable();
+            $table->text('trailer')->nullable();
             $table->integer('num_of_seasons');
             $table->integer('num_of_episodes');
             $table->timestamps();
