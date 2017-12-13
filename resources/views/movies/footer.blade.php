@@ -11,12 +11,15 @@
 </head>
 <body>
     
-<footer class="footer">
+<footer class="footer" style="background-color: black;">
 
-@include('includes.footer')
-<div class="container">
-  <div class="content has-text-centered">
+
+<div class="columns">
+  <div class="column has-text-centered" style="background-color:black">
+      <p>Copy by Berserkers</p> 
   <p><i class="fa fa-map-marker" aria-hidden="true">Location</i><p> 
+  <div class="column has-text-centered" style="background-color:black">
+      
   <i class="fa fa-twitter" aria-hidden="true"></i>
   <i class="fa fa-facebook-official" aria-hidden="true"></i>
 
