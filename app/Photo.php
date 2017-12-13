@@ -6,16 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
-    //
     protected $fillable = [
         'id',
-        'movie_id',
+        'title_id',
         'photo_path'
     ];
 
-    public $timestamps = false;
-    
-    public function movie(){
-        return $this->belongsTo('App\Movie');
+    public function title(){
+        return $this->belongsTo('App\Title');
     }
 }

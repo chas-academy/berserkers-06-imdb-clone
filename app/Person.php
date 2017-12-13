@@ -6,38 +6,46 @@ use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model
 {
-    //
     protected $fillable = [
         'id',
         'name',
         'bio',
-        'birthdate',
-        'deathdate',
+        'b_date',
+        'd_date'
     ];
 
-    public $timestamps = false;
-
-    public function roles(){
+    public function roles()
+    {
         return $this->hasOne('App\PersonProfession');
     }
 
-    public function actor_in_movie(){
-        return $this->belongsToMany('App\Movie', 'movie_actor_character');
+    public function actor_in_title()
+    {
+        return $this->belongsToMany('App\Title', 'title_actor_character');
     }
 
-    public function characters(){
-        return $this->belongsToMany('App\Character', 'movie_actor_character');
+    public function title_characters()
+    {
+        return $this->belongsToMany('App\Character', 'title_actor_character');
     }
 
-    public function director_in_movie(){
-        return $this->belongsToMany('App\Movie', 'movie_director');
+    public function director_of_title()
+    {
+        return $this->belongsToMany('App\Title', 'title_director');
     }
 
-    public function producer_in_movie(){
-        return $this->belongsToMany('App\Movie', 'movie_producer');
+    public function producer_of_title()
+    {
+        return $this->belongsToMany('App\Title', 'title_producer');
     }
 
-    public function screenwriter_in_movie(){
-        return $this->belongsToMany('App\Movie', 'movie_screenwriter');
+    public function screenwriter_of_title()
+    {
+        return $this->belongsToMany('App\Title', 'title_screenwriter');
+    }
+    
+    public function creator_of_title()
+    {
+        return $this->belongsToMany('App\Title', 'title_creator');
     }
 }
