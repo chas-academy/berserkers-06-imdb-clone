@@ -56,6 +56,11 @@ class Title extends Model
     {
         return $this->belongsToMany('App\Person', 'title_screenwriter');
     }
+    
+    public function creators()
+    {
+        return $this->belongsToMany('App\Person', 'title_creator');
+    }
 
     public function ratings()
     {

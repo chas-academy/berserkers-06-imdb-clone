@@ -44,8 +44,8 @@ class Person extends Model
         return $this->belongsToMany('App\Title', 'title_screenwriter');
     }
     
-    public function creator_of_series()
+    public function creator_of_title()
     {
-        return $this->belongsToMany('App\Series', 'series_creator');
+        return $this->belongsToMany('App\Title', 'title_creator');
     }
 }

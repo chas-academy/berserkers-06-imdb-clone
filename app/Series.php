@@ -27,11 +27,6 @@ class Series extends Model
         return $this->belongsTo('App\Title', 'titles');
     }
 
-    public function creators()
-    {
-        return $this->belongsToMany('App\Person', 'title_creator');
-    }
-
     public function seasons()
     {
         return $this->hasMany('App\Season', 'seasons');
