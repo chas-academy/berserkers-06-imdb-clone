@@ -18,10 +18,10 @@ class Series extends Model
         'num_of_episodes'
     ];
 
-    protected $primaryKey = ['title_id'];
+    protected $primaryKey = 'title_id';
     
     public $incrementing = [false];
-    
+
     public function title()
     {
         return $this->belongsTo('App\Title', 'titles');

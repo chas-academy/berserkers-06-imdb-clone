@@ -10,6 +10,8 @@ class Character extends Model
         'character_name'
     ];
 
+    public $timestamps = false;
+    
     public function title()
     {
         return $this->belongsToMany('App\Title', 'title_actor_character');

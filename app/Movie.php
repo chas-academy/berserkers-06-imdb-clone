@@ -17,7 +17,7 @@ class Movie extends Model
         'trailer'
     ];
 
-    protected $primaryKey = ['title_id'];
+    protected $primaryKey = 'title_id';
 
     public $incrementing = [false];
 

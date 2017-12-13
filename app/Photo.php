@@ -12,6 +12,8 @@ class Photo extends Model
         'photo_path'
     ];
 
+    public $timestamps = false;
+    
     public function title(){
         return $this->belongsTo('App\Title');
     }

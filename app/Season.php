@@ -12,7 +12,7 @@ class Season extends Model
         'season_number',
     ];
 
-    protected $primaryKey = ['title_id'];
+    protected $primaryKey = 'title_id';
     
     public $incrementing = [false];
     

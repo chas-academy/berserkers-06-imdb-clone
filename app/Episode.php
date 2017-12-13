@@ -15,7 +15,7 @@ class Episode extends Model
         'air_date'
     ];
 
-    protected $primaryKey = ['title_id'];
+    protected $primaryKey = 'title_id';
     
     public $incrementing = [false];
 

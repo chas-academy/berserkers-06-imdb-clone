@@ -8,8 +8,10 @@ class Genre extends Model
 {
     protected $fillable = [
         'id',
-        'genre_title'
+        'name'
     ];
+
+    public $timestamps = false;
 
     public function title_genre()
     {
