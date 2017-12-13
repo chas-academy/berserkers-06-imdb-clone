@@ -16,22 +16,42 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/header.css') }}" rel="stylesheet">
+    <link href="{{asset('css/header.css')}}" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
+<header>
+    <nav class="navbar">
         <div class="navbar-brand">
-            <button class="button navbar-burger">
-                <span>Home</span>
-                <span>Movies</span>
-                <span>Tv</span>
-                <span>Top 100</span>
-                <span>Genres</span>
-                <span>Log In</span>                   
-            </button>
+            <!--<a class="navbar-item" href="/">
+            <img src="" alt="">
+            </a>-->
+            <div class="navbar-burger burger" data-target="Options">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <a class="navbar-item" id="testing" href="/">
+            <img src="{{asset('images/logo.png')}}" alt="">
+            </a>
+            <a class="navbar-item" id="testing2" href="">
+            <i class="fa fa-2x fa-user-circle" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="navbar-menu" id="Options">
+            <div class="navbar-start">
+                <a class="nav-item" href="#">Home</a>
+                <a class="nav-item" href="#">Movies</a>
+                <a class="nav-item" href="#">TV</a>
+                <a class="nav-item" href="#">Top 100</a>
+                <a class="nav-item" href="#">Genre</a>
+                <a class="nav-item" href="#">Log In</a>
+            </div>
         </div>
     </nav>
+</header>
+<main>
 
+</main>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>

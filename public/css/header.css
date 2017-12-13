@@ -8350,3 +8350,52 @@ button.close {
   }
 }
 
+.navbar-item {
+  color: #4a4a4a !important;
+}
+
+#testing {
+  margin: auto;
+}
+
+#testing2 {
+  display: inline-block;
+}
+
+.navbar-brand {
+  padding: 14px 15px;
+  font-size: 18px;
+  line-height: 22px;
+  height: 50px;
+  float: none;
+}
+
+.navbar-burger {
+  cursor: pointer;
+  display: block;
+  height: 3.25rem;
+  position: relative;
+  width: 3.25rem;
+  margin-left: unset;
+}
+
+.navbar-start {
+  position: fixed;
+  display: grid;
+  padding-top: 0.5em;
+  font-size: 3vh;
+  width: 80%;
+  height: 337px;
+  overflow-x: hidden;
+  background-color: #4f4c4c;
+  z-index: 100;
+}
+
+.nav-item {
+  margin-left: 1em;
+}
+
+main {
+  background-color: #0e0b16;
+}
+
