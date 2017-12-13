@@ -109,10 +109,10 @@ class SeedertestController extends Controller
                                         $request += ['bio' => $value];
                                         break;
                                     case 'birthday': 
-                                        $request += ['birthdate' => $value];
+                                        $request += ['b_date' => $value];
                                         break;
                                     case 'deathdate':
-                                        $request += ['deathdate' => $value];
+                                        $request += ['d_date' => $value];
                                         break;
                                     default:
                                         break;
