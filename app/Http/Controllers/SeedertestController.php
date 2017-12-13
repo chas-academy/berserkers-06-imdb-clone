@@ -9,6 +9,7 @@ use App\Person;
 use App\Movie;
 use App\Genre;
 use App\Photo;
+use App\Title;
 
 class SeedertestController extends Controller
 {
@@ -17,8 +18,11 @@ class SeedertestController extends Controller
         $client = new Client(['base_uri' => 'https://theimdbapi.org/api/']);
         $response = $client->request('GET','movie?movie_id=tt0175880');
         $movie = json_decode($response->getBody());
+        $title = Title::create(['type' => 'movie']);
         //if (is_null(Movie::where('title', '=', $movie->title)->first())) {
-            $movie_array = ['title' => $movie->title, 
+            $movie_array = [
+            'title_id' => $title->id,
+            'title' => $movie->title, 
             'release_year' => $movie->release_date,
             'plot_summary' => $movie->storyline, 
             'runtime' => (int) $movie->length, 
@@ -31,23 +35,23 @@ class SeedertestController extends Controller
                 $request += [$key => $value];
                 }
             }
-           
-            //$new_movie = Movie::create($request);
-            $new_movie = Movie::firstOrCreate($request);
+            
+           Movie::create($request);
+
             if (isset($movie->genre)){
                 foreach($movie->genre as $api_genre){
-                    $genre = Genre::where('genre_title', '=', $api_genre)->first();
+                    $genre = Genre::where('name', '=', $api_genre)->first();
                     if(!isset($genre)) {
-                        $genre = Genre::create(['genre_title' => $api_genre]);
+                        $genre = Genre::create(['name' => $api_genre]);
                     }
-                    $new_movie->genres()->attach($genre->id);
+                    $title->genres()->attach($genre->id);
                 }
             }
 
             if (isset($movie->poster)){
                 foreach($movie->poster as $photo){
                     
-                    Photo::create(['movie_id' => $new_movie->id, 'photo_path' => $photo]);
+                    Photo::create(['title_id' => $title->id, 'photo_path' => $photo]);
                     
                 }
             }
@@ -84,7 +88,7 @@ class SeedertestController extends Controller
                 
             }
 
-            $person->director_in_movie()->attach($new_movie->id);
+            $person->director_of_title()->attach($title->id);
             
             if (isset($movie->writers)) {
                 foreach($movie->writers as $writer_name){
@@ -118,7 +122,7 @@ class SeedertestController extends Controller
 
                     $person = Person::create($request);
                     }
-                    $person->screenwriter_in_movie()->attach($new_movie->id);
+                    $person->screenwriter_of_title()->attach($title->id);
                 }
             }
 
@@ -166,11 +170,11 @@ class SeedertestController extends Controller
                     
                     }
 
-                    $person->characters()->attach($character->id, ['movie_id' => $new_movie->id]);
+                    $person->title_characters()->attach($character->id, ['title_id' => $title->id]);
                    
                 }
             }
-               
+        //}      
         //https://theimdbapi.org/api/movie?movie_id=tt0175880
 
     }
