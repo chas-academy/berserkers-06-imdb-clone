@@ -18,14 +18,18 @@ class Series extends Model
         'num_of_episodes'
     ];
 
+    protected $primaryKey = ['title_id'];
+    
+    public $incrementing = [false];
+    
+    public function title()
+    {
+        return $this->belongsTo('App\Title', 'titles');
+    }
+
     public function creators()
     {
         return $this->belongsToMany('App\Person', 'title_creator');
-    }
-
-    public function ratings()
-    {
-        return $this->belongsToMany('App\Rating', 'title_user_rating');
     }
 
     public function seasons()

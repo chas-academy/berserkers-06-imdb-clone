@@ -24,7 +24,6 @@ class Person extends Model
         return $this->belongsToMany('App\Title', 'title_actor_character');
     }
 
-    // The function below might be superflous.
     public function title_characters()
     {
         return $this->belongsToMany('App\Character', 'title_actor_character');

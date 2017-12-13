@@ -24,7 +24,7 @@ class Rating extends Model
     public function seriesUsers()
     {
         return $this->belongsToMany('App\User', 'series_user_rating');
-    } // kommer deta verkligen att fungera?
+    } // kommer detta verkligen att fungera?
 
     public function series()
     {

@@ -18,6 +18,7 @@ class CreatePhotosTable extends Migration
             $table->integer('title_id')->unsigned();
             $table->string('photo_path');
             
+            // To do: modify photo table - make more general -> apply to people as well
             $table->foreign('title_id')->references('id')->on('titles');
         });
     }

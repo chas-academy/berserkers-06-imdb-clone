@@ -17,7 +17,7 @@ class CreatePeopleTable extends Migration
         {
             $table->increments('id');
             $table->string('name');
-            $table->string('bio');
+            $table->text('bio');
             $table->date('b_date')->nullable();
             $table->date('d_date')->nullable();
         });
