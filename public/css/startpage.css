@@ -3,3 +3,45 @@ main {
   color: white;
 }
 
+.flex-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.movie-card-image {
+  height: 10em;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.card-content {
+  background-color: black;
+}
+
+.black {
+  background-color: black !important;
+}
+
+.columns {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.mobile-movie-elements {
+  margin: auto;
+}
+
+.movie-thumb-img {
+  height: 8em;
+  width: 80%;
+  margin: auto;
+}
+

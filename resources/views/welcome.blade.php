@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
@@ -19,20 +19,22 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
       <body>
         <main>
-            <div>
+            <div class="container">
                 <h1>Top 5 movies this month</h1>
-                <article>
-                    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BZjk3YThkNDktNjZjMS00MTBiLTllNTAtYzkzMTU0N2QwYjJjXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg">
+                <article class="card black">
                     <div>
-                        <div>
-                            <button class="button level-item">Add</button>
+                        <img  class="card-image movie-card-img" src="https://images-na.ssl-images-amazon.com/images/M/MV5BZjk3YThkNDktNjZjMS00MTBiLTllNTAtYzkzMTU0N2QwYjJjXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg">
+                    </div>
+                    <div class="columns is-mobile card-content">
+                        <div class="column mobile-movie-elements">
+                            <button class="button">Add/Rate</button>
                         </div> 
-                        <div>
-                            <h2>Movie title</h2>
+                        <div class="column">
+                            <h2 class="card-header-title">Movie title</h2>
                             <p>PG-rating | length | genre </p>
                             <p>movie plot<p>
                         </div>
-                        <div>
+                        <div class="column mobile-movie-elements">
                             <h2>rating</h2>
                         </div>
                     </div>
@@ -40,12 +42,11 @@
             </div>
             <div>
                 <h2> Playlist recomended by site admin/users<h2>
-                <article>
-                    <div>
-                        <img src="">
-                        <button><button>
+                <article class="card black columns is-mobile">
+                    <div class="column mobile-movie-elements">
+                        <img class="card-image movie-thumb-img" src="https://images-na.ssl-images-amazon.com/images/M/MV5BMTkxMTA5OTAzMl5BMl5BanBnXkFtZTgwNjA5MDc3NjE@._V1_UX182_CR0,0,182,268_AL_.jpg">
                     </div>
-                    <div>
+                    <div class="card-content column mobile-movie-elements" >
                         <h3>Playlist title</h3>
                         <i>Created by<i>
                         <p>Genre<p>
