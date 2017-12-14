@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/footer', function () {
-    return view('layouts.header');
+    return view('layouts.footer');
 });
 
 Auth::routes();
