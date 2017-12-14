@@ -13,7 +13,7 @@ class Genre extends Model
 
     public $timestamps = false;
 
-    public function title_genre()
+    public function titles()
     {
         return $this->belongsToMany('App\Title', 'title_genre');
     }

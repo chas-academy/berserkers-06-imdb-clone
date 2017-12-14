@@ -17,7 +17,7 @@ class Character extends Model
         return $this->belongsToMany('App\Title', 'title_actor_character');
     }
 
-    public function titleActors()
+    public function actor()
     {
         return $this->belongsToMany('App\Title', 'title_actor_character');
     }

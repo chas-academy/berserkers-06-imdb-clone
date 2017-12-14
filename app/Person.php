@@ -18,35 +18,35 @@ class Person extends Model
 
     public function roles()
     {
-        return $this->hasOne('App\PersonProfession');
+        return $this->hasOne('App\Profession');
     }
 
-    public function actor_in_title()
-    {
-        return $this->belongsToMany('App\Title', 'title_actor_character');
-    }
-
-    public function title_characters()
+    public function characters()
     {
         return $this->belongsToMany('App\Character', 'title_actor_character');
     }
 
-    public function director_of_title()
+    public function actorInTitles()
+    {
+        return $this->belongsToMany('App\Title', 'title_actor_character');
+    }
+
+    public function directorOfTitles()
     {
         return $this->belongsToMany('App\Title', 'title_director');
     }
 
-    public function producer_of_title()
+    public function producerOfTitles()
     {
         return $this->belongsToMany('App\Title', 'title_producer');
     }
 
-    public function screenwriter_of_title()
+    public function screenwriterOfTitles()
     {
         return $this->belongsToMany('App\Title', 'title_screenwriter');
     }
     
-    public function creator_of_title()
+    public function creatorOfTitles()
     {
         return $this->belongsToMany('App\Title', 'title_creator');
     }

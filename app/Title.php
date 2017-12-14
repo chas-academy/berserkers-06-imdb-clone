@@ -18,17 +18,17 @@ class Title extends Model
 
     public function series()
     {
-        return $this->hasOne('App\Series', 'series');
+        return $this->hasMany('App\Series', 'series');
     }
 
     public function season()
     {
-        return $this->hasOne('App\Season', 'seasons');
+        return $this->hasMany('App\Season', 'seasons');
     }
 
     public function episode()
     {
-        return $this->hasOne('App\Episode', 'episodes');
+        return $this->hasMany('App\Episode', 'episodes');
     }
 
     /******** */
@@ -62,11 +62,6 @@ class Title extends Model
         return $this->belongsToMany('App\Person', 'title_creator');
     }
 
-    public function ratings()
-    {
-        return $this->belongsToMany('App\Rating', 'title_user_rating');
-    }
-
     public function photos()
     {
         return $this->hasMany('App\Photo');
@@ -76,5 +71,15 @@ class Title extends Model
     {
         return $this->belongsToMany('App\Genre', 'title_genre');
     }
+
+    public function ratings()
+    {
+        return $this->belongsToMany('App\Rating', 'title_user_rating');
+    } // all 1 - 10 ratings this title recieved
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User', 'title_user_rating');
+    } // all users that have rated this title
 
 }
