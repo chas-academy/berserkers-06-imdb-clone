@@ -8350,6 +8350,15 @@ button.close {
   }
 }
 
+html,
+header {
+  background-color: #0e0b16;
+}
+
+.navbar {
+  background-color: #0e0b16;
+}
+
 .navbar-item {
   color: #4a4a4a !important;
 }
@@ -8377,6 +8386,7 @@ button.close {
   position: relative;
   width: 3.25rem;
   margin-left: unset;
+  color: white;
 }
 
 .navbar-start {
@@ -8395,7 +8405,29 @@ button.close {
   margin-left: 1em;
 }
 
-main {
-  background-color: #0e0b16;
+.navbar-item img {
+  max-height: 5.75rem;
+}
+
+.panel-block {
+  margin-top: 2em;
+  border: none;
+}
+
+.button.is-success {
+  margin-left: 1em;
+}
+
+.button.is-info {
+  float: right;
+  margin-right: 1em;
+}
+
+@media screen and (max-width: 1023px) {
+  .navbar-menu.is-active {
+    display: block;
+    background-color: #0e0b16;
+    padding: 0;
+  }
 }
 
