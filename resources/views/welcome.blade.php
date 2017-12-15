@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
@@ -37,7 +37,7 @@
                             <p>PG-rating | length | genre </p>
                             <p>movie plot<p>
                         </div>
-                        <div>
+                        <div class="column mobile-movie-elements">
                             <h2>rating</h2>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                         <img src="">
                         <button><button>
                     </div>
-                    <div>
+                    <div class="card-content column mobile-movie-elements" >
                         <h3>Playlist title</h3>
                         <i>Created by<i>
                         <p>Genre<p>
