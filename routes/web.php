@@ -25,4 +25,4 @@ Route::resource('comments', 'CommentsController');
 Route::resource('users', 'UsersController');
 
 
-Route::get('/seedertest', 'SeedertestController@index');
+Route::get('/seedertest', 'serieseedertester@index');
