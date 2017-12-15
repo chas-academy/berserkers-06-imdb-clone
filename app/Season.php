@@ -15,6 +15,8 @@ class Season extends Model
     protected $primaryKey = 'title_id';
     
     public $incrementing = [false];
+
+    public $timestamps = false;    
     
     public function title()
     {
