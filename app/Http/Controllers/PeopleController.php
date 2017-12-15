@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Person;
+use App\Movie;
 use Illuminate\Http\Request;
 
 class PeopleController extends Controller
@@ -15,7 +16,7 @@ class PeopleController extends Controller
     public function index()
     {
         //
-        $people = Person::all();
+        $people = Person::orderBy('name')->get();
         return view('people.index', ['people' => $people]);
     }
 
@@ -50,7 +51,8 @@ class PeopleController extends Controller
     {
         //
         $person = Person::find($person->id);
-        return view('people.show', ['person' => $person]);
+        $movies = Movie::all();
+        return view('people.show', ['person' => $person, 'movies' => $movies]);
     }
 
     /**

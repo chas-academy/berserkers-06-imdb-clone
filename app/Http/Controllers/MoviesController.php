@@ -16,7 +16,7 @@ class MoviesController extends Controller
     public function index()
     {
         //
-        $movies = Movie::all();
+        $movies = Movie::orderBy('title')->get();
         $titles = Title::where('type', '=', 'movie')->get();
 
         return view('movies.index', ['movies' => $movies, 'titles' => $titles]);
