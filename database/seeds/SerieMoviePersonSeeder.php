@@ -120,7 +120,7 @@ class SerieMoviePersonSeeder extends Seeder
                                 
                                 }
             
-                                $person->title_characters()->attach($character->id, ['title_id' => $title->id]);
+                                $person->characters()->attach($character->id, ['title_id' => $title->id]);
                             }
                         }
                     }
@@ -159,15 +159,15 @@ class SerieMoviePersonSeeder extends Seeder
                                 if (isset($person)) {
 
                                     if ($crew->job === "Director") {
-                                        $person->director_of_title()->attach($title->id);
+                                        $person->directorOfTitles()->attach($title->id);
                                     }
                                     
                                     if ($crew->department === "Production") {
-                                        $person->producer_of_title()->attach($title->id);
+                                        $person->producerOfTitles()->attach($title->id);
                                     }
 
                                     if ($crew->department === "Writing") {
-                                        $person->screenwriter_of_title()->attach($title->id);
+                                        $person->screenwriterOfTitles()->attach($title->id);
                                     }
                                 }
                             }
