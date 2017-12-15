@@ -25,24 +25,30 @@
                   <span></span>
                   <span></span>
                </div>
+
                <!-- Logo -->
                <a class="navbar-item" id="testing" href="/">
                <img src="{{asset('images/logo.png')}}" alt="">
                </a>
+
                <!-- Modal with the user logo-->
-               <a class="button" id="testing2" >
+               <a id="testing2" href="">
                   <i class="fa fa-lg fa-user-circle" aria-hidden="true"></i>
-                  <div class="modal is-active">
+                </a>
+                  <div class="modal">
                      <div class="modal-background"></div>
                      <div class="modal-content">
+                         <header class"modal-card-head">
+                             <p class="modal-card-title">Log in or Register</p>
+                         </header>
                         <!-- Any other Bulma elements you want -->
                         <div class="field">
                            <p class="control has-icons-left has-icons-right">
                               <input class="input" type="email" placeholder="Email">
-                              <span class="icon is-small is-left">
+                              <span class="icon is-medium is-left">
                               <i class="fa fa-envelope"></i>
                               </span>
-                              <span class="icon is-small is-right">
+                              <span class="icon is-medium is-right">
                               <i class="fa fa-check"></i>
                               </span>
                            </p>
@@ -50,7 +56,7 @@
                         <div class="field">
                            <p class="control has-icons-left">
                               <input class="input" type="password" placeholder="Password">
-                              <span class="icon is-small is-left">
+                              <span class="icon is-medium is-left">
                               <i class="fa fa-lock"></i>
                               </span>
                            </p>
@@ -65,9 +71,9 @@
                            </p>
                         </div>
                      </div>
-                  </div>
-               </a>
+                  </div> 
             </div>
+
             <!-- Active burger menu-->
             <div class="navbar-menu" id="Options">
                <div class="navbar-start">

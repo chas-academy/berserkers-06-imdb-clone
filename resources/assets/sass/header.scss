@@ -27,8 +27,11 @@ header {
   margin: auto;
 }
 
-#testing2 {
+a#testing2 {
   display: inline-block;
+  top: calc(50% - 5px);
+  color:white;
+  padding-top: 0.3em;
 }
 
 .navbar-brand {
@@ -74,6 +77,17 @@ header {
   border: none;
 }
 
+.modal-card-title {
+  background-color: white;
+  text-align: center;
+  padding-top: 0.5em;
+}
+
+.modal-content {
+  margin:auto;
+  margin-top: 5em;
+}
+
 .button.is-success {
   margin-left: 1em;
 }
@@ -81,6 +95,15 @@ header {
 .button.is-info {
   float: right;
   margin-right: 1em;
+}
+
+
+@media screen and (max-width: 1023px) {
+  .modal.is-active {
+    display: block;
+    background-color: #0e0b16;
+    padding: 0;
+  }
 }
 
 @media screen and (max-width: 1023px) {

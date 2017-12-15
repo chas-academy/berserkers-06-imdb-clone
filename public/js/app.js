@@ -989,6 +989,8 @@ window.Vue = __webpack_require__(35);
 
 Vue.component("example-component", __webpack_require__(38));
 
+//Hamburger
+
 document.addEventListener("DOMContentLoaded", function () {
   // Get all "navbar-burger" elements
   var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll(".navbar-burger"), 0);
@@ -1008,6 +1010,28 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   }
+});
+
+//Toggle active modal
+
+document.querySelector("a#testing2").addEventListener("click", function (event) {
+  event.preventDefault();
+  var modal = document.querySelector(".modal"); // assuming you have only 1
+  var html = document.querySelector("html");
+  modal.classList.add("is-active");
+  html.classList.add("is-clipped");
+
+  modal.querySelector(".modal-background").addEventListener("click", function (e) {
+    e.preventDefault();
+    modal.classList.remove("is-active");
+    html.classList.remove("is-clipped");
+  });
+
+  document.querySelector(".is-danger").addEventListener("click", function (eventtwo) {
+    eventtwo.preventDefault();
+    modal.classList.remove("is-active");
+    html.classList.remove("is-active");
+  });
 });
 
 /***/ }),
