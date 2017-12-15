@@ -15,10 +15,10 @@
 
 
 <div class="columns">
-  <div class="column has-text-centered" style="background-color:black">
+  <div class="column has-text-centered" style="background-color:lightblue">
       <p>Copy by Berserkers</p> 
   <p><i class="fa fa-map-marker" aria-hidden="true">Location</i><p> 
-  <div class="column has-text-centered" style="background-color:black">
+  <div class="column has-text-centered" style="background-color:lightblue">
       
   <i class="fa fa-twitter" aria-hidden="true"></i>
   <i class="fa fa-facebook-official" aria-hidden="true"></i>
