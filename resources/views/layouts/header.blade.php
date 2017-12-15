@@ -18,7 +18,7 @@
    <body>
       <header>
         <!-- Burger logo -->
-         <nav class="navbar">
+         <nav class="navbar is-fixed-top">
             <div class="navbar-brand">
                <div class="navbar-burger burger" data-target="Options">
                   <span></span>
