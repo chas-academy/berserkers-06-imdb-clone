@@ -19,14 +19,19 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
       <body>
         <main>
+      
             <div>
-                <h1>Top 5 movies this month</h1>
-                <article>
-                    <img src="https://images-na.ssl-images-amazon.com/images/M/MV5BZjk3YThkNDktNjZjMS00MTBiLTllNTAtYzkzMTU0N2QwYjJjXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg">
-                    <div>
-                        <div>
-                            <button class="button level-item">Add</button>
-                        </div> 
+            <div class="container">
+  <div class="notification">
+  <h1>Top 5 movies this month</h1>
+  <figure class="image is-3by2">
+  <img src="https://a.ltrbxd.com/resized/sm/upload/z6/e0/vw/uy/pulp-fiction-65-1200-1200-675-675-crop-000000.jpg?k=0e0befe63c">
+</figure>
+  </div>
+  <article>
+           <div>
+           <button class="button level-item">Add</button>
+         </div>
                         <div>
                             <h2>Movie title</h2>
                             <p>PG-rating | length | genre </p>
@@ -38,8 +43,17 @@
                     </div>
                 </article>
             </div>
+            <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
+         <ul>
+            <li><a href="#">Movies</a></li>
+            <li><a href="#">Series</a></li>
+            <li><a href="#">Upcoming Movies</a></li>
+            <li><a href="#">Recommended Movies</a></li>
+            <li class="is-active"><a href="#" aria-current="page">Berzerkers</a></li>
+      </ul>
+   </nav>
             <div>
-                <h2> Playlist recomended by site admin/users<h2>
+                <h2> Playlist recommended by site admin/users<h2>
                 <article>
                     <div>
                         <img src="">
@@ -49,10 +63,11 @@
                         <h3>Playlist title</h3>
                         <i>Created by<i>
                         <p>Genre<p>
-                        <p>Avrage rating<p>
+                        <p>Average rating<p>
                         <p>Description<p>
                     </div>
                 </article>
+            </div>
             </div>
         </main>
     </body>

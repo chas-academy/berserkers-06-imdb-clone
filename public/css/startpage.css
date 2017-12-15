@@ -3,3 +3,7 @@ main {
   color: white;
 }
 
+.notification {
+  background-color: black !important;
+}
+
