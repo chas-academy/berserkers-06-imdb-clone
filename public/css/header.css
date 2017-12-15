@@ -8363,11 +8363,11 @@ header {
   color: #4a4a4a !important;
 }
 
-#testing {
+#logo {
   margin: auto;
 }
 
-a#testing2 {
+a#usermodal {
   display: inline-block;
   top: calc(50% - 5px);
   color: white;

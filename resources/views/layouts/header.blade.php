@@ -1,6 +1,3 @@
-<?php
-   // @extends('layouts.app')
-   ?>    
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
    <head>
@@ -27,12 +24,12 @@
                </div>
 
                <!-- Logo -->
-               <a class="navbar-item" id="testing" href="/">
+               <a class="navbar-item" id="logo" href="/">
                <img src="{{asset('images/logo.png')}}" alt="">
                </a>
 
                <!-- Modal with the user logo-->
-               <a id="testing2" href="">
+               <a id="usermodal" href="">
                   <i class="fa fa-lg fa-user-circle" aria-hidden="true"></i>
                 </a>
                   <div class="modal">
@@ -96,8 +93,6 @@
             </div>
          </nav>
       </header>
-      <main>
-      </main>
       <!-- Scripts -->
       <script src="{{ asset('js/app.js') }}"></script>
    </body>

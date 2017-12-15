@@ -4,9 +4,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require("./bootstrap");
+/*require("./bootstrap");
 
-window.Vue = require("vue");
+window.Vue = require("vue");*/
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -14,10 +14,10 @@ window.Vue = require("vue");
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component(
+/*Vue.component(
   "example-component",
   require("./components/ExampleComponent.vue")
-);
+);*/
 
 //Hamburger
 
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //Toggle active modal
 
-document.querySelector("a#testing2").addEventListener("click", function (event) {
+document.querySelector("a#usermodal").addEventListener("click", function (event) {
   event.preventDefault();
   var modal = document.querySelector(".modal"); // assuming you have only 1
   var html = document.querySelector("html");
