@@ -1,3 +1,4 @@
-// 1. Import the initial variables
-@import "../sass/utilities/initial-variables";
-@import "../sass/utilities/functions";
+.footer {
+    background-color: rgba(13, 112, 112, 0.6) !important;
+    flex-flow: left;
+}
