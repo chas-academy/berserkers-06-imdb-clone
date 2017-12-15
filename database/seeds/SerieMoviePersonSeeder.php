@@ -19,7 +19,7 @@ class SerieMoviePersonSeeder extends Seeder
      */
     public function run()
     {
-        $movie_names= ['Magnolia','Up', 'Pulp+Fiction', 'The+Mask','Cowspiracy'];
+        $movie_names= ['Magnolia','Up', 'Pulp+Fiction', 'The+Mask','Cowspiracy', 'Office+Space', 'Minority Report', 'Eternal+Sunshine+of+the+Spotless+Mind'];
         $moviedb_client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 300]);
         $imdb_client = new Client(['base_uri' => 'https://theimdbapi.org/api/']);
         foreach($movie_names as $movie_name) {
@@ -120,7 +120,7 @@ class SerieMoviePersonSeeder extends Seeder
                                 
                                 }
             
-                                $person->title_characters()->attach($character->id, ['title_id' => $title->id]);
+                                $person->characters()->attach($character->id, ['title_id' => $title->id]);
                             }
                         }
                     }
@@ -159,15 +159,15 @@ class SerieMoviePersonSeeder extends Seeder
                                 if (isset($person)) {
 
                                     if ($crew->job === "Director") {
-                                        $person->director_of_title()->attach($title->id);
+                                        $person->directorOfTitle()->attach($title->id);
                                     }
                                     
                                     if ($crew->department === "Production") {
-                                        $person->producer_of_title()->attach($title->id);
+                                        $person->producerOTitle()->attach($title->id);
                                     }
 
                                     if ($crew->department === "Writing") {
-                                        $person->screenwriter_of_title()->attach($title->id);
+                                        $person->screenwriterOfTitle()->attach($title->id);
                                     }
                                 }
                             }
