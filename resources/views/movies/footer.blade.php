@@ -11,7 +11,7 @@
 </head>
 <body>
     
-<footer class="footer" style="background-color: black;">
+<footer class="footer" class="hero is-info">
 
 
 <div class="columns">
