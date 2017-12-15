@@ -159,15 +159,15 @@ class SerieMoviePersonSeeder extends Seeder
                                 if (isset($person)) {
 
                                     if ($crew->job === "Director") {
-                                        $person->directorOfTitle()->attach($title->id);
+                                        $person->directorOfTitles()->attach($title->id);
                                     }
                                     
                                     if ($crew->department === "Production") {
-                                        $person->producerOTitle()->attach($title->id);
+                                        $person->producerOTitles()->attach($title->id);
                                     }
 
                                     if ($crew->department === "Writing") {
-                                        $person->screenwriterOfTitle()->attach($title->id);
+                                        $person->screenwriterOfTitles()->attach($title->id);
                                     }
                                 }
                             }
