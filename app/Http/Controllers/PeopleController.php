@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Person;
 use Illuminate\Http\Request;
 
-class PersonsController extends Controller
+class PeopleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +15,8 @@ class PersonsController extends Controller
     public function index()
     {
         //
+        $people = Person::all();
+        return view('people.index', ['people' => $people]);
     }
 
     /**
@@ -47,6 +49,8 @@ class PersonsController extends Controller
     public function show(Person $person)
     {
         //
+        $person = Person::find($person->id);
+        return view('people.show', ['person' => $person]);
     }
 
     /**
