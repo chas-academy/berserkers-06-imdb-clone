@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhotosTable extends Migration
+class CreateSeasonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreatePhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('photos', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('seasons', function (Blueprint $table) {
+
             $table->integer('title_id')->unsigned();
-            $table->string('photo_path');
-            
-            // To do: modify photo table - make more general -> apply to people as well
+            $table->integer('series_id')->unsigned();
+            $table->integer('season_number');
+        
             $table->foreign('title_id')->references('id')->on('titles');
+            $table->foreign('series_id')->references('title_id')->on('series');
         });
     }
 
@@ -30,6 +31,6 @@ class CreatePhotosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('photos');
+        Schema::dropIfExists('seasons');
     }
 }

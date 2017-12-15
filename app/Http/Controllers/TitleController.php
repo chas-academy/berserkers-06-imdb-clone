@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Title;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class TitleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $titles = Title::all();
+
+        return view('titles.index', ['titles' => $titles]);
     }
 
     /**
@@ -41,10 +43,10 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\Title  $title
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(Title $title)
     {
         //
     }
@@ -52,10 +54,10 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\Title  $title
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Title $title)
     {
         //
     }
@@ -64,10 +66,10 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  \App\Title  $title
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Title $title)
     {
         //
     }
@@ -75,10 +77,10 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  \App\Title  $title
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Title $title)
     {
         //
     }
