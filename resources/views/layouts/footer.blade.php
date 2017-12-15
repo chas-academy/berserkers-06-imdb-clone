@@ -10,12 +10,16 @@
 <div class="columns">
   <div class="column has-text-left">
       <p>Copy by Berserkers</p> 
-  <p><i class="fa fa-map-marker" aria-hidden="true">Location</i><p> 
-      
+ <p> <i class="fa fa-map-marker" aria-hidden="true"> Location</i></p>
+ <div class="icon">     
+ <nav class="level is-mobile">
+  <div class="level-item has-text-centered">
   <i class="fa fa-twitter" aria-hidden="true"></i>
   <i class="fa fa-facebook-official" aria-hidden="true"></i>
-
-<i class="fa fa-github" aria-hidden="true"></i>
+  <i class="fa fa-github" aria-hidden="true"></i>
+   </div>
+  </nav>
+   </div>
   </div>
-</div>
+ </div>
 </footer>
