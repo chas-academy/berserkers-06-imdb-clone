@@ -22,7 +22,20 @@ class SerieSeeder extends Seeder
     public function run()
     {
         ini_set('max_execution_time', 3000);
-        $series_names= ['Westworld','Preacher','Penny+Dreadful', 'The+affair','Breaking+Bad','Black+Mirror','Friends','Game+Of+Thrones','The+Walking+Dead','The+Office'];
+        $series_names= [
+            'Westworld',
+            'Preacher',
+            'Penny+Dreadful',
+            'The+affair',
+            'Breaking+Bad',
+            'Black+Mirror',
+            'Friends',
+            'Game+Of+Thrones',
+            'The+Walking+Dead',
+            'The+Office',
+            'twin+peaks',
+            'twin+peaks:+The+Return'
+        ];
         $db_client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 300]);
         foreach($series_names as $series_name) {
             $response = $db_client->request('GET',"search/tv?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$series_name}");

@@ -19,7 +19,37 @@ class SerieMoviePersonSeeder extends Seeder
      */
     public function run()
     {
-        $movie_names= ['Magnolia','Up', 'Pulp+Fiction', 'The+Mask','Cowspiracy', 'Office+Space', 'Minority+Report', 'Eternal+Sunshine+of+the+Spotless+Mind'];
+        $movie_names= [
+            'Magnolia',
+            'Up',
+            'Pulp+Fiction',
+            'The+Mask',
+            'Cowspiracy',
+            'Office+Space',
+            'Minority+Report',
+            'Eternal+Sunshine+of+the+Spotless+Mind',
+            'Forrest+Gump',
+            'Inception',
+            'Fight+Club',
+            'City+of+God',
+            'Se7en', 
+            'Spirited+Away', 
+            'Casablanca',
+            'Psycho',
+            'Rear+Window',
+            'Gladiator',
+            'Memento',
+            'Th+Lives+of+Others',
+            'Vertigo',
+            'Braveheart',
+            'Amélie',
+            'Amadeus',
+            'A+Clockwork+Orange',
+            'My+Neighbor+Totoro',
+            'The+Truman+Show',
+            'Monsters,+Inc.',
+            'Jaws'
+        ];
         $moviedb_client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 300]);
         $imdb_client = new Client(['base_uri' => 'https://theimdbapi.org/api/']);
         foreach($movie_names as $movie_name) {
