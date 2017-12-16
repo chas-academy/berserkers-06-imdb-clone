@@ -163,7 +163,7 @@ class SerieMoviePersonSeeder extends Seeder
                                     }
                                     
                                     if ($crew->department === "Production") {
-                                        $person->producerOTitles()->attach($title->id);
+                                        $person->producerOfTitles()->attach($title->id);
                                     }
 
                                     if ($crew->department === "Writing") {
