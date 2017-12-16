@@ -19,7 +19,7 @@ class SerieMoviePersonSeeder extends Seeder
      */
     public function run()
     {
-        $movie_names= [
+        $movie_names = [
             'Magnolia',
             'Up',
             'Pulp+Fiction',
@@ -50,19 +50,16 @@ class SerieMoviePersonSeeder extends Seeder
             'Monsters,+Inc.',
             'Jaws'
         ];
-        $moviedb_client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 300]);
-        $imdb_client = new Client(['base_uri' => 'https://theimdbapi.org/api/']);
+
+        $db_client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 251]);
+
         foreach($movie_names as $movie_name) {
-            $response = $moviedb_client->request('GET',"search/movie?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$movie_name}");
+            
+            $response = $db_client->request('GET',"search/movie?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$movie_name}");
             $response = json_decode($response->getBody());
             $movie_id = $response->results[0]->id; 
-            $response = $moviedb_client->request('GET',"movie/{$movie_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=credits,videos,images");
+            $response = $db_client->request('GET',"movie/{$movie_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=credits,videos");
             $movie = json_decode($response->getBody());
-            
-            $imdb_id = $movie->imdb_id;
-          
-            $response = $imdb_client->request('GET',"movie?movie_id={$imdb_id}");
-            $imdb_movie = json_decode($response->getBody());
             
             if (is_null(Movie::where('title', '=', $movie->title)->first())) {
                 
@@ -71,20 +68,37 @@ class SerieMoviePersonSeeder extends Seeder
                 'title_id' => $title->id,
                 'title' => $movie->title, 
                 'release_year' => $movie->release_date,
-                'plot_summary' => $imdb_movie->storyline, 
+                'plot_summary' => $movie->overview, 
                 'runtime' => (int) $movie->runtime, 
-                'countries' => $imdb_movie->metadata->countries[0], 
-                'pg_rating' => $imdb_movie->content_rating, 
+                
                 ];
-                if (isset($imdb_movie->trailer[0])) {
-                    $movie_array += ['trailer' => $imdb_movie->trailer[0]->videoUrl];
+
+                if (isset($movie->production_countries[0])) {
+                    $countries = '';
+                    foreach($movie->production_countries[0] as $result) {
+                        $countries .= $movie->production_countries[0]->iso_3166_1 . ' ';
+                    }
+
+                    $movie_array += ['countries' => $countries];
                 }
+
+                if (isset($movie->videos->results[0])) {
+                    $movie_array += ['trailer' => "https://www.youtube.com/watch?v={$movie->videos->results[0]->key}"];
+                }
+
+                // if (isset($movie->content_ratings->results[0] )) {
+                //     foreach($movie->content_ratings->results as $result) {
+                //         if ($result->iso_3166_1 === "US") {
+                //             $movie_array += ['pg_rating' => $result->rating];
+                //         }
+                //     }  
+                // } //content ratings cant be accesed with this api, they will have to be filled in manualy for all movies
 
                 $request = [];
 
                 foreach($movie_array as $key => $value) {
                     if (isset($value) && $value != null) {
-                    $request += [$key => $value];
+                        $request += [$key => $value];
                     }
                 }
                 
@@ -100,14 +114,20 @@ class SerieMoviePersonSeeder extends Seeder
                     }
                 }
 
-                
-                if (isset($imdb_movie->poster)){
-                    foreach($imdb_movie->poster as $photo){
-                        
-                        Photo::create(['title_id' => $title->id, 'photo_path' => $photo]);
-                        
-                    }
+                $img_sizes= ["w45", "w92", "w154","w185","w300","w342","w500","h632", "w780","w1280"];
+
+                if (isset($movie->poster_path)){
+                        foreach($img_sizes as $size) {
+                            Photo::create(['title_id' => $title->id, 'photo_path' => "https://image.tmdb.org/t/p/{$size}/{$movie->poster_path}"]);
+                        }     
                 }
+
+                if (isset($movie->backdrop_path)){
+                    foreach($img_sizes as $size) {
+                        Photo::create(['title_id' => $title->id, 'photo_path' => "https://image.tmdb.org/t/p/{$size}/{$movie->backdrop_path}"]);
+                    }
+                }  
+
                 if (isset($movie->credits)) {
                     if (isset($movie->credits->cast)) {
                         foreach($movie->credits->cast as $cast) {
@@ -116,13 +136,13 @@ class SerieMoviePersonSeeder extends Seeder
         
                                 $name = str_replace(' ', '+', $cast->name);
                                 
-                                $request = $moviedb_client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
+                                $request = $db_client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
                                 $request = json_decode($request->getBody());
 
                                 if (isset($request->results[0])) {
                                     $person_id = $request->results[0]->id;
                                     
-                                    $person = $moviedb_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e");
+                                    $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e");
                                     $person = json_decode($person->getBody());
 
                                     $request = [
@@ -142,6 +162,7 @@ class SerieMoviePersonSeeder extends Seeder
                                 }
 
                             }
+
                             if (isset($person)) {
                                 $character = Character::where('character_name', '=', $cast->character)->first();
                                 
@@ -154,6 +175,7 @@ class SerieMoviePersonSeeder extends Seeder
                             }
                         }
                     }
+
                     if (isset($movie->credits->crew)) {
                         foreach($movie->credits->crew as $crew) {
                             if ($crew->job === "Director" || $crew->department === "Production" || $crew->department === "Writing") {
@@ -161,12 +183,12 @@ class SerieMoviePersonSeeder extends Seeder
                                 if (!isset($person)) {
             
                                     $name = str_replace(' ', '+', $crew->name);
-                                    $request = $moviedb_client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
+                                    $request = $db_client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
                                     $request = json_decode($request->getBody());
 
                                     if (isset($request->results[0])) {
                                         $person_id = $request->results[0]->id;
-                                        $person = $moviedb_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e");
+                                        $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e");
                                         $person = json_decode($person->getBody());
 
                                         $request = [

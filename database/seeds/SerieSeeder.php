@@ -26,17 +26,16 @@ class SerieSeeder extends Seeder
             'Westworld',
             'Preacher',
             'Penny+Dreadful',
-            'The+affair',
+            'The+Affair',
             'Breaking+Bad',
             'Black+Mirror',
             'Friends',
             'Game+Of+Thrones',
             'The+Walking+Dead',
             'The+Office',
-            'twin+peaks',
-            'twin+peaks:+The+Return'
+            'Twin+Peaks',
         ];
-        $db_client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 300]);
+        $db_client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 251]);
         foreach($series_names as $series_name) {
             $response = $db_client->request('GET',"search/tv?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$series_name}");
             $response = json_decode($response->getBody());
@@ -226,6 +225,53 @@ class SerieSeeder extends Seeder
                                 
                                                     $person->characters()->attach($character->id, ['title_id' => $episode->id]);
                                                 }
+                                            }
+                                        }
+                                        if (isset($db_episode->credits->guest_stars)) {
+                                            foreach($db_episode->credits->guest_stars as $guest_stars) {
+                                                $person = Person::where('name', '=', $guest_stars->name)->first();
+                                                if (!isset($person)) {
+                            
+                                                    $name = str_replace(' ', '+', $guest_stars->name);
+                                                    
+                                                    $request = $db_client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
+                                                    $request = json_decode($request->getBody());
+                    
+                                                    if (isset($request->results[0])) {
+                                                        $person_id = $request->results[0]->id;
+                                                        
+                                                        $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e");
+                                                        $person = json_decode($person->getBody());
+                    
+                                                        $request = [
+                                                            'name' => $person->name,
+                                                            'bio' => $person->biography
+                                                        ];
+                    
+                                                        if (isset($person->birthday) && strlen($person->birthday) === 10) {
+                                                            $request += ['b_date' => $person->birthday];
+                                                        }
+                    
+                                                        if (isset($person->deathday) && strlen($person->deathday) === 10) {
+                                                            $request += ['d_date' => $person->deathday];
+                                                        }
+                                                        
+                                                        $person = Person::create($request);
+                                                    }
+                    
+                                                }
+                                                if (isset($person)) {
+                                                    $character = Character::where('character_name', '=', $guest_stars->character)->first();
+                                                    
+                                                    if (!isset($character)) {
+                                                    $character = Character::create(['character_name' => $guest_stars->character]);
+                                                    
+                                                    }
+                                
+                                                    $person->characters()->attach($character->id, ['title_id' => $episode->id]);
+                                                }
+
+                                            
                                             }
                                         }
                                         if (isset($db_episode->credits->crew)) {
