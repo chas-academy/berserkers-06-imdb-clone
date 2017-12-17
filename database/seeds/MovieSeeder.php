@@ -255,7 +255,7 @@ class MovieSeeder extends Seeder
                                     if (isset($request->results[0])) {
 
                                         $personId = $request->results[0]->id;
-                                        $person = $client->request('GET', "person/{$personId}?api_key=be55d92a645f3fe8c6ca67ff5093076e");
+                                        $person = $client->request('GET', "person/{$personId}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
                                         $person = json_decode($person->getBody());
 
                                         $request = [
