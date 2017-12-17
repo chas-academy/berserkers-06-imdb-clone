@@ -48,11 +48,12 @@ class MovieSeeder extends Seeder
             'My+Neighbor+Totoro',
             'The+Truman+Show',
             'Monsters,+Inc.',
-            'Jaws'
+            'Jaws',
+            'Love+Actually'
         ];
 
         $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 251]);
-
+        $omdbClient = new Client(['base_uri' => 'http://www.omdbapi.com/', 'delay' => 251]);
         foreach($movieNames as $movieName) {
 
             $response = $client->request('GET',"search/movie?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$movieName}");
@@ -60,9 +61,13 @@ class MovieSeeder extends Seeder
             $movieId = $response->results[0]->id; 
             $response = $client->request('GET',"movie/{$movieId}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=credits,videos");
             $movie = json_decode($response->getBody());
+           
             
             if (is_null(Movie::where('title', '=', $movie->title)->first())) {
-                
+
+                $response = $omdbClient->request('GET',"?t={$movieName}&apikey=c73f9c20");
+                $response = json_decode($response->getBody());
+
                 $title = Title::create(['type' => 'movie']);
 
                 $movieArray = [
@@ -79,16 +84,11 @@ class MovieSeeder extends Seeder
 
                     foreach($movie->production_countries as $result) {
 
-                        if (count($movie->production_countries) > 1 ) {
-
-                            $countries .= $result->iso_3166_1 . ', ';
-
-                        } else {
-
-                            $countries .= $result->iso_3166_1;
-                        }
+                        $countries .= $result->iso_3166_1 . ', ';
                     }
-
+                    
+                    $countries = substr($countries, 0 , (strlen($countries) -2 ));
+                    
                     $movieArray += ['countries' => $countries];
                 }
 
@@ -97,13 +97,9 @@ class MovieSeeder extends Seeder
                     $movieArray += ['trailer' => "https://www.youtube.com/watch?v={$movie->videos->results[0]->key}"];
                 }
 
-                // if (isset($movie->content_ratings->results[0] )) {
-                //     foreach($movie->content_ratings->results as $result) {
-                //         if ($result->iso_3166_1 === "US") {
-                //             $movieArray += ['pg_rating' => $result->rating];
-                //         }
-                //     }  
-                // } //content ratings cant be accesed with this api, they will have to be filled in manualy for all movies
+                if (isset($response->Rated)) {
+                    $movieArray += ['pg_rating' => $response->Rated];  
+                }
 
                 $request = [];
 
