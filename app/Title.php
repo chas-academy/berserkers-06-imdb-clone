@@ -64,7 +64,7 @@ class Title extends Model
 
     public function photos()
     {
-        return $this->hasMany('App\Photo');
+        return $this->morphMany('App\Photo', 'imageable');
     }
 
     public function genres()
