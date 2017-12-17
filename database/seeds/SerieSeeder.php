@@ -92,19 +92,34 @@ class SerieSeeder extends Seeder
                         $title->genres()->attach($genre->id);
                     }
                 }
-                
-                $img_sizes= ["w45", "w92", "w154","w185","w300","w342","w500","h632", "w780","w1280"];
+
+                $img_sizes = ["45", "92", "154","185","300","342","500","632", "780","1280"];
+
                 if (isset($series->poster_path)){
-                        foreach($img_sizes as $size) {
-                            Photo::create(['title_id' => $title->id, 'photo_path' => "https://image.tmdb.org/t/p/{$size}/{$series->poster_path}"]);
-                        }     
+                    foreach($img_sizes as $size) {
+                        Photo::create([
+                            'imageable_id' => $title->id,
+                            'imageable_type' => get_class($title),
+                            'photo_path' => "https://image.tmdb.org/t/p/w{$size}{$series->poster_path}", 
+                            'photo_type' => 'poster',
+                            'width' => $size,
+                            'ratio' => 0.66666666666667
+                            ]);
+                    }     
                 }
 
-                if (isset($series->backdrop_path)){
+                if (isset($series->backdrop_path)) {
                     foreach($img_sizes as $size) {
-                        Photo::create(['title_id' => $title->id, 'photo_path' => "https://image.tmdb.org/t/p/{$size}/{$series->backdrop_path}"]);
+                        Photo::Create([
+                            'imageable_id' => $title->id, 
+                            'imageable_type' => get_class($title),
+                            'photo_path' => "https://image.tmdb.org/t/p/w{$size}{$series->backdrop_path}", 
+                            'photo_type' => 'backdrop',
+                            'width' => $size,
+                            'ratio' => 1.777777777777778
+                            ]);
                     }
-                }
+                } 
 
                 if (isset($series->created_by)){
                     foreach($series->created_by as $creator){
@@ -117,7 +132,7 @@ class SerieSeeder extends Seeder
 
                             if (isset($request->results[0])) {
                                 $person_id = $request->results[0]->id;
-                                $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e");
+                                $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
                                 $person = json_decode($person->getBody());
 
                                 $request = [
@@ -181,6 +196,22 @@ class SerieSeeder extends Seeder
                                 
                                     Episode::create($request);
 
+                                    if (isset($db_episode->images->stills)){
+                                        foreach($db_episode->images->stills as $still) {
+                                            foreach($img_sizes as $size) {
+                                                Photo::create([
+                                                    'imageable_id' => $episode->id,
+                                                    'imageable_type' => get_class($episode),
+                                                    'photo_path' => "https://image.tmdb.org/t/p/w{$size}{$still->file_path}", 
+                                                    'photo_type' => 'backdrop',
+                                                    'width' => $size,
+                                                    'ratio' => $still->aspect_ratio
+                                                    ]);
+                                            }  
+                                        }
+                                           
+                                    }
+
                                     if (isset($db_episode->credits)) {
                                         if (isset($db_episode->credits->cast)) {
                                             foreach($db_episode->credits->cast as $cast) {
@@ -191,30 +222,46 @@ class SerieSeeder extends Seeder
                                                     
                                                     $request = $db_client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
                                                     $request = json_decode($request->getBody());
-                    
+                                                    
                                                     if (isset($request->results[0])) {
                                                         $person_id = $request->results[0]->id;
                                                         
-                                                        $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e");
-                                                        $person = json_decode($person->getBody());
-                    
+                                                        $response = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
+                                                       
+                                                        $response = json_decode($response->getBody());
+                                                        
                                                         $request = [
-                                                            'name' => $person->name,
-                                                            'bio' => $person->biography
+                                                            'name' => $response->name,
+                                                            'bio' => $response->biography
                                                         ];
                     
-                                                        if (isset($person->birthday) && strlen($person->birthday) === 10) {
-                                                            $request += ['b_date' => $person->birthday];
+                                                        if (isset($response->birthday) && strlen($response->birthday) === 10) {
+                                                            $request += ['b_date' => $response->birthday];
                                                         }
                     
-                                                        if (isset($person->deathday) && strlen($person->deathday) === 10) {
-                                                            $request += ['d_date' => $person->deathday];
+                                                        if (isset($response->deathday) && strlen($response->deathday) === 10) {
+                                                            $request += ['d_date' => $response->deathday];
                                                         }
                                                         
                                                         $person = Person::create($request);
+
+                                                        if (isset($response->images->profiles)) {
+                                                            foreach ($response->images->profiles as $profile) {
+                                                                foreach($img_sizes as $size) {
+                                                                    Photo::Create([
+                                                                        'imageable_id' => $person->id, 
+                                                                        'imageable_type' => get_class($person),
+                                                                        'photo_path' => "https://image.tmdb.org/t/p/w{$size}{$profile->file_path}", 
+                                                                        'photo_type' => 'profile',
+                                                                        'width' => $size,
+                                                                        'ratio' => $profile->aspect_ratio
+                                                                        ]);
+                                                               }
+                                                            }
+                                                        }
                                                     }
-                    
                                                 }
+
                                                 if (isset($person)) {
                                                     $character = Character::where('character_name', '=', $cast->character)->first();
                                                     
@@ -240,7 +287,7 @@ class SerieSeeder extends Seeder
                                                     if (isset($request->results[0])) {
                                                         $person_id = $request->results[0]->id;
                                                         
-                                                        $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e");
+                                                        $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
                                                         $person = json_decode($person->getBody());
                     
                                                         $request = [
@@ -257,6 +304,21 @@ class SerieSeeder extends Seeder
                                                         }
                                                         
                                                         $person = Person::create($request);
+
+                                                        if (isset($response->images->profiles)) {
+                                                            foreach ($response->images->profiles as $profile) {
+                                                                foreach($img_sizes as $size) {
+                                                                    Photo::Create([
+                                                                        'imageable_id' => $person->id, 
+                                                                        'imageable_type' => get_class($person),
+                                                                        'photo_path' => "https://image.tmdb.org/t/p/w{$size}{$profile->file_path}", 
+                                                                        'photo_type' => 'profile',
+                                                                        'width' => $size,
+                                                                        'ratio' => $profile->aspect_ratio
+                                                                        ]);
+                                                               }
+                                                            }
+                                                        }
                                                     }
                     
                                                 }
@@ -286,7 +348,7 @@ class SerieSeeder extends Seeder
                     
                                                         if (isset($request->results[0])) {
                                                             $person_id = $request->results[0]->id;
-                                                            $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e");
+                                                            $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
                                                             $person = json_decode($person->getBody());
                     
                                                             $request = [
@@ -304,6 +366,21 @@ class SerieSeeder extends Seeder
                                                             }
                                                             
                                                             $person = Person::create($request);
+
+                                                            if (isset($response->images->profiles)) {
+                                                                foreach ($response->images->profiles as $profile) {
+                                                                    foreach($img_sizes as $size) {
+                                                                        Photo::Create([
+                                                                            'imageable_id' => $person->id, 
+                                                                            'imageable_type' => get_class($person),
+                                                                            'photo_path' => "https://image.tmdb.org/t/p/w{$size}{$profile->file_path}", 
+                                                                            'photo_type' => 'profile',
+                                                                            'width' => $size,
+                                                                            'ratio' => $profile->aspect_ratio
+                                                                            ]);
+                                                                   }
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                     if (isset($person)) {

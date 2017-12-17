@@ -54,7 +54,7 @@ class SerieMoviePersonSeeder extends Seeder
         $db_client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 251]);
 
         foreach($movie_names as $movie_name) {
-            
+
             $response = $db_client->request('GET',"search/movie?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$movie_name}");
             $response = json_decode($response->getBody());
             $movie_id = $response->results[0]->id; 
@@ -75,8 +75,12 @@ class SerieMoviePersonSeeder extends Seeder
 
                 if (isset($movie->production_countries[0])) {
                     $countries = '';
-                    foreach($movie->production_countries[0] as $result) {
-                        $countries .= $movie->production_countries[0]->iso_3166_1 . ' ';
+                    foreach($movie->production_countries as $result) {
+                        if (count($movie->production_countries) > 1 ) {
+                            $countries .= $result->iso_3166_1 . ', ';
+                        } else {
+                            $countries .= $result->iso_3166_1;
+                        }
                     }
 
                     $movie_array += ['countries' => $countries];
@@ -114,17 +118,31 @@ class SerieMoviePersonSeeder extends Seeder
                     }
                 }
 
-                $img_sizes= ["w45", "w92", "w154","w185","w300","w342","w500","h632", "w780","w1280"];
+                $img_sizes= ["45", "92", "154","185","300","342","500","632", "780","1280"];
 
                 if (isset($movie->poster_path)){
-                        foreach($img_sizes as $size) {
-                            Photo::create(['title_id' => $title->id, 'photo_path' => "https://image.tmdb.org/t/p/{$size}/{$movie->poster_path}"]);
-                        }     
+                    foreach($img_sizes as $size) {
+                        Photo::create([
+                            'imageable_id' => $title->id,
+                            'imageable_type' => get_class($title),
+                            'photo_path' => "https://image.tmdb.org/t/p/w{$size}{$movie->poster_path}", 
+                            'photo_type' => 'poster',
+                            'width' => $size,
+                            'ratio' => 0.66666666666667
+                            ]);
+                    }     
                 }
 
-                if (isset($movie->backdrop_path)){
+                if (isset($movie->backdrop_path)) {
                     foreach($img_sizes as $size) {
-                        Photo::create(['title_id' => $title->id, 'photo_path' => "https://image.tmdb.org/t/p/{$size}/{$movie->backdrop_path}"]);
+                        Photo::Create([
+                            'imageable_id' => $title->id, 
+                            'imageable_type' => get_class($title),
+                            'photo_path' => "https://image.tmdb.org/t/p/w{$size}{$movie->backdrop_path}", 
+                            'photo_type' => 'backdrop',
+                            'width' => $size,
+                            'ratio' => 1.777777777777778
+                            ]);
                     }
                 }  
 
@@ -142,23 +160,38 @@ class SerieMoviePersonSeeder extends Seeder
                                 if (isset($request->results[0])) {
                                     $person_id = $request->results[0]->id;
                                     
-                                    $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e");
-                                    $person = json_decode($person->getBody());
+                                    $response= $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
+                                    $response= json_decode($response->getBody());
 
                                     $request = [
-                                        'name' => $person->name,
-                                        'bio' => $person->biography
+                                        'name' => $response->name,
+                                        'bio' => $response->biography
                                     ];
 
-                                    if (isset($person->birthday) && strlen($person->birthday) === 10) {
-                                        $request += ['b_date' => $person->birthday];
+                                    if (isset($response->birthday) && strlen($response->birthday) === 10) {
+                                        $request += ['b_date' => $response->birthday];
                                     }
 
-                                    if (isset($person->deathday) && strlen($person->deathday) === 10) {
-                                        $request += ['d_date' => $person->deathday];
+                                    if (isset($response->deathday) && strlen($response->deathday) === 10) {
+                                        $request += ['d_date' => $response->deathday];
                                     }
                                     
                                     $person = Person::create($request);
+
+                                    if (isset($response->images->profiles)) {
+                                        foreach ($response->images->profiles as $profile) {
+                                            foreach($img_sizes as $size) {
+                                                Photo::Create([
+                                                    'imageable_id' => $person->id, 
+                                                    'imageable_type' => get_class($person),
+                                                    'photo_path' => "https://image.tmdb.org/t/p/w{$size}{$profile->file_path}", 
+                                                    'photo_type' => 'profile',
+                                                    'width' => $size,
+                                                    'ratio' => $profile->aspect_ratio
+                                                    ]);
+                                           }
+                                        }
+                                    }
                                 }
 
                             }
