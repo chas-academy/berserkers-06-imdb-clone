@@ -10,7 +10,7 @@ use App\Genre;
 use App\Photo;
 use App\Title;
 
-class SerieMoviePersonSeeder extends Seeder
+class MovieSeeder extends Seeder
 {
      /**
      * Run the database seeder.
@@ -19,7 +19,7 @@ class SerieMoviePersonSeeder extends Seeder
      */
     public function run()
     {
-        $movie_names = [
+        $movieNames = [
             'Magnolia',
             'Up',
             'Pulp+Fiction',
@@ -51,57 +51,66 @@ class SerieMoviePersonSeeder extends Seeder
             'Jaws'
         ];
 
-        $db_client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 251]);
+        $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 251]);
 
-        foreach($movie_names as $movie_name) {
+        foreach($movieNames as $movieName) {
 
-            $response = $db_client->request('GET',"search/movie?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$movie_name}");
+            $response = $client->request('GET',"search/movie?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$movieName}");
             $response = json_decode($response->getBody());
-            $movie_id = $response->results[0]->id; 
-            $response = $db_client->request('GET',"movie/{$movie_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=credits,videos");
+            $movieId = $response->results[0]->id; 
+            $response = $client->request('GET',"movie/{$movieId}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=credits,videos");
             $movie = json_decode($response->getBody());
             
             if (is_null(Movie::where('title', '=', $movie->title)->first())) {
                 
                 $title = Title::create(['type' => 'movie']);
-                $movie_array = [
+
+                $movieArray = [
                 'title_id' => $title->id,
                 'title' => $movie->title, 
                 'release_year' => $movie->release_date,
                 'plot_summary' => $movie->overview, 
                 'runtime' => (int) $movie->runtime, 
-                
                 ];
 
                 if (isset($movie->production_countries[0])) {
+
                     $countries = '';
+
                     foreach($movie->production_countries as $result) {
+
                         if (count($movie->production_countries) > 1 ) {
+
                             $countries .= $result->iso_3166_1 . ', ';
+
                         } else {
+
                             $countries .= $result->iso_3166_1;
                         }
                     }
 
-                    $movie_array += ['countries' => $countries];
+                    $movieArray += ['countries' => $countries];
                 }
 
                 if (isset($movie->videos->results[0])) {
-                    $movie_array += ['trailer' => "https://www.youtube.com/watch?v={$movie->videos->results[0]->key}"];
+
+                    $movieArray += ['trailer' => "https://www.youtube.com/watch?v={$movie->videos->results[0]->key}"];
                 }
 
                 // if (isset($movie->content_ratings->results[0] )) {
                 //     foreach($movie->content_ratings->results as $result) {
                 //         if ($result->iso_3166_1 === "US") {
-                //             $movie_array += ['pg_rating' => $result->rating];
+                //             $movieArray += ['pg_rating' => $result->rating];
                 //         }
                 //     }  
                 // } //content ratings cant be accesed with this api, they will have to be filled in manualy for all movies
 
                 $request = [];
 
-                foreach($movie_array as $key => $value) {
+                foreach($movieArray as $key => $value) {
+
                     if (isset($value) && $value != null) {
+
                         $request += [$key => $value];
                     }
                 }
@@ -109,19 +118,26 @@ class SerieMoviePersonSeeder extends Seeder
                 Movie::create($request);
 
                 if (isset($movie->genres)){
-                    foreach($movie->genres as $api_genre){
-                        $genre = Genre::where('name', '=', $api_genre->name)->first();
+
+                    foreach($movie->genres as $apiGenre){
+
+                        $genre = Genre::where('name', '=', $apiGenre->name)->first();
+
                         if(!isset($genre)) {
-                            $genre = Genre::create(['name' => $api_genre->name]);
+
+                            $genre = Genre::create(['name' => $apiGenre->name]);
                         }
+
                         $title->genres()->attach($genre->id);
                     }
                 }
 
-                $img_sizes= ["45", "92", "154","185","300","342","500","632", "780","1280"];
+                $imgSizes = ["45", "92", "154","185","300","342","500","632", "780","1280"];
 
                 if (isset($movie->poster_path)){
-                    foreach($img_sizes as $size) {
+
+                    foreach($imgSizes as $size) {
+
                         Photo::create([
                             'imageable_id' => $title->id,
                             'imageable_type' => get_class($title),
@@ -129,12 +145,14 @@ class SerieMoviePersonSeeder extends Seeder
                             'photo_type' => 'poster',
                             'width' => $size,
                             'ratio' => 0.66666666666667
-                            ]);
+                        ]);
                     }     
                 }
 
                 if (isset($movie->backdrop_path)) {
-                    foreach($img_sizes as $size) {
+
+                    foreach($imgSizes as $size) {
+
                         Photo::Create([
                             'imageable_id' => $title->id, 
                             'imageable_type' => get_class($title),
@@ -142,25 +160,30 @@ class SerieMoviePersonSeeder extends Seeder
                             'photo_type' => 'backdrop',
                             'width' => $size,
                             'ratio' => 1.777777777777778
-                            ]);
+                        ]);
                     }
                 }  
 
                 if (isset($movie->credits)) {
+
                     if (isset($movie->credits->cast)) {
+
                         foreach($movie->credits->cast as $cast) {
+
                             $person = Person::where('name', '=', $cast->name)->first();
+
                             if (!isset($person)) {
         
                                 $name = str_replace(' ', '+', $cast->name);
                                 
-                                $request = $db_client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
+                                $request = $client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
                                 $request = json_decode($request->getBody());
 
                                 if (isset($request->results[0])) {
-                                    $person_id = $request->results[0]->id;
+
+                                    $personId = $request->results[0]->id;
                                     
-                                    $response= $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
+                                    $response= $client->request('GET', "person/{$personId}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
                                     $response= json_decode($response->getBody());
 
                                     $request = [
@@ -169,18 +192,23 @@ class SerieMoviePersonSeeder extends Seeder
                                     ];
 
                                     if (isset($response->birthday) && strlen($response->birthday) === 10) {
+
                                         $request += ['b_date' => $response->birthday];
                                     }
 
                                     if (isset($response->deathday) && strlen($response->deathday) === 10) {
+
                                         $request += ['d_date' => $response->deathday];
                                     }
                                     
                                     $person = Person::create($request);
 
                                     if (isset($response->images->profiles)) {
+
                                         foreach ($response->images->profiles as $profile) {
-                                            foreach($img_sizes as $size) {
+
+                                            foreach($imgSizes as $size) {
+
                                                 Photo::Create([
                                                     'imageable_id' => $person->id, 
                                                     'imageable_type' => get_class($person),
@@ -188,18 +216,19 @@ class SerieMoviePersonSeeder extends Seeder
                                                     'photo_type' => 'profile',
                                                     'width' => $size,
                                                     'ratio' => $profile->aspect_ratio
-                                                    ]);
-                                           }
+                                                ]);
+                                            }
                                         }
                                     }
                                 }
-
                             }
 
                             if (isset($person)) {
+
                                 $character = Character::where('character_name', '=', $cast->character)->first();
                                 
                                 if (!isset($character)) {
+
                                 $character = Character::create(['character_name' => $cast->character]);
                                 
                                 }
@@ -210,18 +239,23 @@ class SerieMoviePersonSeeder extends Seeder
                     }
 
                     if (isset($movie->credits->crew)) {
+
                         foreach($movie->credits->crew as $crew) {
+
                             if ($crew->job === "Director" || $crew->department === "Production" || $crew->department === "Writing") {
+
                                 $person = Person::where('name', '=', $crew->name)->first();
+
                                 if (!isset($person)) {
             
                                     $name = str_replace(' ', '+', $crew->name);
-                                    $request = $db_client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
+                                    $request = $client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
                                     $request = json_decode($request->getBody());
 
                                     if (isset($request->results[0])) {
-                                        $person_id = $request->results[0]->id;
-                                        $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e");
+
+                                        $personId = $request->results[0]->id;
+                                        $person = $client->request('GET', "person/{$personId}?api_key=be55d92a645f3fe8c6ca67ff5093076e");
                                         $person = json_decode($person->getBody());
 
                                         $request = [
@@ -231,27 +265,51 @@ class SerieMoviePersonSeeder extends Seeder
                                         
 
                                         if (isset($person->birthday) && strlen($person->birthday) === 10 ) {
+
                                             $request += ['b_date' => $person->birthday];
                                         }
 
                                         if (isset($person->deathday) && strlen($person->deathday) === 10) {
+
                                             $request += ['d_date' => $person->deathday];
                                         }
                                         
                                         $person = Person::create($request);
+
+                                        if (isset($response->images->profiles)) {
+
+                                            foreach ($response->images->profiles as $profile) {
+
+                                                foreach($imgSizes as $size) {
+
+                                                    Photo::Create([
+                                                        'imageable_id' => $person->id, 
+                                                        'imageable_type' => get_class($person),
+                                                        'photo_path' => "https://image.tmdb.org/t/p/w{$size}{$profile->file_path}", 
+                                                        'photo_type' => 'profile',
+                                                        'width' => $size,
+                                                        'ratio' => $profile->aspect_ratio
+                                                    ]);
+                                                }
+                                            }
+                                        }
                                     }
                                 }
+
                                 if (isset($person)) {
 
                                     if ($crew->job === "Director") {
+
                                         $person->directorOfTitles()->attach($title->id);
                                     }
                                     
                                     if ($crew->department === "Production") {
+
                                         $person->producerOfTitles()->attach($title->id);
                                     }
 
                                     if ($crew->department === "Writing") {
+
                                         $person->screenwriterOfTitles()->attach($title->id);
                                     }
                                 }

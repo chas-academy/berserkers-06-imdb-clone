@@ -12,7 +12,7 @@ use App\Genre;
 use App\Photo;
 use App\Title;
 
-class SerieSeeder extends Seeder
+class SeriesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -22,7 +22,8 @@ class SerieSeeder extends Seeder
     public function run()
     {
         ini_set('max_execution_time', 3000);
-        $series_names= [
+
+        $seriesNames= [
             'Westworld',
             'Preacher',
             'Penny+Dreadful',
@@ -35,19 +36,23 @@ class SerieSeeder extends Seeder
             'The+Office',
             'Twin+Peaks',
         ];
-        $db_client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 251]);
-        foreach($series_names as $series_name) {
-            $response = $db_client->request('GET',"search/tv?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$series_name}");
+
+        $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 251]);
+
+        foreach($seriesNames as $seriesName) {
+
+            $response = $client->request('GET',"search/tv?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$seriesName}");
             $response = json_decode($response->getBody());
-            $series_id = $response->results[0]->id; 
+            $seriesId = $response->results[0]->id; 
             
-            $response = $db_client->request('GET',"tv/{$series_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=external_ids,content_ratings,videos,credits");
+            $response = $client->request('GET',"tv/{$seriesId}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=external_ids,content_ratings,videos,credits");
             $series = json_decode($response->getBody());
      
             if (is_null(Series::where([['title', '=', $series->name],['countries', '=',$series->origin_country[0]]])->first())) {
                 
                 $title = Title::create(['type' => 'series']);
-                $series_array = [
+
+                $seriesArray = [
                 'title_id' => $title->id,
                 'title' => $series->name, 
                 'release_year' => $series->first_air_date,
@@ -58,45 +63,59 @@ class SerieSeeder extends Seeder
                 ];
 
                 if (isset($series->videos->results[0])) {
-                    $series_array += ['trailer' => "https://www.youtube.com/watch?v={$series->videos->results[0]->key}"];
+
+                    $seriesArray += ['trailer' => "https://www.youtube.com/watch?v={$series->videos->results[0]->key}"];
                 }
 
                 if ($series->status !== "Returning Series" ) {
-                    $series_array += ['end_date' => $series->last_air_date];
+
+                    $seriesArray += ['end_date' => $series->last_air_date];
                 }
 
                 if (isset($series->content_ratings->results[0] )) {
+
                     foreach($series->content_ratings->results as $result) {
+
                         if ($result->iso_3166_1 === "US") {
-                            $series_array += ['pg_rating' => $result->rating];
+
+                            $seriesArray += ['pg_rating' => $result->rating];
                         }
                     }  
                 }
 
                 $request = [];
 
-                foreach($series_array as $key => $value) {
+                foreach($seriesArray as $key => $value) {
+
                     if (isset($value) && $value != null) {
-                    $request += [$key => $value];
+
+                        $request += [$key => $value];
                     }
                 }
                
                 Series::create($request);
 
                 if (isset($series->genres)){
-                    foreach($series->genres as $api_genre){
-                        $genre = Genre::where('name', '=', $api_genre->name)->first();
+
+                    foreach($series->genres as $apiGenre){
+
+                        $genre = Genre::where('name', '=', $apiGenre->name)->first();
+
                         if(!isset($genre)) {
-                            $genre = Genre::create(['name' => $api_genre->name]);
+
+                            $genre = Genre::create(['name' => $apiGenre->name]);
                         }
+
                         $title->genres()->attach($genre->id);
                     }
                 }
 
-                $img_sizes = ["45", "92", "154","185","300","342","500","632", "780","1280"];
+                $imgSizes = ["45", "92", "154","185","300","342","500","632", "780","1280"];
 
                 if (isset($series->poster_path)){
-                    foreach($img_sizes as $size) {
+
+                    foreach($imgSizes as $size) {
+
                         Photo::create([
                             'imageable_id' => $title->id,
                             'imageable_type' => get_class($title),
@@ -104,12 +123,14 @@ class SerieSeeder extends Seeder
                             'photo_type' => 'poster',
                             'width' => $size,
                             'ratio' => 0.66666666666667
-                            ]);
+                        ]);
                     }     
                 }
 
                 if (isset($series->backdrop_path)) {
-                    foreach($img_sizes as $size) {
+                    
+                    foreach($imgSizes as $size) {
+
                         Photo::Create([
                             'imageable_id' => $title->id, 
                             'imageable_type' => get_class($title),
@@ -117,22 +138,26 @@ class SerieSeeder extends Seeder
                             'photo_type' => 'backdrop',
                             'width' => $size,
                             'ratio' => 1.777777777777778
-                            ]);
+                        ]);
                     }
                 } 
 
-                if (isset($series->created_by)){
-                    foreach($series->created_by as $creator){
+                if (isset($series->created_by)) {
+
+                    foreach($series->created_by as $creator) {
+
                         $person = Person::where('name', '=', $creator->name)->first();
+
                         if (!isset($person)) {
 
                             $name = str_replace(' ', '+', $creator->name);
-                            $request = $db_client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
+                            $request = $client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
                             $request = json_decode($request->getBody());
 
                             if (isset($request->results[0])) {
-                                $person_id = $request->results[0]->id;
-                                $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
+
+                                $personId = $request->results[0]->id;
+                                $person = $client->request('GET', "person/{$personId}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
                                 $person = json_decode($person->getBody());
 
                                 $request = [
@@ -142,19 +167,25 @@ class SerieSeeder extends Seeder
                                 
 
                                 if (isset($person->birthday) && strlen($person->birthday) === 10 ) {
+
                                     $request += ['b_date' => $person->birthday];
                                 }
 
                                 if (isset($person->deathday) && strlen($person->deathday) === 10) {
+
                                     $request += ['d_date' => $person->deathday];
                                 }
                                 
                                 $person = Person::create($request);
                             }
                         }
+
                         $person->creatorOfTitles()->attach($title->id);
+
                         foreach($series->credits->crew as $crew) {
+
                             if ($crew->department === "Production") {
+
                                 $person->producerOfTitles()->attach($title->id);
                             }
                         }
@@ -162,43 +193,52 @@ class SerieSeeder extends Seeder
                 }
 
                 if (!is_null($series->seasons)){
-                    $season_num = $series->seasons[0]->season_number;
-                    foreach($series->seasons as $season){
-                        if ($season_num != 0) {
-                            $season_title = Title::create(['type' => 'season']);
-                            Season::create(['title_id' => $season_title->id, 'series_id' => $title->id, 'season_number' => $season_num]);
+
+                    $seasonNumber = $series->seasons[0]->season_number;
+
+                    foreach($series->seasons as $season) {
+
+                        if ($seasonNumber != 0) {
+
+                            $seasonTitle = Title::create(['type' => 'season']);
+                            Season::create(['title_id' => $seasonTitle->id, 'series_id' => $title->id, 'season_number' => $seasonNumber]);
                             
-                            for($episode_num = 1; $episode_num <= $season->episode_count; $episode_num++) {
+                            for($episodeNumber = 1; $episodeNumber <= $season->episode_count; $episodeNumber++) {
                                 
-                                $response = $db_client->request('GET',"tv/{$series_id}/season/{$season_num}/episode/{$episode_num}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=credits");
-                                $db_episode = json_decode($response->getBody());
+                                $response = $client->request('GET',"tv/{$seriesId}/season/{$seasonNumber}/episode/{$episodeNumber}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=credits");
+                                $dbEpisode = json_decode($response->getBody());
                                 
-                                if (is_null(Episode::where([['name', '=', $db_episode->name], ['season_id', '=', $season_title->id]])->first())) {
+                                if (is_null(Episode::where([['name', '=', $dbEpisode->name], ['season_id', '=', $seasonTitle->id]])->first())) {
                                     
                                     $episode = Title::create(['type' => 'episode']);
                                 
-                                    $episode_array = [
+                                    $episodeArray = [
                                     'title_id' => $episode->id,
-                                    'season_id' => $season_title->id,
-                                    'name' => $db_episode->name, 
-                                    'episode_number' => $episode_num,
-                                    'plot_summary' => $db_episode->overview,
-                                    'air_date' => $db_episode->air_date,
+                                    'season_id' => $seasonTitle->id,
+                                    'name' => $dbEpisode->name, 
+                                    'episode_number' => $episodeNumber,
+                                    'plot_summary' => $dbEpisode->overview,
+                                    'air_date' => $dbEpisode->air_date,
                                     ];
 
                                     $request = [];
                                     
-                                    foreach($episode_array as $key => $value) {
+                                    foreach($episodeArray as $key => $value) {
+
                                         if (isset($value) && $value != null) {
-                                        $request += [$key => $value];
+
+                                            $request += [$key => $value];
                                         }
                                     }
                                 
                                     Episode::create($request);
 
-                                    if (isset($db_episode->images->stills)){
-                                        foreach($db_episode->images->stills as $still) {
-                                            foreach($img_sizes as $size) {
+                                    if (isset($dbEpisode->images->stills)) {
+
+                                        foreach($dbEpisode->images->stills as $still) {
+
+                                            foreach($imgSizes as $size) {
+
                                                 Photo::create([
                                                     'imageable_id' => $episode->id,
                                                     'imageable_type' => get_class($episode),
@@ -206,27 +246,31 @@ class SerieSeeder extends Seeder
                                                     'photo_type' => 'backdrop',
                                                     'width' => $size,
                                                     'ratio' => $still->aspect_ratio
-                                                    ]);
+                                                ]);
                                             }  
-                                        }
-                                           
+                                        }         
                                     }
 
-                                    if (isset($db_episode->credits)) {
-                                        if (isset($db_episode->credits->cast)) {
-                                            foreach($db_episode->credits->cast as $cast) {
+                                    if (isset($dbEpisode->credits)) {
+
+                                        if (isset($dbEpisode->credits->cast)) {
+
+                                            foreach($dbEpisode->credits->cast as $cast) {
+
                                                 $person = Person::where('name', '=', $cast->name)->first();
+
                                                 if (!isset($person)) {
                             
                                                     $name = str_replace(' ', '+', $cast->name);
                                                     
-                                                    $request = $db_client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
+                                                    $request = $client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
                                                     $request = json_decode($request->getBody());
                                                     
                                                     if (isset($request->results[0])) {
-                                                        $person_id = $request->results[0]->id;
+
+                                                        $personId = $request->results[0]->id;
                                                         
-                                                        $response = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
+                                                        $response = $client->request('GET', "person/{$personId}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
                                                        
                                                         $response = json_decode($response->getBody());
                                                         
@@ -236,18 +280,23 @@ class SerieSeeder extends Seeder
                                                         ];
                     
                                                         if (isset($response->birthday) && strlen($response->birthday) === 10) {
+
                                                             $request += ['b_date' => $response->birthday];
                                                         }
                     
                                                         if (isset($response->deathday) && strlen($response->deathday) === 10) {
+
                                                             $request += ['d_date' => $response->deathday];
                                                         }
                                                         
                                                         $person = Person::create($request);
 
                                                         if (isset($response->images->profiles)) {
+
                                                             foreach ($response->images->profiles as $profile) {
-                                                                foreach($img_sizes as $size) {
+
+                                                                foreach($imgSizes as $size) {
+
                                                                     Photo::Create([
                                                                         'imageable_id' => $person->id, 
                                                                         'imageable_type' => get_class($person),
@@ -255,39 +304,45 @@ class SerieSeeder extends Seeder
                                                                         'photo_type' => 'profile',
                                                                         'width' => $size,
                                                                         'ratio' => $profile->aspect_ratio
-                                                                        ]);
-                                                               }
+                                                                    ]);
+                                                                }
                                                             }
                                                         }
                                                     }
                                                 }
 
                                                 if (isset($person)) {
+
                                                     $character = Character::where('character_name', '=', $cast->character)->first();
                                                     
                                                     if (!isset($character)) {
+
                                                     $character = Character::create(['character_name' => $cast->character]);
-                                                    
                                                     }
                                 
                                                     $person->characters()->attach($character->id, ['title_id' => $episode->id]);
                                                 }
                                             }
                                         }
-                                        if (isset($db_episode->credits->guest_stars)) {
-                                            foreach($db_episode->credits->guest_stars as $guest_stars) {
-                                                $person = Person::where('name', '=', $guest_stars->name)->first();
+
+                                        if (isset($dbEpisode->credits->guest_stars)) {
+
+                                            foreach($dbEpisode->credits->guest_stars as $guestStars) {
+
+                                                $person = Person::where('name', '=', $guestStars->name)->first();
+
                                                 if (!isset($person)) {
                             
-                                                    $name = str_replace(' ', '+', $guest_stars->name);
+                                                    $name = str_replace(' ', '+', $guestStars->name);
                                                     
-                                                    $request = $db_client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
+                                                    $request = $client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
                                                     $request = json_decode($request->getBody());
                     
                                                     if (isset($request->results[0])) {
-                                                        $person_id = $request->results[0]->id;
+
+                                                        $personId = $request->results[0]->id;
                                                         
-                                                        $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
+                                                        $person = $client->request('GET', "person/{$personId}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
                                                         $person = json_decode($person->getBody());
                     
                                                         $request = [
@@ -296,18 +351,23 @@ class SerieSeeder extends Seeder
                                                         ];
                     
                                                         if (isset($person->birthday) && strlen($person->birthday) === 10) {
+
                                                             $request += ['b_date' => $person->birthday];
                                                         }
                     
                                                         if (isset($person->deathday) && strlen($person->deathday) === 10) {
+
                                                             $request += ['d_date' => $person->deathday];
                                                         }
                                                         
                                                         $person = Person::create($request);
 
                                                         if (isset($response->images->profiles)) {
+
                                                             foreach ($response->images->profiles as $profile) {
-                                                                foreach($img_sizes as $size) {
+
+                                                                foreach($imgSizes as $size) {
+
                                                                     Photo::Create([
                                                                         'imageable_id' => $person->id, 
                                                                         'imageable_type' => get_class($person),
@@ -315,40 +375,46 @@ class SerieSeeder extends Seeder
                                                                         'photo_type' => 'profile',
                                                                         'width' => $size,
                                                                         'ratio' => $profile->aspect_ratio
-                                                                        ]);
-                                                               }
+                                                                    ]);
+                                                                }
                                                             }
                                                         }
                                                     }
                     
                                                 }
+
                                                 if (isset($person)) {
-                                                    $character = Character::where('character_name', '=', $guest_stars->character)->first();
+
+                                                    $character = Character::where('character_name', '=', $guestStars->character)->first();
                                                     
                                                     if (!isset($character)) {
-                                                    $character = Character::create(['character_name' => $guest_stars->character]);
-                                                    
+
+                                                    $character = Character::create(['character_name' => $guestStars->character]);
                                                     }
                                 
                                                     $person->characters()->attach($character->id, ['title_id' => $episode->id]);
-                                                }
-
-                                            
+                                                }                                            
                                             }
                                         }
-                                        if (isset($db_episode->credits->crew)) {
-                                            foreach($db_episode->credits->crew as $crew) {
+
+                                        if (isset($dbEpisode->credits->crew)) {
+
+                                            foreach($dbEpisode->credits->crew as $crew) {
+
                                                 if ($crew->job === "Director" || $crew->department === "Production" || $crew->department === "Writing") {
+
                                                     $person = Person::where('name', '=', $crew->name)->first();
+
                                                     if (!isset($person)) {
                                 
                                                         $name = str_replace(' ', '+', $crew->name);
-                                                        $request = $db_client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
+                                                        $request = $client->request('GET', "search/person?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
                                                         $request = json_decode($request->getBody());
                     
                                                         if (isset($request->results[0])) {
-                                                            $person_id = $request->results[0]->id;
-                                                            $person = $db_client->request('GET', "person/{$person_id}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
+
+                                                            $personId = $request->results[0]->id;
+                                                            $person = $client->request('GET', "person/{$personId}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=images");
                                                             $person = json_decode($person->getBody());
                     
                                                             $request = [
@@ -358,18 +424,23 @@ class SerieSeeder extends Seeder
                                                             
                     
                                                             if (isset($person->birthday) && strlen($person->birthday) === 10 ) {
+
                                                                 $request += ['b_date' => $person->birthday];
                                                             }
                     
                                                             if (isset($person->deathday) && strlen($person->deathday) === 10) {
+
                                                                 $request += ['d_date' => $person->deathday];
                                                             }
                                                             
                                                             $person = Person::create($request);
 
                                                             if (isset($response->images->profiles)) {
+
                                                                 foreach ($response->images->profiles as $profile) {
-                                                                    foreach($img_sizes as $size) {
+
+                                                                    foreach($imgSizes as $size) {
+
                                                                         Photo::Create([
                                                                             'imageable_id' => $person->id, 
                                                                             'imageable_type' => get_class($person),
@@ -383,17 +454,21 @@ class SerieSeeder extends Seeder
                                                             }
                                                         }
                                                     }
+
                                                     if (isset($person)) {
                     
                                                         if ($crew->job === "Director") {
+
                                                             $person->directorOfTitles()->attach($episode->id);
                                                         }
                                                         
                                                         if ($crew->department === "Production") {
+
                                                             $person->producerOfTitles()->attach($episode->id);
                                                         }
                     
                                                         if ($crew->department === "Writing") {
+
                                                             $person->screenwriterOfTitles()->attach($episode->id);
                                                         }
                                                     }
@@ -404,7 +479,8 @@ class SerieSeeder extends Seeder
                                 }
                             }
                         }
-                        $season_num++;
+
+                        $seasonNumber++;
                     }
                 }
             }
