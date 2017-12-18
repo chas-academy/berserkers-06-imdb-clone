@@ -8,13 +8,20 @@ class Photo extends Model
 {
     protected $fillable = [
         'id',
-        'title_id',
-        'photo_path'
+        'imageable_id',
+        'imageable_type',
+        'photo_path',
+        'photo_type',
+        'width',
+        'ratio'
     ];
 
     public $timestamps = false;
     
-    public function title(){
-        return $this->belongsTo('App\Title');
+    public function imageable()
+    {
+        return $this->morphTo();
     }
+
+
 }

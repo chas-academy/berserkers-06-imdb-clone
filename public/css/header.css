@@ -8350,3 +8350,106 @@ button.close {
   }
 }
 
+html,
+header {
+  background-color: #0e0b16;
+}
+
+.navbar {
+  background-color: #0e0b16;
+}
+
+.navbar-item {
+  color: #4a4a4a !important;
+}
+
+#logo {
+  margin: auto;
+}
+
+a#usermodal {
+  display: inline-block;
+  top: calc(50% - 5px);
+  color: white;
+  padding-top: 0.3em;
+}
+
+.navbar-brand {
+  padding: 14px 15px;
+  font-size: 18px;
+  line-height: 22px;
+  height: 50px;
+  float: none;
+}
+
+.navbar-burger {
+  cursor: pointer;
+  display: block;
+  height: 3.25rem;
+  position: relative;
+  width: 3.25rem;
+  margin-left: unset;
+  color: white;
+}
+
+.navbar-start {
+  position: fixed;
+  display: grid;
+  padding-top: 0.5em;
+  font-size: 3vh;
+  width: 80%;
+  height: 337px;
+  overflow-x: hidden;
+  background-color: #4f4c4c;
+  z-index: 100;
+}
+
+.nav-item {
+  margin-left: 1em;
+}
+
+.navbar-item img {
+  max-height: 5.75rem;
+}
+
+.panel-block {
+  margin-top: 2em;
+  border: none;
+}
+
+.modal-card-title {
+  background-color: white;
+  text-align: center;
+  padding-top: 0.5em;
+}
+
+.modal-content {
+  margin: auto;
+  margin-top: 5em;
+}
+
+.button.is-success {
+  margin-left: 1em;
+}
+
+.button.is-info {
+  float: right;
+  margin-right: 1em;
+}
+
+@media screen and (max-width: 1023px) {
+  .modal.is-active {
+    display: block;
+    background-color: #0e0b16;
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .navbar-menu.is-active {
+    display: block;
+    background-color: #0e0b16;
+    padding: 0;
+  }
+}
+
