@@ -16,7 +16,7 @@ class MoviesController extends Controller
     public function index()
     {
         //
-        $movies = Movie::orderBy('title')->get();
+        $movies = Movie::all();
         $titles = Title::where('type', '=', 'movie')->get();
 
         return view('movies.index', ['movies' => $movies, 'titles' => $titles]);
@@ -55,6 +55,8 @@ class MoviesController extends Controller
         $id = $movie->title_id;
         $movie = Movie::find($id);
         $title = Title::find($id);
+
+        session(['movie_id' => $id]);
 
         return view('movies.show', ['movie' => $movie, 'title' => $title]);
     }

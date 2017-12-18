@@ -2,7 +2,8 @@
 @section('content')
         <a href="../movies">Back to all movies</a>
         <p>{{ $movie->title }}</p>
-        <time datetime="{{ $movie->release_year }}">{{ date('d F Y', strtotime($movie->release_year)) }}</time>
+        <time datetime="{{ $movie->release_year }}">{{ date('d F Y', strtotime($movie->release_year)) }}</time><br>
+        <img src="{{ $title->photos[0]->photo_path }}" alt="poster" width="300">
         <p>{{ $movie->plot_summary }}</p>
         <br>
         <p>Genres: 
@@ -54,4 +55,8 @@
             @endforeach
             </table>
         @endforeach</article>
+        
+        @if(Auth::check())
+            <a href="../reviews/create">Create a review</a>
+        @endif
 @endsection
