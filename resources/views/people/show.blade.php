@@ -17,7 +17,7 @@
                 @foreach($person->actorInTitles as $title)
                     @foreach($movies as $movie)
                         @if($title->id == $movie->title_id)
-                            <span>in </span><a href="../movies/{{ $movie->title_id }}">{{ $movie->title }}</a>
+                            <span>in </span><a href="../titles/movies/{{ $movie->title_id }}">{{ $movie->title }}</a>
                         @endif
                     @endforeach
 
@@ -38,7 +38,7 @@
                 @foreach($person->directorOfTitles as $title)
                     @foreach($movies as $movie)
                         @if($title->id == $movie->title_id)
-                            <a href="../movies/{{ $movie->title_id }}">{{ $movie->title }}</a>
+                            <a href="../titles/movies/{{ $movie->title_id }}">{{ $movie->title }}</a>
                         @endif
                     @endforeach
                 @endforeach
@@ -51,7 +51,7 @@
                 @foreach($person->producerOfTitles as $title)
                     @foreach($movies as $movie)
                         @if($title->id == $movie->title_id)
-                            <a href="../movies/{{ $movie->title_id }}">{{ $movie->title }}</a>
+                            <a href="../titles/movies/{{ $movie->title_id }}">{{ $movie->title }}</a>
                         @endif
                     @endforeach
                 @endforeach
@@ -64,7 +64,7 @@
                 @foreach($person->screenwriterOfTitles as $title)
                     @foreach($movies as $movie)
                         @if($title->id == $movie->title_id)
-                            <a href="../movies/{{ $movie->title_id }}">{{ $movie->title }}</a>
+                            <a href="../titles/movies/{{ $movie->title_id }}">{{ $movie->title }}</a>
                         @endif
                     @endforeach
                 @endforeach
@@ -77,7 +77,7 @@
                 @foreach($person->creatorOfTitles as $title)
                     @foreach($movies as $movie)
                         @if($title->id == $movie->title_id)
-                            <a href="../movies/{{ $movie->title_id }}">{{ $movie->title }}</a>
+                            <a href="../titles/movies/{{ $movie->title_id }}">{{ $movie->title }}</a>
                         @endif
                     @endforeach
                 @endforeach

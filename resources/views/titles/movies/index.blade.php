@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
+    <a href="../titles">All titles</a><br>
     @foreach($movies as $index => $movie)
-        <a href="/movies/{{ $movie->title_id }}">{{ $movie->title }}</a>
+        <a href="movies/{{ $movie->title_id }}">{{ $movie->title }}</a>
         <span>{{ substr($movie->release_year, 0, 4) }}</span><br>
         <img src="{{ $titles[$index]->photos[0]->photo_path }}" alt="poster" width="200">
         <br>

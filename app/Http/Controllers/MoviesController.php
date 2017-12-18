@@ -19,7 +19,7 @@ class MoviesController extends Controller
         $movies = Movie::all();
         $titles = Title::where('type', '=', 'movie')->get();
 
-        return view('movies.index', ['movies' => $movies, 'titles' => $titles]);
+        return view('titles/movies.index', ['movies' => $movies, 'titles' => $titles]);
     }
 
     /**
@@ -56,9 +56,9 @@ class MoviesController extends Controller
         $movie = Movie::find($id);
         $title = Title::find($id);
 
-        session(['movie_id' => $id]);
+        session(['title_id' => $id]);
 
-        return view('movies.show', ['movie' => $movie, 'title' => $title]);
+        return view('titles/movies.show', ['movie' => $movie, 'title' => $title]);
     }
 
     /**

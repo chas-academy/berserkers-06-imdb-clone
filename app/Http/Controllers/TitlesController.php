@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Title;
 use Illuminate\Http\Request;
 
-class TitleController extends Controller
+class TitlesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class TitleController extends Controller
      */
     public function index()
     {
-        $titles = Title::all();
-
-        return view('titles.index', ['titles' => $titles]);
+        //
+        return view('titles.index');
     }
 
     /**

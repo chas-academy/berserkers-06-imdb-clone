@@ -22,7 +22,15 @@ Route::get('/header', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('movies', 'MoviesController');
+
+Route::get('/titles', 'TitlesController@index');
+Route::resource('titles/movies', 'MoviesController');
+Route::resource('titles/series', 'SeriesController');
+Route::get('titles/series/{series_id}/seasons', 'SeasonsController@index');
+Route::get('titles/series/{series_id}/seasons/{season_number}', 'SeasonsController@show');
+Route::get('titles/series/{series_id}/seasons/{season_number}/episodes', 'EpisodesController@index');
+Route::get('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@show');
+
 Route::resource('people', 'PeopleController');
 Route::resource('reviews', 'ReviewsController');
 Route::resource('comments', 'CommentsController');

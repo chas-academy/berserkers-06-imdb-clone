@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Review;
-use App\Movie;
+use App\Title;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -27,15 +27,15 @@ class ReviewsController extends Controller
     public function create()
     {
         //
-        $id = session('movie_id');
-        $movie = Movie::find($id);
+        $id = session('title_id');
+        $title = Title::find($id);
         if(!Auth::check()) {
             return redirect()->route('login');
         }
-        if(empty(session('movie_id'))) {
+        if(empty(session('title_id'))) {
             return back();
         }
-        return view('reviews.create', ['movie' => $movie]);
+        return view('reviews.create', ['title' => $title]);
     }
 
     /**
