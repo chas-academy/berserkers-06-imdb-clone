@@ -21,39 +21,75 @@ main h2 {
     background-color: #333333 !important;
 }
 
+.flex-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-start;
+      align-content: space-between;
+      margin-bottom: 0;
+      margin-left: 0;
+}
+.flex-item1 {
+    order: 1;
+    text-align: left;
+    padding: 2px;
+    width: 200px;
+}
+.flex-item2 {
+    order: 2;
+    align-self: flex-end;
+    text-align: left;
+    padding: 2px;
+    padding-top: 25px;
+    margin-left: 25px;
+    width: 400px;
+    height: 100px;
+}
+.flex-item3 {
+    order: 1;
+    text-align: left;
+    padding: 2px;
+    width: 200px;
+}
+.flex-item4 {
+    order: 2;
+    align-self: flex-end;
+    text-align: left;
+    padding: 2px;
+    width: 200px;
+}
+.flex-item5 {
+    align-self: flex-start;
+    text-align: left;
+    padding: 2px;
+    width: 630px;
+}
 article {
     display: flex;
-    align-content: center;
+    margin: auto;
 }
 .column {
-    display: inline-flex;
+    display: flex !important;
+    margin: 0;
     border-bottom: 4px solid #D2ADB5;
 }
 article h3 {
     color: #D2ADB5;
     font-family: Fjalla One;
-    font-style: normal;
-    font-weight: normal;
-    line-height: normal;
-    font-size: 34.7046px;
+    font-size: 30px;
     text-transform: uppercase;
 }
 
 article h4 {
    color: #F2F2F2;
    font-family: Fjalla One;
-   font-style: normal;
-   font-weight: normal;
-   line-height: normal;
-   font-size: 34.7046px;
+   font-size: 30px;
    text-transform: uppercase;
 }
 
 article p {
     color: #F2F2F2;
     font-family: Josefin Sans;
-    font-style: normal;
-    font-weight: normal;
-    line-height: normal;
-    font-size: 24px;
+    font-size: 20px;
 }

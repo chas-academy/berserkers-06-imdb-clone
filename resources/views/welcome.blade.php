@@ -20,34 +20,39 @@
       <body>
         <main>
             <div>
-                <div class="container">
                     <div class="notification">
                         <figure class="image is-4by3">
                             <img src="http://www.martincuff.com/wp-content/uploads/2016/06/Penny-Dreadful.jpg">
                         </figure>
-                    </div> 
-                </div>
+                    </div>
             </div>
             <div>
                 <h2>Community</h2>
-                
+             <ul class="flex-container">
                 <article>
-                    <div class="card-content column mobile-movie-elements" >
-                        <h3>Daily Pics</h3>
-                        <h4>Community</h4>
-                       <p>Admins daily selection of reviews and charts <br>- written by our users</p>
+                    <div class="card-content column mobile-movie-elements">
+                    <li class="flex-item1"><h3>Daily Pics</h3>
+                    <h4>Community</h4></li>
+                    <li class="flex-item2"><p>Admins daily selection of reviews and charts - written by our users</p></li>
                     </div>
                 </article>
+        </ul>
+        <ul class="flex-container">
+            <article>
+                <div class="card-content column mobile-movie-elements">
+                <li class="flex-item3"><p>Point of view</p></li>
+                <li class="flex-item4"><p>Ranked by member</p></li>
+                </div>
+        </article>
+        </ul>
+        <ul class="flex-container">
                 <article>
-                        <div>
-                            <button class="button level-item">Add</button>
-                        </div>
-                        <div>
-                            <p>Movie title<p>
-                            <p>PG-rating | length | genre </p>
-                            <p>movie plot<p>
-                        </div>
-                    </article>
+                    <div class="card-content column mobile-movie-elements">
+                    <li class="flex-item5"><h3>Charts</h3>
+                    <h4>Trending Now</h4></li>
+                    </div>
+                </article>
+        </ul>
                 <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
                 <ul>
                     <li><a href="#">Movies</a></li>
