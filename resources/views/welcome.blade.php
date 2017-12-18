@@ -21,7 +21,7 @@
         <main>
             <div>
                     <div class="notification">
-                        <figure class="image is-4by3">
+                        <figure class="image is-16by9">
                             <img src="http://www.martincuff.com/wp-content/uploads/2016/06/Penny-Dreadful.jpg">
                         </figure>
                     </div>
@@ -33,7 +33,7 @@
                     <div class="card-content column mobile-movie-elements">
                     <li class="flex-item1"><h3>Daily Pics</h3>
                     <h4>Community</h4></li>
-                    <li class="flex-item2"><p>Admins daily selection of reviews and charts - written by our users</p></li>
+                    <li class="flex-item2"><p>Admins daily selection of reviews and charts <br> - written by our users</p></li>
                     </div>
                 </article>
         </ul>
