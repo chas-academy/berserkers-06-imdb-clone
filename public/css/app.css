@@ -1,9 +1,66 @@
 @import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);main {
-  background-color: black;
+  background-color: #333333;
   color: white;
 }
 
+main .breadcrumb a {
+  color: #EB5757;
+}
+
+main .breadcrumb a:hover {
+  color: grey;
+  text-decoration: underline;
+}
+
+main h2 {
+  color: #3a6a8a;
+}
+
 .notification {
-  background-color: black !important;
+  background-color: #333333 !important;
+}
+
+article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.column {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  border-bottom: 4px solid #D2ADB5;
+}
+
+article h3 {
+  color: #D2ADB5;
+  font-family: Fjalla One;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 34.7046px;
+  text-transform: uppercase;
+}
+
+article h4 {
+  color: #F2F2F2;
+  font-family: Fjalla One;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 34.7046px;
+  text-transform: uppercase;
+}
+
+article p {
+  color: #F2F2F2;
+  font-family: Josefin Sans;
+  font-style: normal;
+  font-weight: normal;
+  line-height: normal;
+  font-size: 24px;
 }
 
