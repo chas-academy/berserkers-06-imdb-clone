@@ -27,14 +27,14 @@ class SeriesSeeder extends Seeder
             'Westworld',
             'Preacher',
             'Penny+Dreadful',
-            'The+Affair',
-            'Breaking+Bad',
-            'Black+Mirror',
-            'Friends',
-            'Game+Of+Thrones',
-            'The+Walking+Dead',
-            'The+Office',
-            'Twin+Peaks',
+            // 'The+Affair',
+            // 'Breaking+Bad',
+            // 'Black+Mirror',
+            // 'Friends',
+            // 'Game+Of+Thrones',
+            // 'The+Walking+Dead',
+            // 'The+Office',
+            // 'Twin+Peaks',
         ];
 
         $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 251]);
