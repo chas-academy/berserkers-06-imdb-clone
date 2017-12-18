@@ -27,6 +27,3 @@ Route::resource('persons', 'PersonsController');
 Route::resource('reviews', 'ReviewsController');
 Route::resource('comments', 'CommentsController');
 Route::resource('users', 'UsersController');
-
-
-Route::get('/seedertest', 'SeedertestController@index');
