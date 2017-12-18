@@ -18,7 +18,8 @@ class Photo extends Model
 
     public $timestamps = false;
     
-    public function imageable(){
+    public function imageable()
+    {
         return $this->morphTo();
     }
 
