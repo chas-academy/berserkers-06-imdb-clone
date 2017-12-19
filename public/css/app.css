@@ -4,11 +4,11 @@
 }
 
 main .breadcrumb a {
-  color: #EB5757;
+  color: #FCA135;
 }
 
 main .breadcrumb a:hover {
-  color: grey;
+  color: #0D7070;
   text-decoration: underline;
 }
 
