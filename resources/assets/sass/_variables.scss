@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald');
-@import url('https://fonts.googleapis.com/css?family=Josefin+Sans|Oswald');
+@import 'fonts';
 // Body
 $background-color: #333333;
 // Borders
@@ -14,12 +13,12 @@ $main-color: #033C40;
 
 $line-height-base: 1.6;
 $text-color: #FFFFFF;
-$heading-font-size: 18px;
+$heading-font-size: 30px;
 $links-base-color: #FCA135;
 $menu-item-color:#E0E0E0;
 $paragraph-font-size: 14px;
-$headings-font-family: Oswald, sans-serif;
-$paragraph-font-family: Josefin Sans, sans-serif;
+$heading-font-family: oswaldregular, sans-serif;
+$paragraph-font-family: josefin_sansregular, sans-serif;
 // Navbar
 $navbar-default-bg: #fff;
 
