@@ -18,7 +18,9 @@ Route::get('/', function () {
 Route::get('/header', function () {
     return view('layouts.header');
 });
-
+Route::get('/item_meta_info', function () {
+    return view('layouts.item_meta_info');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

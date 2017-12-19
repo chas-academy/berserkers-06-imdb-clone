@@ -11,6 +11,7 @@
       <title>{{ config('app.name', 'Laravel') }}</title>
       <!-- Styles -->
       <link href="{{asset('css/header.css')}}" rel="stylesheet">
+      <link href="{{asset('css/item_meta_info.css')}}" rel="stylesheet">
    </head>
    <body>
       <header>
