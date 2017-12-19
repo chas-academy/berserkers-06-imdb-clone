@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Variables
-@import "variables";
+@import "_variables";
 
 // Bootstrap
 //@import "~bootstrap-sass/assets/stylesheets/bootstrap";
@@ -21,6 +21,7 @@ header {
 
 .navbar-item {
   color: #4a4a4a !important;
+  font-family: $headings-font-family;
 }
 
 #logo {

@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);html,
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@import url(https://fonts.googleapis.com/css?family=Oswald);@import url(https://fonts.googleapis.com/css?family=Josefin+Sans|Oswald);html,
 header {
   background-color: #0e0b16;
 }
@@ -9,6 +9,7 @@ header {
 
 .navbar-item {
   color: #4a4a4a !important;
+  font-family: Oswald, sans-serif;
 }
 
 #logo {
