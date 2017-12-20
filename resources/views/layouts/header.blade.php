@@ -70,7 +70,7 @@
                      </div>
                   </div> 
             </div>
-
+ 
             <!-- Active burger menu-->
             <div class="navbar-menu" id="Options">
                <div class="navbar-start">
@@ -94,6 +94,7 @@
          </nav>
       </header>
       <!-- Scripts -->
+       
       <script src="{{ asset('js/app.js') }}"></script>
    </body>
 </html>
