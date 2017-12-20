@@ -1,5 +1,5 @@
 <div class="field">
 <div class="control">
-<input class="input" type="text" placeholder="Text input">
+<input class="input is-rounded" type="text" placeholder="Rounded input">
 </div> 
 </div> 
