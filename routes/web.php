@@ -19,6 +19,9 @@ Route::get('/header', function () {
     return view('layouts.header');
 });
 
+Route::get('/slider', function() {
+    +    return view('slider');
+    +}
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
