@@ -130,5 +130,3 @@
   </main>
   </body>
 </html>
-
-	https://image.tmdb.org/t/p/w154/6W6zWBAay6XVBgJsOu6c2mlFZ8l.jpg
