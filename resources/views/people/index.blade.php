@@ -3,7 +3,7 @@
     @foreach($people as $index => $person)
         <span>{{ $person->name }}</span>
         <br>
-        <a href="/people/{{ $person->id }}">Bio... -></a>
+        <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $person->id }}">Bio... -></a>
         <br>
         <br>
     @endforeach

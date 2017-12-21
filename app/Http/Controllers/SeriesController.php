@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Episode;
 use App\Season;
 use App\Series;
 use App\Title;
