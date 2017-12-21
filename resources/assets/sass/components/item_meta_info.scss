@@ -1,0 +1,157 @@
+@import "/../_variables";
+body {
+  background-color: $background-color;
+}
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+
+  .item-img {
+    display:inline-flex;
+    padding:0.5em;
+    margin: 1em;
+    border-radius: 2.5%;
+
+    &.card {
+      box-shadow: 0 4px 5px,rgba(0,0,0,0.25);
+    }
+  }
+
+}
+.item-header {
+  background-color: $background-color;
+  width: 700px;
+  color: $text-color;
+  font-family: $paragraph-font;
+  padding: 1em 1em 0 1em;
+  font-size: $paragraph-font-size;
+
+  #hero-header {
+    font-family: $heading-font;
+    font-size: $title-hero-font-size
+  }
+
+}
+
+.item-meta-info {
+
+  display: inline-flex;
+  flex-direction: column;
+  background-color: $background-color;
+  width: 400px;
+  color: $text-color;
+  font-family: $paragraph-font;
+  padding: 1em;
+  font-size: $paragraph-font-size;
+
+  .title-genres {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+    color: $heading-alt-color;
+
+  }
+
+  .meta-info-group {
+    padding: 0.5em;
+    border-top: 2px solid $elements-color;
+    border-left: 2px solid $elements-color;
+    
+    table {
+      width: 100%;
+    }
+
+    a {
+      color: $links-base-color;
+    }
+    
+    th {
+      font-family: $heading-font;
+      color: $text-color;
+    }
+
+    tr {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+      &.table-flex-end {
+        
+      justify-content: flex-end;
+
+      }
+
+      &.row-padding-botom {
+        padding-bottom:1em;
+      }
+    }
+
+    th, td {
+      padding: 0.5em;
+    }
+
+    td {
+      text-align: center;
+      font-family: $paragraph-italic-font;
+      color: $text-color;
+    }
+
+    .facts-table {
+      border-top: 2px solid $elements-color;
+
+      .alt-color {
+        a {
+          color: $heading-alt-color;
+        }
+      }
+    }
+
+    .row-flex-start {
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      line-height: 1.5em;
+      padding-left: 0.5em;
+      margin-top:1em;
+      
+
+      h3 {
+        padding-right:1em;
+        vertical-align: bottom;
+        padding-top:0.25em;
+        color: $menu-item-color;
+      }
+
+      h2 {
+        color: $text-color;
+        font-family: $heading-font;
+        font-size: $sub-heading-font-size;
+        vertical-align: bottom;
+      }
+    }
+    .plot-sumary {
+      margin-top: 2em;
+      h3 {
+        margin-bottom: 2em;
+        font-family: $heading-font;
+        color: $text-color;
+
+      }
+      .card {
+        box-shadow: 0 4px 5px,rgba(0,0,0,0.25);
+        border-radius: 2.1px;
+        background-color: $background-color;
+        p {
+          color: $text-color;
+        }
+        
+      }
+    }
+    
+
+
+  }
+}
