@@ -21,6 +21,11 @@ Route::get('/header', function () {
 Route::get('/item_meta_info', function () {
     return view('layouts.components.item_meta_info');
 });
+
+Route::get('/item_chart', function () {
+    return view('layouts.components.item_chart');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
