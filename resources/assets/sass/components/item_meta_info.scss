@@ -1,6 +1,9 @@
 @import "/../_variables";
 body {
   background-color: $background-color;
+  display: flex;
+  justify-content: center;
+ 
 }
 .item {
   display: flex;
@@ -50,7 +53,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+    font-size: $sub-heading-font-size;
     color: $heading-alt-color;
 
   }
@@ -100,6 +103,8 @@ body {
     }
 
     .facts-table {
+
+      padding:0.5em;
       border-top: 2px solid $elements-color;
 
       .alt-color {
