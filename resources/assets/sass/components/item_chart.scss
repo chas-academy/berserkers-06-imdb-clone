@@ -1,0 +1,113 @@
+@import "/../_variables";
+main{
+  background-color: $background-color;
+  color: white;
+  section {
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  article {
+      .column {
+      display: flex;
+      margin: 0;
+      border-bottom: 4px solid #D2ADB5;
+    }
+  }
+  .chart {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    margin: 1em;
+
+    .min-item {
+      border-top: 3px solid $text-color;
+      margin: 0 2em;
+
+      .card {
+        box-shadow: 1px 5px 6px,rgba(0,0,0,0.25);
+        border-radius: 5px;
+        display: flex;
+        background-color: $background-color;
+        justify-content: space-between;
+        flex-direction: column;
+        margin:0.5em 0;
+
+        h4 {
+          color: $text-color;
+          font-size: $big-paragraph-font-size
+        }
+
+        li {
+          color: $heading-alt-color;
+          font-size: $paragraph-font-size
+        }
+        div {
+          margin:0.25em 0;
+          padding:0.25em;
+          div, ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 0;
+
+            .light {
+              font-weight: 200;
+            }
+          }
+        }
+      }
+
+      
+      .item-img {
+        display:inline-flex;
+        margin-top: 1em;
+        border: 3px solid $text-color;
+        border-radius: 4px;
+      }
+    
+    }
+  }
+  
+}
+
+
+article {
+  display: flex;
+  margin: auto;
+}
+
+article h2 {
+  color: $elements-color;
+  font-family: $heading-font;
+  font-size: $main-heading-font-size;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+article h3 {
+ color: $menu-item-color;
+ font-family: $heading-font;
+ font-size: $main-heading-font-size;
+ text-transform: uppercase;
+ font-weight: 300;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: space-between;
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+.flex-item5 {
+  align-self: flex-start;
+  text-align: left;
+  padding: 2px;
+  width:810px;
+}
+
+
