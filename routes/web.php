@@ -19,7 +19,7 @@ Route::get('/header', function () {
     return view('layouts.header');
 });
 Route::get('/item_meta_info', function () {
-    return view('layouts.item_meta_info');
+    return view('layouts.components.item_meta_info');
 });
 Auth::routes();
 
