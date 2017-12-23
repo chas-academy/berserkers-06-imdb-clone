@@ -91,7 +91,6 @@
                </div>
             </nav>
          </div>
-
          <!-- Desktop -->
          <div class="is-hidden-mobile">
             <nav class="navbar is-fixed" role="navigation" aria-label="main navigation">
@@ -100,23 +99,22 @@
                      <div class="column is-12" id="col-1"></div>
                      <div class="columns is-multiline">
                         <div class="column is-3" id="col2-1"></div>
-                          <p class="item1">Movies</p> <p id="jf">Genres | Charts</p> <!--p class="item1-2">by</p-->
-                          <p class="item2">Tv Series</p> <p id="fj">Genres | Charts</p> <!--p class="item2-2">by</p-->
-                        <!--div class="column is-3 is-offset-6" id="col2-2"></div-->
+                        <a id="item1" href="#">Movies</a> <a id="genre1" href="#">Genres</a> <a id="chart1" href="#">Charts</a>
+                        <a id="item2" href="#">Tv Series</a> <a id="genre2" href="#">Genres</a> <a id="chart2" href="#">Charts</a>
                         <div class="field has-addons column is-3">
-                          <div class="control desktop-search">
-                            <input class="input is-hovered" id="input-search" type="text" placeholder="Search stuff here..">
-                          </div>
-                          <div class="control button-search">
-                            <a class="button is-info">
+                           <div class="control desktop-search">
+                              <input class="input is-hovered" id="input-search" type="text" placeholder="Search stuff here..">
+                           </div>
+                           <div class="control button-search">
+                              <a class="button is-info">
                               Search
-                            </a>
-                          </div>
+                              </a>
+                           </div>
                         </div>
                         <div class="column is-2" id="col3-1"></div>
                         <div class="column is-2 is-offset-8" id="col3-2">
-                          <!-- Button here -->
-                          
+                           <!-- Log in / Register button here -->
+                            
                         </div>
                      </div>
                   </div>
