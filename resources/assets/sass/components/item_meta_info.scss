@@ -1,10 +1,22 @@
 @import "/../_variables";
 
+html {
+  background-color: $background-color;
+}
+
 body {
 
-  background-color: $background-color;
+  
   display: flex;
   justify-content: center;
+
+  .page-content {
+
+    display: flex;
+    align-items: center;
+    flex-direction: column
+
+  }
 }
 
 .item {
@@ -13,16 +25,21 @@ body {
   flex-direction: row;
   justify-content: flex-start;
 
+
   .item-img {
 
-    display:inline-flex;
-    padding:0.5em;
+    display: inline-flex;
+    padding: 0.5em;
     margin: 1em;
     border-radius: 2.5%;
 
     &.card {
 
       box-shadow: 0 4px 5px,rgba(0,0,0,0.25);
+    }
+    
+    #title-img {
+      content:url("https://image.tmdb.org/t/p/w1280/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg");
     }
   }
 }
@@ -34,7 +51,6 @@ body {
   color: $text-color;
   font-family: $paragraph-font;
   padding: 1em 1em 0 1em;
-  font-size: $paragraph-font-size;
 
   #hero-header {
 
@@ -144,7 +160,7 @@ body {
 
           padding-right:1em;
           color: $menu-item-color;
-          font-size: $big-paragraph-font-size
+          font-size: $big-paragraph-font-size;
         }
 
         span + span {
@@ -183,3 +199,236 @@ body {
     }
   }
 }
+
+@media only screen and (max-width:1600px) {
+  
+  .item {
+
+    .item-img {
+      
+      #title-img {
+
+        content:url("https://image.tmdb.org/t/p/w780/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg");
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:1200px) {
+  
+  .item {
+      
+    flex-direction: column-reverse;  
+    width:85%;
+  }
+
+  .item-meta-info {
+    
+    width: 100%;
+  }
+}
+
+
+@media only screen and (max-width:900px) {
+  
+  .item {
+      
+    width:90%;
+  }
+}
+
+@media only screen and (max-width:800px) {
+  
+  .item {
+      
+    width:95%;
+  }
+}
+
+
+@media only screen and (max-width:720px) {
+  
+  .item {
+      
+    width:75%;
+
+    .item-img {
+      
+      #title-img {
+
+        content:url("https://image.tmdb.org/t/p/w500/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg");
+      }
+    }
+  }
+
+  .item-header {
+    
+    width: 100%;
+
+    #hero-header {
+
+      padding-left: 1.5em;
+      
+    }
+  }
+}
+
+@media only screen and (max-width:620px) {
+  
+  .item {
+      
+    width:85%;
+
+    .item-img {
+      
+      #title-img {
+
+        content:url("https://image.tmdb.org/t/p/w500/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg");
+      }
+    }
+  }
+
+  .item-header {
+    
+    width: 100%;
+
+    #hero-header {
+
+      padding-left: 1.5em;
+      font-size: $main-heading-font-size;
+    }
+  }
+
+  .item-meta-info {
+    
+    font-size: $smal-paragraph-font-size;
+  
+    .title-genres {
+  
+      font-size: $big-paragraph-font-size;
+    }
+  
+    .meta-info-group {
+
+      td {
+        
+        font-size: $paragraph-font-size;
+      }
+  
+      .row-flex-start {
+        
+        h2 {
+  
+          span {
+  
+            font-size: $smal-paragraph-font-size;
+          }
+  
+          span + span {
+  
+            font-size: $big-paragraph-font-size;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:520px) {
+  
+  .item {
+      
+    width:90%;
+  }
+
+  .item-header {
+
+    #hero-header {
+
+      padding-left: 0.5em;
+    }
+  }
+}
+
+@media only screen and (max-width:420px) {
+  
+  .item {
+
+    
+    .item-img {
+      
+      #title-img {
+
+        content:url("https://image.tmdb.org/t/p/w342/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg");
+      }
+    }
+      
+  }
+
+  .item-header {
+
+    #hero-header {
+
+      font-size: $sub-heading-font-size;
+    }
+  }
+
+  .item-meta-info {
+    
+    font-size: $paragraph-font-size;
+  
+    .title-genres {
+  
+      font-size: $big-paragraph-font-size;
+    }
+  
+    .meta-info-group {
+
+      td {
+        
+        font-size: $paragraph-font-size;
+      }
+  
+      .row-flex-start {
+        
+        h2 {
+  
+          span {
+  
+            font-size: $paragraph-font-size;
+          }
+  
+          span + span {
+  
+            font-size: $big-paragraph-font-size;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width:380px) {
+  
+  .item {
+
+    
+    .item-img {
+      
+      #title-img {
+
+        content:url("https://image.tmdb.org/t/p/w300/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg");
+      }
+    }
+      
+  }
+
+  .item-header {
+
+    #hero-header {
+
+      font-size: $sub-heading-font-size;
+    }
+  }
+}
+

@@ -89,7 +89,7 @@
           </div>
         </section>
         <section class="item-img card">
-          <img src="https://image.tmdb.org/t/p/w1280/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg">
+          <img id="title-img">
         </section>
       </article>
     </main>
