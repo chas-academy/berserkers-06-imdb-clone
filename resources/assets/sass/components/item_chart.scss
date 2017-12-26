@@ -1,5 +1,6 @@
 @import "/../_variables";
-main{
+
+main {
   background-color: $background-color;
   color: white;
   section {
@@ -7,6 +8,7 @@ main{
     justify-content: center;
     flex-direction: column;
   }
+
   article {
       .column {
       display: flex;
@@ -14,6 +16,7 @@ main{
       border-bottom: 4px solid #D2ADB5;
     }
   }
+
   .chart {
     display: flex;
     flex-direction: row;
@@ -57,7 +60,6 @@ main{
           }
         }
       }
-
       
       .item-img {
         display:inline-flex;
@@ -65,12 +67,9 @@ main{
         border: 3px solid $text-color;
         border-radius: 4px;
       }
-    
     }
   }
-  
 }
-
 
 article {
   display: flex;
@@ -110,4 +109,12 @@ article h3 {
   width:810px;
 }
 
+@media only screen and (max-width:920px) {
 
+  .flex-container {
+    width:90%;
+  }
+  .flex-item5 {
+    width: 100%;
+  }
+}
