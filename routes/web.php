@@ -19,6 +19,9 @@ Route::get('/header', function () {
     return view('layouts.header');
 });
 
+Route::get('/buttons', function () {
+    return view('layouts.components.buttons');
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
