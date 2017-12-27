@@ -4,25 +4,31 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Movie extends Model
+class Series extends Model
 {
     protected $fillable = [
-        'title_id',
         'title',
         'release_year',
+        'end_date',
         'plot_summary',
-        'runtime',
         'countries',
         'pg_rating',
-        'trailer'
+        'trailer',
+        'num_of_seasons',
+        'num_of_episodes'
     ];
 
     protected $primaryKey = 'title_id';
-
+    
     public $incrementing = [false];
 
     public function title()
     {
         return $this->belongsTo('App\Title', 'titles');
+    }
+
+    public function seasons()
+    {
+        return $this->hasMany('App\Season', 'seasons');
     }
 }

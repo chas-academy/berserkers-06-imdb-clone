@@ -6,9 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    //
     protected $fillable = [
-        'id',
+        'post_id',
         'review_id',
         'user_id',
         'body',
@@ -16,11 +15,13 @@ class Comment extends Model
         'status'
     ];
 
-    public function review(){
+    public function review()
+    {
         return $this->belongsTo('App\Review');
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('App\User');
     }
 }
