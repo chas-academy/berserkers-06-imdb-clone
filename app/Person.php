@@ -50,4 +50,9 @@ class Person extends Model
     {
         return $this->belongsToMany('App\Title', 'title_creator');
     }
+
+    public function photos()
+    {
+        return $this->morphMany('App\Photo', 'imageable');
+    }
 }

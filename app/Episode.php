@@ -19,6 +19,8 @@ class Episode extends Model
     
     public $incrementing = [false];
 
+    public $timestamps = false;    
+
     public function title()
     {
         return $this->belongsTo('App\Title', 'titles');

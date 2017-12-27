@@ -21,7 +21,7 @@ class CreateSeriesTable extends Migration
             $table->date('end_date')->nullable();
             $table->text('plot_summary')->nullable();
             $table->text('countries');
-            $table->string('pg_rating');
+            $table->string('pg_rating')->nullable();
             $table->text('trailer')->nullable();
             $table->integer('num_of_seasons');
             $table->integer('num_of_episodes');
