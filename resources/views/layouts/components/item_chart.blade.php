@@ -43,17 +43,17 @@
                 <div>
                   <ul>
                     <li>Comedy</li>
-                  <ul>
+                  </ul>
                 </div>
               </section>
             </section>
           </section>
-          <div class="min-item">
+          <section class="min-item">
             <div  class="item-img">
               <img id="img2">
             </div>
-            <div class="card">
-              <div>
+            <section class="card">
+              <section>
                 <div>
                   <h4>Inception</h4>
                   <h4>10.0</h4>
@@ -61,8 +61,8 @@
                 <div style="visibility: hidden">
                   <h4 class="light">Season 1</h4>
                 </div>
-              </div>
-              <div>
+              </section>
+              <section>
                 <div>
                   <h4>(1999)</h4>
                 </div>
@@ -70,16 +70,16 @@
                   <li>Action</li>
                   <li>Adventure</li>
                   <li>Sci-Fi</li>
-                <ul>
-              </div>
-            </div>
-          </div>
-          <div class="min-item">
+                </ul>
+              </section>
+            </section>
+          </section>
+          <section class="min-item">
             <div  class="item-img">
               <img id="img3">
             </div>
-            <div class="card">
-              <div>
+            <section class="card">
+              <section>
                 <div>
                   <h4>Fight Club</h4>
                   <h4>10.0</h4>
@@ -87,23 +87,23 @@
                 <div style="visibility: hidden">
                   <h4 class="light">Season 1</h4>
                 </div>
-              </div>
-              <div>
+              </section>
+              <section>
                 <div>
                   <h4>(2010)</h4>
                 </div>
                 <ul>
                   <li>Drama</li>
-                <ul>
-              </div>
-            </div>
-          </div>
-          <div class="min-item">
+                </ul>
+              </section>
+            </section>
+          </section>
+          <section class="min-item">
             <div  class="item-img">
               <img id="img4">
             </div>
-            <div class="card">
-              <div>
+            <section class="card">
+              <section>
                 <div>
                   <h4>Twin Peaks</h4>
                   <h4>10.0</h4>
@@ -111,8 +111,8 @@
                 <div>
                   <h4 class="light">Season 3</h4>
                 </div>
-              </div>
-              <div>
+              </section>
+              <section>
                 <div>
                   <h4>(2017)</h4>
                 </div>
@@ -120,10 +120,10 @@
                   <li>Crime</li>
                   <li>Drama</li>
                   <li>Mystery</li>
-                <ul>
-              </div>
-            </div>
-          </div>
+                </ul>
+              </section>
+            </section>
+          </section>
         </div>
       </article>
     </main>

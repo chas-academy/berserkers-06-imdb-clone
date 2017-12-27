@@ -85,7 +85,9 @@ main {
         }
 
         div {
-
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
           margin:0.25em 0;
           padding:0.25em;
 
@@ -115,12 +117,6 @@ main {
   }
 }
 
-article {
-
-  display: flex;
-  margin: auto;
-}
-
 article h2 {
 
   color: $elements-color;
@@ -128,6 +124,7 @@ article h2 {
   font-size: $main-heading-font-size;
   text-transform: uppercase;
   font-weight: 500;
+  line-height: 1;
 }
 
 article h3 {
@@ -149,6 +146,7 @@ article h3 {
   margin-bottom: 0;
   margin-left: 0;
   width:100%;
+  padding-top: 1em;
 
   img {
     padding-bottom: 0.5em;
@@ -201,49 +199,39 @@ article h3 {
   main {
   
     .chart-section {
-
-      #img1 {
-
-       content:url("https://image.tmdb.org/t/p/w92/iO9aZzrfmMvm3IqkFiQyuuUMLh2.jpg");
-      }
-
-      #img2 {
-
-        content:url("https://image.tmdb.org/t/p/w92/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg");
-      }
-
-      #img3 {
-
-        content:url("https://image.tmdb.org/t/p/w92/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg");
-      }
-
-      #img4 {
-
-        content:url("https://image.tmdb.org/t/p/w92/6W6zWBAay6XVBgJsOu6c2mlFZ8l.jpg");
-      }
-
-      .chart {
       
+      .chart {
+        
         .min-item {
+
+          display: none;
+
+          #img1 {
     
+            content:url("https://image.tmdb.org/t/p/w320/iO9aZzrfmMvm3IqkFiQyuuUMLh2.jpg");
+          }
+                    
           .card {
-    
+            
             h4 {
     
               color: $text-color;
-              font-size: $big-paragraph-font-size;
+              font-size: $sub-heading-font-size;
             }
 
             li {
               
-              font-size: 8px;
+              font-size: $big-paragraph-font-size;
+
             }
           }
+        }
+        
+        .min-item:first-child {
+          display: block;
+          margin:0;
         }
       }
     }
   }
-}
-@media only screen and (max-width: 700px) {
-
 }
