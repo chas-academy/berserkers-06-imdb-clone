@@ -1,82 +1,128 @@
 @import "/../_variables";
 
 main {
+  display: flex;
+  justify-content: center;
   background-color: $background-color;
   color: white;
-  section {
+
+  .chart-section {
+
     display:flex;
     justify-content: center;
     flex-direction: column;
+    align-items:center;
   }
 
-  article {
+  #img1 {
+    
+    content:url("https://image.tmdb.org/t/p/w154/iO9aZzrfmMvm3IqkFiQyuuUMLh2.jpg");
+  }
+
+  #img2 {
+
+    content:url("https://image.tmdb.org/t/p/w154/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg");
+  }
+
+  #img3 {
+
+    content:url("https://image.tmdb.org/t/p/w154/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg");
+  }
+
+  #img4 {
+    
+    content:url("https://image.tmdb.org/t/p/w154/6W6zWBAay6XVBgJsOu6c2mlFZ8l.jpg");
+  }
+
+  section {
+
       .column {
+
       display: flex;
       margin: 0;
-      border-bottom: 4px solid #D2ADB5;
     }
   }
 
   .chart {
+
     display: flex;
     flex-direction: row;
-    justify-content: center; 
-    margin: 1em;
+    justify-content: center;
+    border-top: 4px solid #D2ADB5;
+    padding-top: 4em;
 
     .min-item {
+
       border-top: 3px solid $text-color;
       margin: 0 2em;
 
       .card {
+
         box-shadow: 1px 5px 6px,rgba(0,0,0,0.25);
         border-radius: 5px;
         display: flex;
         background-color: $background-color;
         justify-content: space-between;
         flex-direction: column;
-        margin:0.5em 0;
+        margin: 0.5em 0;
 
         h4 {
+
           color: $text-color;
           font-size: $xl-paragraph-font-size
         }
 
         li {
+
           color: $heading-alt-color;
           font-size: $paragraph-font-size
         }
+
+        ul {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+
         div {
+
           margin:0.25em 0;
           padding:0.25em;
-          div, ul {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            padding: 0;
 
-            .light {
-              font-weight: 200;
-            }
+          .light {
+            
+            font-weight: 200;
           }
         }
       }
       
       .item-img {
+
         display:inline-flex;
         margin-top: 1em;
         border: 3px solid $text-color;
         border-radius: 4px;
       }
     }
+
+    .min-item:first-child {
+      margin: 0 2em 0 0;
+    }
+
+    .min-item:last-child {
+      margin: 0 0 0 2em;
+    }
   }
 }
 
 article {
+
   display: flex;
   margin: auto;
 }
 
 article h2 {
+
   color: $elements-color;
   font-family: $heading-font;
   font-size: $main-heading-font-size;
@@ -85,6 +131,7 @@ article h2 {
 }
 
 article h3 {
+
  color: $menu-item-color;
  font-family: $heading-font;
  font-size: $main-heading-font-size;
@@ -93,28 +140,110 @@ article h3 {
 }
 
 .flex-container {
+
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: flex-end;
   align-content: space-between;
   margin-bottom: 0;
   margin-left: 0;
+  width:100%;
+
+  img {
+    padding-bottom: 0.5em;
+  }
 }
 
-.flex-item5 {
-  align-self: flex-start;
-  text-align: left;
-  padding: 2px;
-  width:810px;
+@media only screen and (max-width: 1050px) {
+  
+  main {
+
+    .chart-section {
+
+      .chart {
+      
+        .min-item {
+    
+          .card {
+  
+            li {
+              
+              font-size: $smal-paragraph-font-size
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-@media only screen and (max-width:920px) {
+@media only screen and (max-width: 900px) {
+  
+  main {
+  
+    .chart-section {
+  
+      width:90%;
 
-  .flex-container {
-    width:90%;
+      .chart {
+
+        width:100%;
+      }
+    }
+
+    
   }
-  .flex-item5 {
-    width: 100%;
+}
+
+@media only screen and (max-width: 800px) {
+  
+  main {
+  
+    .chart-section {
+
+      #img1 {
+
+       content:url("https://image.tmdb.org/t/p/w92/iO9aZzrfmMvm3IqkFiQyuuUMLh2.jpg");
+      }
+
+      #img2 {
+
+        content:url("https://image.tmdb.org/t/p/w92/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg");
+      }
+
+      #img3 {
+
+        content:url("https://image.tmdb.org/t/p/w92/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg");
+      }
+
+      #img4 {
+
+        content:url("https://image.tmdb.org/t/p/w92/6W6zWBAay6XVBgJsOu6c2mlFZ8l.jpg");
+      }
+
+      .chart {
+      
+        .min-item {
+    
+          .card {
+    
+            h4 {
+    
+              color: $text-color;
+              font-size: $big-paragraph-font-size;
+            }
+
+            li {
+              
+              font-size: 8px;
+            }
+          }
+        }
+      }
+    }
   }
+}
+@media only screen and (max-width: 700px) {
+
 }
