@@ -99,11 +99,11 @@
                      <div class="column is-12" id="col-1"></div>
                      <div class="columns is-multiline">
                         <div class="column is-3" id="col2-1"></div>
-                        <a id="item1" href="#">Movies</a> <a id="genre1" href="#">Genres</a> <a id="chart1" href="#">Charts</a>
-                        <a id="item2" href="#">Tv Series</a> <a id="genre2" href="#">Genres</a> <a id="chart2" href="#">Charts</a>
+                        <a id="item1" href="#">Movies <div class="is-divider" data-content="OR"></div></a> <a id="genre1" href="#">Genres</a> <a id="chart1" href="#">Charts</a>
+                        <a id="item2" href="#">Tv Series <div class="is-divider" data-content="OR"></div></a> <a id="genre2" href="#">Genres</a> <a id="chart2" href="#">Charts</a>
                         <div class="field has-addons column is-3">
                            <div class="control desktop-search">
-                              <input class="input is-hovered" id="input-search" type="text" placeholder="Search stuff here..">
+                              <input class="input is-hovered" id="input-search" type="text" placeholder="Search..">
                            </div>
                            <div class="control button-search">
                               <a class="button is-info">
@@ -114,7 +114,7 @@
                         <div class="column is-2" id="col3-1"></div>
                         <div class="column is-2 is-offset-8" id="col3-2">
                            <!-- Log in / Register button here -->
-                            
+
                         </div>
                      </div>
                   </div>
