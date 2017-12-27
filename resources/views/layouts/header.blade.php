@@ -114,7 +114,6 @@
                         <div class="column is-2" id="col3-1"></div>
                         <div class="column is-2 is-offset-8" id="col3-2">
                            <!-- Log in / Register button here -->
-
                         </div>
                      </div>
                   </div>
@@ -130,6 +129,7 @@
          </div>
       </header>
       <!-- Scripts -->
+       
       <script src="{{ asset('js/app.js') }}"></script>
    </body>
 </html>
