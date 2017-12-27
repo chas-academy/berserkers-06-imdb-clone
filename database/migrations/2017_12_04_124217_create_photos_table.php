@@ -15,10 +15,13 @@ class CreatePhotosTable extends Migration
     {
         Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('movie_id')->unsigned();
+            $table->morphs('imageable');
             $table->string('photo_path');
+            $table->enum('photo_type',['backdrop','poster','profile']);
+            $table->integer('width');
+            $table->float('ratio');
             
-            $table->foreign('movie_id')->references('id')->on('movies');
+            // To do: modify photo table - make more general -> apply to people as well
         });
     }
 
