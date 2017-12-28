@@ -113,7 +113,7 @@ body {
 
       &.row-padding-botom {
 
-        padding-bottom:1em;
+        padding-bottom: 1em;
       }
     }
 
@@ -131,7 +131,7 @@ body {
 
     .facts-table {
 
-      padding:0.5em;
+      padding: 0.5em;
       border-top: 2px solid $elements-color;
 
       .alt-color {
@@ -150,20 +150,20 @@ body {
       justify-content: flex-start;
       line-height: 1.5em;
       padding-left: 0.5em;
-      margin-top:1em;
+      margin-top: 1em;
       
       h2 {
 
         span {
 
-          padding-right:1em;
+          padding-right: 1em;
           color: $menu-item-color;
           font-size: $big-paragraph-font-size;
         }
 
         span + span {
 
-          padding-top:0;
+          padding-top: 0;
           color: $text-color;
           font-family: $heading-font;
           font-size: $sub-heading-font-size;
@@ -216,7 +216,7 @@ body {
   .item {
       
     flex-direction: column-reverse;  
-    width:85%;
+    width: 85%;
   }
 
   .item-meta-info {
@@ -230,7 +230,7 @@ body {
   
   .item {
       
-    width:90%;
+    width: 90%;
   }
 }
 
@@ -238,7 +238,7 @@ body {
   
   .item {
       
-    width:95%;
+    width: 95%;
   }
 }
 
@@ -247,7 +247,7 @@ body {
   
   .item {
       
-    width:75%;
+    width: 75%;
 
     .item-img {
       
@@ -274,7 +274,7 @@ body {
   
   .item {
       
-    width:85%;
+    width: 85%;
 
     .item-img {
       
@@ -335,7 +335,7 @@ body {
   
   .item {
       
-    width:90%;
+    width: 90%;
   }
 
   .item-header {
