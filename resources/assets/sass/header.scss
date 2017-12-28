@@ -101,13 +101,13 @@ a#usermodal {
   height: 150px;
 }
 
-.columns{
+.columns {
   width: 100%;
   align-content: flex-start;
   margin: unset;
 }
 
-.is-3, .is-2{
+.is-3, .is-2 {
   background-color: #0d7070;
   height: 50px;
 }
@@ -115,7 +115,7 @@ a#usermodal {
 
 //Menu items
 
-#item1, #item2, #genre1, #genre2, #chart1, #chart2{
+#item1, #item2, #genre1, #genre2, #chart1, #chart2 {
   position: fixed;
   color: #e0e0e0;
 }
@@ -145,7 +145,7 @@ a#usermodal {
   margin-left: 29.5%;
 }
 
-#item2{
+#item2 {
   font-size: 4vh;
   margin-left: 40%;
   margin-top: 0.5em;
@@ -155,11 +155,11 @@ a#usermodal {
   margin-left: 40%;
 }
 
-#chart2{
+#chart2 {
   margin-left: 44.5%;
 }
 
-#col-1, #col2-1, #col2-2, #col3-1, #col3-2{
+#col-1, #col2-1, #col2-2, #col3-1, #col3-2 {
   height: 50px;
   background-color: #0d7070;
 }
@@ -170,8 +170,9 @@ a#usermodal {
 }
 
 .field.has-addons {
-  margin-left: 60%;
-  width: 20%;
+  margin-left: 45%;
+  width: 35%;
+  background-color: #333333;
   padding: 0;
   margin-bottom: 0;
   border-bottom-left-radius: 50px;
@@ -179,17 +180,28 @@ a#usermodal {
       width: 100%;
     }
 
-    .is-info{
+    .is-info {
       margin: 0;
       height: 50px;
     }
 }
 
+
 //overrides class
-#input-search{ 
+#input-search { 
   border-bottom-left-radius: 50px;
   height: 50px;
+  width: 50%;
+  float: right;
   padding-left: 1.5em;
+  -webkit-transition: width 0.6s ease-in-out;
+    transition: width 0.6s ease-in-out;
+}
+
+#input-search:focus {
+  width: 100%;
+  -webkit-transition: width 0.6s ease-in-out;
+    transition: width 0.6s ease-in-out;
 }
 
 //color for searchbar text
@@ -206,7 +218,7 @@ a#usermodal {
 }
 
 //Logo mobile
-#BZRK{
+#BZRK {
   font-size: 3vh;
 }
 
@@ -215,9 +227,10 @@ a#usermodal {
   position: absolute;
   padding-top: 1em;
   padding-left: 3em;
+  background-color: #0d7070;
 }
 
-#BZRK2{
+#BZRK2 {
   height: 7rem;
   max-height: unset;
 }
