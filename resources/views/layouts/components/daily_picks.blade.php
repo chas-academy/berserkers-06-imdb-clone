@@ -53,11 +53,11 @@
             <section class ="unit">
               <article class="ranked">
                 <div>
-                  <h2>Ranked by member</h2>
+                  <h2>Ranked by Member</h2>
                 </div>
                 <section>
                   <div>
-                    <h3>A list created by: <span>m0vi3BZrkR42</span></h3>
+                    <h3>A list created by: <span> m0vi3BZrkR42</span></h3>
                   </div>
                   <div>
                     <h1>TOP 5 Greatest comedies that's not really comedies</h1>
