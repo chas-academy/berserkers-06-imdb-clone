@@ -87,8 +87,6 @@ main {
           width: 1.5em;
           height: 1.5em;
         }
-
-        
       }
     }
 
@@ -139,6 +137,7 @@ main {
       }
       
       h2 {
+
         color:$text-color;
         font-size: $sub-heading-font-size;
         font-family: $paragraph-font;
@@ -165,6 +164,7 @@ main {
           }
 
           h2 {
+
             color:$heading-alt-color;
             font-size: $paragraph-font-size;
             font-family: $heading-font;
@@ -172,6 +172,7 @@ main {
           }
 
           h3 {
+
             color:$text-color;
             font-size: $smal-paragraph-font-size;
             font-family: $heading-font;
@@ -199,6 +200,7 @@ main {
             width: fit-content;
 
             img {
+              
               content:url(https://image.tmdb.org/t/p/w320/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg)
             }
           }
@@ -212,7 +214,6 @@ article {
 
   width: 100%;
 }
-
 
 .flex-container {
 
@@ -286,7 +287,6 @@ article {
       }
     }
   } 
-  
 }
 
 @media only screen and (max-width: 600px) {
@@ -420,7 +420,6 @@ article {
       font-size: $smal-sub-heading-font-size;
     }
   
-
     section {
 
       div {
