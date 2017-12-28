@@ -16,4 +16,5 @@ mix
   .sass("resources/assets/sass/app.scss", "public/css")
   .sass("resources/assets/sass/header.scss", "public/css")
   .sass("resources/assets/sass/components/item_meta_info.scss", "public/css")
-  .sass("resources/assets/sass/components/item_chart.scss", "public/css");
+  .sass("resources/assets/sass/components/item_chart.scss", "public/css")
+  .sass("resources/assets/sass/components/daily_picks.scss", "public/css");

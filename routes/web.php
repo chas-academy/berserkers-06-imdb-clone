@@ -18,6 +18,11 @@ Route::get('/', function () {
 Route::get('/header', function () {
     return view('layouts.header');
 });
+
+Route::get('/daily_picks', function () {
+    return view('layouts.components.daily_picks');
+});
+
 Route::get('/item_meta_info', function () {
     return view('layouts.components.item_meta_info');
 });
