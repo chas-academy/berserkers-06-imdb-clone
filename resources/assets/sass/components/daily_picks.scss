@@ -11,45 +11,139 @@ main {
   display: flex;
   justify-content: center;
   background-color: $background-color;
-  color: white;
+  color: $text-color;
 
   .daily-pics {
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width:100%;
+    width: 100%;
     border-top: 4px solid $elements-color;
     background-color: $background-color;
     padding-top: 2em;
-    .ranked {
 
-      width:40%;
-      margin-right: 1em;
+    .unit {
+
+      display:flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+    }
+  
+    .figure-circle {
       
-      h2 {
-        color:$text-color;
-        font-size: $sub-heading-font-size;
-        font-family: $paragraph-font;
+      width: 3em;
+      height: 3em;
+      border: 1px solid $elements-color;
+      border-radius: 100%;
+      margin-top: 0.15em;
+      margin-left: -3em;
+      background-color: $background-color
+    }
+
+    .figure-box {
+      
+      width: 3em;
+      height: 3em;
+      margin-top: 1.45em;
+      margin-left: -3.95em;
+      background-color: $background-color;
+      display: flex;
+      flex-direction: column;
+   
+      figure:first-child {
+        
+        margin-top: 0.025em;
+
+        figure:first-child {
+
+          border-left: 2px solid $elements-color;          
+          border-bottom: 2px solid $elements-color;
+        }
       }
 
-      section {
+      figure:last-child {
+        
+        figure:last-child {
+          
+          border-left: 2px solid $elements-color;          
+          border-bottom: 2px solid $elements-color;
+          margin-top: -0.1em;
+        }
+      } 
 
-        border-top: 2px solid $elements-color;
-        border-left: 2px solid $elements-color;
+      figure {
+
+        height: 1.5em;
+        padding: 0;
+        margin: 0; 
+        display: flex;
+        flex-direction: row;
+
+        figure {
+
+          width: 1.5em;
+          height: 1.5em;
+        }
+
+        
       }
     }
 
-    .point {
+    article {
 
-      width:40%;
-      margin-left:0.5em;
+      width: 353px;
+
+      &.ranked {
+        
+        width: 300px;
+        margin-right: 1em;
+       
+        section {
+
+          div {
+
+            &.item-title {
+
+              margin-bottom:0;
+              padding-bottom: 0;
+
+              h2 {
+
+                font-size: $big-paragraph-font-size;
+                font-family: $heading-font;
+                color: $text-color;
+
+                span {
+
+                  background-color: $main-color;
+                  border-radius: 100%;
+                  padding:0.5em 0.75em 0.25em 0.75em;
+                  margin-right: 1em;
+                  line-height: 0.5;
+                }
+              }
+            }
+
+            &.item-img {
+  
+              img {
+                
+                content:url(https://image.tmdb.org/t/p/w185/iO9aZzrfmMvm3IqkFiQyuuUMLh2.jpg);
+              }
+            }
+          }
+        }
+      }
       
-
       h2 {
         color:$text-color;
         font-size: $sub-heading-font-size;
         font-family: $paragraph-font;
       }
+
       section {
         
         display: flex;
@@ -98,10 +192,11 @@ main {
 
           &.item-img {
             
-            display: inline-flex;
+            display: flex;
             padding: 0.25em;
             margin: 1em;
             border-radius: 2.5%;
+            width: fit-content;
 
             img {
               content:url(https://image.tmdb.org/t/p/w320/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg)
@@ -169,5 +264,181 @@ article {
   section + section {
 
     padding-bottom: 0.5em;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+
+  main {
+  
+    .daily-pics {
+     
+      justify-content: center;
+
+      .unit {
+
+        display: none;
+      }
+
+      .unit:first-child {
+
+        display: flex;
+      }
+    }
+  } 
+  
+}
+
+@media only screen and (max-width: 600px) {
+
+  .flex-container {
+  
+    h2 {
+      
+      font-size: $sub-heading-font-size;
+    }
+    
+    h3 {
+    
+      font-size: $sub-heading-font-size;
+    }
+  
+    img {
+  
+      padding-bottom: 0;
+    }
+
+    section {
+
+      div {
+
+        padding-top: 0.5em;
+        padding-bottom: 0;
+      }
+
+      p {
+        
+        font-size: $paragraph-font-size;
+      }
+
+      img {
+        
+        margin-bottom: 0.25em;
+        height: 60px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 470px) {
+
+  main {
+  
+    .daily-pics {
+  
+      
+      article {
+  
+        width: 300px;
+
+        &.ranked {
+         
+          section {
+  
+            div {
+  
+              &.item-title {
+  
+                h2 {
+  
+                  font-size: $paragraph-font-size;
+  
+                  span {
+  
+                    background-color: $main-color;
+                    border-radius: 100%;
+                    padding:0.5em 0.75em 0.25em 0.75em;
+                    margin-right: 1em;
+                    line-height: 0.5;
+                  }
+                }
+              }
+            }
+          }
+        }
+        
+        h2 {
+
+          font-size: $smal-sub-heading-font-size;
+        }
+  
+        section {
+          
+          div {
+  
+            padding: 0.75em 0 1.5em 1em;
+  
+            h1 {
+  
+              font-size: $smal-sub-heading-font-size;           
+            }
+  
+            h2 {
+
+              font-size: $smal-paragraph-font-size;
+            }
+  
+            h3 {
+
+              font-size: $smal-paragraph-font-size;
+
+              span {
+  
+                color:$heading-alt-color;
+              }
+            }
+  
+            p {
+  
+              font-size: $paragraph-font-size;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .flex-container {
+  
+    h2 {
+      
+      font-size: $smal-sub-heading-font-size;
+    }
+    
+    h3 {
+    
+      font-size: $smal-sub-heading-font-size;
+    }
+  
+
+    section {
+
+      div {
+
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      p {
+        
+        font-size: $smal-paragraph-font-size;
+      }
+
+      img {
+        
+        margin-bottom: 0.25em;
+        height: 40px;
+      }
+    }
   }
 }
