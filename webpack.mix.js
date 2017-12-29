@@ -16,3 +16,4 @@ mix
   .sass("resources/assets/sass/app.scss", "public/css")
   .sass("resources/assets/sass/header.scss", "public/css")
   .sass("resources/assets/sass/components/item_meta_info.scss", "public/css");
+  .sass("resources/assets/sass/footer2.scss", "public/css");
