@@ -8,6 +8,26 @@ html, body {
     background-color: #333333;
 }
 
+//Mobile
+
+#mobile-column {
+    background-color: #0d7070;
+    position: absolute;
+    text-align: center;
+    height: 120px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#footer-text {
+    font-size: 1.2em;
+    color: orange;
+    margin-bottom: 1em;
+}
+
+//Desktop
+
 #column-container {
     position: absolute;
     bottom: 0;
