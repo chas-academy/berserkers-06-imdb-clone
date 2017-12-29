@@ -118,11 +118,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="navbar-start">
-                    <!-- -->
-                </div>
                 <a class="navbar-item" id="desktop-logo" href="/">
-                    <img src="{{asset('images/LOGO.svg')}}" id="BZRK2" alt="">
+                    <img src="{{asset('images/LOGO.svg')}}" id="bzrk2" alt="">
                 </a>
         </div>
         </nav>
