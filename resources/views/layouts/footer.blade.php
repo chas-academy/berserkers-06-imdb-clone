@@ -16,7 +16,8 @@
 
 <body>
     <footer>
-        <div class ="is-hidden-desktop">
+        <!-- Mobile -->
+        <div class ="is-hidden-tablet">
             <div class="column is-12" id="mobile-column">
                 <p id="footer-text">Stay in touch! :) (placeholder)</p>
                 <a class="social" href="#">
