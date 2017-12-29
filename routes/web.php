@@ -29,6 +29,9 @@ Route::get('/item_meta_info', function () {
 
 Route::get('/footer', function () {
     return view('layouts.footer');
+
+});
+
 Route::get('/item_chart', function () {
     return view('layouts.components.item_chart');
 });

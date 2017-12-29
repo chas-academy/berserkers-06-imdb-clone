@@ -15,7 +15,7 @@
     <main>
       <article class="chart-section">
         <section class="flex-container">
-          <img src="{{asset('images/logo.svg')}}">
+          <img src="{{asset('images/logo2.svg')}}">
           <div>
             <h2>Charts</h2>
             <h3 class="light" >Trending Now</h3>

@@ -16,7 +16,7 @@
         <article>
           <section class="flex-container">
             <section>
-              <img src="{{asset('images/logo.svg')}}">
+              <img src="{{asset('images/logo2.svg')}}">
               <div>
                 <h2>Daily Pics</h2>
                 <h3>Community</h4>
