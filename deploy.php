@@ -45,7 +45,7 @@ task('build', function () {
 });
 
 task('npm:build', function () {
-  run("cd {{release_path}} && {{/home/deploy/.nvm/versions/node/v9.3.0/bin/npm}} run production");
+  run("cd {{release_path}} && {{bin/npm}} run production");
 });
 
 desc('Restart PHP-FPM service');
