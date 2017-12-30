@@ -45,7 +45,7 @@ task('build', function () {
 });
 
 task('npm:build', function () {
-  run("cd {{release_path}} && npm run production");
+  run("cd {{release_path}} && {{~/home/deploy/.nvm/versions/node/v9.3.0/bin/npm}} run production");
 });
 
 desc('Restart PHP-FPM service');
@@ -68,7 +68,7 @@ task('artisan:migrate:fresh', function () {
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
-after('deploy:update_code', 'npm:install');
+//after('deploy:update_code', 'npm:install');
 after('deploy:symlink', 'php-fpm:restart');
 after('deploy:symlink', 'npm:build');
 after('deploy:symlink', 'artisan:db:seed');
