@@ -45,7 +45,7 @@ task('build', function () {
 });
 
 task('npm:build', function () {
-  run("cd {{release_path}} && {{~/home/deploy/.nvm/versions/node/v9.3.0/bin/npm}} run production");
+  run("cd {{release_path}} && {{/home/deploy/.nvm/versions/node/v9.3.0/bin/npm}} run production");
 });
 
 desc('Restart PHP-FPM service');
@@ -56,13 +56,11 @@ task('php-fpm:restart', function () {
 desc('Execute artisan db:seed');
 
 task('artisan:db:seed', function () {
-  run('{{bin/php}} {{release_path}}/artisan db:seed');
-    writeln('<info>' . $output . '</info>');
+  run('{{bin/php}} {{release_path}}/artisan db:seed');s
 });
 
 task('artisan:migrate:fresh', function () {
   run('{{bin/php}} {{release_path}}/artisan migrate:fresh');
-    writeln('<info>' . $output . '</info>');
 });
 
 // [Optional] if deploy fails automatically unlock.
