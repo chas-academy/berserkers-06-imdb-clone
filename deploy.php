@@ -56,7 +56,7 @@ task('php-fpm:restart', function () {
 desc('Execute artisan db:seed');
 
 task('artisan:db:seed', function () {
-  run('{{bin/php}} {{release_path}}/artisan db:seed');s
+  run('{{bin/php}} {{release_path}}/artisan db:seed');
 });
 
 task('artisan:migrate:fresh', function () {
