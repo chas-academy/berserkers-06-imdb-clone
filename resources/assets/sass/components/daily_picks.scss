@@ -94,6 +94,11 @@ main {
 
       width: 353px;
 
+      &.point, &.ranked {
+        
+        margin: 0;
+      }
+
       &.ranked {
         
         width: 300px;
@@ -129,7 +134,7 @@ main {
   
               img {
                 
-                content:url(https://image.tmdb.org/t/p/w185/iO9aZzrfmMvm3IqkFiQyuuUMLh2.jpg);
+                content:url(https://image.tmdb.org/t/p/w185/AtjCCvfMq9kmjwjbVwTJ0mWG7zp.jpg);
               }
             }
           }
@@ -157,7 +162,7 @@ main {
 
           h1 {
 
-            color:$text-color;
+            color: $text-color;
             font-size: $sub-heading-font-size;
             font-family: $paragraph-font;
             padding-bottom: 1em;
@@ -165,7 +170,7 @@ main {
 
           h2 {
 
-            color:$heading-alt-color;
+            color: $heading-alt-color;
             font-size: $paragraph-font-size;
             font-family: $heading-font;
             padding-bottom: 0.5em;
@@ -173,7 +178,7 @@ main {
 
           h3 {
 
-            color:$text-color;
+            color: $text-color;
             font-size: $smal-paragraph-font-size;
             font-family: $heading-font;
 
@@ -201,7 +206,7 @@ main {
 
             img {
 
-              content:url(https://image.tmdb.org/t/p/w320/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg)
+              content:url(https://image.tmdb.org/t/p/w320/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg)
             }
           }
         }
@@ -330,7 +335,7 @@ article {
   }
 }
 
-@media only screen and (max-width: 470px) {
+@media only screen and (max-width: 520px) {
 
   main {
   
@@ -437,6 +442,21 @@ article {
         
         margin-bottom: 0.25em;
         height: 40px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .flex-container {
+  
+    section {
+
+   
+
+      p {
+        
+        font-size: 8px;
       }
     }
   }

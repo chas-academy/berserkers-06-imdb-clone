@@ -1,20 +1,17 @@
 @import "/../_variables";
 
 html {
+  
   background-color: $background-color;
 }
 
 body {
-  
-  display: flex;
-  justify-content: center;
 
   .page-content {
 
     display: flex;
     align-items: center;
     flex-direction: column
-
   }
 }
 
@@ -37,7 +34,7 @@ body {
     }
     
     #title-img {
-      content:url("https://image.tmdb.org/t/p/w1280/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg");
+      content:url("https://image.tmdb.org/t/p/w1280/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
     }
   }
 }
@@ -205,7 +202,7 @@ body {
       
       #title-img {
 
-        content:url("https://image.tmdb.org/t/p/w780/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg");
+        content:url("https://image.tmdb.org/t/p/w780/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
       }
     }
   }
@@ -253,7 +250,7 @@ body {
       
       #title-img {
 
-        content:url("https://image.tmdb.org/t/p/w500/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg");
+        content:url("https://image.tmdb.org/t/p/w500/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
       }
     }
   }
@@ -276,13 +273,6 @@ body {
       
     width: 85%;
 
-    .item-img {
-      
-      #title-img {
-
-        content:url("https://image.tmdb.org/t/p/w500/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg");
-      }
-    }
   }
 
   .item-header {
@@ -356,7 +346,7 @@ body {
       
       #title-img {
 
-        content:url("https://image.tmdb.org/t/p/w342/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg");
+        content:url("https://image.tmdb.org/t/p/w342/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
       }
     }
       
@@ -414,7 +404,7 @@ body {
       
       #title-img {
 
-        content:url("https://image.tmdb.org/t/p/w300/9In3XGQSdr2yfgUoEdCpqxEGAOO.jpg");
+        content:url("https://image.tmdb.org/t/p/w300/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
       }
     }
       

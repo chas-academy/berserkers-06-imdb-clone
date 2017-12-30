@@ -4,15 +4,29 @@
 // Variables
 @import "_variables";
 
-// Bootstrap
-//@import "~bootstrap-sass/assets/stylesheets/bootstrap";
-
 //hamburger
 
 html,
-header {
+header, body {
   //temporary
   background-color: #333333;
+  color: white;
+}
+
+header {
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+main {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: $background-color;
+  color: white;
 }
 
 #mobile-navbar {
@@ -84,7 +98,7 @@ a#usermodal {
 }
 
 .modal-content {
-  margin:auto;
+  margin: auto;
   margin-top: 5em;
   width: 95%;
 }

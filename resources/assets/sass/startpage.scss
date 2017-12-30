@@ -1,95 +1,73 @@
 
-main{
-    background-color: #333333;
-    color: white;
-}
+main { 
+  .breadcrumb a {
+    color: #FCA135;
 
-main .breadcrumb a {
-   color: #FCA135;
+    &:hover {
+      color: #0D7070;
+      text-decoration: underline;
+    } 
+  }
 
-   &:hover {
-    color: #0D7070;
-    text-decoration: underline;
- }
-}
-main h2 {
-  color: rgb(58, 106, 138);
+  h2 {
+    color: rgb(58, 106, 138);
+  }
 
-}
+  div {
 
-.notification {
-    background-color: #333333 !important;
-}
+    &.main-content {
 
-.flex-container {
       display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: flex-start;
-      align-content: space-between;
-      margin-bottom: 0;
-      margin-left: 0;
-}
-.flex-item1 {
-    order: 1;
-    text-align: left;
-    padding: 2px;
-    width: 200px;
-}
-.flex-item2 {
-    order: 2;
-    align-self: flex-end;
-    text-align: left;
-    padding: 2px;
-    padding-top: 25px;
-    margin-left: 25px;
-    width: 400px;
-    height: 100px;
-}
-.flex-item3 {
-    order: 1;
-    text-align: left;
-    padding: 2px;
-    width: 200px;
-}
-.flex-item4 {
-    order: 2;
-    align-self: flex-end;
-    text-align: left;
-    padding: 2px;
-    width: 200px;
-}
-.flex-item5 {
-    align-self: flex-start;
-    text-align: left;
-    padding: 2px;
-    width: 630px;
-}
-article {
-    display: flex;
-    margin: auto;
-}
-.column {
-    display: flex !important;
-    margin: 0;
-    border-bottom: 4px solid #D2ADB5;
-}
-article h3 {
-    color: #D2ADB5;
-    font-family: Fjalla One;
-    font-size: 30px;
-    text-transform: uppercase;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    div.notification {
+
+        background-color: #333333;
+    }
+
+    article {
+        max-width: 800px;
+        display:flex;
+        flex-direction: column;
+        margin: 4em 0;
+
+        &.chart-section {
+            max-width: 1000px;
+        }
+    }
+  }   
 }
 
-article h4 {
-   color: #F2F2F2;
-   font-family: Fjalla One;
-   font-size: 30px;
-   text-transform: uppercase;
+@media only screen and (max-width: 1024px) {
+    
+  main { 
+   
+    div.notification {
+        
+      margin-top: 130px;
+    }
+    
+    div {
+
+        article {
+
+            width: 90%;
+        }
+    }
+  }
 }
 
-article p {
-    color: #F2F2F2;
-    font-family: Josefin Sans;
-    font-size: 20px;
+@media only screen and (max-width: 769px) {
+    
+  main { 
+   
+    div.main-content {
+        
+      margin-top: 100px;
+    }
+  }
 }
+

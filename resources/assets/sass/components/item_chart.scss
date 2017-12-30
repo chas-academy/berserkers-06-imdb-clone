@@ -1,17 +1,31 @@
 @import "/../_variables";
 
 main {
-  display: flex;
-  justify-content: center;
-  background-color: $background-color;
-  color: white;
 
   .chart-section {
 
     display:flex;
     justify-content: center;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
+    width: 100%;
+
+    .flex-container {
+      
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-end;
+      align-content: space-between;
+      margin-bottom: 0;
+      margin-left: 0;
+      width: 100%;
+      padding-top: 1em;
+    
+      img {
+        padding-bottom: 0.5em;
+      }
+    }
   }
 
   #img1 {
@@ -50,6 +64,8 @@ main {
     justify-content: center;
     border-top: 4px solid #D2ADB5;
     padding-top: 4em;
+    width:100%;
+ 
 
     .min-item {
 
@@ -88,8 +104,8 @@ main {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
-          margin:0.25em 0;
-          padding:0.25em;
+          margin: 0.5em 0;
+          padding: 0.25em;
 
           .light {
             
@@ -100,7 +116,7 @@ main {
       
       .item-img {
 
-        display:inline-flex;
+        display: inline-flex;
         margin-top: 1em;
         border: 3px solid $text-color;
         border-radius: 4px;
@@ -136,31 +152,23 @@ article h3 {
  font-weight: 300;
 }
 
-.flex-container {
-
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-end;
-  align-content: space-between;
-  margin-bottom: 0;
-  margin-left: 0;
-  width:100%;
-  padding-top: 1em;
-
-  img {
-    padding-bottom: 0.5em;
-  }
-}
-
 @media only screen and (max-width: 1050px) {
   
   main {
 
     .chart-section {
 
+      width: 90%;
+
+      .flex-container {
+
+        width: 90%
+      }
+        
       .chart {
-      
+        
+        width: 90%;
+
         .min-item {
     
           .card {
@@ -176,30 +184,12 @@ article h3 {
   }
 }
 
-@media only screen and (max-width: 900px) {
-  
-  main {
-  
-    .chart-section {
-  
-      width:90%;
-
-      .chart {
-
-        width:100%;
-      }
-    }
-
-    
-  }
-}
-
 @media only screen and (max-width: 800px) {
   
   main {
-  
+
     .chart-section {
-      
+
       .chart {
         
         .min-item {
@@ -222,14 +212,13 @@ article h3 {
             li {
               
               font-size: $big-paragraph-font-size;
-
             }
           }
         }
         
         .min-item:first-child {
           display: block;
-          margin:0;
+          margin: 0;
         }
       }
     }
