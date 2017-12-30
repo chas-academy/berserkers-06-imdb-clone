@@ -1,0 +1,467 @@
+@font-face {
+  font-family: 'oswaldbold';
+  src: url(/fonts/oswald-bold-webfont.woff2?7dd446822f9412a3e92b219526179d10) format("woff2"), url(/fonts/oswald-bold-webfont.woff?c5b3d6dddffdb18e1a7a955f1734ac6d) format("woff"), url(/fonts/Oswald-Bold.ttf?ad9c6c18ebcfb969eb7f9a868e1c389f) format("truetype"), url(/fonts/oswald-bold-webfont.eot?ccb540b36166ad9e4fe4f151cc6a521d);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'oswaldlight';
+  src: url(/fonts/oswald-light-webfont.woff2?17a6f40461c5ade7245a30e5b742cff0) format("woff2"), url(/fonts/oswald-light-webfont.woff?79f4be1eed2515bcce7f9f506e9adc34) format("woff"), url(/fonts/Oswald-Light.ttf?d10552fddd612faf2c293a091ec51866) format("truetype"), url(/fonts/oswald-light-webfont.eot?6bca26947f20fc669b8600de722501cc);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'oswaldmedium';
+  src: url(/fonts/oswald-medium-webfont.woff2?9615fe1685044ec6ec4c0b2cefab2100) format("woff2"), url(/fonts/oswald-medium-webfont.woff?73cc00abd672ec0a0fab402e2e97e01a) format("woff"), url(/fonts/Oswald-Medium.ttf?3e97dbdbf4aa4665df1da7bc816d93ac) format("truetype"), url(/fonts/oswald-medium-webfont.eot?dcbdef33754a173510cad728f8731690);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'oswaldregular';
+  src: url(/fonts/oswald-regular-webfont.woff2?ae74bb2507a1c3d1ae1cb72b90b7a9a1) format("woff2"), url(/fonts/oswald-regular-webfont.woff?46d6b96c2d03cf2dbc17c5dc5edfff24) format("woff"), url(/fonts/Oswald-Regular.ttf?68a85f5cf2497486387d6c9f253bde62) format("truetype"), url(/fonts/oswald-regular-webfont.eot?cf4073273010366fb0b9be1e5c616f94);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'josefin_sansbold';
+  src: url(/fonts/josefinsans-bold-webfont.woff2?173310d5f3cecfb6d21ebeb0d38cbdc3) format("woff2"), url(/fonts/josefinsans-bold-webfont.woff?f2fcd6b04cd06c11d5a4f773b122474f) format("woff"), url(/fonts/JosefinSans-Bold.ttf?9880fc0845d0f3950e490e4f3b05c08c) format("truetype"), url(/fonts/josefinsans-bold-webfont.eot?1a4afb1cfd7b3427a1215e8581c3390b);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'josefin_sansitalic';
+  src: url(/fonts/josefinsans-italic-webfont.woff2?665a458614c917013f22541c0686c699) format("woff2"), url(/fonts/josefinsans-italic-webfont.woff?61792139f540a123b4cfc21273ed0d62) format("woff"), url(/fonts/JosefinSans-Italic.ttf?40b679ecc2dce41059b86e1d77e5d4f0) format("truetype"), url(/fonts/josefinsans-italic-webfont.eot?32306ce3b4d0328aa3021ad52e19c880);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'josefin_sanslight';
+  src: url(/fonts/josefinsans-light-webfont.woff2?8b354d9e301b9398450fe73dafab4dbf) format("woff2"), url(/fonts/josefinsans-light-webfont.woff?99b3cf89fa1d040bed863488fc0291d5) format("woff"), url(/fonts/JosefinSans-Light.ttf?f0cc419ee290311a49733e728d598f8e) format("truetype"), url(/fonts/josefinsans-light-webfont.eot?e8e9e1a67db25962ead0c26b59daa104);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'josefin_sansregular';
+  src: url(/fonts/josefinsans-regular-webfont.woff2?e345fb54e83a3e02af6ae7e82fce652b) format("woff2"), url(/fonts/josefinsans-regular-webfont.woff?b5dfd6d802fced08185a993900cc3f43) format("woff"), url(/fonts/JosefinSans-Regular.ttf?aff001b45565556d667c11fe85cada0d) format("truetype"), url(/fonts/josefinsans-regular-webfont.eot?1df3087fee86804d87e3fa5db9536c76);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'josefin_sansthin';
+  src: url(/fonts/josefinsans-thin-webfont.woff2?74248ca7265b4162e9076ec9b56fe1bc) format("woff2"), url(/fonts/josefinsans-thin-webfont.woff?f4cbc6f453126dcbbe50cd21c525cf24) format("woff"), url(/fonts/JosefinSans-Thin.ttf?d80b25513cb321e3e812c6754b6710a9) format("truetype"), url(/fonts/josefinsans-thin-webfont.eot?ed3f5718cf13f8de66cc1e6d5de868cc);
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  line-height: 1;
+  background-color: #333333;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #333333;
+  color: #FFFFFF;
+}
+
+main .daily-pics {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  border-top: 4px solid #D2ADB5;
+  background-color: #333333;
+  padding-top: 2em;
+}
+
+main .daily-pics .unit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+main .daily-pics .figure-circle {
+  width: 3em;
+  height: 3em;
+  border: 1px solid #D2ADB5;
+  border-radius: 100%;
+  margin-top: 0.15em;
+  margin-left: -3em;
+  background-color: #333333;
+}
+
+main .daily-pics .figure-box {
+  width: 3em;
+  height: 3em;
+  margin-top: 1.45em;
+  margin-left: -3.95em;
+  background-color: #333333;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main .daily-pics .figure-box figure:first-child {
+  margin-top: 0.025em;
+}
+
+main .daily-pics .figure-box figure:first-child figure:first-child {
+  border-left: 2px solid #D2ADB5;
+  border-bottom: 2px solid #D2ADB5;
+}
+
+main .daily-pics .figure-box figure:last-child figure:last-child {
+  border-left: 2px solid #D2ADB5;
+  border-bottom: 2px solid #D2ADB5;
+  margin-top: -0.1em;
+}
+
+main .daily-pics .figure-box figure {
+  height: 1.5em;
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+main .daily-pics .figure-box figure figure {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+main .daily-pics article {
+  width: 353px;
+}
+
+main .daily-pics article.point,
+main .daily-pics article.ranked {
+  margin: 0;
+}
+
+main .daily-pics article.ranked {
+  width: 300px;
+  margin-right: 1em;
+}
+
+main .daily-pics article.ranked section div.item-title {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+main .daily-pics article.ranked section div.item-title h2 {
+  font-size: 16px;
+  font-family: oswaldregular, sans-serif;
+  color: #FFFFFF;
+}
+
+main .daily-pics article.ranked section div.item-title h2 span {
+  background-color: #033C40;
+  border-radius: 100%;
+  padding: 0.5em 0.75em 0.25em 0.75em;
+  margin-right: 1em;
+  line-height: 0.5;
+}
+
+main .daily-pics article.ranked section div.item-img img {
+  content: url(https://image.tmdb.org/t/p/w185/AtjCCvfMq9kmjwjbVwTJ0mWG7zp.jpg);
+}
+
+main .daily-pics article h2 {
+  color: #FFFFFF;
+  font-size: 24px;
+  font-family: josefin_sansregular, sans-serif;
+}
+
+main .daily-pics article section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  border-top: 2px solid #D2ADB5;
+  border-left: 2px solid #D2ADB5;
+}
+
+main .daily-pics article section div {
+  padding: 0.75em 0 1.5em 1em;
+}
+
+main .daily-pics article section div h1 {
+  color: #FFFFFF;
+  font-size: 24px;
+  font-family: josefin_sansregular, sans-serif;
+  padding-bottom: 1em;
+}
+
+main .daily-pics article section div h2 {
+  color: #ED6909;
+  font-size: 14px;
+  font-family: oswaldregular, sans-serif;
+  padding-bottom: 0.5em;
+}
+
+main .daily-pics article section div h3 {
+  color: #FFFFFF;
+  font-size: 10px;
+  font-family: oswaldregular, sans-serif;
+}
+
+main .daily-pics article section div h3 span {
+  color: #ED6909;
+}
+
+main .daily-pics article section div p {
+  color: #FFFFFF;
+  font-size: 16px;
+  font-family: josefin_sansregular, sans-serif;
+  line-height: 1.5;
+}
+
+main .daily-pics article section div.item-img {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0.25em;
+  margin: 1em;
+  border-radius: 2.5%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+main .daily-pics article section div.item-img img {
+  content: url(https://image.tmdb.org/t/p/w320/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg);
+}
+
+article {
+  width: 100%;
+}
+
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin-bottom: 0;
+  margin-left: 0;
+  padding-top: 1em;
+}
+
+.flex-container h2 {
+  color: #D2ADB5;
+  font-family: oswaldregular, sans-serif;
+  font-size: 36px;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.flex-container h3 {
+  color: #E0E0E0;
+  font-family: oswaldregular, sans-serif;
+  font-size: 36px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.flex-container img {
+  padding-bottom: 0;
+}
+
+.flex-container section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.flex-container section div {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-bottom: 0.5em;
+}
+
+.flex-container section + section {
+  padding-bottom: 0.5em;
+}
+
+@media only screen and (max-width: 700px) {
+  main .daily-pics {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+
+  main .daily-pics .unit {
+    display: none;
+  }
+
+  main .daily-pics .unit:first-child {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .flex-container h2 {
+    font-size: 24px;
+  }
+
+  .flex-container h3 {
+    font-size: 24px;
+  }
+
+  .flex-container img {
+    padding-bottom: 0;
+  }
+
+  .flex-container section div {
+    padding-top: 0.5em;
+    padding-bottom: 0;
+  }
+
+  .flex-container section p {
+    font-size: 14px;
+  }
+
+  .flex-container section img {
+    margin-bottom: 0.25em;
+    height: 60px;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  main .daily-pics article {
+    width: 300px;
+  }
+
+  main .daily-pics article.ranked section div.item-title h2 {
+    font-size: 14px;
+  }
+
+  main .daily-pics article.ranked section div.item-title h2 span {
+    background-color: #033C40;
+    border-radius: 100%;
+    padding: 0.5em 0.75em 0.25em 0.75em;
+    margin-right: 1em;
+    line-height: 0.5;
+  }
+
+  main .daily-pics article h2 {
+    font-size: 20;
+  }
+
+  main .daily-pics article section div {
+    padding: 0.75em 0 1.5em 1em;
+  }
+
+  main .daily-pics article section div h1 {
+    font-size: 20;
+  }
+
+  main .daily-pics article section div h2 {
+    font-size: 10px;
+  }
+
+  main .daily-pics article section div h3 {
+    font-size: 10px;
+  }
+
+  main .daily-pics article section div h3 span {
+    color: #ED6909;
+  }
+
+  main .daily-pics article section div p {
+    font-size: 14px;
+  }
+
+  .flex-container h2 {
+    font-size: 20;
+  }
+
+  .flex-container h3 {
+    font-size: 20;
+  }
+
+  .flex-container section div {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .flex-container section p {
+    font-size: 10px;
+  }
+
+  .flex-container section img {
+    margin-bottom: 0.25em;
+    height: 40px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .flex-container section p {
+    font-size: 8px;
+  }
+}
+

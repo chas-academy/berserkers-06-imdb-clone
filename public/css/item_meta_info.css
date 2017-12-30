@@ -1,0 +1,403 @@
+@font-face {
+  font-family: 'oswaldbold';
+  src: url(/fonts/oswald-bold-webfont.woff2?7dd446822f9412a3e92b219526179d10) format("woff2"), url(/fonts/oswald-bold-webfont.woff?c5b3d6dddffdb18e1a7a955f1734ac6d) format("woff"), url(/fonts/Oswald-Bold.ttf?ad9c6c18ebcfb969eb7f9a868e1c389f) format("truetype"), url(/fonts/oswald-bold-webfont.eot?ccb540b36166ad9e4fe4f151cc6a521d);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'oswaldlight';
+  src: url(/fonts/oswald-light-webfont.woff2?17a6f40461c5ade7245a30e5b742cff0) format("woff2"), url(/fonts/oswald-light-webfont.woff?79f4be1eed2515bcce7f9f506e9adc34) format("woff"), url(/fonts/Oswald-Light.ttf?d10552fddd612faf2c293a091ec51866) format("truetype"), url(/fonts/oswald-light-webfont.eot?6bca26947f20fc669b8600de722501cc);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'oswaldmedium';
+  src: url(/fonts/oswald-medium-webfont.woff2?9615fe1685044ec6ec4c0b2cefab2100) format("woff2"), url(/fonts/oswald-medium-webfont.woff?73cc00abd672ec0a0fab402e2e97e01a) format("woff"), url(/fonts/Oswald-Medium.ttf?3e97dbdbf4aa4665df1da7bc816d93ac) format("truetype"), url(/fonts/oswald-medium-webfont.eot?dcbdef33754a173510cad728f8731690);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'oswaldregular';
+  src: url(/fonts/oswald-regular-webfont.woff2?ae74bb2507a1c3d1ae1cb72b90b7a9a1) format("woff2"), url(/fonts/oswald-regular-webfont.woff?46d6b96c2d03cf2dbc17c5dc5edfff24) format("woff"), url(/fonts/Oswald-Regular.ttf?68a85f5cf2497486387d6c9f253bde62) format("truetype"), url(/fonts/oswald-regular-webfont.eot?cf4073273010366fb0b9be1e5c616f94);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'josefin_sansbold';
+  src: url(/fonts/josefinsans-bold-webfont.woff2?173310d5f3cecfb6d21ebeb0d38cbdc3) format("woff2"), url(/fonts/josefinsans-bold-webfont.woff?f2fcd6b04cd06c11d5a4f773b122474f) format("woff"), url(/fonts/JosefinSans-Bold.ttf?9880fc0845d0f3950e490e4f3b05c08c) format("truetype"), url(/fonts/josefinsans-bold-webfont.eot?1a4afb1cfd7b3427a1215e8581c3390b);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'josefin_sansitalic';
+  src: url(/fonts/josefinsans-italic-webfont.woff2?665a458614c917013f22541c0686c699) format("woff2"), url(/fonts/josefinsans-italic-webfont.woff?61792139f540a123b4cfc21273ed0d62) format("woff"), url(/fonts/JosefinSans-Italic.ttf?40b679ecc2dce41059b86e1d77e5d4f0) format("truetype"), url(/fonts/josefinsans-italic-webfont.eot?32306ce3b4d0328aa3021ad52e19c880);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'josefin_sanslight';
+  src: url(/fonts/josefinsans-light-webfont.woff2?8b354d9e301b9398450fe73dafab4dbf) format("woff2"), url(/fonts/josefinsans-light-webfont.woff?99b3cf89fa1d040bed863488fc0291d5) format("woff"), url(/fonts/JosefinSans-Light.ttf?f0cc419ee290311a49733e728d598f8e) format("truetype"), url(/fonts/josefinsans-light-webfont.eot?e8e9e1a67db25962ead0c26b59daa104);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'josefin_sansregular';
+  src: url(/fonts/josefinsans-regular-webfont.woff2?e345fb54e83a3e02af6ae7e82fce652b) format("woff2"), url(/fonts/josefinsans-regular-webfont.woff?b5dfd6d802fced08185a993900cc3f43) format("woff"), url(/fonts/JosefinSans-Regular.ttf?aff001b45565556d667c11fe85cada0d) format("truetype"), url(/fonts/josefinsans-regular-webfont.eot?1df3087fee86804d87e3fa5db9536c76);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'josefin_sansthin';
+  src: url(/fonts/josefinsans-thin-webfont.woff2?74248ca7265b4162e9076ec9b56fe1bc) format("woff2"), url(/fonts/josefinsans-thin-webfont.woff?f4cbc6f453126dcbbe50cd21c525cf24) format("woff"), url(/fonts/JosefinSans-Thin.ttf?d80b25513cb321e3e812c6754b6710a9) format("truetype"), url(/fonts/josefinsans-thin-webfont.eot?ed3f5718cf13f8de66cc1e6d5de868cc);
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  background-color: #333333;
+}
+
+body .page-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.item .item-img {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  padding: 0.5em;
+  margin: 1em;
+  border-radius: 2.5%;
+}
+
+.item .item-img.card {
+  -webkit-box-shadow: 0 4px 5px, rgba(0, 0, 0, 0.25);
+          box-shadow: 0 4px 5px, rgba(0, 0, 0, 0.25);
+}
+
+.item .item-img #title-img {
+  content: url("https://image.tmdb.org/t/p/w1280/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
+}
+
+.item-header {
+  background-color: #333333;
+  width: 700px;
+  color: #FFFFFF;
+  font-family: josefin_sansregular, sans-serif;
+  padding: 1em 1em 0 1em;
+}
+
+.item-header #hero-header {
+  font-family: oswaldregular, sans-serif;
+  font-size: 47px;
+}
+
+.item-meta-info {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #333333;
+  width: 400px;
+  color: #FFFFFF;
+  font-family: josefin_sansregular, sans-serif;
+  padding: 1em;
+  font-size: 14px;
+}
+
+.item-meta-info .title-genres {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 24px;
+  color: #ED6909;
+}
+
+.item-meta-info .meta-info-group {
+  padding: 0.5em;
+  border-top: 2px solid #D2ADB5;
+  border-left: 2px solid #D2ADB5;
+}
+
+.item-meta-info .meta-info-group table {
+  width: 100%;
+}
+
+.item-meta-info .meta-info-group a {
+  color: #FCA135;
+}
+
+.item-meta-info .meta-info-group th {
+  font-family: oswaldregular, sans-serif;
+  color: #FFFFFF;
+}
+
+.item-meta-info .meta-info-group tr {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.item-meta-info .meta-info-group tr.table-flex-end {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.item-meta-info .meta-info-group tr.row-padding-botom {
+  padding-bottom: 1em;
+}
+
+.item-meta-info .meta-info-group th,
+.item-meta-info .meta-info-group td {
+  padding: 0.5em;
+}
+
+.item-meta-info .meta-info-group td {
+  text-align: center;
+  font-family: josefin_sansitalic, sans-serif;
+  color: #FFFFFF;
+}
+
+.item-meta-info .meta-info-group .facts-table {
+  padding: 0.5em;
+  border-top: 2px solid #D2ADB5;
+}
+
+.item-meta-info .meta-info-group .facts-table .alt-color a {
+  color: #ED6909;
+}
+
+.item-meta-info .meta-info-group .row-flex-start {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  line-height: 1.5em;
+  padding-left: 0.5em;
+  margin-top: 1em;
+}
+
+.item-meta-info .meta-info-group .row-flex-start h2 span {
+  padding-right: 1em;
+  color: #E0E0E0;
+  font-size: 16px;
+}
+
+.item-meta-info .meta-info-group .row-flex-start h2 span + span {
+  padding-top: 0;
+  color: #FFFFFF;
+  font-family: oswaldregular, sans-serif;
+  font-size: 24px;
+}
+
+.item-meta-info .meta-info-group .plot-sumary {
+  margin-top: 2em;
+}
+
+.item-meta-info .meta-info-group .plot-sumary h3 {
+  margin-bottom: 2em;
+  font-family: oswaldregular, sans-serif;
+  color: #FFFFFF;
+}
+
+.item-meta-info .meta-info-group .plot-sumary .card {
+  -webkit-box-shadow: 0 4px 5px, rgba(0, 0, 0, 0.25);
+          box-shadow: 0 4px 5px, rgba(0, 0, 0, 0.25);
+  border-radius: 2.1px;
+  background-color: #333333;
+}
+
+.item-meta-info .meta-info-group .plot-sumary .card p {
+  color: #FFFFFF;
+}
+
+@media only screen and (max-width: 1600px) {
+  .item .item-img #title-img {
+    content: url("https://image.tmdb.org/t/p/w780/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .item {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+    width: 85%;
+  }
+
+  .item-meta-info {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .item {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .item {
+    width: 95%;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .item {
+    width: 75%;
+  }
+
+  .item .item-img #title-img {
+    content: url("https://image.tmdb.org/t/p/w500/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
+  }
+
+  .item-header {
+    width: 100%;
+  }
+
+  .item-header #hero-header {
+    padding-left: 1.5em;
+  }
+}
+
+@media only screen and (max-width: 620px) {
+  .item {
+    width: 85%;
+  }
+
+  .item-header {
+    width: 100%;
+  }
+
+  .item-header #hero-header {
+    padding-left: 1.5em;
+    font-size: 36px;
+  }
+
+  .item-meta-info {
+    font-size: 10px;
+  }
+
+  .item-meta-info .title-genres {
+    font-size: 16px;
+  }
+
+  .item-meta-info .meta-info-group td {
+    font-size: 14px;
+  }
+
+  .item-meta-info .meta-info-group .row-flex-start h2 span {
+    font-size: 10px;
+  }
+
+  .item-meta-info .meta-info-group .row-flex-start h2 span + span {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .item {
+    width: 90%;
+  }
+
+  .item-header #hero-header {
+    padding-left: 0.5em;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .item .item-img #title-img {
+    content: url("https://image.tmdb.org/t/p/w342/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
+  }
+
+  .item-header #hero-header {
+    font-size: 24px;
+  }
+
+  .item-meta-info {
+    font-size: 14px;
+  }
+
+  .item-meta-info .title-genres {
+    font-size: 16px;
+  }
+
+  .item-meta-info .meta-info-group td {
+    font-size: 14px;
+  }
+
+  .item-meta-info .meta-info-group .row-flex-start h2 span {
+    font-size: 14px;
+  }
+
+  .item-meta-info .meta-info-group .row-flex-start h2 span + span {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .item .item-img #title-img {
+    content: url("https://image.tmdb.org/t/p/w300/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
+  }
+
+  .item-header #hero-header {
+    font-size: 24px;
+  }
+}
+
