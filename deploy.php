@@ -2,6 +2,7 @@
 namespace Deployer;
 
 require 'recipe/laravel.php';
+require 'recipe/npm.php';
 
 // Project name
 set('application', 'imdbClone');
@@ -43,8 +44,8 @@ task('build', function () {
     run('cd {{release_path}} && build');
 });
 
-task('npm:local:build', function () {
-  runLocally("cd {{local_release_path}} && {{local/bin/npm}} run production");
+task('npm:build', function () {
+  run("cd {{release_path}} && {{bin/npm}} run production");
 });
 
 desc('Restart PHP-FPM service');
@@ -67,10 +68,12 @@ task('artisan:migrate:fresh', function () {
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
+after('deploy:update_code', 'npm:install');
 after('deploy:symlink', 'php-fpm:restart');
-after('deploy:symlink', 'npm:local:build');
+after('deploy:symlink', 'npm:build');
 after('deploy:symlink', 'artisan:db:seed');
 // Migrate database before symlink new release.
 
 before('deploy:symlink', 'artisan:migrate:fresh');
+
 
