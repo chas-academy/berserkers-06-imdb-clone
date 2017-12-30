@@ -10,8 +10,8 @@ set('application', 'imdbClone');
 set('repository', 'git@github.com:chas-academy/berserkers-06-imdb-clone.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', false); 
-set('ssh_multiplexing', false);
+set('git_tty', true); 
+set('ssh_multiplexing', true);
 
 // Shared files/dirs between deploys 
 add('shared_files', []);
