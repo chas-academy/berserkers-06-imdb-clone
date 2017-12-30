@@ -68,7 +68,7 @@ task('artisan:migrate:fresh', function () {
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
-
+after('deploy:update_code', 'npm:install');
 after('deploy:symlink', 'php-fpm:restart');
 after('deploy:symlink', 'npm:build');
 after('deploy:symlink', 'artisan:db:seed');
