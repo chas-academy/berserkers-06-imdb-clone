@@ -52,6 +52,18 @@ task('php-fpm:restart', function () {
     run ('sudo service php7.1-fpm reload');
 });
 
+desc('Execute artisan db:seed');
+
+task('artisan:db:seed', function () {
+  run('{{bin/php}} {{release_path}}/artisan db:seed');
+    writeln('<info>' . $output . '</info>');
+});
+
+task('artisan:migrate:fresh', function () {
+  run('{{bin/php}} {{release_path}}/artisan migrate:fresh');
+    writeln('<info>' . $output . '</info>');
+});
+
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
