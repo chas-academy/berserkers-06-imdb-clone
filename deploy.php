@@ -43,6 +43,10 @@ task('build', function () {
     run('cd {{release_path}} && build');
 });
 
+task('build-env', function () {
+	run('cd {{release_path}} && npm run prod');
+});
+
 desc('Restart PHP-FPM service');
 task('php-fpm:restart', function () {
     run ('sudo service php7.1-fpm reload');
@@ -52,7 +56,9 @@ task('php-fpm:restart', function () {
 after('deploy:failed', 'deploy:unlock');
 
 after('deploy:symlink', 'php-fpm:restart');
+after('deploy:symlink', 'build-env');
+after('deploy:symlink', 'artisan:db:seed');
 // Migrate database before symlink new release.
 
-before('deploy:symlink', 'artisan:migrate');
+before('deploy:symlink', 'artisan:migrate:fresh');
 
