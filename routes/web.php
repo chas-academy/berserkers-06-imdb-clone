@@ -19,7 +19,7 @@ Route::get('/header', function () {
     return view('layouts.header');
 });
 Route::get('/carousel', function() {
-    return view('carousel');
+    return view('layouts.carousel');
 });
 
 Auth::routes();
