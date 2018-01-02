@@ -30,7 +30,7 @@
                     </div>
                     <!-- Logo -->
                     <a class="navbar-item" id="logo" href="/">
-                        <img src="{{asset('images/LOGO.svg')}}" alt="">
+                        <img src="{{asset('images/logo.svg')}}" alt="">
                     </a>
                     <!-- Modal with the user logo-->
                     <a id="usermodal" href="">
@@ -122,7 +122,7 @@
                     </div>
                 </div>
                 <a class="navbar-item" id="desktop-logo" href="/">
-                    <img src="{{asset('images/LOGO.svg')}}" id="bzrk2" alt="">
+                    <img src="{{asset('images/logo.svg')}}" id="bzrk2" alt="">
                 </a>
         </div>
         </nav>
