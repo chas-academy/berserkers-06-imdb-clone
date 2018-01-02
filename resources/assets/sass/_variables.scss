@@ -13,14 +13,23 @@ $main-color: #033C40;
 
 $line-height-base: 1.6;
 $text-color: #FFFFFF;
-$heading-font-size: 18px;
+$title-hero-font-size: 47px;
+$main-heading-font-size: 36px;
+$sub-heading-font-size: 24px;
+$smal-sub-heading-font-size: 20;
 $links-base-color: #FCA135;
+$heading-alt-color: #ED6909;
 $menu-item-color:#E0E0E0;
+$xl-paragraph-font-size: 18px;
+$big-paragraph-font-size: 16px;
 $paragraph-font-size: 14px;
-$heading-font-family: oswaldregular, sans-serif;
-$paragraph-font-family: josefin_sansregular, sans-serif;
+$smal-paragraph-font-size: 10px;
+$heading-font: oswaldregular, sans-serif;
+$paragraph-font: josefin_sansregular, sans-serif;
+$paragraph-italic-font: josefin_sansitalic, sans-serif;
+
 // Navbar
-$navbar-default-bg: #fff;
+$navbar-color: $background-color;
 
 // Buttons
 $btn-default-color: $text-color;

@@ -2,6 +2,7 @@
 namespace Deployer;
 
 require 'recipe/laravel.php';
+require 'recipe/npm.php';
 
 // Project name
 set('application', 'imdbClone');
@@ -10,8 +11,8 @@ set('application', 'imdbClone');
 set('repository', 'git@github.com:chas-academy/berserkers-06-imdb-clone.git');
 
 // [Optional] Allocate tty for git clone. Default value is false.
-set('git_tty', false); 
-set('ssh_multiplexing', false);
+set('git_tty', true); 
+set('ssh_multiplexing', true);
 
 // Shared files/dirs between deploys 
 add('shared_files', []);
@@ -43,16 +44,34 @@ task('build', function () {
     run('cd {{release_path}} && build');
 });
 
+task('npm:build', function () {
+  run("cd {{release_path}} && {{bin/npm}} run production");
+});
+
 desc('Restart PHP-FPM service');
 task('php-fpm:restart', function () {
     run ('sudo service php7.1-fpm reload');
 });
 
+desc('Execute artisan db:seed');
+
+task('artisan:db:seed', function () {
+  run('{{bin/php}} {{release_path}}/artisan db:seed');
+});
+
+task('artisan:migrate:fresh', function () {
+  run('{{bin/php}} {{release_path}}/artisan migrate:fresh');
+});
+
 // [Optional] if deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');
 
+//after('deploy:update_code', 'npm:install');
 after('deploy:symlink', 'php-fpm:restart');
+//after('deploy:symlink', 'npm:build');
+after('deploy:symlink', 'artisan:db:seed');
 // Migrate database before symlink new release.
 
-before('deploy:symlink', 'artisan:migrate');
+before('deploy:symlink', 'artisan:migrate:fresh');
+
 

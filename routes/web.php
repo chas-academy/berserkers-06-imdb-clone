@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/header', function () {
-    return view('layouts.header');
+Route::get('/item_meta_info', function () {
+    return view('layouts.components.item_meta_info');
 });
 Route::get('/carousel', function() {
     return view('layouts.carousel');
@@ -30,3 +30,5 @@ Route::resource('persons', 'PersonsController');
 Route::resource('reviews', 'ReviewsController');
 Route::resource('comments', 'CommentsController');
 Route::resource('users', 'UsersController');
+
+
