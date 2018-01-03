@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -86,7 +85,7 @@
                 <!-- Search bar -->
                 <div class="panel-block">
                     <p class="control has-icons-left">
-                        <input class="input is-medium" type="text" placeholder="search">
+                        <input class="input is-medium" type="text" placeholder="Search..">
                         <span class="icon is-medium is-left">
                      <i class="fa fa-search"></i>
                      </span>

@@ -1,7 +1,9 @@
-@extends('layouts.app')
+@include('layouts.header')
 
-@section('content')
-<div class="container">
+<!-- extends('layouts.app')
+
+section('content')-->
+<!-- div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -73,5 +75,60 @@
             </div>
         </div>
     </div>
+</div-->
+<!-- endsection -->
+
+<div class="container" id="reg-container">
+
+    <h2 id="reg-h2">We are happy to have you here! Please fill out the following lines:</h2>
+    <div class="field">
+    <p class="control has-icons-left">
+        <input class="input is-hovered" type="text" placeholder="Username">
+        <span class="icon is-small is-left">
+        <i class="fa fa-user"></i>
+        </span>
+    </p>
+    </div>
+    <div class="field">
+    <p class="control has-icons-left has-icons-right">
+        <input class="input is-hovered" type="email" placeholder="Email">
+        <span class="icon is-small is-left">
+        <i class="fa fa-envelope"></i>
+        </span>
+        <span class="icon is-small is-right">
+        <i class="fa fa-check"></i>
+        </span>
+    </p>
+    </div>
+    <div class="field">
+    <p class="control has-icons-left">
+        <input class="input is-hovered" type="password" placeholder="Password">
+        <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+        </span>
+    </p>
+    </div>
+    <div class="field">
+    <p class="control has-icons-left">
+        <input class="input is-hovered" type="password" placeholder="Confirm Password">
+        <span class="icon is-small is-left">
+        <i class="fa fa-lock"></i>
+        </span>
+    </p>
+    </div>
+    <div class="field is-grouped is-grouped-centered">
+    <p class="control">
+        <a class="button is-primary">
+        Submit
+        </a>
+    </p>
+    <p class="control">
+        <a class="button is-light">
+        Cancel
+        </a>
+    </p>
+    </div>
 </div>
-@endsection
+
+@include('layouts.footer')
+

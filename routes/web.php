@@ -19,6 +19,8 @@ Route::get('/item_meta_info', function () {
     return view('layouts.components.item_meta_info');
 });
 
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
