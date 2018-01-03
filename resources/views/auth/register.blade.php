@@ -2,8 +2,7 @@
 
 <!-- extends('layouts.app')
 
-section('content')-->
-<!-- div class="container">
+<div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -88,7 +87,7 @@ section('content')-->
         {{ csrf_field() }}
         <div class="field">
         <p class="control has-icons-left">
-            <input class="input is-hovered" type="text" placeholder="Username">
+            <input class="input is-hovered" type="text" name="name" placeholder="Username" value="{{ old('name') }}" required>
             <span class="icon is-small is-left">
             <i class="fa fa-user"></i>
             </span>
@@ -96,7 +95,7 @@ section('content')-->
         </div>
         <div class="field">
         <p class="control has-icons-left has-icons-right">
-            <input class="input is-hovered" type="email" placeholder="Email">
+            <input class="input is-hovered" type="email" name="email" placeholder="Email" value="{{ old('name') }}" required>
             <span class="icon is-small is-left">
             <i class="fa fa-envelope"></i>
             </span>
@@ -107,7 +106,7 @@ section('content')-->
         </div>
         <div class="field">
         <p class="control has-icons-left">
-            <input class="input is-hovered" type="password" placeholder="Password">
+            <input class="input is-hovered" type="password" name="password" placeholder="Password" required>
             <span class="icon is-small is-left">
             <i class="fa fa-lock"></i>
             </span>
@@ -115,7 +114,7 @@ section('content')-->
         </div>
         <div class="field">
         <p class="control has-icons-left">
-            <input class="input is-hovered" type="password" placeholder="Confirm Password">
+            <input class="input is-hovered" type="password" name="password_confirmation" placeholder="Confirm Password" required>
             <span class="icon is-small is-left">
             <i class="fa fa-lock"></i>
             </span>
