@@ -10,6 +10,21 @@ main {
     align-items: center;
     width: 100%;
 
+    div#chart-carousel-index {
+
+      margin: 0.5em 0;
+
+      figure {
+
+        display: none;
+        height: 1.5em;
+        width: 1.5em;
+        border-radius: 100%;
+        background-color: $marker-outoffocus;
+        margin: 0 0.5em;
+      }
+    }
+
     .flex-container {
       
       display: flex;
@@ -190,6 +205,24 @@ article h3 {
   main {
 
     .chart-section {
+
+      div#chart-carousel-index {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width:80%;
+
+        figure {
+
+          display: block;
+        }
+
+        figure:first-child {
+
+          background-color: $marker-infocus;
+        }
+      }
 
       .chart {
         
