@@ -61,7 +61,7 @@
       </figure>
     </section>
   </section>
-  <div id="dialy-pics-carousel-index">
+  <div id="daily-pics-carousel-index">
     <figure></figure>
     <figure></figure>
   </div>
