@@ -3,12 +3,13 @@ const dailyPics = document.querySelectorAll(".unit");
 const chartIndex = document.querySelectorAll("#chart-carousel-index figure");
 const dailyPicsIndex = document.querySelectorAll("#daily-pics-carousel-index figure");
 
-const Carousel = function (index, items) {
+const Carousel = function (index, items,displayValue) {
 
   this.counter = 0;
   this.index = index;
   this.items = items;
   this.startX = 0;
+  this.displayValue = displayValue;
 
   this.addEventListenersForItems = function() {
     this.items.forEach(item => {
@@ -55,15 +56,8 @@ const Carousel = function (index, items) {
           }
         }
 
-        if (this.items[this.counter].classList.value === "min-item") {
-
-          this.items[this.counter].style.display = "block";
-
-        } else if (this.items[this.counter].classList.value === "unit") {
-
-          this.items[this.counter].style.display = "flex";
-        }
-      
+     
+        this.items[this.counter].style.display = this.displayValue;
         this.index[this.counter].style.backgroundColor = "#0D7070";
 
       }
@@ -72,7 +66,7 @@ const Carousel = function (index, items) {
   
 }
 
-const chartCarousel = new Carousel(chartIndex,chart);
+const chartCarousel = new Carousel(chartIndex,chart, 'block');
 chartCarousel.addEventListenersForItems();
-const DailyPicsCarousel = new Carousel(dailyPicsIndex, dailyPics);
+const DailyPicsCarousel = new Carousel(dailyPicsIndex, dailyPics, 'flex');
 DailyPicsCarousel.addEventListenersForItems();
