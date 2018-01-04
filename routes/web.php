@@ -18,9 +18,6 @@ Route::get('/', function () {
 Route::get('/item_meta_info', function () {
     return view('layouts.components.item_meta_info');
 });
-Route::get('/carousel', function() {
-    return view('layouts.components.carousel');
-});
 
 Auth::routes();
 
