@@ -19,6 +19,10 @@ Route::get('/header', function () {
     return view('layouts.header');
 });
 
+Route::get('/inputs', function () {
+    return view('layouts.components.input');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
