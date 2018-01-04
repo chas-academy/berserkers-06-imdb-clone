@@ -1,7 +1,9 @@
 const minItems = document.querySelectorAll(".min-item");
+const index = document.querySelectorAll("#chart-carousel-index figure");
 
 let itemCounter = 0;
 let startX = 0;
+
 const nextItem = function(e) {
 
   if (window.innerWidth <= 800) {
@@ -14,26 +16,34 @@ const nextItem = function(e) {
 
       let endX = e.changedTouches[0].clientX;
       
+      index[itemCounter].style.backgroundColor = "rgba(242, 242, 242, 0.39)";
+
       if (startX > endX) {
 
-        itemCounter++;
+        if (itemCounter >= minItems.length-1) {
+          
+          itemCounter = 0;
+  
+        } else {
+
+          itemCounter++;
+        }
 
       } else if (startX < endX) {
 
-        itemCounter--;
-      }
+        if (itemCounter <= 0) {
+          
+          itemCounter = minItems.length-1;
 
-      if (itemCounter > minItems.length-1) {
+        } else {
 
-        itemCounter = 0;
-
-      } else if (itemCounter < 0) {
-
-        itemCounter = minItems.length-1;
+          itemCounter--;
+        }
       }
 
       this.style.display = "none";
       minItems[itemCounter].style.display = "block";
+      index[itemCounter].style.backgroundColor = "#0D7070";
 
     }
   }
