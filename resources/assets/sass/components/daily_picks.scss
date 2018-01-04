@@ -13,6 +13,21 @@ main {
   background-color: $background-color;
   color: $text-color;
 
+  div#dialy-pics-carousel-index {
+    
+    margin: 1em auto 0;
+    
+    figure {
+
+      display: none;
+      height: 1.5em;
+      width: 1.5em;
+      border-radius: 100%;
+      background-color: $marker-outoffocus;
+      margin: 0 0.5em;
+    }
+  }
+
   .daily-pics {
 
     display: flex;
@@ -276,6 +291,25 @@ article {
 @media only screen and (max-width: 700px) {
 
   main {
+
+    div#dialy-pics-carousel-index {
+      
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width:80%;
+
+      figure {
+
+        display: block;
+      }
+
+      figure:first-child {
+
+        background-color: $marker-infocus;
+      }
+    }
+      
   
     .daily-pics {
      
@@ -451,8 +485,6 @@ article {
   .flex-container {
   
     section {
-
-   
 
       p {
         

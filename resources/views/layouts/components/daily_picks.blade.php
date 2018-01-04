@@ -61,4 +61,8 @@
       </figure>
     </section>
   </section>
+  <div id="dialy-pics-carousel-index">
+    <figure></figure>
+    <figure></figure>
+  </div>
 </article>
