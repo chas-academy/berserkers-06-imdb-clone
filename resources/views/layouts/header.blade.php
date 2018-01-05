@@ -1,3 +1,11 @@
+@php 
+
+    use Illuminate\Support\Facades\Route;
+
+    $routeName = Route::currentRouteName();
+    
+@endphp
+
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 
@@ -8,6 +16,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @if ($routeName === "register")
+    <link href="{{ asset('css/register.css') }}" rel="stylesheet">
+    @endif
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -16,7 +27,6 @@
 </head>
 
 <body>
-    <main>
     <header>
         <!-- Burger logo -->
         <div class="is-hidden-desktop">
@@ -65,7 +75,7 @@
                                 <p class="control">
                                     <button class="button is-success">Login</button>
                                     <span class="button is-danger">Cancel</span>
-                                    <span class="button is-info" id="register">Register</span>
+                                    <a href="/register"><span class="button is-info" id="register" >Register</span></a>
                                 </p>
                             </div>
                         </div>
@@ -127,3 +137,4 @@
         </nav>
         </div>
     </header>
+    <main>
