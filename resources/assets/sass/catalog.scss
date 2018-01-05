@@ -1,0 +1,127 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+
+@import "startpage";
+@import "header";
+@import "footer";
+
+
+/* #catalog-card {
+    background-color: #333333;
+    display: flex;
+    flex-flow: wrap;
+    margin-left: 6%;
+    margin-top: 4em;
+}
+
+
+.card-image {
+    flex-basis: 25%;
+    margin-bottom: 3em;
+}
+*/
+
+
+.image-container {
+    flex-basis: 35%;
+    margin-left: auto;
+    margin-bottom: 1em;
+    margin-right: 1em;
+}
+
+.fade-container{
+    display: block;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    width: 320px;
+    height: 320px;
+    background-size: cover;
+    background-position: center;
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+}
+
+.fade-container::after {
+    content: "";
+    width: 320px;
+    height: 320px;
+    overflow: hidden;
+    position: absolute;
+    background-color: black;
+    opacity: 0.4;
+    z-index: -1;
+}
+
+.fade-container::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .3);
+    transition: background .35s ease-out;
+}
+
+.fade-container:hover::before{
+    background: rgba(0, 0, 0, .5);
+}
+
+.fade-overlay{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    color: white;
+
+    -webkit-transform: translateY(100%);
+           -ms-transform: translateY(100%);
+            transform: translateY(100%);
+
+    transition: -webkit-transform .35s ease-out;
+    transition:         transform .35s ease-out;
+}
+
+.fade-container:hover .fade-overlay{
+    -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+            transform: translateY(0);
+}
+
+.overlay-title {
+    text-align: center;
+    position: relative;
+    text-decoration: none;
+    color: white;
+    font-size: 4vh;
+    margin: 0 auto;
+    -webkit-transform: translateY(-webkit-calc(-100% - 50px) );
+                transform: translateY( calc(-100% - 50px) );
+
+    transition: -webkit-transform .35s ease-out;
+    transition:         transform .35s ease-out;
+}
+
+
+.fade-container:hover .overlay-title {
+    -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+            transform: translateY(0);
+}
+
+.overlay-content {
+    text-align: center;
+    font-size: 2vh;
+    padding-top: 2vh;
+    line-height: 1.3em;
+    text-decoration: none;
+    color: white;
+}
+

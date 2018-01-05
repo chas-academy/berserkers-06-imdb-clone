@@ -19,6 +19,10 @@ Route::get('/item_meta_info', function () {
     return view('layouts.components.item_meta_info');
 });
 
+Route::get('/catalog', function () {
+    return view('movies.catalog');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
