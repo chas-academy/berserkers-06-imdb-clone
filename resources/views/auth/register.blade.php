@@ -86,54 +86,70 @@
     <form method="POST" action="{{ route('register') }}">
         {{ csrf_field() }}
         <div class="field">
-        <p class="control has-icons-left">
-            <input class="input is-hovered" type="text" name="name" placeholder="Username" value="{{ old('name') }}" required>
-            <span class="icon is-small is-left">
-            <i class="fa fa-user"></i>
-            </span>
-        </p>
+            <p class="control has-icons-left">
+                <input class="input is-hovered" type="text" name="firstname" placeholder="Firstname" value="{{ old('firstname') }}" required>
+                <span class="icon is-small is-left">
+                <i class="fa fa-user"></i>
+                </span>
+            </p>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input class="input is-hovered" type="text" name="surname" placeholder="Surname" value="{{ old('surname') }}" required>
+                <span class="icon is-small is-left">
+                <i class="fa fa-user"></i>
+                </span>
+            </p>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input class="input is-hovered" type="text" name="username" placeholder="Username" value="{{ old('username') }}" required>
+                <span class="icon is-small is-left">
+                <i class="fa fa-user"></i>
+                </span>
+            </p>
         </div>
         <div class="field">
         <p class="control has-icons-left has-icons-right">
-            <input class="input is-hovered" type="email" name="email" placeholder="Email" value="{{ old('name') }}" required>
-            <span class="icon is-small is-left">
-            <i class="fa fa-envelope"></i>
-            </span>
-            <span class="icon is-small is-right">
-            <i class="fa fa-check"></i>
-            </span>
-        </p>
+                <input class="input is-hovered" type="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
+                <span class="icon is-small is-left">
+                <i class="fa fa-envelope"></i>
+                </span>
+                <span class="icon is-small is-right">
+                <i class="fa fa-check"></i>
+                </span>
+            </p>
         </div>
         <div class="field">
-        <p class="control has-icons-left">
-            <input class="input is-hovered" type="password" name="password" placeholder="Password" required>
-            <span class="icon is-small is-left">
-            <i class="fa fa-lock"></i>
-            </span>
-        </p>
+            <p class="control has-icons-left">
+                <input class="input is-hovered" type="password" name="password" placeholder="Password" required>
+                <span class="icon is-small is-left">
+                <i class="fa fa-lock"></i>
+                </span>
+            </p>
         </div>
         <div class="field">
-        <p class="control has-icons-left">
-            <input class="input is-hovered" type="password" name="password_confirmation" placeholder="Confirm Password" required>
-            <span class="icon is-small is-left">
-            <i class="fa fa-lock"></i>
-            </span>
-        </p>
+            <p class="control has-icons-left">
+                <input class="input is-hovered" type="password" name="password_confirmation" placeholder="Confirm Password" required>
+                <span class="icon is-small is-left">
+                <i class="fa fa-lock"></i>
+                </span>
+            </p>
         </div>
 
     <!-- Buttons -->
 
         <div class="field is-grouped is-grouped-centered">
-        <p class="control">
-            <a class="button is-primary" type="submit">
-            Submit
-            </a>
-        </p>
-        <p class="control">
-            <a class="button is-light" type="submit" href="/">
-            Cancel
-            </a>
-        </p>
+            <p class="control">
+                <button class="button is-primary" type="submit">
+                Submit
+                </button>
+            </p>
+            <p class="control">
+                <a class="button is-light" type="submit" href="/">
+                Cancel
+                </a>
+            </p>
         </div>
     </form>
 </div>
