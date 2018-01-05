@@ -109,5 +109,5 @@
         </section>
       </section>
     </section>
-  </div>
+  </section>
 </article>
