@@ -19,7 +19,9 @@ Route::get('/item_meta_info', function () {
     return view('layouts.components.item_meta_info');
 });
 
+Route::get('/register', 'RegisterController@showRegistrationForm');
 
+Route::post('/register', 'RegisterController@register');
 
 Auth::routes();
 
