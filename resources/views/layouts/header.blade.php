@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @if ($routeName === "register")
-    <link href="{{ asset('css/register.css') }}" rel="stylesheet">
+    @if ($routeName === "register" && isset($routeName))
+    <link href="{{ asset('css/' . $routeName . '.css') }}" rel="stylesheet">
     @endif
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
