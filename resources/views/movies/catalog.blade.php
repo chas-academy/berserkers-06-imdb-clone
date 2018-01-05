@@ -11,48 +11,115 @@
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <title>{{ config('app.name', 'Laravel') }}</title>
    </head>
-
    <body>
-
       @include('layouts.header')
-
       <!--Img boxes -->
-    <!--
-      <div class="card" id="catalog-card">
-             <div class="fade-container2">
-                 <div class ="fade-overlay2"><a class="overlay-a" href="#">
-                 <h2 class="overlay-title2">Title här</h2>
-                <p class ="overlay-content2">Testar den här texten</p>
-            <figure class="image is-256x256">
-                <img class="catalog-img" src="https://bulma.io/images/placeholders/256x256.png"> 
-            
-                </a></div>    
-            </div>
-            </figure>
-          
-    </div> -->
+      <!--
+         <div class="card" id="catalog-card">
+                <div class="fade-container2">
+                    <div class ="fade-overlay2"><a class="overlay-a" href="#">
+                    <h2 class="overlay-title2">Title här</h2>
+                   <p class ="overlay-content2">Testar den här texten</p>
+               <figure class="image is-256x256">
+                   <img class="catalog-img" src="https://bulma.io/images/placeholders/256x256.png"> 
+               
+                   </a></div>    
+               </div>
+               </figure>
+             
+         </div> -->
+      <div class="card-container">
+         <div class="image-container">
+            <a class="overlay-a" href="#">
+               <article class="fade-container" >
+                  <img class="img is-1by1" src="https://i.pinimg.com/originals/a3/47/b4/a347b4457225972d6865fa077bd5265b.jpg">
+                  <div class="fade-overlay">
+                     <h1 class="overlay-title">Blade Runner 2049 (2017)</h1>
+                     <ul>
+                        <li class="overlay-content">Director:&nbsp; Denise Villeneuve</li>
+                        <li class="overlay-content">Stars:&nbsp; Harrison Ford, Ryan Gosling, Ana de Armas</li>
+                        <li class="overlay-content">Plot Summary:&nbsp; A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard, who's been missing for thirty years.</li>
+                     </ul>
+                  </div> <!-- Closes fade-overlay -->
+               </article>
+            </a>
+         </div> <!-- Closes image-container -->
 
-    <div class="card-container">	
-
-	<div class="image-container">
-   
-    <a class="overlay-a" href="#">
-    <article class="fade-container" >
-    
-    <img class="img is-1by1" src="https://bulma.io/images/placeholders/480x480.png">
-    <div class="fade-overlay">
-            <h1 class="overlay-title">Blade Runner 2049 (2017)</h1>
-            <ul>
-                <li class="overlay-content">Director:&nbsp; Denise Villeneuve</li>
-                <li class="overlay-content">Stars:&nbsp; Harrison Ford, Ryan Gosling, Ana de Armas</li>
-                <li class="overlay-content">Plot Summary:&nbsp; A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard, who's been missing for thirty years.</li>
-            </ul>
-    </div>
-    </article>
-    </a> 
-
-	</div><!--container2-->
-</div>     
-         
+         <div class="image-container">
+            <a class="overlay-a" href="#">
+               <article class="fade-container" >
+                  <img class="img is-1by1" src="https://i.pinimg.com/originals/a3/47/b4/a347b4457225972d6865fa077bd5265b.jpg">
+                  <div class="fade-overlay">
+                     <h1 class="overlay-title">Blade Runner 2049 (2017)</h1>
+                     <ul>
+                        <li class="overlay-content">Director:&nbsp; Denise Villeneuve</li>
+                        <li class="overlay-content">Stars:&nbsp; Harrison Ford, Ryan Gosling, Ana de Armas</li>
+                        <li class="overlay-content">Plot Summary:&nbsp; A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard, who's been missing for thirty years.</li>
+                     </ul>
+                  </div> <!-- Closes fade-overlay -->
+               </article>
+            </a>
+         </div> <!-- Closes image-container -->
+         <div class="image-container">
+            <a class="overlay-a" href="#">
+               <article class="fade-container" >
+                  <img class="img is-1by1" src="https://i.pinimg.com/originals/a3/47/b4/a347b4457225972d6865fa077bd5265b.jpg">
+                  <div class="fade-overlay">
+                     <h1 class="overlay-title">Blade Runner 2049 (2017)</h1>
+                     <ul>
+                        <li class="overlay-content">Director:&nbsp; Denise Villeneuve</li>
+                        <li class="overlay-content">Stars:&nbsp; Harrison Ford, Ryan Gosling, Ana de Armas</li>
+                        <li class="overlay-content">Plot Summary:&nbsp; A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard, who's been missing for thirty years.</li>
+                     </ul>
+                  </div> <!-- Closes fade-overlay -->
+               </article>
+            </a>
+         </div> <!-- Closes image-container -->
+         <div class="image-container">
+            <a class="overlay-a" href="#">
+               <article class="fade-container" >
+                  <img class="img is-1by1" src="https://i.pinimg.com/originals/a3/47/b4/a347b4457225972d6865fa077bd5265b.jpg">
+                  <div class="fade-overlay">
+                     <h1 class="overlay-title">Blade Runner 2049 (2017)</h1>
+                     <ul>
+                        <li class="overlay-content">Director:&nbsp; Denise Villeneuve</li>
+                        <li class="overlay-content">Stars:&nbsp; Harrison Ford, Ryan Gosling, Ana de Armas</li>
+                        <li class="overlay-content">Plot Summary:&nbsp; A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard, who's been missing for thirty years.</li>
+                     </ul>
+                  </div> <!-- Closes fade-overlay -->
+               </article>
+            </a>
+         </div> <!-- Closes image-container -->
+         <div class="image-container">
+            <a class="overlay-a" href="#">
+               <article class="fade-container" >
+                  <img class="img is-1by1" src="https://i.pinimg.com/originals/a3/47/b4/a347b4457225972d6865fa077bd5265b.jpg">
+                  <div class="fade-overlay">
+                     <h1 class="overlay-title">Blade Runner 2049 (2017)</h1>
+                     <ul>
+                        <li class="overlay-content">Director:&nbsp; Denise Villeneuve</li>
+                        <li class="overlay-content">Stars:&nbsp; Harrison Ford, Ryan Gosling, Ana de Armas</li>
+                        <li class="overlay-content">Plot Summary:&nbsp; A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard, who's been missing for thirty years.</li>
+                     </ul>
+                  </div> <!-- Closes fade-overlay -->
+               </article>
+            </a>
+         </div> <!-- Closes image-container -->
+         <div class="image-container">
+            <a class="overlay-a" href="#">
+               <article class="fade-container" >
+                  <img class="img is-1by1" src="https://i.pinimg.com/originals/a3/47/b4/a347b4457225972d6865fa077bd5265b.jpg">
+                  <div class="fade-overlay">
+                     <h1 class="overlay-title">Blade Runner 2049 (2017)</h1>
+                     <ul>
+                        <li class="overlay-content">Director:&nbsp; Denise Villeneuve</li>
+                        <li class="overlay-content">Stars:&nbsp; Harrison Ford, Ryan Gosling, Ana de Armas</li>
+                        <li class="overlay-content">Plot Summary:&nbsp; A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard, who's been missing for thirty years.</li>
+                     </ul>
+                  </div> <!-- Closes fade-overlay -->
+               </article>
+            </a>
+         </div> <!-- Closes image-container --> 
+      </div> <!-- Closes card-container -->
    </body>
 </html>
