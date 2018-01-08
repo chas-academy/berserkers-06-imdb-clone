@@ -39,37 +39,38 @@ Lets do it!
   1. run "vim ~/.ssh/config"
   2. paste this in to the file: 
      
-      Host berzerkers
-        Hostname 104.131.98.20
-        IdentityFile ~/.ssh/id_rsa
-        AddKeysToAgent yes
+     > Host berzerkers
+      >  Hostname 104.131.98.20
+       > IdentityFile ~/.ssh/id_rsa
+        >AddKeysToAgent yes
+        
   3. If using windows it's adviceble first install WSL (https://docs.microsoft.com/en-us/windows/wsl/install-win10) and then use Bash on Ubuntu on Windows and       make create new ssh keys and make shure that they are accesible in the Bash adding this:
 
-      SSH_ENV="$HOME/.ssh/environment"
+      >SSH_ENV="$HOME/.ssh/environment"
 
-      function start_agent {
-          echo "Initializing new SSH agent..."
-          touch $SSH_ENV
-          chmod 600 "${SSH_ENV}"
-          /usr/bin/ssh-agent | sed 's/^echo/#echo/' >> "${SSH_ENV}"
-          . "${SSH_ENV}" > /dev/null
-          /usr/bin/ssh-add
-      }
+      >function start_agent {
+      >   echo "Initializing new SSH agent..."
+      >   touch $SSH_ENV
+      >   chmod 600 "${SSH_ENV}"
+      >   /usr/bin/ssh-agent | sed 's/^echo/#echo/' >> "${SSH_ENV}"
+      >   . "${SSH_ENV}" > /dev/null
+      >   /usr/bin/ssh-add
+      >}
 
-      if [ -f "${SSH_ENV}" ]; then
-          . "${SSH_ENV}" > /dev/null
-          kill -0 $SSH_AGENT_PID 2>/dev/null || {
-              start_agent
-          }
-      else
-          start_agent
-      fi
+     > if [ -f "${SSH_ENV}" ]; then
+     >     . "${SSH_ENV}" > /dev/null
+     >     kill -0 $SSH_AGENT_PID 2>/dev/null || {
+     >        start_agent
+     >     }
+     > else
+     >     start_agent
+     > fi
 
     to your .bashrc(or .zshrc if using om-my-zsh) and adding this:
 
-      Host *
-        ProxyCommand nc %h %p %r
-        ForwardAgent yes
+     > Host *
+      >  ProxyCommand nc %h %p %r
+      >  ForwardAgent yes
 
      to your ssh config file should to the trick!
   4. send your public ssh key to admin to alow setup for access to the Berzerers server
