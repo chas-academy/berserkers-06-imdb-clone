@@ -1,13 +1,58 @@
+// Import initial variables from bulma
+@import 'node_modules/bulma/sass/utilities/initial-variables';
+@import 'node_modules/bulma/sass/utilities/functions';
+
 @import 'fonts';
+
+
+/*** Set bulma's initial colors ***/
+$grey-darker: #333333;
+$pink: #D2ADB5;
+$blue: #07617D;
+$green: #033C40;
+$red:#570a1d;
+$yellow: #FCA135;
+$orange: #ED6909;
+$white-ter: #E0E0E0;
+
+
+/*** Set Bulma's derived color variables ***/
+$primary: $yellow;
+$link: $orange;
+$info: $blue;
+$success: $green;
+$warning: $red;
+
+
+/*** Set custom color variables (variable names not used by bulma) ***/
+$background: $grey-darker;
+$border: darken($grey-darker, 20%);
+$text: $white;
+$body-background-color: $grey-darker;
+
+
+/*** General bulma overrides ***/
+
+// Tags
+$tag-background-color: $background;
+$tag-delete-margin: 1em;
+
+// Boxes
+$box-color: $text;
+$box-background-color: $grey-darker;
+
+
+/*** Non-bulma-related variables ***/
+// It's not a priority to reorganize these variales with the new ones - but please use the new variables! :)
+
 // Body
 $background-color: #333333;
+
 // Borders
 $laravel-border-color: darken($background-color, 10%);
 
-// brands
-
+// Brands
 $main-color: #033C40;
-
 
 // Typography
 $marker-outoffocus: rgba(242, 242, 242, 0.39);
