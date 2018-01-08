@@ -110,12 +110,11 @@
       </section>
     </section>
   </section>
-  <!-- Change figure elements into non-semantic elements -->
   <div id="chart-carousel-index">
-    <figure></figure>
-    <figure></figure>
-    <figure></figure>
-    <figure></figure>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 
 </article>
