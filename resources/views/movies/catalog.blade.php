@@ -44,7 +44,7 @@
                </article>
             </a>
             <div class="image-content">
-                
+                <p><a href="#"><i class="fa fa-lg fa-star" aria-hidden="true"></i></a> 4.3 | Drama, Mystery, Sci-fi | Add <a href="#"><i class="fa fa-lg fa-bookmark" aria-hidden="true"></i></a> </p>
             </div>
          </div> <!-- Closes image-container -->
 
@@ -124,6 +124,18 @@
             </a>
          </div> <!-- Closes image-container --> 
       </div> <!-- Closes card-container -->
-      @include('layouts.footer')
+
+      <nav class="pagination is-rounded is-centered" role="navigation" aria-label="pagination">
+        <a class="pagination-previous">Previous</a>
+        <a class="pagination-next">Next page</a>
+        <ul class="pagination-list">
+            <li><a class="pagination-link is-current" aria-label="Page 1" aria-current="page">1</a></li>
+            <li><a class="pagination-link" aria-label="Goto page 2">2</a></li>
+            <li><a class="pagination-link" aria-label="Goto page 3">3</a></li>
+            <li><a class="pagination-link" aria-label="Goto page 4">4</a></li>
+            <li><span class="pagination-ellipsis">&hellip;</span></li>
+            <li><a class="pagination-link" aria-label="Goto page 12">12</a></li>
+        </ul>
+    </nav>
    </body>
 </html>

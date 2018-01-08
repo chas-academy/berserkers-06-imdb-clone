@@ -38,7 +38,16 @@
 .image-content {
     width: 300px;
     height: 50px;
-    border: 1px solid white;
+    padding-top: 10px;
+    border: 1px solid $orange;
+}
+
+.fa-star {
+    color: gold;
+}
+
+.fa-bookmark {
+    color: orange;
 }
 
 .fade-container{
@@ -49,6 +58,7 @@
     display: flex;
     width: 300px;
     height: 210px;
+    margin-bottom: 0;
     background-size: cover;
     background-position: center;
     -webkit-transform: translateZ(0);
@@ -137,4 +147,31 @@
 #catalog-readmore {
     color:orange;
 }
+
+.pagination {
+    padding: 10px;
+}
+
+
+@media screen and (max-width: 1023px) {
+    
+    .card-container {
+        margin-left: 0;
+        justify-content: center;
+    }
+  }
+
+  @media screen and (min-width: 1920px) {
+    
+    .image-container {
+        flex-basis: 25%;
+    }
+  }
+  
+  @media screen and (min-width: 2000px) {
+    
+    .image-container {
+        flex-basis: 20%;
+    }
+  }
 
