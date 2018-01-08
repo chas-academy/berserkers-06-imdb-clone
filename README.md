@@ -8,21 +8,22 @@ Lets do it!
 
 # How to get started:
 
-1. Clone the repository to your local machine.
-2. Setup SSH-keys: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
-3. Install npm: https://docs.npmjs.com/getting-started/installing-node
-4. install composer: https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx or https://getcomposer.org/doc/00-intro.md#installation-windows
-3. Install and configure Homestead VM: https://laravel.com/docs/5.5/homestead#installation-and-setup
-4. Add berserkers.test to both the Homestead.yaml config and your /etc/hosts/ or Windows hosts file.
-5. vagrant reload --provision
-6. Inside the project root run composer install
-7. Inside the project root duplicate and then rename the .env.example file to .env.
-8. run php artisan key:generate in project root with in the VM (use vagrant ssh in the VM folder to get and then navigate to the root folder)
-9. Browse to http://berserkers.test
-10. Develop like the wind!
+  1. Clone the repository to your local machine.
+  2. Setup SSH-keys: https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/
+  3. Install npm: https://docs.npmjs.com/getting-started/installing-node
+  4. install composer: https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx or https://getcomposer.org/doc/00-intro.md#installation-windows
+  3. Install and configure Homestead VM: https://laravel.com/docs/5.5/homestead#installation-and-setup
+  4. Add berserkers.test to both the Homestead.yaml config and your /etc/hosts/ or Windows hosts file.
+  5. vagrant reload --provision
+  6. Inside the project root run composer install
+  7. Inside the project root duplicate and then rename the .env.example file to .env.
+  8. run php artisan key:generate in project root with in the VM (use vagrant ssh in the VM folder to get and then navigate to the root folder)
+  9. Browse to http://berserkers.test
+  10. Develop like the wind!
 
 #working with the databse
-When working with database related issues use php artisan migrate (or php artisan migrate:fresh if the migration had been done once beefore and you whant to update some tables or just refresh the information). To fill the databse with movies, series, cast run php artisan seed:db (this takes a while, so feel free to commentout some of the series and or movies int the movies or series seeder for a speedier seed).
+
+  When working with database related issues use php artisan migrate (or php artisan migrate:fresh if the migration had been done once beefore and you whant to update some tables or just refresh the information). To fill the databse with movies, series, cast run php artisan seed:db (this takes a while, so feel free to commentout some of the series and or movies int the movies or series seeder for a speedier seed).
 
 #compiling style-sheets
 
@@ -74,15 +75,15 @@ When working with database related issues use php artisan migrate (or php artisa
   6. If step 5 is successfull the setup is done.
 
 
- # doing a deploy
+# doing a deploy
 
- 1. Start by checking that everything thats merged in to dev is working (and make shure to run git pull before to make shure you have the latest updates loacly)
- 2. Merge dev to stage (run "git merge dev" while in the stage branch). Please use this guide on rebase git flow to keep merge conflict at an minimum     https://raygun.com/blog/git-workflow/
- 3. Check that everyting still works localy
- 4. Make shure to push after merging
- 5. run "npm run dev" to build all resources (trying to setup a autmatic build with deployer, will remove this stage when it's done)
- 6. run "php dep deploy stage" (or "php dep deploy prod" for deploying from master but only after repeeting steps 1-5 from stage branch to master branch)
- 7. Check out the result at http://stage.berzerkermovies.me ( or http://berzerkermovies.me if deploying from master)
+  1. Start by checking that everything thats merged in to dev is working (and make shure to run git pull before to make shure you have the latest updates loacly)
+  2. Merge dev to stage (run "git merge dev" while in the stage branch). Please use this guide on rebase git flow to keep merge conflict at an minimum     https://raygun.com/blog/git-workflow/
+  3. Check that everyting still works localy
+  4. Make shure to push after merging
+  5. run "npm run dev" to build all resources (trying to setup a autmatic build with deployer, will remove this stage when it's done)
+  6. run "php dep deploy stage" (or "php dep deploy prod" for deploying from master but only after repeeting steps 1-5 from stage branch to master branch)
+  7. Check out the result at http://stage.berzerkermovies.me ( or http://berzerkermovies.me if deploying from master)
 
 
 
