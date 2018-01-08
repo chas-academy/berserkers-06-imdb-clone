@@ -35,14 +35,20 @@
     margin-bottom: 1em;
 }
 
+.image-content {
+    width: 300px;
+    height: 50px;
+    border: 1px solid white;
+}
+
 .fade-container{
     display: block;
     border-radius: 5px;
     position: relative;
     overflow: hidden;
     display: flex;
-    width: 320px;
-    height: 320px;
+    width: 300px;
+    height: 210px;
     background-size: cover;
     background-position: center;
     -webkit-transform: translateZ(0);
@@ -51,8 +57,8 @@
 
 .fade-container::after {
     content: "";
-    width: 320px;
-    height: 320px;
+    width: 300px;
+    height: 210px;
     overflow: hidden;
     position: absolute;
     background-color: black;
@@ -103,7 +109,7 @@
     position: relative;
     text-decoration: none;
     color: white;
-    font-size: 4vh;
+    font-size: 3vh;
     margin: 0 auto;
     -webkit-transform: translateY(-webkit-calc(-100% - 30px) );
                 transform: translateY( calc(-100% - 30px) );
@@ -121,10 +127,14 @@
 
 .overlay-content {
     text-align: center;
-    font-size: 2.4vh;
-    padding-top: 2vh;
+    font-size: 2vh;
+    padding-top: 10px;
     line-height: 1.3em;
     text-decoration: none;
     color: white;
+}
+
+#catalog-readmore {
+    color:orange;
 }
 

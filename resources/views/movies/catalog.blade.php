@@ -38,11 +38,14 @@
                      <ul>
                         <li class="overlay-content">Director:&nbsp; Denise Villeneuve</li>
                         <li class="overlay-content">Stars:&nbsp; Harrison Ford, Ryan Gosling, Ana de Armas</li>
-                        <li class="overlay-content">Plot Summary:&nbsp; A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard, who's been missing for thirty years.</li>
+                        <li class="overlay-content">Plot Summary:&nbsp; A young blade runner's discovery of a long-buried secret leads him to track down former blade runner Rick Deckard..<p id="catalog-readmore">Read More &#x21e8;</p></li>
                      </ul>
                   </div> <!-- Closes fade-overlay -->
                </article>
             </a>
+            <div class="image-content">
+                
+            </div>
          </div> <!-- Closes image-container -->
 
          <div class="image-container">
@@ -121,5 +124,6 @@
             </a>
          </div> <!-- Closes image-container --> 
       </div> <!-- Closes card-container -->
+      @include('layouts.footer')
    </body>
 </html>
