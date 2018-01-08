@@ -21,6 +21,12 @@ Route::get('/item_meta_info', function () {
 
 Route::get('/catalog', function () {
     return view('movies.catalog');
+Route::get('/register', 'RegisterController@showRegistrationForm');
+
+Route::post('/register', 'RegisterController@register');
+
+Route::get('/inputs', function () {
+    return view('layouts.components.input');
 });
 
 Auth::routes();
@@ -31,5 +37,6 @@ Route::resource('persons', 'PersonsController');
 Route::resource('reviews', 'ReviewsController');
 Route::resource('comments', 'CommentsController');
 Route::resource('users', 'UsersController');
+
 
 
