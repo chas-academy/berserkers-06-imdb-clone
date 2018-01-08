@@ -1,7 +1,7 @@
 const chart = document.querySelectorAll(".min-item");
 const dailyPics = document.querySelectorAll(".unit");
-const chartIndex = document.querySelectorAll("#chart-carousel-index figure");
-const dailyPicsIndex = document.querySelectorAll("#daily-pics-carousel-index figure");
+const chartIndex = document.querySelectorAll("#chart-carousel-index span");
+const dailyPicsIndex = document.querySelectorAll("#daily-pics-carousel-index span");
 
 const Carousel = function (index, items,displayValue) {
 

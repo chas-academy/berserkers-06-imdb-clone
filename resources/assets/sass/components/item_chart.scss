@@ -14,7 +14,7 @@ main {
 
       margin: 0.5em 0;
 
-      figure {
+      span {
 
         display: none;
         height: 1.5em;
@@ -213,12 +213,12 @@ article h3 {
         justify-content: center;
         width:80%;
 
-        figure {
+        span {
 
           display: block;
         }
 
-        figure:first-child {
+        span:first-child {
 
           background-color: $marker-infocus;
         }

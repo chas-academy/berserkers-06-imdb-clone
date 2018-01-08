@@ -33,7 +33,7 @@
           </div>
         </section>
       </article>
-      <figure class="figure-circle"></figure>
+      <span class="span-circle"></span>
     </section>
     <section class ="unit">
       <article class="ranked">
@@ -55,14 +55,14 @@
           </div>
         </section>
       </article>
-      <figure class="figure-box">
-        <figure><figure></figure><figure></figure></figure>
-        <figure><figure></figure><figure></figure></figure>
-      </figure>
+      <span class="span-box">
+        <span><span></span><span></span></span>
+        <span><span></span><span></span></span>
+      </span>
     </section>
   </section>
   <div id="daily-pics-carousel-index">
-    <figure></figure>
-    <figure></figure>
+    <span></span>
+    <span></span>
   </div>
 </article>
