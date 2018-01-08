@@ -23,6 +23,10 @@ Route::get('/register', 'RegisterController@showRegistrationForm');
 
 Route::post('/register', 'RegisterController@register');
 
+Route::get('/inputs', function () {
+    return view('layouts.components.input');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -31,5 +35,6 @@ Route::resource('persons', 'PersonsController');
 Route::resource('reviews', 'ReviewsController');
 Route::resource('comments', 'CommentsController');
 Route::resource('users', 'UsersController');
+
 
 
