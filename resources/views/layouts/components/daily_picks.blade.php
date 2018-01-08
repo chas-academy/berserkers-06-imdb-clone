@@ -61,4 +61,8 @@
       </figure>
     </section>
   </section>
+  <div id="daily-pics-carousel-index">
+    <figure></figure>
+    <figure></figure>
+  </div>
 </article>
