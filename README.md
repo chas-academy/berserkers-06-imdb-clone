@@ -43,12 +43,12 @@ Lets do it!
       >  Hostname 104.131.98.20
        > IdentityFile ~/.ssh/id_rsa
         >AddKeysToAgent yes
-        
+
   3. If using windows it's adviceble first install WSL (https://docs.microsoft.com/en-us/windows/wsl/install-win10) and then use Bash on Ubuntu on Windows and       make create new ssh keys and make shure that they are accesible in the Bash adding this:
 
-      >SSH_ENV="$HOME/.ssh/environment"
-
-      >function start_agent {
+      > SSH_ENV="$HOME/.ssh/environment"
+      >
+      > function start_agent {
       >   echo "Initializing new SSH agent..."
       >   touch $SSH_ENV
       >   chmod 600 "${SSH_ENV}"
@@ -56,7 +56,7 @@ Lets do it!
       >   . "${SSH_ENV}" > /dev/null
       >   /usr/bin/ssh-add
       >}
-
+    >
      > if [ -f "${SSH_ENV}" ]; then
      >     . "${SSH_ENV}" > /dev/null
      >     kill -0 $SSH_AGENT_PID 2>/dev/null || {
@@ -66,13 +66,13 @@ Lets do it!
      >     start_agent
      > fi
 
-    to your .bashrc(or .zshrc if using om-my-zsh) and adding this:
+      to your .bashrc(or .zshrc if using om-my-zsh) and adding this:
 
      > Host *
       >  ProxyCommand nc %h %p %r
       >  ForwardAgent yes
 
-     to your ssh config file should to the trick!
+      to your ssh config file should to the trick!
   4. send your public ssh key to admin to alow setup for access to the Berzerers server
   5. Try if access has been granted by running "ssh deploy@Berzerkers" and then run exit to return to your local machine (if you where able to acces the server)
   6. If step 5 is successfull the setup is done.
