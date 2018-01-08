@@ -21,11 +21,11 @@ Lets do it!
   9. Browse to http://berserkers.test
   10. Develop like the wind!
 
-#working with the databse
+# Working with the databse
 
   When working with database related issues use php artisan migrate (or php artisan migrate:fresh if the migration had been done once beefore and you whant to update some tables or just refresh the information). To fill the databse with movies, series, cast run php artisan seed:db (this takes a while, so feel free to commentout some of the series and or movies int the movies or series seeder for a speedier seed).
 
-#compiling style-sheets
+# Compiling style-sheets
 
  
  Add your files to the mix-mainfest https://laravel.com/docs/5.5/mix#working-with-stylesheets
@@ -34,7 +34,7 @@ Lets do it!
  If you are working on a spesific page please use the setup for automaticly geeting the right css file loaded on your page by including all the scss files you need (and I meen only those you actualy need) in a sccs file with the same name as the path of your page (and of course add that scss file to the mix-mainfest.json file)
  (this feeture is not yeat merged curently only exists in the three-reg-page branch)
 
-# setup for using deployer
+# Setup for using deployer
 
   1. run "vim ~/.ssh/config"
   2. paste this in to the file: 
@@ -43,7 +43,8 @@ Lets do it!
         Hostname 104.131.98.20
         IdentityFile ~/.ssh/id_rsa
         AddKeysToAgent yes
-  3. If using windows it's adviceble first install WSL (https://docs.microsoft.com/en-us/windows/wsl/install-win10) and then use Bash on Ubuntu on Windows and      make create new ssh keys and make shure that they are accesible in the Bash adding this:
+  3. If using windows it's adviceble first install WSL (https://docs.microsoft.com/en-us/windows/wsl/install-win10) and then use Bash on Ubuntu on Windows and       make create new ssh keys and make shure that they are accesible in the Bash adding this:
+
       SSH_ENV="$HOME/.ssh/environment"
 
       function start_agent {
@@ -55,7 +56,6 @@ Lets do it!
           /usr/bin/ssh-add
       }
 
-      # Source SSH settings, if applicable
       if [ -f "${SSH_ENV}" ]; then
           . "${SSH_ENV}" > /dev/null
           kill -0 $SSH_AGENT_PID 2>/dev/null || {
@@ -64,18 +64,20 @@ Lets do it!
       else
           start_agent
       fi
-    to your .bashrc and adding this:
+
+    to your .bashrc(or .zshrc if using om-my-zsh) and adding this:
 
       Host *
         ProxyCommand nc %h %p %r
         ForwardAgent yes
-    to your ssh config file should to the trick!
+
+     to your ssh config file should to the trick!
   4. send your public ssh key to admin to alow setup for access to the Berzerers server
   5. Try if access has been granted by running "ssh deploy@Berzerkers" and then run exit to return to your local machine (if you where able to acces the server)
   6. If step 5 is successfull the setup is done.
 
 
-# doing a deploy
+# Doing a deploy
 
   1. Start by checking that everything thats merged in to dev is working (and make shure to run git pull before to make shure you have the latest updates loacly)
   2. Merge dev to stage (run "git merge dev" while in the stage branch). Please use this guide on rebase git flow to keep merge conflict at an minimum     https://raygun.com/blog/git-workflow/
