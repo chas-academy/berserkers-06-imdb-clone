@@ -1,38 +1,89 @@
+// Import initial variables from bulma
+@import 'node_modules/bulma/sass/utilities/initial-variables';
+@import 'node_modules/bulma/sass/utilities/functions';
+
+@import 'fonts';
+
+
+/*** Set bulma's initial colors ***/
+$grey-darker: #333333;
+$pink: #D2ADB5;
+$blue: #07617D;
+$green: #033C40;
+$red:#570a1d;
+$yellow: #FCA135;
+$orange: #ED6909;
+$white-ter: #E0E0E0;
+
+
+/*** Set Bulma's derived color variables ***/
+$primary: $yellow;
+$link: $orange;
+$info: $blue;
+$success: $green;
+$warning: $red;
+
+
+/*** Set custom color variables (variable names not used by bulma) ***/
+$background: $grey-darker;
+$border: darken($grey-darker, 20%);
+$text: $white;
+$body-background-color: $grey-darker;
+
+
+/*** General bulma overrides ***/
+
+// Tags
+$tag-background-color: $background;
+$tag-delete-margin: 1em;
+
+// Boxes
+$box-color: $text;
+$box-background-color: $grey-darker;
+
+
+/*** Non-bulma-related variables ***/
+// It's not a priority to reorganize these variales with the new ones - but please use the new variables! :)
 
 // Body
-$body-bg: #f5f8fa;
+$background-color: #333333;
 
 // Borders
-$laravel-border-color: darken($body-bg, 10%);
-$list-group-border: $laravel-border-color;
-$navbar-default-border: $laravel-border-color;
-$panel-default-border: $laravel-border-color;
-$panel-inner-border: $laravel-border-color;
+$laravel-border-color: darken($background-color, 10%);
 
 // Brands
-$brand-primary: #3097D1;
-$brand-info: #8eb4cb;
-$brand-success: #2ab27b;
-$brand-warning: #cbb956;
-$brand-danger: #bf5329;
+$main-color: #033C40;
 
 // Typography
-$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
-$font-family-sans-serif: "Raleway", sans-serif;
-$font-size-base: 14px;
+$marker-outoffocus: rgba(242, 242, 242, 0.39);
+$marker-infocus: #0D7070;
 $line-height-base: 1.6;
-$text-color: #636b6f;
+$text-color: #FFFFFF;
+$title-hero-font-size: 47px;
+$main-heading-font-size: 36px;
+$sub-heading-font-size: 24px;
+$smal-sub-heading-font-size: 20;
+$links-base-color: #FCA135;
+$heading-alt-color: #ED6909;
+$menu-item-color:#E0E0E0;
+$xl-paragraph-font-size: 18px;
+$big-paragraph-font-size: 16px;
+$paragraph-font-size: 14px;
+$smal-paragraph-font-size: 10px;
+$heading-font: oswaldregular, sans-serif;
+$paragraph-font: josefin_sansregular, sans-serif;
+$paragraph-italic-font: josefin_sansitalic, sans-serif;
 
 // Navbar
-$navbar-default-bg: #fff;
+$navbar-color: $background-color;
 
 // Buttons
 $btn-default-color: $text-color;
 
 // Inputs
 $input-border: lighten($text-color, 40%);
-$input-border-focus: lighten($brand-primary, 25%);
 $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
 $panel-default-heading-bg: #fff;
+$elements-color: #D2ADB5;

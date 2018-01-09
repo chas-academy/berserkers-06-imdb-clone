@@ -1,8 +1,8 @@
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
-// Variables
 @import "variables";
+@import "~bulma";
 
-// Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "startpage";
+@import "header";
+@import "footer";
+@import "components/daily_picks";
+@import "components/item_chart";

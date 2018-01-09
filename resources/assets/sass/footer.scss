@@ -1,0 +1,93 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "_variables";
+
+html, body {
+    background-color: #333333;
+}
+
+footer {
+    position: relative;
+    margin-top: 120px;
+    bottom: 0;
+}
+//Mobile
+
+#mobile-column {
+    background-color: #0d7070;
+    position: absolute;
+    text-align: center;
+    height: 120px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#footer-text {
+    font-size: 1.2em;
+    color: orange;
+    margin-bottom: 1em;
+}
+
+//Desktop
+
+#column-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+#foot-1, #foot-2, #foot-3, #foot-4 {
+    height: 40px;
+    background-color: #0D7070;
+}
+
+#foot-1 {
+    border-top-right-radius: 50px;
+}
+
+#foot-2 {
+    border-top-left-radius: 50px;
+}
+
+#foot-3 {
+    border-top-right-radius: 40px;
+    width: 20%;
+}
+
+#to-top {
+    font-size: 1.1em;
+    color: orange;
+    padding-left: 10px;
+
+}
+
+#foot-4 {
+    border-top-left-radius: 40px;
+    width: 20%;
+    margin-left: 60%;
+}
+
+#foot-5 {
+    height: 100px;
+    background-color: #0D7070;
+}
+
+#social-p {
+    font-size: 1.3em;
+    text-align: center;
+    color: orange;
+    margin-bottom: 10px;
+}
+
+.logo-container {
+    text-align: center;
+}
+
+.social {
+    color: white;
+    padding: 8px;
+}

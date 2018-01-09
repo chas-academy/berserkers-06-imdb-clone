@@ -1,0 +1,495 @@
+@import "/../_variables";
+
+body {
+
+  line-height: 1;
+  background-color: $background-color;
+}
+
+main {
+
+  display: flex;
+  justify-content: center;
+  background-color: $background-color;
+  color: $text-color;
+
+  div#daily-pics-carousel-index {
+    
+    margin: 1em auto 0;
+    
+    span {
+
+      display: none;
+      height: 1.5em;
+      width: 1.5em;
+      border-radius: 100%;
+      background-color: $marker-outoffocus;
+      margin: 0 0.5em;
+    }
+  }
+
+  .daily-pics {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    border-top: 4px solid $elements-color;
+    background-color: $background-color;
+    padding-top: 2em;
+
+    .unit {
+
+      display:flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+    }
+  
+    .span-circle {
+      
+      width: 3em;
+      height: 3em;
+      border: 1px solid $elements-color;
+      border-radius: 100%;
+      margin-top: 0.15em;
+      margin-left: -3em;
+      background-color: $background-color
+    }
+
+    .span-box {
+      
+      width: 3em;
+      height: 3em;
+      margin-top: 1.45em;
+      margin-left: -3.95em;
+      background-color: $background-color;
+      display: flex;
+      flex-direction: column;
+   
+      span:first-child {
+        
+        margin-top: 0.025em;
+
+        span:first-child {
+
+          border-left: 2px solid $elements-color;          
+          border-bottom: 2px solid $elements-color;
+        }
+      }
+
+      span:last-child {
+        
+        span:last-child {
+          
+          border-left: 2px solid $elements-color;          
+          border-bottom: 2px solid $elements-color;
+          margin-top: -0.1em;
+        }
+      } 
+
+      span {
+
+        height: 1.5em;
+        padding: 0;
+        margin: 0; 
+        display: flex;
+        flex-direction: row;
+
+        span {
+
+          width: 1.5em;
+          height: 1.5em;
+        }
+      }
+    }
+
+    article {
+
+      width: 353px;
+
+      &.point, &.ranked {
+        
+        margin: 0;
+      }
+
+      &.ranked {
+        
+        width: 300px;
+        margin-right: 1em;
+       
+        section {
+
+          div {
+
+            &.item-title {
+
+              margin-bottom:0;
+              padding-bottom: 0;
+
+              h2 {
+
+                font-size: $big-paragraph-font-size;
+                font-family: $heading-font;
+                color: $text-color;
+
+                span {
+
+                  background-color: $main-color;
+                  border-radius: 100%;
+                  padding:0.5em 0.75em 0.25em 0.75em;
+                  margin-right: 1em;
+                  line-height: 0.5;
+                }
+              }
+            }
+
+            &.item-img {
+  
+              img {
+                
+                content:url(https://image.tmdb.org/t/p/w185/AtjCCvfMq9kmjwjbVwTJ0mWG7zp.jpg);
+              }
+            }
+          }
+        }
+      }
+      
+      h2 {
+
+        color:$text-color;
+        font-size: $sub-heading-font-size;
+        font-family: $paragraph-font;
+      }
+
+      section {
+        
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        border-top: 2px solid $elements-color;
+        border-left: 2px solid $elements-color;
+
+        div {
+
+          padding: 0.75em 0 1.5em 1em;
+
+          h1 {
+
+            color: $text-color;
+            font-size: $sub-heading-font-size;
+            font-family: $paragraph-font;
+            padding-bottom: 1em;
+          }
+
+          h2 {
+
+            color: $heading-alt-color;
+            font-size: $paragraph-font-size;
+            font-family: $heading-font;
+            padding-bottom: 0.5em;
+          }
+
+          h3 {
+
+            color: $text-color;
+            font-size: $smal-paragraph-font-size;
+            font-family: $heading-font;
+
+            span {
+
+              color:$heading-alt-color;
+            }
+          }
+
+          p {
+
+            color: $text-color;
+            font-size: $big-paragraph-font-size;
+            font-family: $paragraph-font;
+            line-height: 1.5;
+          }
+
+          &.item-img {
+            
+            display: flex;
+            padding: 0.25em;
+            margin: 1em;
+            border-radius: 2.5%;
+            width: fit-content;
+
+            img {
+
+              content:url(https://image.tmdb.org/t/p/w320/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg)
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+article {
+
+  width: 100%;
+}
+
+.flex-container {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 0;
+  margin-left: 0;
+  padding-top: 1em;
+
+  h2 {
+    
+    color: $elements-color;
+    font-family: $heading-font;
+    font-size: $main-heading-font-size;
+    text-transform: uppercase;
+    font-weight: 500;
+    line-height: 1;
+  }
+  
+  h3 {
+  
+    color: $menu-item-color;
+    font-family: $heading-font;
+    font-size: $main-heading-font-size;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  img {
+
+    padding-bottom: 0;
+  }
+
+  section {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+
+    div {
+
+      flex-direction: column;
+      padding-bottom: 0.5em;
+    }
+  }
+
+  section + section {
+
+    padding-bottom: 0.5em;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+
+  main {
+
+    div#daily-pics-carousel-index {
+      
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width:80%;
+
+      span {
+
+        display: block;
+      }
+
+      span:first-child {
+
+        background-color: $marker-infocus;
+      }
+    }
+      
+  
+    .daily-pics {
+     
+      justify-content: center;
+
+      .unit {
+
+        display: none;
+      }
+
+      .unit:first-child {
+
+        display: flex;
+      }
+    }
+  } 
+}
+
+@media only screen and (max-width: 600px) {
+
+  .flex-container {
+  
+    h2 {
+      
+      font-size: $sub-heading-font-size;
+    }
+    
+    h3 {
+    
+      font-size: $sub-heading-font-size;
+    }
+  
+    img {
+  
+      padding-bottom: 0;
+    }
+
+    section {
+
+      div {
+
+        padding-top: 0.5em;
+        padding-bottom: 0;
+      }
+
+      p {
+        
+        font-size: $paragraph-font-size;
+      }
+
+      img {
+        
+        margin-bottom: 0.25em;
+        height: 60px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 520px) {
+
+  main {
+  
+    .daily-pics {
+  
+      
+      article {
+  
+        width: 300px;
+
+        &.ranked {
+         
+          section {
+  
+            div {
+  
+              &.item-title {
+  
+                h2 {
+  
+                  font-size: $paragraph-font-size;
+  
+                  span {
+  
+                    background-color: $main-color;
+                    border-radius: 100%;
+                    padding: 0.5em 0.75em 0.25em 0.75em;
+                    margin-right: 1em;
+                    line-height: 0.5;
+                  }
+                }
+              }
+            }
+          }
+        }
+        
+        h2 {
+
+          font-size: $smal-sub-heading-font-size;
+        }
+  
+        section {
+          
+          div {
+  
+            padding: 0.75em 0 1.5em 1em;
+  
+            h1 {
+  
+              font-size: $smal-sub-heading-font-size;           
+            }
+  
+            h2 {
+
+              font-size: $smal-paragraph-font-size;
+            }
+  
+            h3 {
+
+              font-size: $smal-paragraph-font-size;
+
+              span {
+  
+                color: $heading-alt-color;
+              }
+            }
+  
+            p {
+  
+              font-size: $paragraph-font-size;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .flex-container {
+  
+    h2 {
+      
+      font-size: $smal-sub-heading-font-size;
+    }
+    
+    h3 {
+    
+      font-size: $smal-sub-heading-font-size;
+    }
+  
+    section {
+
+      div {
+
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      p {
+        
+        font-size: $smal-paragraph-font-size;
+      }
+
+      img {
+        
+        margin-bottom: 0.25em;
+        height: 40px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .flex-container {
+  
+    section {
+
+      p {
+        
+        font-size: 8px;
+      }
+    }
+  }
+}

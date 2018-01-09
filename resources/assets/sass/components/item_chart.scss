@@ -1,0 +1,275 @@
+@import "/../_variables";
+
+main {
+
+  .chart-section {
+
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    div#chart-carousel-index {
+
+      margin: 0.5em 0;
+
+      span {
+
+        display: none;
+        height: 1.5em;
+        width: 1.5em;
+        border-radius: 100%;
+        background-color: $marker-outoffocus;
+        margin: 0 0.5em;
+      }
+    }
+
+    .flex-container {
+      
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: flex-end;
+      align-content: space-between;
+      margin-bottom: 0;
+      margin-left: 0;
+      width: 100%;
+      padding-top: 1em;
+    
+      img {
+        padding-bottom: 0.5em;
+      }
+    }
+  }
+
+  #img1 {
+    
+    content:url("https://image.tmdb.org/t/p/w154/iO9aZzrfmMvm3IqkFiQyuuUMLh2.jpg");
+  }
+
+  #img2 {
+
+    content:url("https://image.tmdb.org/t/p/w154/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg");
+  }
+
+  #img3 {
+
+    content:url("https://image.tmdb.org/t/p/w154/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg");
+  }
+
+  #img4 {
+    
+    content:url("https://image.tmdb.org/t/p/w154/6W6zWBAay6XVBgJsOu6c2mlFZ8l.jpg");
+  }
+
+  section {
+
+      .column {
+
+      display: flex;
+      margin: 0;
+    }
+  }
+
+  .chart {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-top: 4px solid #D2ADB5;
+    padding-top: 4em;
+    width:100%;
+ 
+
+    .min-item {
+
+      border-top: 3px solid $text-color;
+      margin: 0 2em;
+      display: block;
+
+      .card {
+
+        box-shadow: 1px 5px 6px,rgba(0,0,0,0.25);
+        border-radius: 5px;
+        display: flex;
+        background-color: $background-color;
+        justify-content: space-between;
+        flex-direction: column;
+        margin: 0.5em 0;
+
+        h4 {
+
+          color: $text-color;
+          font-size: $xl-paragraph-font-size
+        }
+
+        li {
+
+          color: $heading-alt-color;
+          font-size: $paragraph-font-size
+        }
+
+        ul {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        }
+
+        div {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          margin: 0.5em 0;
+          padding: 0.25em;
+
+          .light {
+            
+            font-weight: 200;
+          }
+        }
+      }
+      
+      .item-img {
+
+        display: inline-flex;
+        margin-top: 1em;
+        border: 3px solid $text-color;
+        border-radius: 4px;
+      }
+    }
+
+    .min-item:first-child {
+      margin: 0 2em 0 0;
+    }
+
+    .min-item:last-child {
+      margin: 0 0 0 2em;
+    }
+  }
+}
+
+article h2 {
+
+  color: $elements-color;
+  font-family: $heading-font;
+  font-size: $main-heading-font-size;
+  text-transform: uppercase;
+  font-weight: 500;
+  line-height: 1;
+}
+
+article h3 {
+
+ color: $menu-item-color;
+ font-family: $heading-font;
+ font-size: $main-heading-font-size;
+ text-transform: uppercase;
+ font-weight: 300;
+}
+
+@media only screen and (max-width: 1050px) {
+  
+  main {
+
+    .chart-section {
+
+      width: 90%;
+
+      .flex-container {
+
+        width: 90%
+      }
+        
+      .chart {
+        
+        width: 90%;
+
+        .min-item {
+    
+          .card {
+  
+            li {
+              
+              font-size: $smal-paragraph-font-size
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  
+  main {
+
+    .chart-section {
+
+      div#chart-carousel-index {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width:80%;
+
+        span {
+
+          display: block;
+        }
+
+        span:first-child {
+
+          background-color: $marker-infocus;
+        }
+      }
+
+      .chart {
+        
+        .min-item {
+
+          display: none;
+          margin: 0;
+          #img1 {
+    
+            content:url("https://image.tmdb.org/t/p/w320/iO9aZzrfmMvm3IqkFiQyuuUMLh2.jpg");
+          }
+
+          #img2 {
+            
+            content:url("https://image.tmdb.org/t/p/w320/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg");
+          }
+        
+          #img3 {
+        
+            content:url("https://image.tmdb.org/t/p/w320/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg");
+          }
+        
+          #img4 {
+            
+            content:url("https://image.tmdb.org/t/p/w320/6W6zWBAay6XVBgJsOu6c2mlFZ8l.jpg");
+          }
+
+          .card {
+            
+            h4 {
+    
+              color: $text-color;
+              font-size: $sub-heading-font-size;
+            }
+
+            li {
+              
+              font-size: $big-paragraph-font-size;
+            }
+          }
+        }
+        
+        .min-item:first-child {
+          display: block;
+          
+        }
+      }
+    }
+  }
+}
