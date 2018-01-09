@@ -23,9 +23,9 @@ Route::get('/register', 'RegisterController@showRegistrationForm');
 
 Route::post('/register', 'RegisterController@register');
 
-Route::get('/inputs', function () {
-    return view('layouts.components.input');
-});
+Route::get('/catalog', function () {
+    return view('catalog');
+})->name('catalog');
 
 Auth::routes();
 
@@ -35,6 +35,3 @@ Route::resource('persons', 'PersonsController');
 Route::resource('reviews', 'ReviewsController');
 Route::resource('comments', 'CommentsController');
 Route::resource('users', 'UsersController');
-
-
-
