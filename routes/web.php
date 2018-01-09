@@ -15,21 +15,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/item_meta_info', function () {
-    return view('layouts.components.item_meta_info');
-});
-
 Route::get('/catalog', function () {
-    return view('movies.catalog');
+    return view('catalog');
 })->name('catalog');
 
 Route::get('/register', 'RegisterController@showRegistrationForm');
 
 Route::post('/register', 'RegisterController@register');
-
-Route::get('/catalog', function () {
-    return view('catalog');
-})->name('catalog');
 
 Auth::routes();
 
