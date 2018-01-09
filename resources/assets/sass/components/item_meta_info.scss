@@ -33,10 +33,6 @@ body {
 
       box-shadow: 0 4px 5px,rgba(0,0,0,0.25);
     }
-    
-    #title-img {
-      content:url("https://image.tmdb.org/t/p/w1280/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
-    }
   }
 }
 
@@ -183,20 +179,6 @@ body {
   }
 }
 
-@media only screen and (max-width:1600px) {
-  
-  .item {
-
-    .item-img {
-      
-      #title-img {
-
-        content:url("https://image.tmdb.org/t/p/w780/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
-      }
-    }
-  }
-}
-
 @media only screen and (max-width:1200px) {
   
   .item {
@@ -234,14 +216,6 @@ body {
   .item {
       
     width: 75%;
-
-    .item-img {
-      
-      #title-img {
-
-        content:url("https://image.tmdb.org/t/p/w500/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
-      }
-    }
   }
 
   .item-header {
@@ -328,19 +302,6 @@ body {
 
 @media only screen and (max-width:420px) {
   
-  .item {
-
-    
-    .item-img {
-      
-      #title-img {
-
-        content:url("https://image.tmdb.org/t/p/w342/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
-      }
-    }
-      
-  }
-
   .item-header {
 
     #hero-header {
@@ -386,19 +347,6 @@ body {
 
 @media only screen and (max-width:380px) {
   
-  .item {
-
-    
-    .item-img {
-      
-      #title-img {
-
-        content:url("https://image.tmdb.org/t/p/w300/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg");
-      }
-    }
-      
-  }
-
   .item-header {
 
     #hero-header {
