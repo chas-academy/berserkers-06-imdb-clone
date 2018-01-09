@@ -100,7 +100,7 @@ a#usermodal {
 .modal-content {
   margin: auto;
   margin-top: 5em;
-  width: 95%;
+  width: 50%;
 }
 
 .button.is-info {
@@ -263,14 +263,17 @@ a#usermodal {
     display: block;
     padding: 0;
   }
-}
 
-@media screen and (max-width: 1023px) {
   .navbar-menu.is-active {
     display: block;
     background-color: #0e0b16;
     padding: 0;
   }
+
+  .modal-content {
+    width: 95%;
+  }
 }
+
 
 
