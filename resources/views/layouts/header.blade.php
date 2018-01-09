@@ -1,8 +1,7 @@
 @php
 
-use Illuminate\Support\Facades\Route;
-
-$routeName = Route::currentRouteName();
+    use Illuminate\Support\Facades\Route;
+    $routeName = Route::currentRouteName();
 
 @endphp
 
