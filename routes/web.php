@@ -19,6 +19,14 @@ Route::get('/item_meta_info', function () {
     return view('layouts.components.item_meta_info');
 });
 
+Route::get('/register', 'RegisterController@showRegistrationForm');
+
+Route::post('/register', 'RegisterController@register');
+
+Route::get('/inputs', function () {
+    return view('layouts.components.input');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -27,5 +35,6 @@ Route::resource('persons', 'PersonsController');
 Route::resource('reviews', 'ReviewsController');
 Route::resource('comments', 'CommentsController');
 Route::resource('users', 'UsersController');
+
 
 

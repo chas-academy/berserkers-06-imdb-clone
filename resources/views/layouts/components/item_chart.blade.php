@@ -109,5 +109,11 @@
         </section>
       </section>
     </section>
+  </section>
+  <div id="chart-carousel-index">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </div>
 </article>

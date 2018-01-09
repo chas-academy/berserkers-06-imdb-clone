@@ -35,12 +35,12 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td span="2"><a>1</a></td>
+                    <td class="link" span="2"><a>1</a></td>
                     <td span="2">20</td>
                     <td span="2">1997</td>
                   </tr>
                   <tr>
-                    <td span="2"><a>2</a></td>
+                    <td class="link" span="2"><a>2</a></td>
                     <td span="2">21</td>
                     <td span="2">1998</td>
                   </tr>
@@ -54,27 +54,27 @@
               <table>     
                 <tr class="row-padding-botom">
                   <th span="2">Director</th>
-                  <td span="2"><a>Rian Johnson</a></td>
+                  <td class="link"span="2"><a href="#">Rian Johnson</a></td>
                 </tr>
                 <tr class="row-padding-botom">
                   <th span="2">Writer</th>
-                  <td span="2"><a>Rian Johnson</a></td>
+                  <td class="link" span="2"><a>Rian Johnson</a></td>
                 </tr>
                 <tr>
                   <th span="2">Lead Cast</th>
-                  <td span="2"><a>Daisy Ridley</a></td>
+                  <td class="link" span="2"><a>Daisy Ridley</a></td>
                 </tr>
                   <tr class="table-flex-end">
-                    <td span="2"><a>Adam Driver</a></td>
+                    <td class="link" span="2"><a>Adam Driver</a></td>
                   </tr>
                   <tr class="table-flex-end">
-                    <td span="2"><a>Mark Hamill</a></td>
+                    <td class="link" span="2"><a>Mark Hamill</a></td>
                   </tr>
                   <tr class="table-flex-end row-padding-botom">
-                    <td span="2"><a>John Boyega</a></td>
+                    <td class="link" span="2"><a>John Boyega</a></td>
                   </tr>
                   <tr class="table-flex-end alt-color">
-                    <td span="2"><a>VIEW FULL CAST</a></td>
+                    <td class="link" span="2"><a>VIEW FULL CAST</a></td>
                   </tr>
               </table>
               <section class="plot-sumary">
