@@ -21,7 +21,8 @@ Route::get('/item_meta_info', function () {
 
 Route::get('/catalog', function () {
     return view('movies.catalog');
-});
+})->name('catalog');
+
 Route::get('/register', 'RegisterController@showRegistrationForm');
 
 Route::post('/register', 'RegisterController@register');

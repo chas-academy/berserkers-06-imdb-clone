@@ -1,18 +1,4 @@
-<html lang="en">
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- Styles -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
-      <link href="{{ asset('css/catalog.css') }}" rel="stylesheet">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- CSRF Token -->
-      <meta name="csrf-token" content="{{ csrf_token() }}">
-      <title>{{ config('app.name', 'Laravel') }}</title>
-   </head>
-   <body>
-      @include('layouts.header')
+ @include('layouts.header')
       
 
       <div class="card-container">
@@ -138,5 +124,3 @@
             <li><a class="pagination-link" aria-label="Goto page 12">12</a></li>
          </ul>
       </nav>
-   </body>
-</html>

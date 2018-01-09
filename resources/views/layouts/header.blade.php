@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
     @if (!isset($routeName)) 
      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @elseif ($routeName === "register" && isset($routeName))
+    @elseif (isset($routeName))
     <link href="{{ asset('css/' . $routeName . '.css') }}" rel="stylesheet">
     @endif
     <meta name="viewport" content="width=device-width, initial-scale=1">
