@@ -12,19 +12,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- Styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
-    @if (!isset($routeName)) 
-     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @elseif ($routeName === "register" && isset($routeName))
+    @if (isset($routeName)) 
     <link href="{{ asset('css/' . $routeName . '.css') }}" rel="stylesheet">
+    @else
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @endif
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- CSRF Token -->
+
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
-  
 </head>
 
 <body>
@@ -109,7 +106,7 @@
             <nav class="navbar is-fixed" role="navigation" aria-label="main navigation">
                 <div class="navbar-menu" id="navbar-desktop">
                     <div class="columns is-multiline">
-                        <div class="column is-12" id="col-1"></div>
+                        <div class="column is-12 box" id="col-1"></div>
                         <div class="columns is-multiline">
                             <div class="column is-3" id="col2-1"></div>
                             <a id="item1" href="#">Movies <div class="is-divider" data-content="OR"></div></a>
