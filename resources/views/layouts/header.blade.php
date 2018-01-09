@@ -2,7 +2,6 @@
 
     use Illuminate\Support\Facades\Route;
     use Illuminate\Support\Facades\Auth;
-    use Illuminate\Http\Request;
 
     $routeName = Route::currentRouteName();
 
@@ -49,7 +48,7 @@
                     <div class="modal">
                         <div class="modal-background"></div>
                         <div class="modal-content">
-                            @if (!Auth::user())
+                            @if (!Auth::check())
                                 <header class "modal-card-head">
                                     <p class="modal-card-title">Log in or Register</p>
                                 </header>

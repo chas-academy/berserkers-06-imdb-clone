@@ -12,7 +12,17 @@ body {
 
     display: flex;
     align-items: center;
-    flex-direction: column
+    flex-direction: column;
+    
+  }
+
+  .centered-content {
+
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+   
+    
   }
 }
 
@@ -32,6 +42,11 @@ body {
     &.card {
 
       box-shadow: 0 4px 5px,rgba(0,0,0,0.25);
+
+      .card-image {
+
+        display:flex;
+      }
     }
   }
 }
@@ -39,7 +54,7 @@ body {
 .item-header {
 
   background-color: $background-color;
-  width: 700px;
+  width: 100%;
   color: $text-color;
   font-family: $paragraph-font;
   padding: 1em 1em 0 1em;
@@ -180,11 +195,29 @@ body {
 }
 
 @media only screen and (max-width:1200px) {
+
+  .item-header {
+  
+    width: 85%;
+  }
   
   .item {
       
     flex-direction: column-reverse;  
     width: 85%;
+
+    .item-img {
+
+      padding: 0.25em 0.25em 0em;
+      
+      &.card {
+
+        .card-image {
+          
+          display:block;
+        }
+      }
+    }
   }
 
   .item-meta-info {
@@ -192,9 +225,23 @@ body {
     width: 100%;
   }
 }
+@media only screen and (max-width:1023px) {
 
+  body {
+
+    main {
+
+      margin-top: 125px;
+    }
+  }
+}
 
 @media only screen and (max-width:900px) {
+  
+  .item-header {
+    
+     width: 90%;
+  }
   
   .item {
       
@@ -203,6 +250,19 @@ body {
 }
 
 @media only screen and (max-width:800px) {
+
+  body {
+    
+    main {
+
+      margin-top: 150px;
+    }
+  }
+
+  .item-header {
+    
+    width: 95%;
+  }
   
   .item {
       
@@ -220,18 +280,13 @@ body {
 
   .item-header {
     
-    width: 100%;
+    width: 75%;
 
-    #hero-header {
-
-      padding-left: 1.5em;
-      
-    }
   }
 }
 
 @media only screen and (max-width:620px) {
-  
+ 
   .item {
       
     width: 85%;
@@ -240,11 +295,10 @@ body {
 
   .item-header {
     
-    width: 100%;
+    width: 85%;
 
     #hero-header {
 
-      padding-left: 1.5em;
       font-size: $main-heading-font-size;
     }
   }
@@ -293,10 +347,8 @@ body {
 
   .item-header {
 
-    #hero-header {
+    width:90%;
 
-      padding-left: 0.5em;
-    }
   }
 }
 
