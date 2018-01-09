@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.querySelector("a#usermodal").addEventListener("click", function (event) {
   event.preventDefault();
-  var modal = document.querySelector(".modal"); // assuming you have only 1
+  var modal = document.querySelector(".modal");
   var html = document.querySelector("html");
   modal.classList.add("is-active");
   html.classList.add("is-clipped");
@@ -66,3 +66,27 @@ document.querySelector("a#usermodal").addEventListener("click", function (event)
     html.classList.remove("is-active");
   });
 });
+
+//Dekstop Modal
+
+document.querySelector("a#border-button").addEventListener("click", function (event) {
+  event.preventDefault();
+  var modal2 = document.querySelector(".modal2");
+  var html2 = document.querySelector("html");
+  modal2.classList.add("is-active");
+  html2.classList.add("is-clipped");
+
+  modal2.querySelector(".modal-background").addEventListener("click", function (e2) {
+    e2.preventDefault();
+    modal2.classList.remove("is-active");
+    html2.classList.remove("is-clipped");
+  });
+
+  document.querySelector("#desktop-cancel").addEventListener("click", function (eventDesktop) {
+    eventDesktop.preventDefault();
+    modal2.classList.remove("is-active");
+    html2.classList.remove("is-active");
+  });
+
+});
+
