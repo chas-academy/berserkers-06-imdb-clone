@@ -13,6 +13,21 @@ main {
   background-color: $background-color;
   color: $text-color;
 
+  div#daily-pics-carousel-index {
+    
+    margin: 1em auto 0;
+    
+    span {
+
+      display: none;
+      height: 1.5em;
+      width: 1.5em;
+      border-radius: 100%;
+      background-color: $marker-outoffocus;
+      margin: 0 0.5em;
+    }
+  }
+
   .daily-pics {
 
     display: flex;
@@ -32,7 +47,7 @@ main {
       margin-right: 0.5em;
     }
   
-    .figure-circle {
+    .span-circle {
       
       width: 3em;
       height: 3em;
@@ -43,7 +58,7 @@ main {
       background-color: $background-color
     }
 
-    .figure-box {
+    .span-box {
       
       width: 3em;
       height: 3em;
@@ -53,20 +68,20 @@ main {
       display: flex;
       flex-direction: column;
    
-      figure:first-child {
+      span:first-child {
         
         margin-top: 0.025em;
 
-        figure:first-child {
+        span:first-child {
 
           border-left: 2px solid $elements-color;          
           border-bottom: 2px solid $elements-color;
         }
       }
 
-      figure:last-child {
+      span:last-child {
         
-        figure:last-child {
+        span:last-child {
           
           border-left: 2px solid $elements-color;          
           border-bottom: 2px solid $elements-color;
@@ -74,7 +89,7 @@ main {
         }
       } 
 
-      figure {
+      span {
 
         height: 1.5em;
         padding: 0;
@@ -82,7 +97,7 @@ main {
         display: flex;
         flex-direction: row;
 
-        figure {
+        span {
 
           width: 1.5em;
           height: 1.5em;
@@ -276,6 +291,25 @@ article {
 @media only screen and (max-width: 700px) {
 
   main {
+
+    div#daily-pics-carousel-index {
+      
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width:80%;
+
+      span {
+
+        display: block;
+      }
+
+      span:first-child {
+
+        background-color: $marker-infocus;
+      }
+    }
+      
   
     .daily-pics {
      
@@ -451,8 +485,6 @@ article {
   .flex-container {
   
     section {
-
-   
 
       p {
         
