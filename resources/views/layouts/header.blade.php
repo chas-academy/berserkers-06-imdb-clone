@@ -1,25 +1,28 @@
-@php 
+@php
+
     use Illuminate\Support\Facades\Route;
+    use Illuminate\Support\Facades\Auth;
+
     $routeName = Route::currentRouteName();
 @endphp
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- Styles -->
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
-      @if (!isset($routeName)) 
-      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-      @elseif ($routeName === "register" && isset($routeName))
-      <link href="{{ asset('css/' . $routeName . '.css') }}" rel="stylesheet">
-      @endif
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <!-- CSRF Token -->
-      <meta name="csrf-token" content="{{ csrf_token() }}">
-      <title>{{ config('app.name', 'Laravel') }}</title>
+   
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    @if (isset($routeName))
+    <link href="{{ asset('css/' . $routeName . '.css') }}" rel="stylesheet">
+    @else
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @endif
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Berzerker Movies') }}</title>
+  
    </head>
+
    <body>
       <header>
          <!-- Burger logo -->
@@ -135,6 +138,7 @@
                               <a class="button is-primary modal-button" id="border-button">Sign In</a>
                               <a class="button is-primary" type="submit" href="/register">Register</a>
                            </div>
+
                         </div>
                      </div>
                   </div>

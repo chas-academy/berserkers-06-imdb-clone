@@ -1,7 +1,12 @@
+@import "variables";
+@import "~bulma";
 @import "header";
-@import "footer";
+
 main {
-  
-      margin-bottom: 250px;
+
+  margin-top: 175px;
+  margin-bottom: 250px;
   }
+
+@import "footer";
   
