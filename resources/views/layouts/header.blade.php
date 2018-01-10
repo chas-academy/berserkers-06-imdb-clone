@@ -1,8 +1,7 @@
-@php 
+@php
 
     use Illuminate\Support\Facades\Route;
     use Illuminate\Support\Facades\Auth;
-    use Illuminate\Http\Request;
 
     $routeName = Route::currentRouteName();
 
@@ -14,14 +13,13 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- Styles -->
-    @if (!isset($routeName)) 
-     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    @elseif (isset($routeName))
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    @if (isset($routeName))
     <link href="{{ asset('css/' . $routeName . '.css') }}" rel="stylesheet">
+    @else
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @endif
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Berzerker Movies') }}</title>
   
@@ -103,8 +101,8 @@
                     <p class="control has-icons-left">
                         <input class="input is-medium" type="text" placeholder="Search..">
                         <span class="icon is-medium is-left">
-                     <i class="fa fa-search"></i>
-                     </span>
+                            <i class="fa fa-search"></i>
+                        </span>
                     </p>
                 </div>
             </nav>
@@ -117,10 +115,16 @@
                         <div class="column is-12" id="col-1"></div>
                         <div class="columns is-multiline">
                             <div class="column is-3" id="col2-1"></div>
-                            <a id="item1" href="#">Movies <div class="is-divider" data-content="OR"></div></a>
-                            <a id="genre1" href="#">Genres</a> <a id="chart1" href="#">Charts</a>
-                            <a id="item2" href="#">Tv Series <div class="is-divider" data-content="OR"></div></a>
-                            <a id="genre2" href="#">Genres</a> <a id="chart2" href="#">Charts</a>
+                            <a id="item1" href="#">Movies
+                                <div class="is-divider" data-content="OR"></div>
+                            </a>
+                            <a id="genre1" href="#">Genres</a>
+                            <a id="chart1" href="#">Charts</a>
+                            <a id="item2" href="#">Tv Series
+                                <div class="is-divider" data-content="OR"></div>
+                            </a>
+                            <a id="genre2" href="#">Genres</a>
+                            <a id="chart2" href="#">Charts</a>
                             <div class="field has-addons column is-3">
                                 <div class="control desktop-search">
                                     <input class="input is-hovered" id="input-search" type="text" placeholder="Search..">
