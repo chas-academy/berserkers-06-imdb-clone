@@ -67,7 +67,8 @@
                </div>
             </nav>
          </div>
-         <div class="modal">
+        <!-- Modal -->
+        <div class="modal">
          <div class="modal-background"></div>
              <div class="modal-content">
                  <header class "modal-card-head">
