@@ -47,9 +47,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //Toggle active modal
 
-var hej = document.getElementsByClassName('modal-button');
-for (var i = 0; i < hej.length; i++) {
-  hej[i].addEventListener("click", function (event) {
+var modalButton = document.getElementsByClassName('modal-button');
+for (var i = 0; i < modalButton.length; i++) {
+  modalButton[i].addEventListener("click", function (event) {
     event.preventDefault();
     var modal = document.querySelector(".modal");
     console.log(modal);
