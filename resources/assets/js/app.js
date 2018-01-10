@@ -47,46 +47,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //Toggle active modal
 
-document.querySelector("a#usermodal").addEventListener("click", function (event) {
-  event.preventDefault();
-  var modal = document.querySelector(".modal");
-  var html = document.querySelector("html");
-  modal.classList.add("is-active");
-  html.classList.add("is-clipped");
+var hej = document.getElementsByClassName('modal-button');
+for (var i = 0; i < hej.length; i++) {
+  hej[i].addEventListener("click", function (event) {
+    event.preventDefault();
+    var modal = document.querySelector(".modal");
+    console.log(modal);
+    var html = document.querySelector("html");
+    modal.classList.add("is-active");
+    html.classList.add("is-clipped");
 
-  modal.querySelector(".modal-background").addEventListener("click", function (e) {
-    e.preventDefault();
-    modal.classList.remove("is-active");
-    html.classList.remove("is-clipped");
+    modal.querySelector(".modal-background").addEventListener("click", function (e) {
+      e.preventDefault();
+      modal.classList.remove("is-active");
+      html.classList.remove("is-clipped");
+    });
+
+    document.querySelector(".is-danger").addEventListener("click", function (eventtwo) {
+      eventtwo.preventDefault();
+      modal.classList.remove("is-active");
+      html.classList.remove("is-active");
+    });
   });
-
-  document.querySelector(".is-danger").addEventListener("click", function (eventtwo) {
-    eventtwo.preventDefault();
-    modal.classList.remove("is-active");
-    html.classList.remove("is-active");
-  });
-});
-
-//Dekstop Modal
-
-document.querySelector("a#border-button").addEventListener("click", function (event) {
-  event.preventDefault();
-  var modal2 = document.querySelector(".modal2");
-  var html2 = document.querySelector("html");
-  modal2.classList.add("is-active");
-  html2.classList.add("is-clipped");
-
-  modal2.querySelector(".modal-background").addEventListener("click", function (e2) {
-    e2.preventDefault();
-    modal2.classList.remove("is-active");
-    html2.classList.remove("is-clipped");
-  });
-
-  document.querySelector("#desktop-cancel").addEventListener("click", function (eventDesktop) {
-    eventDesktop.preventDefault();
-    modal2.classList.remove("is-active");
-    html2.classList.remove("is-active");
-  });
-
-});
+}
 

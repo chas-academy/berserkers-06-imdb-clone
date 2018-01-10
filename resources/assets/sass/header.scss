@@ -261,6 +261,7 @@ a#usermodal {
 @media screen and (max-width: 1023px) {
   .modal.is-active {
     display: block;
+    z-index: 35;
     padding: 0;
   }
 

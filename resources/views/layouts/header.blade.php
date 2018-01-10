@@ -29,44 +29,9 @@
                   <img src="{{asset('images/LOGO.svg')}}" alt="">
                   </a>
                   <!-- Modal with the user logo-->
-                  <a id="usermodal" href="">
+                  <a id="usermodal" class="modal-button" href="">
                   <i class="fa fa-lg fa-user-circle" aria-hidden="true"></i>
                   </a>
-                  <div class="modal">
-                     <div class="modal-background"></div>
-                     <div class="modal-content">
-                        <header class "modal-card-head">
-                           <p class="modal-card-title">Log in or Register</p>
-                        </header>
-                        <!-- Any other Bulma elements you want -->
-                        <div class="field">
-                           <p class="control has-icons-left has-icons-right">
-                              <input class="input" type="email" placeholder="Email">
-                              <span class="icon is-medium is-left">
-                              <i class="fa fa-envelope"></i>
-                              </span>
-                              <span class="icon is-medium is-right">
-                              <i class="fa fa-check"></i>
-                              </span>
-                           </p>
-                        </div>
-                        <div class="field">
-                           <p class="control has-icons-left">
-                              <input class="input" type="password" placeholder="Password">
-                              <span class="icon is-medium is-left">
-                              <i class="fa fa-lock"></i>
-                              </span>
-                           </p>
-                        </div>
-                        <div class="field">
-                           <p class="control">
-                              <button class="button is-success">Login</button>
-                              <span class="button is-danger">Cancel</span>
-                              <span class="button is-info" id="register">Register</span>
-                           </p>
-                        </div>
-                     </div>
-                  </div>
                </div>
                <!-- Active burger menu-->
                <div class="navbar-menu" id="Options">
@@ -89,6 +54,41 @@
                </div>
             </nav>
          </div>
+         <div class="modal">
+         <div class="modal-background"></div>
+             <div class="modal-content">
+                 <header class "modal-card-head">
+                     <p class="modal-card-title">Log in or Register</p>
+                 </header>
+                 <!-- Any other Bulma elements you want -->
+                 <div class="field">
+                     <p class="control has-icons-left has-icons-right">
+                         <input class="input" type="email" placeholder="Email">
+                         <span class="icon is-medium is-left">
+                         <i class="fa fa-envelope"></i>
+                         </span>
+                         <span class="icon is-medium is-right">
+                         <i class="fa fa-check"></i>
+                         </span>
+                     </p>
+                 </div>
+                 <div class="field">
+                     <p class="control has-icons-left">
+                         <input class="input" type="password" placeholder="Password">
+                         <span class="icon is-medium is-left">
+                         <i class="fa fa-lock"></i>
+                         </span>
+                     </p>
+                 </div>
+                 <div class="field">
+                     <p class="control">
+                         <button class="button is-success">Login</button>
+                         <span class="button is-danger">Cancel</span>
+                         <a class="button is-info" id="register" href="/register">Register</a>
+                     </p>
+                 </div>
+             </div>
+        </div>
          <!-- Desktop -->
          <div class="is-hidden-mobile">
             <nav class="navbar is-fixed" role="navigation" aria-label="main navigation">
@@ -119,42 +119,8 @@
                         <div class="column is-2 is-offset-8" id="col3-2">
                            <!-- Log in / Register button here -->
                            <div class="field is-grouped" id="sign-reg">
-                              <a class="button is-primary" id="border-button">Sign In</a>
+                              <a class="button is-primary modal-button" id="border-button">Sign In</a>
                               <a class="button is-primary" type="submit" href="/register">Register</a>
-                              <div class="modal modal2">
-                                 <div class="modal-background"></div>
-                                 <div class="modal-content">
-                                    <header class "modal-card-head">
-                                       <p class="modal-card-title">Log in or Register</p>
-                                    </header>
-                                    <div class="field">
-                                       <p class="control has-icons-left has-icons-right">
-                                          <input class="input" type="email" placeholder="Email">
-                                          <span class="icon is-medium is-left">
-                                          <i class="fa fa-envelope"></i>
-                                          </span>
-                                          <span class="icon is-medium is-right">
-                                          <i class="fa fa-check"></i>
-                                          </span>
-                                       </p>
-                                    </div>
-                                    <div class="field">
-                                       <p class="control has-icons-left">
-                                          <input class="input" type="password" placeholder="Password">
-                                          <span class="icon is-medium is-left">
-                                          <i class="fa fa-lock"></i>
-                                          </span>
-                                       </p>
-                                    </div>
-                                    <div class="field">
-                                       <p class="control">
-                                          <button class="button is-success">Login</button>
-                                          <span class="button is-danger" id="desktop-cancel">Cancel</span>
-                                          <a class="button is-info" id="register" type="submit" href="/register">Register</a>
-                                       </p>
-                                    </div>
-                                 </div>
-                              </div>
                            </div>
                         </div>
                      </div>
