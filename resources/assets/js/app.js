@@ -52,7 +52,6 @@ for (var i = 0; i < modalButton.length; i++) {
   modalButton[i].addEventListener("click", function (event) {
     event.preventDefault();
     var modal = document.querySelector(".modal");
-    console.log(modal);
     var html = document.querySelector("html");
     modal.classList.add("is-active");
     html.classList.add("is-clipped");
