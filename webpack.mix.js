@@ -17,6 +17,7 @@ mix
   .js("resources/assets/js/filter_panel.js", "public/js")
   .sass("resources/assets/sass/app.scss", "public/css")
   .sass("resources/assets/sass/catalog.scss", "public/css")
+  .sass("resources/assets/sass/input.scss", "public/css")
   .sass("resources/assets/sass/header.scss", "public/css")
   .sass("resources/assets/sass/footer.scss", "public/css")
   .sass("resources/assets/sass/register.scss", "public/css")
