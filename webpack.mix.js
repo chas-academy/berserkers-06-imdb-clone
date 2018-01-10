@@ -24,4 +24,5 @@ mix
   .sass("resources/assets/sass/components/item_meta_info.scss", "public/css")
   .sass("resources/assets/sass/components/item_chart.scss", "public/css")
   .sass("resources/assets/sass/components/daily_picks.scss", "public/css")
+  .sass("resources/assets/sass/components/gallery.scss", "public/css")
   .sass("resources/assets/sass/components/filter_panel.scss", "public/css");
