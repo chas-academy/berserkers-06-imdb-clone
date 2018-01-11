@@ -56,7 +56,6 @@ class MoviesController extends Controller
         $id = $movie->title_id;
         $movie = Movie::find($id);
         $title = Title::find($id);
-
         session(['title_id' => $id]);
 
         return view('titles/movies.show', ['movie' => $movie, 'title' => $title]);
