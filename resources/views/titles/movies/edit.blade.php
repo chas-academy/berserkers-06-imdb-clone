@@ -70,30 +70,50 @@
           </form>
         </section>
         <section>
+          <form method="POST" action="/titles/movies/{{$title->id}}">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
             <h3>Directors:</h3>
-            <textarea name="directors"></textarea>
+            <textarea name="directors">{{$directors}}</textarea>
+            <button type="submit">Submit</button>   
+          </form>
         </section>
         <section>
-          <h3>Producers:</h3>
-          <textarea name="producers"></textarea>
+          <form method="POST" action="/titles/movies/{{$title->id}}">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
+            <h3>Producers:</h3>
+            <textarea name="producers">{{$producers}}</textarea>
+            <button type="submit">Submit</button>   
+          </form>
         </section>
         <article>
+          <form method="POST" action="/titles/movies/{{$title->id}}">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
           <h3>Screenwriters:</h3>
-          <textarea name="screenwriters"></textarea>
+          <textarea name="screenwriters">{{$screenwriters}}</textarea>
+          <button type="submit">Submit</button>   
+        </form>
         </article>
         <article>
+          <form method="POST" action="/titles/movies/{{$title->id}}">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
             <h3>Actors:</h3>
-            <textarea name="actorsAsCharacters"></textarea>
+            <textarea name="actorsAsCharacters">{{$actorsAsCharacters}}</textarea>
+            <button type="submit">Submit</button>   
+          </form>
         </article>
-        <h3>Images</h3>
-        @foreach($title->photos as $photo)
-          <section>
-            <input value="{{ $photo->photo_type }}"/>
-            <input value="{{ $photo->width }}"/>
-            <input value="{{ $photo->ratio }}"/>
-            <input value="{{ $photo->photo_path }}"/>
-          </section>
-        @endforeach
+        <section>
+          <form method="POST" action="/titles/movies/{{$title->id}}">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
+            <h3>Photos:</h3>
+            <textarea name="photos">{{$photos}}</textarea>
+            <button type="submit">Submit</button>   
+          </form>
+        </section>
         <section>
         </section>
 @include('layouts.footer')
