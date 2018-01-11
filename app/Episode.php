@@ -26,7 +26,7 @@ class Episode extends Model
         return $this->belongsTo('App\Title', 'titles');
     }
 
-    public function seasons()
+    public function season()
     {
         return $this->belongsTo('App\Season', 'seasons');
     }

@@ -29,8 +29,17 @@ Route::get('/gallery', function () {
 
 Auth::routes();
 
-Route::resource('movies', 'MoviesController');
-Route::resource('persons', 'PersonsController');
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/titles', 'TitlesController@index');
+Route::resource('titles/movies', 'MoviesController')->name('show','title');
+Route::resource('titles/series', 'SeriesController');
+Route::get('titles/series/{series_id}/seasons', 'SeasonsController@index');
+Route::get('titles/series/{series_id}/seasons/{season_number}', 'SeasonsController@show');
+Route::get('titles/series/{series_id}/seasons/{season_number}/episodes', 'EpisodesController@index');
+Route::get('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@show');
+
+Route::resource('people', 'PeopleController');
 Route::resource('reviews', 'ReviewsController');
 Route::resource('comments', 'CommentsController');
 Route::resource('users', 'UsersController');
