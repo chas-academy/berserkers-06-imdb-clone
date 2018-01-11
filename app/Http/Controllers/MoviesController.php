@@ -225,7 +225,26 @@ class MoviesController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        $id = $movie->title_id;
+        $title = Title::find($id);
+        try{
+            $title->directors()->detach();
+            $title->producers()->detach();
+            $title->screenwriters()->detach();
+            $title->genres()->detach();
+            $title->actors()->detach();
+            $title->ratings()->detach();
+            Movie::where('title_id', '=', $id)->delete();
+            Photo::where('imageable_id' ,'=' , $id)->delete();
+            Title::where('id', '=', $id)->delete();
+        } catch(Exception $e) {
+            $dd($e);
+        }
+       
+
+        return redirect("/titles/movies/");  
+
+
     }
 
     protected function formatForEditing($items) {
