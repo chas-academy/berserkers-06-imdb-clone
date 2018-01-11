@@ -21,6 +21,7 @@ mix
   .sass("resources/assets/sass/header.scss", "public/css")
   .sass("resources/assets/sass/footer.scss", "public/css")
   .sass("resources/assets/sass/register.scss", "public/css")
+  .sass("resources/assets/sass/title.scss", "public/css")
   .sass("resources/assets/sass/components/item_meta_info.scss", "public/css")
   .sass("resources/assets/sass/components/item_chart.scss", "public/css")
   .sass("resources/assets/sass/components/daily_picks.scss", "public/css")

@@ -47,7 +47,7 @@
                     <div class="modal">
                         <div class="modal-background"></div>
                         <div class="modal-content">
-                            @if (!Auth::user())
+                            @if (!Auth::check())
                                 <header class "modal-card-head">
                                     <p class="modal-card-title">Log in or Register</p>
                                 </header>
