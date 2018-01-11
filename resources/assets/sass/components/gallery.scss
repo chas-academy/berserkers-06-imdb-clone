@@ -1,3 +1,29 @@
-h1 {
-    color: red;
+@import "../variables";
+@import "~bulma";
+
+@import "../header";
+
+
+#hz-carousel {
+    width: 100%;
+    height: 150px;
+    background-color: #333333;
+    overflow: visible;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+#hz-carousel .slide {
+    display: inline-block;
+}
+
+#hz-carousel::-webkit-scrollbar {
+    background-color: #aaa;
+    width: 5px;
+    height: 13px;
+}
+
+#hz-carousel::-webkit-scrollbar-thumb {
+    background-color: orange;
 }
