@@ -1,9 +1,5 @@
-@import "variables";
-@import "~bulma";
-
-@import "startpage";
 @import "header";
-@import "footer";
+@import "startpage";
 @import "components/daily_picks";
 @import "components/item_chart";
-@import "components/filter_panel";
+@import "footer";

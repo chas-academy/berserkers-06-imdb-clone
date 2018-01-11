@@ -1,6 +1,6 @@
-@import "_variables";
-
-//hamburger
+@import "variables";
+@import "components/links";
+@import "~bulma";
 
 html,
 header, body {
@@ -21,7 +21,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: $background-color;
+  background-color: $background;
   color: white;
   margin-top: 25px;
 }
