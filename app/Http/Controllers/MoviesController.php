@@ -134,9 +134,12 @@ class MoviesController extends Controller
                 } elseif($request->has('photos')) {
 
                     $photos = explode("\r\n",$request->get($pivot));
+
                     foreach($photos as $key => $photo) {
+
                         $keyvalues = (explode(' | ', $photo));
                         $photovalues = [];
+
                         foreach ($keyvalues as $newkey => $keyvalue) {
 
                             $keyvalues[$newkey] = explode(': ', $keyvalue);
@@ -145,9 +148,11 @@ class MoviesController extends Controller
                         $photos[$key] = $photovalues;
                 
                     }
+
                     $photosIds = [];
 
                    foreach($photos as $photo) {
+
                        $item = $title->photos()->where('photo_path', $photo['photo_path'])->get(['*']);
                        
                        if (!isset($item[0])) {
@@ -172,6 +177,7 @@ class MoviesController extends Controller
                    $tobeRemoved = $title->photos()->whereNotIn('id', $photosIds);
                    
                    foreach($tobeRemoved->get(['id']) as $photo) {
+
                         Photo::where('id', '=', $photo->id)->delete();
                    }
                    
@@ -252,6 +258,7 @@ class MoviesController extends Controller
         $collection = "";
 
             foreach($items as $key => $item) {
+
                 if (isset($items[0]->photo_path)) {
             
                     $collection .= 'photo_path: ' . $item->photo_path . ' | photo_type: ' . $item->photo_type . ' | width: ' . $item->width . ' | ratio: ' . $item->ratio;
@@ -266,26 +273,22 @@ class MoviesController extends Controller
 
                     foreach($item->actor as $actor) {
                        
+                        $collection .= $actor->name . ' As ' . $item->character_name;
+
                         if(isset($items[$key +1] )) {
                             
-                            $collection .= $actor->name . ' As ' . $item->character_name . "\n";
-
-                        } else {
-
-                            $collection .= $actor->name . ' As ' . $item->character_name;
+                            $collection .=  "\n";
                         }
                     }
+
                 } else {
+
+                    $collection .= $item->name;
 
                     if(isset($items[$key +1] )) {
                         
-                        $collection .= $item->name . "\n";
-
-                    } else {
-
-                        $collection .= $item->name;
-                    }
-
+                        $collection .= "\n";
+                    } 
                 }
             }
 
