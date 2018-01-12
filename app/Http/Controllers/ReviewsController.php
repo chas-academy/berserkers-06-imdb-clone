@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Review;
+use App\Title;
 use Illuminate\Http\Request;
+use Auth;
 
 class ReviewsController extends Controller
 {
@@ -25,6 +27,15 @@ class ReviewsController extends Controller
     public function create()
     {
         //
+        $id = session('title_id');
+        $title = Title::find($id);
+        if(!Auth::check()) {
+            return redirect()->route('login');
+        }
+        if(empty(session('title_id'))) {
+            return back();
+        }
+        return view('reviews.create', ['title' => $title]);
     }
 
     /**
@@ -36,6 +47,20 @@ class ReviewsController extends Controller
     public function store(Request $request)
     {
         //
+        if(Auth::check()) {
+            $review = Review::create([
+                'movie_id' => $request->input('movie_id'),
+                'user_id' => Auth::user()->id,
+                'title' => $request->input('title'),
+                'body' => $request->input('body'),
+            ]);
+            
+            if($review) {
+                return redirect()->route('reviews.show', ['review' => $review->id])->with('success', 'Review created successfully');
+            }
+        }
+
+        return back()->withInput()->with('error', 'Error creating review');
     }
 
     /**

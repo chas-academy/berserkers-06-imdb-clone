@@ -18,7 +18,7 @@ class Title extends Model
 
     public function series()
     {
-        return $this->hasMany('App\Series', 'series');
+        return $this->hasOne('App\Series', 'series');
     }
 
     public function season()

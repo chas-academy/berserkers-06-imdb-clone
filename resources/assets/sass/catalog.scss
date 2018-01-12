@@ -1,9 +1,4 @@
-@import "variables";
-@import "~bulma";
-
 @import "header";
-@import "footer";
-@import "components/filter_panel";
 
 .card-container {
     display: flex;
@@ -155,3 +150,5 @@
         flex-basis: 20%;
     }
   }
+  
+@import "footer";

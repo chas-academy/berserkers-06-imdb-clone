@@ -10,19 +10,20 @@
    <head>
    
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     @if (isset($routeName))
     <link href="{{ asset('css/' . $routeName . '.css') }}" rel="stylesheet">
     @else
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @endif
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Berzerker Movies') }}</title>
-  
+    
    </head>
-
+   
    <body>
       <header>
          <!-- Burger logo -->
@@ -79,7 +80,7 @@
                      <p class="control has-icons-left has-icons-right">
                         <input class="input" type="username" placeholder="Username" name="username" value="{{ old('username') }}" required>
                         <span class="icon is-medium is-left">
-                        <i class="fa fa-envelope"></i>
+                          <i class="fa fa-envelope"></i>
                         </span>
                         <span class="icon is-medium is-right">
                         <i class="fa fa-check"></i>
