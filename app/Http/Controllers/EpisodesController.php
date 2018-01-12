@@ -140,8 +140,26 @@ class EpisodesController extends Controller
      * @param  \App\Episode  $episode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Episode $episode)
+    public function destroy(Request $request, Episode $episode)
     {
-        //
+        $episodeId = $request->title_id;
+        $episode = Episode::find($episodeId);
+        $episodeTitle = Title::find($episodeId);
+        $season= Season::where('title_id', '=', $episode->season_id)->get();
+        $seriesId = $season[0]->series_id;
+        $series = Series::find($seriesId);
+
+        try {
+       
+            $this->detachAllFromItemAndDelete($episodeTitle, Episode::class, $episodeId);
+
+            $this->updateNumOfEpisodesAndSeasonsColumns($series);
+    
+        } catch(Exception $e) {
+
+            return $e;
+        }
+        $seasonNumber = $season[0]->season_number;
+        return redirect("/titles/series/$seriesId/seasons/$seasonNumber");  
     }
 }
