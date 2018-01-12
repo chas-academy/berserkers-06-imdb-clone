@@ -45,28 +45,25 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //Toggle active modal
 
-document
-    .querySelector("a#usermodal")
-    .addEventListener("click", function(event) {
-        event.preventDefault();
-        var modal = document.querySelector(".modal"); // assuming you have only 1
-        var html = document.querySelector("html");
-        modal.classList.add("is-active");
-        html.classList.add("is-clipped");
+var modalButton = document.getElementsByClassName('modal-button');
+for (var i = 0; i < modalButton.length; i++) {
+  modalButton[i].addEventListener("click", function (event) {
+    event.preventDefault();
+    var modal = document.querySelector(".modal");
+    var html = document.querySelector("html");
+    modal.classList.add("is-active");
+    html.classList.add("is-clipped");
 
-        modal
-            .querySelector(".modal-background")
-            .addEventListener("click", function(e) {
-                e.preventDefault();
-                modal.classList.remove("is-active");
-                html.classList.remove("is-clipped");
-            });
-
-        document
-            .querySelector(".is-danger")
-            .addEventListener("click", function(eventtwo) {
-                eventtwo.preventDefault();
-                modal.classList.remove("is-active");
-                html.classList.remove("is-active");
-            });
+    modal.querySelector(".modal-background").addEventListener("click", function (e) {
+      e.preventDefault();
+      modal.classList.remove("is-active");
+      html.classList.remove("is-clipped");
     });
+
+    document.querySelector(".is-danger").addEventListener("click", function (eventtwo) {
+      eventtwo.preventDefault();
+      modal.classList.remove("is-active");
+      html.classList.remove("is-active");
+    });
+  });
+}
