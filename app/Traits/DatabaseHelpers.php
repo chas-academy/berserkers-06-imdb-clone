@@ -177,21 +177,6 @@ trait DatabaseHelpers
     }
   }    
 
-  protected function getRedirectPath($id, $subId = null, $subsubId = null){
-
-    $path = "/titles/" . self::TYPENAME . "/$id";
-
-    if (isset($subId)) {
-      $path .= "/" . self::SUBTYPE . "/" . $subId;
-    } 
-    
-    if (isset($subsubId)) {
-      $path .= "/" . self::SUBSUBTYPE . "/" . $subsubId;
-    }
-    return $path;
-  }
-
-
   protected function detachAllFromItemAndDelete($item, $type, $id) {
     
     try {
