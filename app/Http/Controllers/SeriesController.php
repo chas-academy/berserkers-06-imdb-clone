@@ -11,7 +11,7 @@ use App\Traits\DatabaseHelpers;
 
 class SeriesController extends Controller
 {
-    const TYPENAME = 'series';
+   
     const ITEMCOLUMNS = ['title', 'release_year', 'plot_summary', 'end_date', 'countries', 'pg_rating', 'trailer'];
     const PIVOTTABLES = ['genres', 'photos', 'creators' ];
 

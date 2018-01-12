@@ -10,7 +10,7 @@ use App\Traits\DatabaseHelpers;
 
 class MoviesController extends Controller
 {
-    const TYPENAME = 'movies';
+   
     const ITEMCOLUMNS = ['title', 'release_year', 'plot_summary', 'runtime', 'countries', 'pg_rating', 'trailer'];
     const PIVOTTABLES = ['genres', 'directors', 'producers', 'screenwriters','actorsAsCharacters', 'photos' ];
 

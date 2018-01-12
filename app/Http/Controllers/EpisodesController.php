@@ -12,9 +12,6 @@ use App\Traits\DatabaseHelpers;
 class EpisodesController extends Controller
 {
 
-    const TYPENAME = 'series';
-    const SUBTYP = 'seasons';
-    const SUBSUBTYP = 'episodes';
     const ITEMCOLUMNS = ['name', 'episode_number', 'plot_summary', 'end_date', 'air_date'];
     const PIVOTTABLES = ['photos', 'actorsAsCharacters', 'directors', 'producers', 'screenwriters' ];
 
@@ -161,7 +158,7 @@ class EpisodesController extends Controller
         }
 
         $seasonNumber = $season[0]->season_number;
-        
+
         return redirect("/titles/series/$seriesId/seasons/$seasonNumber");  
     }
 }
