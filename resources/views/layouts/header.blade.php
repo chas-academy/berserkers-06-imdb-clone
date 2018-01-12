@@ -131,20 +131,16 @@
                               <a class="button is-info">Search</a>
                            </div>
                         </div>
-                        <div class="column is-2" id="col3-1"></div>
-                        <div class="column is-2 is-offset-8" id="col3-2">
-                           <!-- Log in / Register button here -->
+                        <div class="column is-2" id="col3-1">
+                            <!-- Log in / Register button here -->
                            <div class="field is-grouped" id="sign-reg">
-                              <a class="button is-primary modal-button" id="border-button">Sign In</a>
-                              <a class="button is-primary" type="submit" href="/register">Register</a>
+                              <a class="button is-primary modal-button">Sign In</a>
+                              <a class="button is-primary" type="submit" href="/register" id="border-button">Register</a>
                            </div>
-
                         </div>
+                        <div class="column is-2 is-offset-8" id="col3-2"></div>
                      </div>
                   </div>
-                  <a class="navbar-item" id="desktop-logo" href="/">
-                  <img src="{{asset('images/LOGO.svg')}}" id="bzrk2" alt="">
-                  </a>
                </div>
             </nav>
          </div>
