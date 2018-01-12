@@ -3,7 +3,10 @@
 namespace App\Traits;
 
 use App\Character;
+use App\Episode;
 use App\Person;
+use App\Season;
+use App\Series;
 use App\Movie;
 use App\Title;
 use App\Genre;
@@ -210,5 +213,19 @@ trait DatabaseHelpers
     }
 
     return;
+  }
+
+  protected function updateNumOfEpisodesAndSeasonsColumns($series)
+  {
+    $allSeasons = Season::where('series_id', '=', $series->title_id)->get();
+    $allSeasonsIds = [];
+    
+    foreach($allSeasons as $season) {
+        array_push($allSeasonsIds, $season->title_id);
+    }
+    
+    $allEpisodes = Episode::whereIn('season_id', $allSeasonsIds)->get()->count();
+    
+    $series->update(['num_of_seasons' => $allSeasons->count(),'num_of_episodes' => $allEpisodes]);
   }
 }
