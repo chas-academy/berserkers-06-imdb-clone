@@ -1,16 +1,18 @@
-.star-rating{
+@import "_variables";
+
+.movie-rating{
 	font-size: 0;
 }
-.star-rating__wrap{
+.movie-rating__wrapper{
 	display: inline-block;
 	font-size: 1rem;
 }
-.star-rating__wrap:after{
+.movie-rating__wrapper:after{
 	content: "";
 	display: table;
 	clear: both;
 }
-.star-rating__ico{
+.movie-rating__ico{
 	float: right;
 	padding-left: 2px;
 	cursor: pointer;

@@ -14,25 +14,33 @@
       <link href="{{asset('css/buttons.css')}}" rel="stylesheet">
    </head>
   </body>
+  <!--User can rate star of movies-->
 <div class="movie-rating">
+  <!--wrapping class movie rating-->
   <div class="movie-rating_wrapper"> 
     <input class="star-rating_input" id="movie-rating" type="radio" name="rating" value="5">
     <label class="star-rating__ico fa fa-star-o falg" for="star-rating-5" title="5 of 5 stars"> 
+</label> 
     <input class="star-rating_input" id="movie-rating" type="radio" name="rating" value="4">
+</label> 
     <label class="star-rating__ico fa fa-star-o falg" for="star-rating-4" title="4 of 5 stars"> 
+</label> 
     <input class="star-rating_input" id="movie-rating" type="radio" name="rating" value="3">
+</label> 
     <label class="star-rating__ico fa fa-star-o falg" for="star-rating-3" title="3 of 5 stars"> 
+</label> 
     <input class="star-rating_input" id="movie-rating" type="radio" name="rating" value="5">
     <label class="star-rating__ico fa fa-star-o falg" for="star-rating-2" title="2 of 5 stars"> 
+</label> 
     <input class="star-rating_input" id="movie-rating" type="radio" name="rating" value="5">
     <label class="star-rating__ico fa fa-star-o falg" for="star-rating-1" title="1 of 5 stars"> 
+</label> 
 
 </label>
 
 
 
 
-<button class="button">Submit</button>
 </body>
 </html>
 
