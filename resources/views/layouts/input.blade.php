@@ -7,7 +7,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <!-- CSRF Token -->
       <meta name="csrf-token" content="{{ csrf_token() }}">
-      --<title>{{ config('app.name', 'Laravel') }}</title>
+      <title>{{ config('app.name', 'Laravel') }}</title>
       <!-- Styles -->
       <link href="{{asset('css/input.css')}}" rel="stylesheet">
    </head>
@@ -19,6 +19,10 @@
 <!--input field-->
 <div class="control">
     <textarea class="textarea" type="text" placeholder="Normal textarea"></textarea>
+  </div>
+</div>
+<div class="control">
+    <button type="submit" class="button is-primary">Submit</button>
   </div>
 </div>
   </body>
