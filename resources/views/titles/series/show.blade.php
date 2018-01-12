@@ -49,6 +49,12 @@
         <a href="http://{{ $_SERVER['HTTP_HOST'] }}/titles/series/{{ $series->title_id }}/seasons">All Seasons</a><br>
         @foreach($seasons as $season)
             <a href="http://{{ $_SERVER['HTTP_HOST'] }}/titles/series/{{ $series->title_id }}/seasons/{{ $season->season_number }}">Season {{ $season->season_number }}</a><br>
+            <form method="POST" action="/titles/series/{{ $series->title_id }}/seasons/{{ $season->season_number }}">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <input name="season_id" value="{{$season->title_id}}" type="hidden">
+                <button type="submit">Delete</button>
+            </form>
         @endforeach
         <article>
             <h3>Directors:</h3>

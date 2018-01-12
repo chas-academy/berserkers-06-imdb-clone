@@ -30,6 +30,7 @@ Route::resource('titles/movies', 'MoviesController')->name("edit","edit")->name(
 Route::resource('titles/series', 'SeriesController')->name("edit","edit")->name('show','title');
 Route::get('titles/series/{series_id}/seasons', 'SeasonsController@index');
 Route::get('titles/series/{series_id}/seasons/{season_number}', 'SeasonsController@show');
+Route::delete('titles/series/{series_id}/seasons/{season_number}', 'SeasonsController@destroy');
 Route::get('titles/series/{series_id}/seasons/{season_number}/episodes', 'EpisodesController@index');
 Route::get('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@show');
 
