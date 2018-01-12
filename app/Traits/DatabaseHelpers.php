@@ -29,14 +29,16 @@ trait DatabaseHelpers
 
         } elseif (isset($items[0]->actor)) {
 
-          foreach($item->actor as $actor) {
+          foreach($item->actor as $key => $actor) {
               
+            if($key === 0) {
               $collection .= $actor->name . ' As ' . $item->character_name;
 
               if(isset($items[$key +1] )) {
                   
-                  $collection .=  "\n";
+                $collection .=  "\n";
               }
+            }
           }
 
         } else {
@@ -138,18 +140,21 @@ trait DatabaseHelpers
           $pivotIds = [];
 
           foreach ($names as $name) {
-
-            if ($pivot === 'genres') {
-
-              $table = Genre::firstOrCreate(['name' => $name]);
-              array_push($pivotIds, $table->id);
-
-            } else {
-              $table = Person::firstOrCreate(['name' => $name]);
+            if(strlen($name) != 0) {
               
-              array_push($pivotIds, $table->id);
+              if ($pivot === 'genres') {
+                
+                  $table = Genre::firstOrCreate(['name' => $name]);
+                  array_push($pivotIds, $table->id);
+    
+                } else {
+    
+                  $table = Person::firstOrCreate(['name' => $name]);
+                  
+                  array_push($pivotIds, $table->id);
+                }
+              }
             }
-          }
           $title->$pivot()->sync($pivotIds);
 
           return; 
@@ -178,7 +183,7 @@ trait DatabaseHelpers
     } 
     
     if (isset($subsubId)) {
-      $path .= "/" . self::SUBTYPE . "/" . $subsubId;
+      $path .= "/" . self::SUBSUBTYPE . "/" . $subsubId;
     }
     return $path;
   }
