@@ -175,4 +175,31 @@
             @endif
         </div>
     </article>
+
+    <div id="hz-carousel">
+    <div class="slide">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm_vy_NyJkBlROS2oYrgTB-axHwhmFA51CxsdgKH1fHC93M-k"/>
+    </div>
+    <div class="slide">
+        <img src="http://frontrowcentral.com/wp-content/uploads/2015/06/Love-Mercy-2015--350x150.jpg"/>
+    </div>
+    <div class="slide">
+        <img src="http://s3.crackedcdn.com/phpimages/article/3/1/9/619319_v4.jpg"/>
+    </div>
+    <div class="slide">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm_vy_NyJkBlROS2oYrgTB-axHwhmFA51CxsdgKH1fHC93M-k"/>
+    </div>
+    <div class="slide">
+        <img src="http://frontrowcentral.com/wp-content/uploads/2015/06/Love-Mercy-2015--350x150.jpg"/>
+    </div>
+    <div class="slide">
+        <img src="http://s3.crackedcdn.com/phpimages/article/3/1/9/619319_v4.jpg"/>
+    </div>
+    <div class="slide">
+        <img src="http://placehold.it/300x150"/>
+    </div>
+    <div class="slide">
+        <img src="http://placehold.it/300x150"/>
+    </div>
+</div>
 @include('layouts.footer')

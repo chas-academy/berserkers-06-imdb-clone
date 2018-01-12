@@ -23,6 +23,10 @@ Route::get('/inputs', function () {
     return view('layouts.components.input');
 });
 
+Route::get('/gallery', function () {
+    return view('layouts.components.gallery');
+})->name('gallery');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
