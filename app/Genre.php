@@ -6,13 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Genre extends Model
 {
-    //
     protected $fillable = [
         'id',
-        'genre_title'
+        'name'
     ];
 
-    public function movie_genres(){
-        return $this->belongsToMany('App\Movie', 'movie_genre');
+    public $timestamps = false;
+
+    public function titles()
+    {
+        return $this->belongsToMany('App\Title', 'title_genre');
     }
 }

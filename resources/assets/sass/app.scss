@@ -1,9 +1,5 @@
-
-// Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
-// Variables
-@import "variables";
-
-// Bootstrap
-@import "~bootstrap-sass/assets/stylesheets/bootstrap";
+@import "header";
+@import "startpage";
+@import "components/daily_picks";
+@import "components/item_chart";
+@import "footer";

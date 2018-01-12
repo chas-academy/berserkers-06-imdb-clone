@@ -6,17 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Character extends Model
 {
-    //
     protected $fillable = [
-        'id',
         'character_name'
     ];
 
-    public function movies(){
-        return $this->belongsToMany('App\Movie', 'movie_actor_character');
+    public $timestamps = false;
+    
+    public function title()
+    {
+        return $this->belongsToMany('App\Title', 'title_actor_character');
     }
 
-    public function actors(){
-        return $this->belongsToMany('App\Person', 'movie_actor_character');
+    public function actor()
+    {
+        return $this->belongsToMany('App\Person', 'title_actor_character');
     }
 }

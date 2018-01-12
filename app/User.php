@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'username',
         'firstname',
         'lastname',
         'email',
@@ -41,7 +41,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
 
-    public function ratings(){
-        return $this->belongsToMany('App\Rating', 'movie_user_rating');
-    }
+    public function ratedTitles(){
+        return $this->belongsToMany('App\Title', 'title_user_rating');
+    } // all titles a user have rated
 }

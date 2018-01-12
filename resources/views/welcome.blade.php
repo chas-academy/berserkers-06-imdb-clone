@@ -1,74 +1,21 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body  class="flex-center">
-        <article class="content">
-            <h1 class="title">
-                Coming soon
-            </h1>
-        </article>
-    </body>
-</html>
+@include('layouts.header')
+    <div>
+        <div class="notification is-hidden-mobile">
+            <figure class="image is-16by9">
+                <img src="https://image.tmdb.org/t/p/w1280/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg">
+            </figure>
+        </div>
+    </div>
+    <div class="main-content">
+        @include('layouts.components.daily_picks')
+        @include('layouts.components.item_chart')
+        <nav class="breadcrumb is-centered is-hidden-mobile" aria-label="breadcrumbs">
+            <ul>
+                <li><a href="#">Movies</a></li>
+                <li><a href="#">Series</a></li>
+                <li><a href="#">Upcoming Movies</a></li>
+                <li><a href="#">Recommended Movies</a></li>
+            </ul>
+        </nav>
+    </div>
+@include('layouts.footer')

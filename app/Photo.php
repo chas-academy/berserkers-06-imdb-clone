@@ -6,14 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
-    //
     protected $fillable = [
         'id',
-        'movie_id',
-        'photo_path'
+        'imageable_id',
+        'imageable_type',
+        'photo_path',
+        'photo_type',
+        'width',
+        'ratio'
     ];
 
-    public function movie(){
-        return $this->belongsTo('App\Movie');
+    public $timestamps = false;
+    
+    public function imageable()
+    {
+        return $this->morphTo();
     }
+
+
 }
