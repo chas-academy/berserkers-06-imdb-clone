@@ -7,9 +7,19 @@ use App\Season;
 use App\Series;
 use App\Title;
 use Illuminate\Http\Request;
+use App\Traits\DatabaseHelpers;
 
 class EpisodesController extends Controller
 {
+
+    const TYPENAME = 'series';
+    const SUBTYP = 'seasons';
+    const SUBSUBTYP = 'episodes';
+    const ITEMCOLUMNS = ['name', 'episode_number', 'plot_summary', 'end_date', 'air_date'];
+    const PIVOTTABLES = ['photos', 'actorsAsCharacters', 'directors', 'producers', 'screenwriters' ];
+
+    use DatabaseHelpers;
+
     /**
      * Display a listing of the resource.
      *
@@ -70,9 +80,39 @@ class EpisodesController extends Controller
      * @param  \App\Episode  $episode
      * @return \Illuminate\Http\Response
      */
-    public function edit(Episode $episode)
+    public function edit(Request $request, Episode $episode)
     {
-        //
+        $id = null;
+
+        if (isset($request->title_id)) {
+            $id = $request->title_id;
+        } else {
+            $id = session('title_id');
+        }
+        
+        $episode = Episode::find($id);
+        $title = Title::find($id);
+        
+        $season = Season::find($episode->season_id);
+        $series = Series::find($season->series_id);
+        $directors = $this->formatForEditing($title->directors);
+        $producers = $this->formatForEditing($title->producers);
+        $screenwriters = $this->formatForEditing($title->screenwriters);
+        $actorsAsCharacters = $this->formatForEditing($title->characters);
+        $photos = $this->formatForEditing($title->photos);
+
+        session(['title_id' => $id]);
+
+        return view('titles.series.seasons.episodes.edit', [
+            'episode' => $episode, 
+            'season' => $season,
+            'series' => $series, 
+            'directors' => $directors, 
+            'producers' => $producers, 
+            'screenwriters' => $screenwriters,
+            'actorsAsCharacters' => $actorsAsCharacters,
+            'photos' => $photos
+            ]);
     }
 
     /**
@@ -84,7 +124,14 @@ class EpisodesController extends Controller
      */
     public function update(Request $request, Episode $episode)
     {
-        //
+        $id = $request->title_id;
+        $episode = Episode::find($id);
+
+        $this->updateItem($request, $episode);
+        
+        $path = $request->path();
+
+        return redirect("$path/edit")->with('title_id', $episode->title_id); 
     }
 
     /**

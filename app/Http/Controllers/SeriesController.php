@@ -106,6 +106,7 @@ class SeriesController extends Controller
      */
     public function update(Request $request, Series $series)
     {
+        
         $this->updateItem($request, $series);
 
         $path = $this->getRedirectPath($series->title_id);
