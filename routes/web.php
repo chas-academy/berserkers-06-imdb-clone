@@ -35,6 +35,7 @@ Route::get('titles/series/{series_id}/seasons/{season_number}/episodes', 'Episod
 Route::get('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@show');
 Route::get('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}/edit', 'EpisodesController@edit')->name('edit');
 Route::put('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@update');
+Route::delete('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@destroy');
 
 Route::resource('people', 'PeopleController');
 Route::resource('reviews', 'ReviewsController');
