@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Character;
-use App\Person;
 use App\Movie;
 use App\Title;
-use App\Genre;
 use App\Photo;
 use Illuminate\Http\Request;
+use App\Traits\DatabaseHelpers;
 
 class MoviesController extends Controller
 {
+    const TYPENAME = 'movies';
+    const ITEMCOLUMNS = ['title', 'release_year', 'plot_summary', 'runtime', 'countries', 'pg_rating', 'trailer'];
+    const PIVOTTABLES = ['genres', 'directors', 'producers', 'screenwriters','actorsAsCharacters', 'photos' ];
+
+    use DatabaseHelpers;
+
     /**
      * Display a listing of the resource.
      *
@@ -104,123 +108,14 @@ class MoviesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Movie $movie)
-    {
-        $id = $movie->title_id;
-        $title = Title::find($id);
+    { 
 
-        $movieColumns = ['title', 'release_year', 'plot_summary', 'runtime', 'countries', 'pg_rating', 'trailer'];
-        $pivotTables = ['genres', 'directors', 'producers', 'screenwriters','actorsAsCharacters', 'photos' ];
-
-        foreach($pivotTables as $pivot) {
-            if ($request->has($pivot)) {
-                if ($request->has('actorsAsCharacters')) {
-                    $names = preg_split("/(\r\n| As )/",$request->get($pivot));
-                    $personsIds = [];
-                    $charactersIds = [];
-                    for ($i = 0; $i < count($names); $i++) {
-                        if ( ($i % 2) === 0) {
-                            $table = Person::firstOrCreate(['name' => $names[$i]]);
-                            array_push($personsIds, $table->id);
-                        } else {
-                            $table = Character::firstOrCreate(['character_name' => $names[$i]]);
-                            array_push($charactersIds, ['character_id' => $table->id]);
-                        }
-                    }
-
-                    $actorsAsCharactersIds = array_combine($personsIds, $charactersIds);
-                    
-                    $title->actors()->sync($actorsAsCharactersIds);
-
-                } elseif($request->has('photos')) {
-
-                    $photos = explode("\r\n",$request->get($pivot));
-
-                    foreach($photos as $key => $photo) {
-
-                        $keyvalues = (explode(' | ', $photo));
-                        $photovalues = [];
-
-                        foreach ($keyvalues as $newkey => $keyvalue) {
-
-                            $keyvalues[$newkey] = explode(': ', $keyvalue);
-                            $photovalues[$keyvalues[$newkey][0]] = $keyvalues[$newkey][1];
-                        }
-                        $photos[$key] = $photovalues;
-                
-                    }
-
-                    $photosIds = [];
-
-                   foreach($photos as $photo) {
-
-                       $item = $title->photos()->where('photo_path', $photo['photo_path'])->get(['*']);
-                       
-                       if (!isset($item[0])) {
-
-                        $item = Photo::create([
-
-                            'imageable_id' => $title->id,
-                            'imageable_type' => get_class($title),
-                            'photo_path' => $photo['photo_path'], 
-                            'photo_type' => $photo['photo_type'],
-                            'width' => $photo['width'],
-                            'ratio' => $photo['ratio']
-                            ]);
-
-                            array_push($photosIds, $item->id);
-
-                       } else {
-
-                        array_push($photosIds, $item[0]->id);
-                       }
-                   }
-                   $tobeRemoved = $title->photos()->whereNotIn('id', $photosIds);
-                   
-                   foreach($tobeRemoved->get(['id']) as $photo) {
-
-                        Photo::where('id', '=', $photo->id)->delete();
-                   }
-                   
-                    
-                } else {
-
-                    $names = explode("\r\n",$request->get($pivot));
-                    $pivotIds = [];
         
-                    foreach ($names as $name) {
 
-                        if ($pivot === 'genres') {
+        $this->updateItem($request, $movie);
+        $path = $this->getRedirectPath($movie->title_id);
 
-                            $table = Genre::firstOrCreate(['name' => $name]);
-                            array_push($pivotIds, $table->id);
-
-                        } else {
-                            $table = Person::firstOrCreate(['name' => $name]);
-                            
-                            array_push($pivotIds, $table->id);
-                        }
-                    }
-                    $title->$pivot()->sync($pivotIds);
-                }
-
-                return redirect("/titles/movies/$id/edit"); 
-            }
-
-        }
-      
-        
-        foreach($movieColumns as $column) {
-
-            if ($request->has($column)) {
-
-                $movie->$column = $request->get($column);
-                $movie->save();
-                
-                return redirect("/titles/movies/$id/edit");           
-            } 
-        }
-
-       
+        return redirect("$path/edit"); 
     }
 
     /**
@@ -233,6 +128,7 @@ class MoviesController extends Controller
     {
         $id = $movie->title_id;
         $title = Title::find($id);
+
         try{
             $title->directors()->detach();
             $title->producers()->detach();
@@ -247,51 +143,6 @@ class MoviesController extends Controller
             $dd($e);
         }
        
-
         return redirect("/titles/movies/");  
-
-
-    }
-
-    protected function formatForEditing($items) {
-
-        $collection = "";
-
-            foreach($items as $key => $item) {
-
-                if (isset($items[0]->photo_path)) {
-            
-                    $collection .= 'photo_path: ' . $item->photo_path . ' | photo_type: ' . $item->photo_type . ' | width: ' . $item->width . ' | ratio: ' . $item->ratio;
-                    
-                    if(isset($items[$key +1] )) {
-
-                        $collection .= "\n";
-                    }
-                    
-            
-                 } elseif (isset($items[0]->actor)) {
-
-                    foreach($item->actor as $actor) {
-                       
-                        $collection .= $actor->name . ' As ' . $item->character_name;
-
-                        if(isset($items[$key +1] )) {
-                            
-                            $collection .=  "\n";
-                        }
-                    }
-
-                } else {
-
-                    $collection .= $item->name;
-
-                    if(isset($items[$key +1] )) {
-                        
-                        $collection .= "\n";
-                    } 
-                }
-            }
-
-        return $collection;
     }
 }
