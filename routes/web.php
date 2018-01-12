@@ -26,8 +26,8 @@ Route::get('/inputs', function () {
 Auth::routes();
 
 Route::get('/titles', 'TitlesController@index');
-Route::resource('titles/movies', 'MoviesController')->name("edit","edit")->name('show','title');;
-Route::resource('titles/series', 'SeriesController');
+Route::resource('titles/movies', 'MoviesController')->name("edit","edit")->name('show','title');
+Route::resource('titles/series', 'SeriesController')->name("edit","edit")->name('show','title');
 Route::get('titles/series/{series_id}/seasons', 'SeasonsController@index');
 Route::get('titles/series/{series_id}/seasons/{season_number}', 'SeasonsController@show');
 Route::get('titles/series/{series_id}/seasons/{season_number}/episodes', 'EpisodesController@index');
