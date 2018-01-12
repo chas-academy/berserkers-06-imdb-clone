@@ -130,15 +130,7 @@ class MoviesController extends Controller
         $title = Title::find($id);
 
         try{
-            $title->directors()->detach();
-            $title->producers()->detach();
-            $title->screenwriters()->detach();
-            $title->genres()->detach();
-            $title->actors()->detach();
-            $title->ratings()->detach();
-            Movie::where('title_id', '=', $id)->delete();
-            Photo::where('imageable_id' ,'=' , $id)->delete();
-            Title::where('id', '=', $id)->delete();
+           $this->detachAllFromItemAndDelete($title, Movie::class , $id);
         } catch(Exception $e) {
             $dd($e);
         }
@@ -146,3 +138,4 @@ class MoviesController extends Controller
         return redirect("/titles/movies/");  
     }
 }
+

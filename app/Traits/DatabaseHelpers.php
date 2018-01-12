@@ -182,4 +182,28 @@ trait DatabaseHelpers
     }
     return $path;
   }
+
+
+  protected function detachAllFromItemAndDelete($item, $type, $id) {
+    
+    try {
+
+        $item->directors()->detach();
+        $item->producers()->detach();
+        $item->screenwriters()->detach();
+        $item->creators()->detach();
+        $item->genres()->detach();
+        $item->actors()->detach();
+        $item->ratings()->detach();
+        $type::where('title_id', '=', $id)->delete();
+        Photo::where('imageable_id' ,'=' , $id)->delete();
+        Title::where('id', '=', $id)->delete();
+
+    } catch (Exceptions $e) {
+
+        return $e;
+    }
+
+    return;
+  }
 }
