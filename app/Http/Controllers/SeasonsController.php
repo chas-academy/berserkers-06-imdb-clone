@@ -57,7 +57,7 @@ class SeasonsController extends Controller
      */
     public function show($series_id, $season_number)
     {
-        //
+       
         $series = Series::find($series_id);
         $season = Season::where('series_id', '=', $series_id)->where('season_number', '=', $season_number)->first();
         $episodes = Episode::where('season_id', '=', $season->title_id)->get();
@@ -119,16 +119,8 @@ class SeasonsController extends Controller
 
             $this->detachAllFromItemAndDelete($seasonTitle, Season::class, $seasonId);
 
-            $allSeasons = Season::where('series_id', '=', $seriesId)->get();
-            $allSeasonsIds = [];
-            
-            foreach($allSeasons as $season) {
-                array_push($allSeasonsIds, $season->title_id);
-            }
-            $allEpisodes = Episode::whereIn('season_id', $allSeasonsIds)->get()->count();
-            
-            $series->update(['num_of_seasons' => $allSeasons->count(),'num_of_episodes' => $allEpisodes]);
-    
+            $this->updateNumOfEpisodesAndSeasonsColumns($series);
+
         } catch(Exception $e) {
 
             return $e;
