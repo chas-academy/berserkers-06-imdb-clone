@@ -1,9 +1,5 @@
 
-<link rel="stylesheet" type="text/css" href="....\assets\sass\components\buttons.scss" >
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
 
-<button class="button">Submit</button>
 <html lang="{{ app()->getLocale() }}">
    <head>
       <meta charset="utf-8">
@@ -18,15 +14,25 @@
       <link href="{{asset('css/buttons.css')}}" rel="stylesheet">
    </head>
   </body>
+<div class="movie-rating">
+  <div class="movie-rating_wrapper"> 
+    <input class="star-rating_input" id="movie-rating" type="radio" name="rating" value="5">
+    <label class="star-rating__ico fa fa-star-o falg" for="star-rating-5" title="5 of 5 stars"> 
+    <input class="star-rating_input" id="movie-rating" type="radio" name="rating" value="4">
+    <label class="star-rating__ico fa fa-star-o falg" for="star-rating-4" title="4 of 5 stars"> 
+    <input class="star-rating_input" id="movie-rating" type="radio" name="rating" value="3">
+    <label class="star-rating__ico fa fa-star-o falg" for="star-rating-3" title="3 of 5 stars"> 
+    <input class="star-rating_input" id="movie-rating" type="radio" name="rating" value="5">
+    <label class="star-rating__ico fa fa-star-o falg" for="star-rating-2" title="2 of 5 stars"> 
+    <input class="star-rating_input" id="movie-rating" type="radio" name="rating" value="5">
+    <label class="star-rating__ico fa fa-star-o falg" for="star-rating-1" title="1 of 5 stars"> 
 
-<span class="rating">
-<span class="star "></span>
-<span class="star "></span>
-<span class="star"></span>
-<span class="star"></span>
-<span class="star"></span>
-</span>
+</label>
 
+
+
+
+<button class="button">Submit</button>
 </body>
 </html>
 
