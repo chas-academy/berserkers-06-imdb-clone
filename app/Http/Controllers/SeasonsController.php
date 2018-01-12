@@ -105,8 +105,6 @@ class SeasonsController extends Controller
         $seriesId = $season->series_id;
         $series = Series::find($seriesId);
 
-       
-
         try {
 
             foreach($episodes as $episode) {

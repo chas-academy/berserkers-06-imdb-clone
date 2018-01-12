@@ -110,10 +110,9 @@ class MoviesController extends Controller
     public function update(Request $request, Movie $movie)
     { 
 
-        
-
         $this->updateItem($request, $movie);
-        $path = $this->getRedirectPath($movie->title_id);
+
+        $path = $request->path();
 
         return redirect("$path/edit"); 
     }

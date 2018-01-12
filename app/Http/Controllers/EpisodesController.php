@@ -159,7 +159,9 @@ class EpisodesController extends Controller
 
             return $e;
         }
+
         $seasonNumber = $season[0]->season_number;
+        
         return redirect("/titles/series/$seriesId/seasons/$seasonNumber");  
     }
 }

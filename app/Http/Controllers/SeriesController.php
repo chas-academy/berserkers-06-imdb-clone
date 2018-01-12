@@ -109,7 +109,7 @@ class SeriesController extends Controller
         
         $this->updateItem($request, $series);
 
-        $path = $this->getRedirectPath($series->title_id);
+        $path = $request->path();
 
         return redirect("$path/edit"); 
     }
@@ -148,7 +148,6 @@ class SeriesController extends Controller
 
             return $e;
         }
-       
        
         return redirect("/titles/series/");  
     }
