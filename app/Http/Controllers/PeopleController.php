@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Person;
+use App\Movie;
 use Illuminate\Http\Request;
 
-class PersonsController extends Controller
+class PeopleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +16,8 @@ class PersonsController extends Controller
     public function index()
     {
         //
+        $people = Person::orderBy('name')->get();
+        return view('people.index', ['people' => $people]);
     }
 
     /**
@@ -47,6 +50,9 @@ class PersonsController extends Controller
     public function show(Person $person)
     {
         //
+        $person = Person::find($person->id);
+        $movies = Movie::all();
+        return view('people.show', ['person' => $person, 'movies' => $movies]);
     }
 
     /**
