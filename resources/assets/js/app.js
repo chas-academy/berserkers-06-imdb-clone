@@ -4,9 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-/*require("./bootstrap");
-
-window.Vue = require("vue");*/
+require("./bootstrap");
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -21,48 +19,54 @@ window.Vue = require("vue");*/
 
 //Hamburger
 
-document.addEventListener("DOMContentLoaded", function () {
-  // Get all "navbar-burger" elements
-  var $navbarBurgers = Array.prototype.slice.call(
-    document.querySelectorAll(".navbar-burger"),
-    0
-  );
+document.addEventListener("DOMContentLoaded", function() {
+    // Get all "navbar-burger" elements
+    var $navbarBurgers = Array.prototype.slice.call(
+        document.querySelectorAll(".navbar-burger"),
+        0
+    );
 
-  // Check if there are any navbar burgers
-  if ($navbarBurgers.length > 0) {
-    // Add a click event on each of them
-    $navbarBurgers.forEach(function ($el) {
-      $el.addEventListener("click", function () {
-        // Get the target from the "data-target" attribute
-        var target = $el.dataset.target;
-        var $target = document.getElementById(target);
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+        // Add a click event on each of them
+        $navbarBurgers.forEach(function($el) {
+            $el.addEventListener("click", function() {
+                // Get the target from the "data-target" attribute
+                var target = $el.dataset.target;
+                var $target = document.getElementById(target);
 
-        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
-        $el.classList.toggle("is-active");
-        $target.classList.toggle("is-active");
-      });
-    });
-  }
+                // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+                $el.classList.toggle("is-active");
+                $target.classList.toggle("is-active");
+            });
+        });
+    }
 });
 
 //Toggle active modal
 
-document.querySelector("a#usermodal").addEventListener("click", function (event) {
-  event.preventDefault();
-  var modal = document.querySelector(".modal"); // assuming you have only 1
-  var html = document.querySelector("html");
-  modal.classList.add("is-active");
-  html.classList.add("is-clipped");
+document
+    .querySelector("a#usermodal")
+    .addEventListener("click", function(event) {
+        event.preventDefault();
+        var modal = document.querySelector(".modal"); // assuming you have only 1
+        var html = document.querySelector("html");
+        modal.classList.add("is-active");
+        html.classList.add("is-clipped");
 
-  modal.querySelector(".modal-background").addEventListener("click", function (e) {
-    e.preventDefault();
-    modal.classList.remove("is-active");
-    html.classList.remove("is-clipped");
-  });
+        modal
+            .querySelector(".modal-background")
+            .addEventListener("click", function(e) {
+                e.preventDefault();
+                modal.classList.remove("is-active");
+                html.classList.remove("is-clipped");
+            });
 
-  document.querySelector(".is-danger").addEventListener("click", function (eventtwo) {
-    eventtwo.preventDefault();
-    modal.classList.remove("is-active");
-    html.classList.remove("is-active");
-  });
-});
+        document
+            .querySelector(".is-danger")
+            .addEventListener("click", function(eventtwo) {
+                eventtwo.preventDefault();
+                modal.classList.remove("is-active");
+                html.classList.remove("is-active");
+            });
+    });
