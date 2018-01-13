@@ -1,0 +1,27 @@
+
+#hz-carousel {
+    width: 80%;
+    margin-left: 10%;
+    height: 150px;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    background-color: #333333;
+    overflow: visible;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+#hz-carousel .slide {
+    display: inline-block;
+}
+
+#hz-carousel::-webkit-scrollbar {
+    background-color: #aaa;
+    width: 5px;
+    height: 13px;
+}
+
+#hz-carousel::-webkit-scrollbar-thumb {
+    background-color: orange;
+}

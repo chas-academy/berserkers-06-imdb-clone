@@ -10,7 +10,6 @@ header, body {
 }
 
 header {
-
   position: sticky;
   top: 0;
   z-index: 100;
@@ -88,6 +87,7 @@ a#usermodal {
 
 .modal-card-title {
   background-color: white;
+  color: black;
   text-align: center;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
@@ -98,7 +98,7 @@ a#usermodal {
 .modal-content {
   margin: auto;
   margin-top: 5em;
-  width: 95%;
+  width: 50%;
 }
 
 .button.is-info {
@@ -221,10 +221,25 @@ a#usermodal {
 
 #col3-1 {
   border-bottom-right-radius: 40px;
+  padding: 0;
 }
 
 #col3-2 {
   border-bottom-left-radius: 40px;
+}
+
+#sign-reg {
+  width: 100%
+}
+
+#border-button {
+  border-bottom-right-radius: 40px;
+}
+
+.button.is-primary {
+  width: 50%;
+  height: 50px;
+  background-color: #0d7070;
 }
 
 //Logo desktop
@@ -244,16 +259,20 @@ a#usermodal {
 @media screen and (max-width: 1023px) {
   .modal.is-active {
     display: block;
+    z-index: 35;
     padding: 0;
   }
-}
 
-@media screen and (max-width: 1023px) {
   .navbar-menu.is-active {
     display: block;
     background-color: #0e0b16;
     padding: 0;
   }
+
+  .modal-content {
+    width: 95%;
+  }
 }
+
 
 
