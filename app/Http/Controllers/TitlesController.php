@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Title;
+use App\Movie;
+use App\Series;
+use App\Episode;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 
 class TitlesController extends Controller
 {
@@ -12,10 +17,69 @@ class TitlesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-        return view('titles.index');
+    public function index(Request $request)
+    {   
+        $q = $request->title;
+        $titlesIds = [];
+        if(!isset($q)) {
+
+            $movies = Movie::all();
+            $series = Series::all();
+            $episodes = Episode::all();
+
+            $titles = $movies->merge($series);
+
+            $titles = $titles->merge($episodes);
+
+            foreach($titles as $title) {
+                array_push($titlesIds,$title->title_id);
+            }
+
+        }  else {
+
+            $movies = Movie::where('title', 'like', '%' . $q .'%' )->get();
+            $series = Series::where('title', 'like', '%' . $q .'%' )->get();
+            $episodes = Episode::where('name', 'like', '%' . $q .'%' )->get();
+
+            $titles = $movies->merge($series);
+            
+            $titles = $titles->merge($episodes);
+
+            foreach($titles as $title) {
+                array_push($titlesIds,$title->title_id);
+            }
+
+        }
+
+        $titles = Title::whereIn('id', $titlesIds)->get();
+      
+        foreach ($titles as $title) {
+
+                
+                if($title->type == 'movie') {
+                    $title->load(['directors','photos','actors','genres', 'ratings', 'movie']);
+                } elseif ($title->type == 'series') {
+                    $title->load(['creators','photos','genres', 'ratings', 'series']);
+                } elseif ($title->type == 'episode') {
+                    $title->load(['directors','photos','genres', 'ratings', 'episode']);
+                }
+               
+            
+        }
+        
+        $page = $request->page || 1;
+        $ItemPerPage = 12;
+        $start = ($page * $ItemPerPage) -$ItemPerPage;
+
+        $titles = new LengthAwarePaginator(
+            array_slice($titles->toArray(),$start,$ItemPerPage,true),
+            count($titles),
+            $ItemPerPage,
+            $page,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
+        // dd($titles->items()[0]['actors']);
+        return view('catalog', ['titles' => $titles]);
     }
 
     /**
