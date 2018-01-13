@@ -56,19 +56,63 @@ class TitlesController extends Controller
         foreach ($titles as $title) {
 
                 
-                if($title->type == 'movie') {
-                    $title->load(['directors','photos','actors','genres', 'ratings', 'movie']);
-                } elseif ($title->type == 'series') {
-                    $title->load(['creators','photos','genres', 'ratings', 'series']);
-                } elseif ($title->type == 'episode') {
-                    $title->load(['directors','photos','genres', 'ratings', 'episode']);
+            if($title->type == 'movie') {
+
+                $title->load(['directors','photos','actors','genres', 'ratings', 'movie']);
+
+            } elseif ($title->type == 'series') {
+
+                $seasons = $title->series->seasons;
+                $actors = [];
+
+                foreach ($seasons as $season) {
+                    foreach($season->episodes as $episode) {
+                        foreach($episode->actors as $actor) {
+
+                            $actors = $this->getActorWithCount($actor, $actors);
+                        }   
+                    }
                 }
-               
-            
+
+                $actors = $this->sortActors($actors);
+                
+                $title['actors'] = $actors;
+
+                $title->load(['creators','photos','genres', 'ratings']);
+                
+            } elseif ($title->type == 'episode') {
+
+                $actors = [];
+
+                foreach($title->actors as $actor) {
+                    $actors = $this->getActorWithCount($actor, $actors);
+                }
+                
+                $actors = $this->sortActors($actors);
+
+                $season = $title->episode[0]->season;
+                $series = $season->series;
+                $genres = $series->titles->genres;
+                $seriesTitle = $series->title;
+                $seasonNumber = $season->season_number;
+                $seriesId = $season->series_id;
+
+                $title['season_number'] = $seasonNumber;
+                $title['series_id'] = $seriesId;
+                $title['series_title'] = $seriesTitle;
+                $title['actors'] = $actors;
+                $title['genres'] = $genres;
+                $title['photos'] = $series->titles->photos;
+                $title->load(['directors', 'ratings', 'episode']);
+
+            } 
         }
         
-        $page = $request->page || 1;
-        $ItemPerPage = 12;
+        $page = $request->page;
+        if (!isset($request->page)) {
+            $page = 1;
+        }
+        $ItemPerPage = 9;
         $start = ($page * $ItemPerPage) -$ItemPerPage;
 
         $titles = new LengthAwarePaginator(
@@ -78,7 +122,7 @@ class TitlesController extends Controller
             $page,
             ['path' => $request->url(), 'query' => $request->query()]
         );
-        // dd($titles->items()[0]['actors'][0]['name']);
+        
         return view('catalog', ['titles' => $titles]);
     }
 
@@ -146,5 +190,40 @@ class TitlesController extends Controller
     public function destroy(Title $title)
     {
         //
+    }
+
+    protected function inArrayR($value, $array) 
+    {
+        foreach($array as $key => $subArray) {
+            if (in_array($value, $subArray))
+                return $key;
+        }
+
+        return null;
+    }
+
+    protected function getActorWithCount($actor, $array) 
+    {
+        
+        $key = $this->inArrayR($actor->name,$array);
+            
+        if (!isset($key)) {
+            array_push($array,['name' => $actor->name, 'count' => 1]);
+        } else {
+            
+            $array[$key]['count']++;
+        }
+
+        return $array;
+
+    }
+
+    protected function sortActors($actors)
+    {
+        usort($actors, function($a, $b) {
+            return $b['count'] <=> $a['count'];
+        });
+
+        return $actors;
     }
 }
