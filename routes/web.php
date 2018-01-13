@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/catalog', function () {
-    return view('catalog');
-})->name('catalog');
+Route::get('/catalog','TitlesController@index')->name('catalog');
 
 Route::get('/inputs', function () {
     return view('layouts.components.input');
@@ -25,7 +23,7 @@ Route::get('/inputs', function () {
 
 Auth::routes();
 
-Route::get('/titles', 'TitlesController@index');
+Route::get('/titles', 'TitlesController@index')->name('catalog');
 Route::resource('titles/movies', 'MoviesController')->name("edit","edit")->name('show','title');
 Route::resource('titles/series', 'SeriesController')->name("edit","edit")->name('show','title');
 Route::get('titles/series/{series_id}/seasons', 'SeasonsController@index');

@@ -4,10 +4,10 @@
     @foreach ($titles->items() as $title)
         @if (isset($title['movie']))
             <div class="image-container">
-                <a class="overlay-a" href="#">
+                <a class="overlay-a" href="http://{{ $_SERVER['HTTP_HOST'] }}/titles/movies/{{$title['id']}}">
                     <article class="fade-container">
                         @foreach($title['photos'] as $photo)
-                            @if ($photo['width'] == 300 && $photo['photo_type'] == 'poster')
+                            @if ($photo['width'] == 300 && $photo['photo_type'] == 'backdrop')
                             <img class="img is-1by1" src="{{$photo['photo_path']}}">
                             @endif
                         @endforeach
@@ -16,13 +16,14 @@
                             <ul>
                                 <li class="overlay-content">Director:&nbsp; {{$title['directors'][0]['name']}}</li>
                                 <li class="overlay-content">Stars:&nbsp; 
-                                    @for ($i = 0; $i < 4; $i++)
-                                    {{$title['actors'][$i]['name']}}
-                                        @if(!$loop->last) 
+                                    @foreach ($title['actors'] as $key => $actor)
+                                    @if ($key < 4)
+                                    {{$actor['name']}}
+                                        @if($key < 3) 
                                             {{ ', ' }}
                                         @endif
-                                            
-                                    @endfor
+                                    @endif      
+                                    @endforeach
                                 </li>
                                 <li class="overlay-content">
                                     Plot Summary:&nbsp; {{$title['movie']['plot_summary']}}
@@ -53,10 +54,13 @@
                             }
                         ?>
                            |
-                        @foreach ($title['genres'] as $genre)
-                        {{$genre['name']}}
-                        {{ $loop->last ? '' : ', ' }}
-                        
+                        @foreach ($title['genres'] as $key => $genre)
+                            @if($key < 3)
+                            {{$genre['name']}}
+                                @if ($key < 2)
+                                {{' '}}
+                                @endif
+                            @endif
                         @endforeach
                         | Add
                         <a href="#">

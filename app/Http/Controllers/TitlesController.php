@@ -78,7 +78,7 @@ class TitlesController extends Controller
             $page,
             ['path' => $request->url(), 'query' => $request->query()]
         );
-        // dd($titles->items()[0]['actors']);
+        // dd($titles->items()[0]['actors'][0]['name']);
         return view('catalog', ['titles' => $titles]);
     }
 
