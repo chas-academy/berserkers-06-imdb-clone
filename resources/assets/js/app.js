@@ -19,28 +19,28 @@ require("./bootstrap");
 
 //Hamburger
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Get all "navbar-burger" elements
-    var $navbarBurgers = Array.prototype.slice.call(
-        document.querySelectorAll(".navbar-burger"),
-        0
-    );
+document.addEventListener("DOMContentLoaded", function () {
+  // Get all "navbar-burger" elements
+  var $navbarBurgers = Array.prototype.slice.call(
+    document.querySelectorAll(".navbar-burger"),
+    0
+  );
 
-    // Check if there are any navbar burgers
-    if ($navbarBurgers.length > 0) {
-        // Add a click event on each of them
-        $navbarBurgers.forEach(function($el) {
-            $el.addEventListener("click", function() {
-                // Get the target from the "data-target" attribute
-                var target = $el.dataset.target;
-                var $target = document.getElementById(target);
+  // Check if there are any navbar burgers
+  if ($navbarBurgers.length > 0) {
+    // Add a click event on each of them
+    $navbarBurgers.forEach(function ($el) {
+      $el.addEventListener("click", function () {
+        // Get the target from the "data-target" attribute
+        var target = $el.dataset.target;
+        var $target = document.getElementById(target);
 
-                // Toggle the class on both the "navbar-burger" and the "navbar-menu"
-                $el.classList.toggle("is-active");
-                $target.classList.toggle("is-active");
-            });
-        });
-    }
+        // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+        $el.classList.toggle("is-active");
+        $target.classList.toggle("is-active");
+      });
+    });
+  }
 });
 
 //Toggle active modal
@@ -67,3 +67,34 @@ for (var i = 0; i < modalButton.length; i++) {
     });
   });
 }
+
+
+//Toggle youtube modal
+function modal2() {
+  var hejsan = document.querySelector(".modal-button2");
+  var modalkun = document.querySelector(".modal-youtube");
+  var modalBackground = document.querySelector(".modal-background");
+
+  hejsan.onclick = function () {
+    if (modalkun == false) {
+      modalkun.appendChild(modalkun);
+    } else {
+      modalkun.style.display = "block";
+    }
+  };
+
+  modalkun.onclick = function () {
+    modalkun.style.display = "none";
+    //location.reload();
+    modalkun.parentNode.removeChild(modalkun);
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modalkun) {
+      modalkun.style.display = "none";
+    }
+  };
+
+};
+
+modal2();
