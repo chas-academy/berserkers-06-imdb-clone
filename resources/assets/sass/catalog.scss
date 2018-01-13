@@ -20,6 +20,8 @@ main {
     height: 50px;
     padding-top: 10px;
     border: 1px solid $orange;
+    display:flex;
+    justify-content: center;
 }
 
 .fa-star {
