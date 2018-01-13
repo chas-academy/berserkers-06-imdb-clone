@@ -28,6 +28,11 @@ class Episode extends Model
 
     public function season()
     {
-        return $this->belongsTo('App\Season', 'seasons');
+        return $this->belongsTo('App\Season', 'season_id');
+    }
+
+    public function actors()
+    {
+        return $this->belongsToMany('App\Person', 'title_actor_character', 'title_id');
     }
 }
