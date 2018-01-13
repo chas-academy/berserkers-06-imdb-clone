@@ -1,36 +1,72 @@
  @include('layouts.header')
 
 <div class="card-container">
-    <div class="image-container">
-        <a class="overlay-a" href="#">
-            <article class="fade-container">
-                <img class="img is-1by1" src="https://i.pinimg.com/originals/a3/47/b4/a347b4457225972d6865fa077bd5265b.jpg">
-                <div class="fade-overlay">
-                    <h1 class="overlay-title">Blade Runner 2049 (2017)</h1>
-                    <ul>
-                        <li class="overlay-content">Director:&nbsp; Denise Villeneuve</li>
-                        <li class="overlay-content">Stars:&nbsp; Harrison Ford, Ryan Gosling, Ana de Armas</li>
-                        <li class="overlay-content">
-                            Plot Summary:&nbsp; A young blade runner's discovery of a long-buried secret leads him to track down former blade runner
-                            Rick Deckard..
-                            <p id="catalog-readmore">Read More &#x21e8;</p>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Closes fade-overlay -->
-            </article>
-        </a>
-        <div class="image-content">
-            <p>
-                <a href="#">
-                    <i class="fa fa-lg fa-star" aria-hidden="true"></i>
-                </a> 4.3 | Drama, Mystery, Sci-fi | Add
-                <a href="#">
-                    <i class="fa fa-lg fa-bookmark" aria-hidden="true"></i>
+    @foreach ($titles->items() as $title)
+        @if (isset($title['movie']))
+            <div class="image-container">
+                <a class="overlay-a" href="#">
+                    <article class="fade-container">
+                        @foreach($title['photos'] as $photo)
+                            @if ($photo['width'] == 300 && $photo['photo_type'] == 'poster')
+                            <img class="img is-1by1" src="{{$photo['photo_path']}}">
+                            @endif
+                        @endforeach
+                        <div class="fade-overlay">
+                            <h1 class="overlay-title">{{$title['movie']['title']}}</h1>
+                            <ul>
+                                <li class="overlay-content">Director:&nbsp; {{$title['directors'][0]['name']}}</li>
+                                <li class="overlay-content">Stars:&nbsp; 
+                                    @for ($i = 0; $i < 4; $i++)
+                                    {{$title['actors'][$i]['name']}}
+                                        @if(!$loop->last) 
+                                            {{ ', ' }}
+                                        @endif
+                                            
+                                    @endfor
+                                </li>
+                                <li class="overlay-content">
+                                    Plot Summary:&nbsp; {{$title['movie']['plot_summary']}}
+                                    <p id="catalog-readmore">Read More &#x21e8;</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Closes fade-overlay -->
+                    </article>
                 </a>
-            </p>
-        </div>
-    </div>
+                <div class="image-content">
+                    <p>
+                        <a href="#">
+                            <i class="fa fa-lg fa-star" aria-hidden="true"></i>
+                        </a> 
+                        <?php
+                            $ratingSummary = 0;
+                            $i = 0;
+                            foreach ($title['ratings'] as $rating) {
+                                $ratingSummary = $ratingSummary + $rating->rating;
+                                $i++;
+                            }
+                            if ($i == 0) {
+                                echo "-";
+                            } else {
+                                $ratingSummary = $ratingSummary / $i;
+                                echo $ratingSummary;
+                            }
+                        ?>
+                           |
+                        @foreach ($title['genres'] as $genre)
+                        {{$genre['name']}}
+                        {{ $loop->last ? '' : ', ' }}
+                        
+                        @endforeach
+                        | Add
+                        <a href="#">
+                            <i class="fa fa-lg fa-bookmark" aria-hidden="true"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        @endif
+    @endforeach
     <!-- Closes image-container -->
     <div class="image-container">
         <a class="overlay-a" href="#">
