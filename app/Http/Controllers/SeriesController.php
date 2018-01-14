@@ -62,13 +62,50 @@ class SeriesController extends Controller
     {
         //
         $id = $series->title_id;
-        $series = Series::find($id);
-        $seasons = Season::where('series_id', '=', $id)->get();
-        $title = Title::find($id);
+        $seasons = $series->seasons;
+        $title = $series->titles;
 
         session(['title_id' => $id]);
+        $actors = [];
+        $producers = [];
+        $directors = [];
+        $screenwriters = [];
+        foreach ($seasons as $season) {
+            foreach($season->episodes as $episode) {
+                foreach($episode->actors as $actor) {
 
-        return view('titles/series.show', ['series' => $series, 'seasons' => $seasons, 'title' => $title, 'id' => $id]);
+                    $actors = $this->getActorWithCount($actor, $actors);
+                }   
+                foreach($episode->producers as $producer) {
+
+                    $producers = $this->getActorWithCount($producer, $producers);
+                }
+                foreach($episode->directors as $director) {
+
+                    $directors = $this->getActorWithCount($director, $directors);
+                }
+                foreach($episode->screenwriters as $screenwriter) {
+
+                    $screenwriters = $this->getActorWithCount($screenwriter, $screenwriters);
+                }
+            }
+        }
+
+        $actors = $this->sortActors($actors);
+        $screenwriters = $this->sortActors($screenwriters);
+        $producers = $this->sortActors($producers);
+        $directors = $this->sortActors($directors);
+        
+        return view('titles/series.show', [
+            'series' => $series, 
+            'seasons' => $seasons, 
+            'title' => $title, 
+            'id' => $id, 
+            'actors' => $actors, 
+            'screenwriters' => $screenwriters,
+            'producers' => $producers,
+            'directors' => $directors
+            ]);
     }
 
     /**
