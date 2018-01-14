@@ -69,10 +69,10 @@ after('deploy:failed', 'deploy:unlock');
 //after('deploy:update_code', 'npm:install');
 
 //after('deploy:symlink', 'npm:build');
-//after('deploy:symlink', 'artisan:db:seed');
+
 // Migrate database before symlink new release.
 
-before('deploy:symlink', 'artisan:migrate:fresh');
+//before('deploy:symlink', 'artisan:migrate:fresh');
 after('deploy:symlink', 'php-fpm:restart');
 after('deploy:symlink', 'artisan:db:seed');
 
