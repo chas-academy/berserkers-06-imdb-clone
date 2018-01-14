@@ -5,3 +5,46 @@
 
 @import "footer";
 
+.fa-youtube-play {
+    z-index: 2;
+    position: absolute;
+    right: calc(48%);
+    bottom: 0;
+    color: red;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+}
+
+.fa-youtube-play:hover {
+    color: darkred;
+}
+
+.video-container {
+    position: absolute;
+    display: none;
+    max-width: 100%;
+    max-height: 100%;
+    top: 0;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 5;
+}
+
+#video {
+    width: 100%;
+    border-radius: 10px;
+}
+
+#title-img {
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+
+    .video-container {
+        max-height: 99%;
+    }
+}
+
