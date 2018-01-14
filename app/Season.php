@@ -20,16 +20,16 @@ class Season extends Model
     
     public function title()
     {
-            return $this->belongsTo('App\Title', 'titles');
+        return $this->belongsTo('App\Title', 'titles');
     }
    
     public function episodes()
     {
-        return $this->hasMany('App\Episode', 'episodes');
+        return $this->hasMany('App\Episode', 'season_id');
     }
 
     public function series()
     {
-        return $this->belongsTo('App\Series', 'series');
+        return $this->belongsTo('App\Series', 'series_id');
     }
 }

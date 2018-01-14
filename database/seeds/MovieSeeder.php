@@ -96,7 +96,7 @@ class MovieSeeder extends Seeder
 
                 if (isset($movie->videos->results[0])) {
 
-                    $movieArray += ['trailer' => "https://www.youtube.com/watch?v={$movie->videos->results[0]->key}"];
+                    $movieArray += ['trailer' => "https://www.youtube.com/embed/{$movie->videos->results[0]->key}"];
                 }
 
                 if (isset($response->Rated)) {

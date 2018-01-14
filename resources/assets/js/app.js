@@ -4,9 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-/*require("./bootstrap");
-
-window.Vue = require("vue");*/
+require("./bootstrap");
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -47,22 +45,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //Toggle active modal
 
-document.querySelector("a#usermodal").addEventListener("click", function (event) {
-  event.preventDefault();
-  var modal = document.querySelector(".modal"); // assuming you have only 1
-  var html = document.querySelector("html");
-  modal.classList.add("is-active");
-  html.classList.add("is-clipped");
+var modalButton = document.getElementsByClassName('modal-button');
+for (var i = 0; i < modalButton.length; i++) {
+  modalButton[i].addEventListener("click", function (event) {
+    event.preventDefault();
+    var modal = document.querySelector(".modal");
+    var html = document.querySelector("html");
+    modal.classList.add("is-active");
+    html.classList.add("is-clipped");
 
-  modal.querySelector(".modal-background").addEventListener("click", function (e) {
-    e.preventDefault();
-    modal.classList.remove("is-active");
-    html.classList.remove("is-clipped");
-  });
+    modal.querySelector(".modal-background").addEventListener("click", function (e) {
+      e.preventDefault();
+      modal.classList.remove("is-active");
+      html.classList.remove("is-clipped");
+    });
 
-  document.querySelector(".is-danger").addEventListener("click", function (eventtwo) {
-    eventtwo.preventDefault();
-    modal.classList.remove("is-active");
-    html.classList.remove("is-active");
+    document.querySelector(".is-danger").addEventListener("click", function (eventtwo) {
+      eventtwo.preventDefault();
+      modal.classList.remove("is-active");
+      html.classList.remove("is-active");
+    });
   });
-});
+}
+
+
+//Trailer
+
+function trailerShow() {
+  var triggerButton = document.querySelector(".modal-button2");
+  var videoContainer = document.querySelector(".video-container");
+
+  triggerButton.onclick = function () {
+    videoContainer.style.display = "flex";
+    triggerButton.style.display = "none";
+  }
+}
+
+trailerShow();
