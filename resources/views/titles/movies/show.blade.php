@@ -2,7 +2,7 @@
     <article class="page-content">
         <div class="centered-content">
             <section class="item-header">
-                <h1 id="hero-header">{{$movie->title}}</h1>
+                <h1 class="hero-header">{{$movie->title}}</h1>
             </section>
             <article class="item">
                 <section class="item-meta-info">
