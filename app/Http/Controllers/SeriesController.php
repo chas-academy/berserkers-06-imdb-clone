@@ -8,7 +8,7 @@ use App\Series;
 use App\Title;
 use Illuminate\Http\Request;
 use App\Traits\DatabaseHelpers;
-
+use Illuminate\Support\Facades\Auth;
 class SeriesController extends Controller
 {
    
@@ -116,22 +116,27 @@ class SeriesController extends Controller
      */
     public function edit(Series $series)
     {
-        $id = $series->title_id;
-        $series = Series::find($id);
-        $title = Title::find($id);
-        $genres = $this->formatForEditing($title->genres);
-        $creators = $this->formatForEditing($title->creators);
-        $photos = $this->formatForEditing($title->photos);
+        if (Auth::user()->role === 1) {
+                
+            $id = $series->title_id;
+            $series = Series::find($id);
+            $title = Title::find($id);
+            $genres = $this->formatForEditing($title->genres);
+            $creators = $this->formatForEditing($title->creators);
+            $photos = $this->formatForEditing($title->photos);
 
-        session(['title_id' => $id]);
+            session(['title_id' => $id]);
 
-        return view('titles/series.edit', [
-            'series' => $series, 
-            'title' => $title, 
-            'genres' => $genres, 
-            'creators' => $creators,
-            'photos' => $photos
-            ]);
+            return view('titles/series.edit', [
+                'series' => $series, 
+                'title' => $title, 
+                'genres' => $genres, 
+                'creators' => $creators,
+                'photos' => $photos
+                ]);
+        }
+
+        return redirect("/titles/series/{$series->title_id}");
     }
 
     /**
@@ -143,12 +148,19 @@ class SeriesController extends Controller
      */
     public function update(Request $request, Series $series)
     {
-        
+        if (Auth::user()->role === 1) {
+
         $this->updateItem($request, $series);
 
         $path = $request->path();
 
         return redirect("$path/edit"); 
+
+        }
+
+        return redirect("/");
+
+
     }
 
     /**
@@ -159,34 +171,38 @@ class SeriesController extends Controller
      */
     public function destroy(Series $series)
     {
-        $seriesId = $series->title_id;
-        $seriesTitle = Title::find($seriesId);
-        $seasons = Season::where('series_id', '=', $seriesId)->get();
+        if (Auth::user()->role === 1) {
+            $seriesId = $series->title_id;
+            $seriesTitle = Title::find($seriesId);
+            $seasons = Season::where('series_id', '=', $seriesId)->get();
 
-        try {
-            foreach($seasons as $season) {
+            try {
+                foreach($seasons as $season) {
 
-                $seasonId = $season->title_id;
-                $seasonTitle = Title::find($seasonId);
-                $episodes = Episode::where('season_id', '=', $seasonId)->get();
+                    $seasonId = $season->title_id;
+                    $seasonTitle = Title::find($seasonId);
+                    $episodes = Episode::where('season_id', '=', $seasonId)->get();
 
-                foreach($episodes as $episode) {
-                    $episodeId = $episode->title_id;
-                    $episodeTitle = Title::find($episodeId);
+                    foreach($episodes as $episode) {
+                        $episodeId = $episode->title_id;
+                        $episodeTitle = Title::find($episodeId);
 
-                    $this->detachAllFromItemAndDelete($episodeTitle, Episode::class, $episodeId);
+                        $this->detachAllFromItemAndDelete($episodeTitle, Episode::class, $episodeId);
+                    }
+
+                    $this->detachAllFromItemAndDelete($seasonTitle, Season::class, $seasonId);
                 }
 
-                $this->detachAllFromItemAndDelete($seasonTitle, Season::class, $seasonId);
+                $this->detachAllFromItemAndDelete($seriesTitle, Series::class, $seriesId);
+            } catch(Exception $e) {
+
+                return $e;
             }
-
-            $this->detachAllFromItemAndDelete($seriesTitle, Series::class, $seriesId);
-        } catch(Exception $e) {
-
-            return $e;
+        
+            return redirect("/titles/series/");  
         }
-       
-        return redirect("/titles/series/");  
+        return redirect("/titles/series/"); 
     }
+
     
 }

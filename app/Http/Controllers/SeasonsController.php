@@ -8,6 +8,7 @@ use App\Series;
 use App\Title;
 use Illuminate\Http\Request;
 use App\Traits\DatabaseHelpers;
+use Illuminate\Support\Facades\Auth;
 
 class SeasonsController extends Controller
 {
@@ -97,33 +98,34 @@ class SeasonsController extends Controller
      */
     public function destroy(Request $request, Season $season)
     {
-        
-        $seasonId = $request->season_id;
-        $season = Season::find($seasonId);
-        $seasonTitle = Title::find($seasonId);
-        $episodes = Episode::where('season_id', '=', $seasonId)->get();
-        $seriesId = $season->series_id;
-        $series = Series::find($seriesId);
+        if (Auth::user()->role === 1) {
+            $seasonId = $request->season_id;
+            $season = Season::find($seasonId);
+            $seasonTitle = Title::find($seasonId);
+            $episodes = Episode::where('season_id', '=', $seasonId)->get();
+            $seriesId = $season->series_id;
+            $series = Series::find($seriesId);
 
-        try {
+            try {
 
-            foreach($episodes as $episode) {
+                foreach($episodes as $episode) {
 
-                $episodeId = $episode->title_id;
-                $episodeTitle = Title::find($episodeId);
+                    $episodeId = $episode->title_id;
+                    $episodeTitle = Title::find($episodeId);
 
-                $this->detachAllFromItemAndDelete($episodeTitle, Episode::class, $episodeId);
+                    $this->detachAllFromItemAndDelete($episodeTitle, Episode::class, $episodeId);
+                }
+
+                $this->detachAllFromItemAndDelete($seasonTitle, Season::class, $seasonId);
+
+                $this->updateNumOfEpisodesAndSeasonsColumns($series);
+
+            } catch(Exception $e) {
+
+                return $e;
             }
-
-            $this->detachAllFromItemAndDelete($seasonTitle, Season::class, $seasonId);
-
-            $this->updateNumOfEpisodesAndSeasonsColumns($series);
-
-        } catch(Exception $e) {
-
-            return $e;
         }
-       
+
         return redirect("/titles/series/$seriesId");  
     }
 }
