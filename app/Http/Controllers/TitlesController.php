@@ -8,10 +8,11 @@ use App\Series;
 use App\Episode;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
-
+use App\Traits\DatabaseHelpers;
 
 class TitlesController extends Controller
 {
+    use DatabaseHelpers;
     /**
      * Display a listing of the resource.
      *
@@ -190,40 +191,5 @@ class TitlesController extends Controller
     public function destroy(Title $title)
     {
         //
-    }
-
-    protected function inArrayR($value, $array) 
-    {
-        foreach($array as $key => $subArray) {
-            if (in_array($value, $subArray))
-                return $key;
-        }
-
-        return null;
-    }
-
-    protected function getActorWithCount($actor, $array) 
-    {
-        
-        $key = $this->inArrayR($actor->name,$array);
-            
-        if (!isset($key)) {
-            array_push($array,['name' => $actor->name, 'count' => 1]);
-        } else {
-            
-            $array[$key]['count']++;
-        }
-
-        return $array;
-
-    }
-
-    protected function sortActors($actors)
-    {
-        usort($actors, function($a, $b) {
-            return $b['count'] <=> $a['count'];
-        });
-
-        return $actors;
     }
 }
