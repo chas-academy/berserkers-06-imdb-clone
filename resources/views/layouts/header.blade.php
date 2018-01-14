@@ -139,17 +139,6 @@
                               <a class="button is-primary" type="submit" href="/register" id="border-button">Register</a>
                            </div>
                         </div>
-<<<<<<< HEAD
-                    </div>
-                </div>
-                <a class="navbar-item" id="desktop-logo" href="/">
-                    <img src="{{asset('images/logo.svg')}}" id="bzrk2" alt="">
-                </a>
-        </div>
-        </nav>
-        </div>
-    </header>
-=======
                         <div class="column is-2 is-offset-8" id="col3-2"></div>
                      </div>
                   </div>
@@ -158,4 +147,3 @@
          </div>
       </header>
       <main>
->>>>>>> dev
