@@ -56,11 +56,12 @@ body {
   font-family: $paragraph-font;
   padding: 1em 1em 0 1em;
 
-  #hero-header {
+  .hero-header {
 
     font-family: $heading-font;
     font-size: $title-hero-font-size
   }
+
 }
 
 .item-meta-info {
@@ -294,7 +295,7 @@ body {
     
     width: 85%;
 
-    #hero-header {
+    .hero-header {
 
       font-size: $main-heading-font-size;
     }
@@ -353,7 +354,7 @@ body {
   
   .item-header {
 
-    #hero-header {
+    .hero-header {
 
       font-size: $sub-heading-font-size;
     }
@@ -398,7 +399,7 @@ body {
   
   .item-header {
 
-    #hero-header {
+    .hero-header {
 
       font-size: $sub-heading-font-size;
     }
