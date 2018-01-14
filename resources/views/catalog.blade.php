@@ -57,9 +57,9 @@
                         ?>
                            |
                         @foreach ($title['genres'] as $key => $genre)
-                            @if($key < 3)
+                            @if($key < 2)
                             {{$genre['name']}}
-                                @if ($key < 2)
+                                @if ($key < 1)
                                 {{' '}}
                                 @endif
                             @endif
