@@ -142,13 +142,9 @@
                 <section class="item-img card">
                     <figure class="card-image is-16by9">
                     <a class="fa fa-3x fa-youtube-play modal-button2"></a>
-                        <div class="modal-youtube">
-                            <div class="modal-background"></div>
-                                <div class="modal-content">
-                                    <iframe id="video" src="https://www.youtube.com/embed/cxcegktcxSM?enablejsapi=1" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                </div>
-                            <button class="modal-close is-large" aria-label="close"></button>
-                        </div>
+                    <div class="video-container">
+                        <iframe id="video" src="https://www.youtube.com/embed/cxcegktcxSM?enablejsapi=1" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
                     @foreach($title->photos as $photo)
                         @if($photo->width == 780 && $photo->photo_type == "backdrop")
                             <img id="title-img" src="{{ $photo->photo_path }}" alt="poster">

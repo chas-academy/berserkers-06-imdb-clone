@@ -69,32 +69,16 @@ for (var i = 0; i < modalButton.length; i++) {
 }
 
 
-//Toggle youtube modal
-function modal2() {
-  var hejsan = document.querySelector(".modal-button2");
-  var modalkun = document.querySelector(".modal-youtube");
-  var modalBackground = document.querySelector(".modal-background");
+//Trailer
 
-  hejsan.onclick = function () {
-    if (modalkun == false) {
-      modalkun.appendChild(modalkun);
-    } else {
-      modalkun.style.display = "block";
-    }
-  };
+function trailerShow() {
+  var triggerButton = document.querySelector(".modal-button2");
+  var videoContainer = document.querySelector(".video-container");
 
-  modalkun.onclick = function () {
-    modalkun.style.display = "none";
-    //location.reload();
-    modalkun.parentNode.removeChild(modalkun);
-  };
+  triggerButton.onclick = function () {
+    videoContainer.style.display = "flex";
+    triggerButton.style.display = "none";
+  }
+}
 
-  window.onclick = function (event) {
-    if (event.target == modalkun) {
-      modalkun.style.display = "none";
-    }
-  };
-
-};
-
-modal2();
+trailerShow();
