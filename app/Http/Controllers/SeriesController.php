@@ -74,27 +74,27 @@ class SeriesController extends Controller
             foreach($season->episodes as $episode) {
                 foreach($episode->actors as $actor) {
 
-                    $actors = $this->getActorWithCount($actor, $actors);
+                    $actors = $this->getPersonsWithCount($actor, $actors);
                 }   
                 foreach($episode->producers as $producer) {
 
-                    $producers = $this->getActorWithCount($producer, $producers);
+                    $producers = $this->getPersonsWithCount($producer, $producers);
                 }
                 foreach($episode->directors as $director) {
 
-                    $directors = $this->getActorWithCount($director, $directors);
+                    $directors = $this->getPersonsWithCount($director, $directors);
                 }
                 foreach($episode->screenwriters as $screenwriter) {
 
-                    $screenwriters = $this->getActorWithCount($screenwriter, $screenwriters);
+                    $screenwriters = $this->getPersonsWithCount($screenwriter, $screenwriters);
                 }
             }
         }
 
-        $actors = $this->sortActors($actors);
-        $screenwriters = $this->sortActors($screenwriters);
-        $producers = $this->sortActors($producers);
-        $directors = $this->sortActors($directors);
+        $actors = $this->sortPersons($actors);
+        $screenwriters = $this->sortPersons($screenwriters);
+        $producers = $this->sortPersons($producers);
+        $directors = $this->sortPersons($directors);
         
         return view('titles/series.show', [
             'series' => $series, 

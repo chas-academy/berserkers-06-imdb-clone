@@ -57,7 +57,7 @@ class TitlesController extends Controller
 
         }
 
-        
+
 
         $titles = Title::whereIn('id', $titlesIds)->get();
       
@@ -77,12 +77,12 @@ class TitlesController extends Controller
                     foreach($season->episodes as $episode) {
                         foreach($episode->actors as $actor) {
 
-                            $actors = $this->getActorWithCount($actor, $actors);
+                            $actors = $this->getPersonsWithCount($actor, $actors);
                         }   
                     }
                 }
 
-                $actors = $this->sortActors($actors);
+                $actors = $this->sortPersons($actors);
                 
                 $title['actors'] = $actors;
 
@@ -93,10 +93,10 @@ class TitlesController extends Controller
                 $actors = [];
 
                 foreach($title->actors as $actor) {
-                    $actors = $this->getActorWithCount($actor, $actors);
+                    $actors = $this->getPersonsWithCount($actor, $actors);
                 }
                 
-                $actors = $this->sortActors($actors);
+                $actors = $this->sortPersons($actors);
 
                 $season = $title->episode[0]->season;
                 $series = $season->series;

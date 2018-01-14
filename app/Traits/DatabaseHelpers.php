@@ -224,7 +224,7 @@ trait DatabaseHelpers
       return null;
   }
 
-  protected function getActorWithCount($actor, $array) 
+  protected function getPersonsWithCount($actor, $array) 
   {
       
       $key = $this->inArrayR($actor->name,$array);
@@ -240,12 +240,12 @@ trait DatabaseHelpers
 
   }
 
-  protected function sortActors($actors)
+  protected function sortPersons($persons)
   {
-      usort($actors, function($a, $b) {
+      usort($persons, function($a, $b) {
           return $b['count'] <=> $a['count'];
       });
 
-      return $actors;
+      return $persons;
   }
 }
