@@ -21,17 +21,22 @@ class TitlesController extends Controller
     public function index(Request $request)
     {   
         $q = $request->title;
+        $t = $request->type;
+
         $titlesIds = [];
+        
         if(!isset($q)) {
 
-            $movies = Movie::all();
-            $series = Series::all();
-            $episodes = Episode::all();
+            $titles; 
 
-            $titles = $movies->merge($series);
-
-            $titles = $titles->merge($episodes);
-
+            if (!isset($t)|| $t == 'movie' ) {
+                $titles = Movie::all();
+            } elseif ($t == 'series'){
+                $titles = Series::all();
+            } else {
+                $titles = Episode::all();
+            }
+            
             foreach($titles as $title) {
                 array_push($titlesIds,$title->title_id);
             }
@@ -51,6 +56,8 @@ class TitlesController extends Controller
             }
 
         }
+
+        
 
         $titles = Title::whereIn('id', $titlesIds)->get();
       
