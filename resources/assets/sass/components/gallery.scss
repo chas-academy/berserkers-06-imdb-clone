@@ -10,18 +10,25 @@
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
+
+    .slide {
+        display: inline-block;
+
+        img{
+            max-height: 169px;
+        }
+    }
+
+    &::-webkit-scrollbar {
+        background-color: #aaa;
+        width: 5px;
+        height: 13px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: orange;
+    }
 }
 
-#hz-carousel .slide {
-    display: inline-block;
-}
 
-#hz-carousel::-webkit-scrollbar {
-    background-color: #aaa;
-    width: 5px;
-    height: 13px;
-}
 
-#hz-carousel::-webkit-scrollbar-thumb {
-    background-color: orange;
-}
