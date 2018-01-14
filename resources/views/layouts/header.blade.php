@@ -37,7 +37,7 @@
                   </div>
                   <!-- Logo -->
                   <a class="navbar-item" id="logo" href="/">
-                  <img src="{{asset('images/LOGO.svg')}}" alt="">
+                  <img src="{{asset('images/logo.svg')}}" alt="">
                   </a>
                   <!-- Modal with the user logo-->
                   <a id="usermodal" class="modal-button" href="">
