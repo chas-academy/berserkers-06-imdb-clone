@@ -23,7 +23,7 @@
   <form method="POST" action="/titles/series/{{$series->title_id}}/seasons/{{$season->season_number}}/episodes/{{$episode->episode_number}}">
     {{ csrf_field() }}
     {{ method_field('PUT') }}
-    <h3>Relesae Year</h3>
+    <h3>Episode Number</h3>
     <input name="release_year"value="{{ $episode->episode_number }}">
     <input name="title_id" value="{{$episode->title_id}}" type="hidden">
     <button type="submit">Submit</button>   
@@ -45,16 +45,6 @@
     {{ method_field('PUT') }}
     <h3>Directors:</h3>
     <textarea name="directors">{{$directors}}</textarea>
-    <input name="title_id" value="{{$episode->title_id}}" type="hidden">
-    <button type="submit">Submit</button>   
-  </form>
-</section>
-<section>
-  <form method="POST" action="/titles/series/{{$series->title_id}}/seasons/{{$season->season_number}}/episodes/{{$episode->episode_number}}">
-    {{ csrf_field() }}
-    {{ method_field('PUT') }}
-    <h3>Producers:</h3>
-    <textarea name="producers">{{$producers}}</textarea>
     <input name="title_id" value="{{$episode->title_id}}" type="hidden">
     <button type="submit">Submit</button>   
   </form>
