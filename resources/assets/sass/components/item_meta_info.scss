@@ -5,12 +5,16 @@ html {
 
 body {
 
+  main {
+
+    padding-bottom: 100px;
+  }
+
   .page-content {
 
     display: flex;
     align-items: center;
     flex-direction: column;
-    
   }
 
   .centered-content {
@@ -18,8 +22,6 @@ body {
     display:flex;
     flex-direction:column;
     align-items: center;
-   
-    
   }
 }
 
@@ -59,7 +61,7 @@ body {
   .hero-header {
 
     font-family: $heading-font;
-    font-size: $title-hero-font-size
+    font-size: $title-hero-font-size;
   }
 
 }
@@ -229,7 +231,7 @@ body {
 
     main {
 
-      margin-top: 125px;
+      margin-top: 50px;
     }
   }
 }
@@ -248,14 +250,6 @@ body {
 }
 
 @media only screen and (max-width:800px) {
-
-  body {
-    
-    main {
-
-      margin-top: 150px;
-    }
-  }
 
   .item-header {
     
