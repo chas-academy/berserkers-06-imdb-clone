@@ -14,18 +14,22 @@
       <link href="{{asset('css/buttons.css')}}" rel="stylesheet">
    </head>
   </body>
-  <!--User can rate star of movies-->
 <div class="container">
 
 <div class="box has-text-centered">
   <div class="rating"> 
-  <span class="fa fa-star icon is-medium"></span>
-  <span class="fa fa-star icon is-medium"></span>
-  <span class="fa fa-star icon is-medium"></span>
-  <span class="fa fa-star icon is-medium"></span>
-  <span class="fa fa-star icon is-medium"></span>
+  <span class="fa fa-star icon is-large" id="star"></span>
+  <span class="fa fa-star icon is-large" id="star"></span>
+  <span class="fa fa-star icon is-large" id="star"></span>
+  <span class="fa fa-star icon is-large" id="star"></span>
+  <span class="fa fa-star icon is-large" id="star"></span>
 </div>
 </div> 
+</div>
+
+
+
+
 
 
 

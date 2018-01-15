@@ -1,27 +1,57 @@
 @import "/../_variables";
 
-#rating{
+body{
 
+  margin: 0;
+  padding: 0;
+  background: 
+  rgba(51, 51, 51, 0.7);
+}
+.rating{
 
-    text-align: center;
-    position: absolute;
-    top: 40%;
-    width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
 }
 
-.rating > span {
-    display: inline-block;
-    position: relative;
-    width: 1.1em;
-  }
-  .rating > span:hover,
-  .rating > span:hover ~ span {
-    color: transparent;
-  }
-  .rating > span:hover:before,
-  .rating > span:hover ~ span:before {
-     content: "\2605";
-     position: absolute;
-     left: 0; 
-     color: gold;
-  }
+.rating label{
+display: block;
+cursor: pointer;
+width: 50%;
+background: yellow;
+
+
+}
+
+.rating label before{
+
+  content: '\f005';
+  font-family: fontAwesome;
+  position: relative;
+  display: block; 
+color: blue;
+}
+
+.rating label after
+
+{
+content: '\f005';
+font-family: fontAwesome;
+position: relative;
+display: block;
+font-size: 50%;
+color: red;
+top: 0;
+opacity: 1;
+transition: -5;
+text-shadow: 0 2px 5px #FCA135;
+
+}
+
+.rating label:hover:after
+.rating input:checked~label:after{
+
+  opacity: 1,
+}

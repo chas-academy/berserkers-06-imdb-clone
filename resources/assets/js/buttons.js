@@ -1,27 +1,17 @@
-function dropDown() {
-
-document.getElementById("dropdown-menu")classList.toggle("show");
 
 
+function rate(rating) {
 
+    document.rating.star.value = rating;
+    document.rating.submit();
+    return true;
 }
 
-window.onClick = function(event){
+function star(rating){
 
-if(!event.target.matches("dropdown-menu")){
+if(!(rating>=1 && rating<=5)) return;
 
-    var dropdowns = document.getElementsByClassName("dropDowncontent");
+for (var i=1;i<=rating;i++)
+document.getElementById("star" +rating);
 
-    var i;
-    for(i = 0; i < dropdowns.length; i++){
-
-        var openDropDown = dropdowns[i];
-        if(openDropdown.classList.contains('show')) {
-
-            openDropdown.classlist.remove('show');
-        }
-    }
-}
-
-}
-
+} //kolla upp id
