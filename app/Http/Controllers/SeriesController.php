@@ -7,9 +7,16 @@ use App\Season;
 use App\Series;
 use App\Title;
 use Illuminate\Http\Request;
-
+use App\Traits\DatabaseHelpers;
+use Illuminate\Support\Facades\Auth;
 class SeriesController extends Controller
 {
+   
+    const ITEMCOLUMNS = ['title', 'release_year', 'plot_summary', 'end_date', 'countries', 'pg_rating', 'trailer'];
+    const PIVOTTABLES = ['genres', 'photos', 'creators' ];
+
+    use DatabaseHelpers;
+    
     /**
      * Display a listing of the resource.
      *
@@ -55,13 +62,50 @@ class SeriesController extends Controller
     {
         //
         $id = $series->title_id;
-        $series = Series::find($id);
-        $seasons = Season::where('series_id', '=', $id)->get();
-        $title = Title::find($id);
+        $seasons = $series->seasons;
+        $title = $series->titles;
 
         session(['title_id' => $id]);
+        $actors = [];
+        $producers = [];
+        $directors = [];
+        $screenwriters = [];
+        foreach ($seasons as $season) {
+            foreach($season->episodes as $episode) {
+                foreach($episode->actors as $actor) {
 
-        return view('titles/series.show', ['series' => $series, 'seasons' => $seasons, 'title' => $title, 'id' => $id]);
+                    $actors = $this->getPersonsWithCount($actor, $actors);
+                }   
+                foreach($episode->producers as $producer) {
+
+                    $producers = $this->getPersonsWithCount($producer, $producers);
+                }
+                foreach($episode->directors as $director) {
+
+                    $directors = $this->getPersonsWithCount($director, $directors);
+                }
+                foreach($episode->screenwriters as $screenwriter) {
+
+                    $screenwriters = $this->getPersonsWithCount($screenwriter, $screenwriters);
+                }
+            }
+        }
+
+        $actors = $this->sortPersons($actors);
+        $screenwriters = $this->sortPersons($screenwriters);
+        $producers = $this->sortPersons($producers);
+        $directors = $this->sortPersons($directors);
+        
+        return view('titles/series.show', [
+            'series' => $series, 
+            'seasons' => $seasons, 
+            'title' => $title, 
+            'id' => $id, 
+            'actors' => $actors, 
+            'screenwriters' => $screenwriters,
+            'producers' => $producers,
+            'directors' => $directors
+            ]);
     }
 
     /**
@@ -72,7 +116,27 @@ class SeriesController extends Controller
      */
     public function edit(Series $series)
     {
-        //
+        if (Auth::user()->role === 1) {
+                
+            $id = $series->title_id;
+            $series = Series::find($id);
+            $title = Title::find($id);
+            $genres = $this->formatForEditing($title->genres);
+            $creators = $this->formatForEditing($title->creators);
+            $photos = $this->formatForEditing($title->photos);
+
+            session(['title_id' => $id]);
+
+            return view('titles/series.edit', [
+                'series' => $series, 
+                'title' => $title, 
+                'genres' => $genres, 
+                'creators' => $creators,
+                'photos' => $photos
+                ]);
+        }
+
+        return redirect("/titles/series/{$series->title_id}");
     }
 
     /**
@@ -84,7 +148,19 @@ class SeriesController extends Controller
      */
     public function update(Request $request, Series $series)
     {
-        //
+        if (Auth::user()->role === 1) {
+
+        $this->updateItem($request, $series);
+
+        $path = $request->path();
+
+        return redirect("$path/edit"); 
+
+        }
+
+        return redirect("/");
+
+
     }
 
     /**
@@ -95,6 +171,38 @@ class SeriesController extends Controller
      */
     public function destroy(Series $series)
     {
-        //
+        if (Auth::user()->role === 1) {
+            $seriesId = $series->title_id;
+            $seriesTitle = Title::find($seriesId);
+            $seasons = Season::where('series_id', '=', $seriesId)->get();
+
+            try {
+                foreach($seasons as $season) {
+
+                    $seasonId = $season->title_id;
+                    $seasonTitle = Title::find($seasonId);
+                    $episodes = Episode::where('season_id', '=', $seasonId)->get();
+
+                    foreach($episodes as $episode) {
+                        $episodeId = $episode->title_id;
+                        $episodeTitle = Title::find($episodeId);
+
+                        $this->detachAllFromItemAndDelete($episodeTitle, Episode::class, $episodeId);
+                    }
+
+                    $this->detachAllFromItemAndDelete($seasonTitle, Season::class, $seasonId);
+                }
+
+                $this->detachAllFromItemAndDelete($seriesTitle, Series::class, $seriesId);
+            } catch(Exception $e) {
+
+                return $e;
+            }
+        
+            return redirect("/titles/series/");  
+        }
+        return redirect("/titles/series/"); 
     }
+
+    
 }

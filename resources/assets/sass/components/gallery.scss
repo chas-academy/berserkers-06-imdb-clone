@@ -1,32 +1,34 @@
-@import "../variables";
-@import "~bulma";
-
-@import "../header";
-
 
 #hz-carousel {
     width: 80%;
     margin-left: 10%;
     height: 150px;
-    margin-top: 2em;
+    margin-top: 5em;
     margin-bottom: 2em;
     background-color: #333333;
     overflow: visible;
     overflow-x: scroll;
     overflow-y: hidden;
     white-space: nowrap;
+
+    .slide {
+        display: inline-block;
+
+        img{
+            max-height: 169px;
+        }
+    }
+
+    &::-webkit-scrollbar {
+        background-color: #aaa;
+        width: 5px;
+        height: 13px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: orange;
+    }
 }
 
-#hz-carousel .slide {
-    display: inline-block;
-}
 
-#hz-carousel::-webkit-scrollbar {
-    background-color: #aaa;
-    width: 5px;
-    height: 13px;
-}
 
-#hz-carousel::-webkit-scrollbar-thumb {
-    background-color: orange;
-}

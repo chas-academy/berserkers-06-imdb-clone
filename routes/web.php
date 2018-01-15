@@ -15,29 +15,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/catalog', function () {
-    return view('catalog');
-})->name('catalog');
-
-Route::get('/inputs', function () {
-    return view('layouts.components.input');
-});
-
-Route::get('/gallery', function () {
-    return view('layouts.components.gallery');
-})->name('gallery');
+Route::get('/catalog','TitlesController@index')->name('catalog');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/titles', 'TitlesController@index')->name('catalog');
 
-Route::get('/titles', 'TitlesController@index');
-Route::resource('titles/movies', 'MoviesController')->name('show','title');
-Route::resource('titles/series', 'SeriesController');
+Route::group(['middleware' => ['auth']], function () {
+    Route::delete('titles/series/{series}','SeriesController@destory' );
+    Route::delete('titles/movies/{movie}', 'MoviesController@destroy');
+    Route::put('titles/series/{series}','SeriesController@update' );
+    Route::put('titles/movies/{movie}', 'MoviesController@update');
+    Route::get('titles/series/{series}/edit','SeriesController@edit' )->name("edit");
+    Route::get('titles/movies/{movie}/edit', 'MoviesController@edit')->name("edit");
+    Route::delete('titles/series/{series_id}/seasons/{season_number}', 'SeasonsController@destroy');
+    Route::get('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}/edit', 'EpisodesController@edit')->name('edit');
+    Route::put('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@update');
+    Route::delete('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@destroy');
+});
+
+Route::get('titles/series/{series}','SeriesController@show' )->name("title");
+Route::get('titles/movies/{movie}', 'MoviesController@show')->name("title");
 Route::get('titles/series/{series_id}/seasons', 'SeasonsController@index');
 Route::get('titles/series/{series_id}/seasons/{season_number}', 'SeasonsController@show');
 Route::get('titles/series/{series_id}/seasons/{season_number}/episodes', 'EpisodesController@index');
-Route::get('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@show');
+Route::get('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@show')->name('title');
+
 
 Route::resource('people', 'PeopleController');
 Route::resource('reviews', 'ReviewsController');

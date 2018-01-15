@@ -235,11 +235,13 @@ a#usermodal {
 #border-button {
   border-bottom-right-radius: 40px;
 }
-
-.button.is-primary {
-  width: 50%;
-  height: 50px;
-  background-color: #0d7070;
+.column.is-2{
+  
+  .button.is-primary {
+    width: 50%;
+    height: 50px;
+    background-color: #0d7070;
+  }
 }
 
 //Logo desktop
