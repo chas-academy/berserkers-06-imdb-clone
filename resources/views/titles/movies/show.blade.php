@@ -180,7 +180,7 @@
         </div>
     </article>
 
-    <div id="hz-carousel">
+<div id="hz-carousel">
     <div class="slide">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm_vy_NyJkBlROS2oYrgTB-axHwhmFA51CxsdgKH1fHC93M-k"/>
     </div>
@@ -206,4 +206,6 @@
         <img src="http://placehold.it/300x150"/>
     </div>
 </div>
+
+<!-- review & comments -->
 @include('layouts.footer')
