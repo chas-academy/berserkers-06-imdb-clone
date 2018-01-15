@@ -17,7 +17,7 @@ class User extends Authenticatable
     protected $fillable = [
         'username',
         'firstname',
-        'lastname',
+        'surname',
         'email',
         'password',
         'role'
@@ -39,6 +39,10 @@ class User extends Authenticatable
 
     public function comments(){
         return $this->hasMany('App\Comment');
+    }
+
+    public function lists(){
+        return $this->hasMany('App\UserList', 'user_id');
     }
 
     public function ratedTitles(){
