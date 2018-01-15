@@ -9,7 +9,7 @@
     <div class="main-content">
         @include('layouts.components.daily_picks')
         @include('layouts.components.item_chart')
-        <nav class="breadcrumb is-centered" aria-label="breadcrumbs">
+        <nav class="breadcrumb is-centered is-hidden-mobile" aria-label="breadcrumbs">
             <ul>
                 <li><a href="#">Movies</a></li>
                 <li><a href="#">Series</a></li>

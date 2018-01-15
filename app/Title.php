@@ -13,22 +13,22 @@ class Title extends Model
 
     public function movie()
     {
-        return $this->hasOne('App\Movie', 'movies');
+        return $this->hasOne('App\Movie', 'title_id');
     }
 
     public function series()
     {
-        return $this->hasMany('App\Series', 'series');
+        return $this->hasOne('App\Series', 'title_id');
     }
 
     public function season()
     {
-        return $this->hasMany('App\Season', 'seasons');
+        return $this->hasMany('App\Season', 'title_id');
     }
 
     public function episode()
     {
-        return $this->hasMany('App\Episode', 'episodes');
+        return $this->hasMany('App\Episode', 'title_id');
     }
 
     /******** */

@@ -1,5 +1,3 @@
-@import "/../_variables";
-
 main {
 
   .chart-section {
@@ -9,6 +7,21 @@ main {
     flex-direction: column;
     align-items: center;
     width: 100%;
+
+    div#chart-carousel-index {
+
+      margin: 0.5em 0;
+
+      span {
+
+        display: none;
+        height: 1.5em;
+        width: 1.5em;
+        border-radius: 100%;
+        background-color: $marker-outoffocus;
+        margin: 0 0.5em;
+      }
+    }
 
     .flex-container {
       
@@ -71,6 +84,7 @@ main {
 
       border-top: 3px solid $text-color;
       margin: 0 2em;
+      display: block;
 
       .card {
 
@@ -190,17 +204,50 @@ article h3 {
 
     .chart-section {
 
+      div#chart-carousel-index {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width:80%;
+
+        span {
+
+          display: block;
+        }
+
+        span:first-child {
+
+          background-color: $marker-infocus;
+        }
+      }
+
       .chart {
         
         .min-item {
 
           display: none;
-
+          margin: 0;
           #img1 {
     
             content:url("https://image.tmdb.org/t/p/w320/iO9aZzrfmMvm3IqkFiQyuuUMLh2.jpg");
           }
-                    
+
+          #img2 {
+            
+            content:url("https://image.tmdb.org/t/p/w320/qmDpIHrmpJINaRKAfWQfftjCdyi.jpg");
+          }
+        
+          #img3 {
+        
+            content:url("https://image.tmdb.org/t/p/w320/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg");
+          }
+        
+          #img4 {
+            
+            content:url("https://image.tmdb.org/t/p/w320/6W6zWBAay6XVBgJsOu6c2mlFZ8l.jpg");
+          }
+
           .card {
             
             h4 {
@@ -218,7 +265,7 @@ article h3 {
         
         .min-item:first-child {
           display: block;
-          margin: 0;
+          
         }
       }
     }
