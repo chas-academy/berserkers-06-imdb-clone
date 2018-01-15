@@ -63,6 +63,6 @@ document.querySelector("a#usermodal").addEventListener("click", function (event)
   document.querySelector(".is-danger").addEventListener("click", function (eventtwo) {
     eventtwo.preventDefault();
     modal.classList.remove("is-active");
-    html.classList.remove("is-active");
+    html.classList.remove("is-clipped");
   });
 });
