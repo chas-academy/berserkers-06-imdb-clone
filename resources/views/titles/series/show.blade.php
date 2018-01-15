@@ -71,32 +71,34 @@
                                 @endif
                             @endfor    
                             @for($i = 0; $i < 3; $i++)
-                                @if ($i === 0 && !isset($directors[$i+1]))
-                                    <tr class="row-padding-botom">
-                                        <th span="2">Director</th>
-                                        <td class="link"span="2">
-                                            <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $directors[$i]['id'] }}">{{ $directors[$i]['name'] }}</a>
-                                        </td>
-                                    </tr>
-                                @elseif ($i === 0 && isset($directors[$i+1]))
-                                    <tr>
-                                        <th span="2">Directors</th>
-                                        <td class="link"span="2">
-                                            <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $directors[$i]['id'] }}">{{ $directors[$i]['name'] }}</a>
-                                        </td>
-                                    </tr>
-                                @elseif ($i === 2)
-                                    <tr class="table-flex-end row-padding-botom">
-                                        <td class="link"span="2">
-                                            <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $directors[$i]['id'] }}">{{ $directors[$i]['name'] }}</a>
-                                        </td>
-                                    </tr>
-                                @else
-                                    <tr class="table-flex-end">
-                                        <td class="link"span="2">
-                                            <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $directors[$i]['id'] }}">{{ $directors[$i]['name'] }}</a>
-                                        </td>
-                                    </tr>
+                                @if(isset($directors[$i]))
+                                    @if ($i === 0 && !isset($directors[$i+1]))
+                                        <tr class="row-padding-botom">
+                                            <th span="2">Director</th>
+                                            <td class="link"span="2">
+                                                <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $directors[$i]['id'] }}">{{ $directors[$i]['name'] }}</a>
+                                            </td>
+                                        </tr>
+                                    @elseif ($i === 0 && isset($directors[$i+1]))
+                                        <tr>
+                                            <th span="2">Directors</th>
+                                            <td class="link"span="2">
+                                                <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $directors[$i]['id'] }}">{{ $directors[$i]['name'] }}</a>
+                                            </td>
+                                        </tr>
+                                    @elseif ($i === 2)
+                                        <tr class="table-flex-end row-padding-botom">
+                                            <td class="link"span="2">
+                                                <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $directors[$i]['id'] }}">{{ $directors[$i]['name'] }}</a>
+                                            </td>
+                                        </tr>
+                                    @else
+                                        <tr class="table-flex-end">
+                                            <td class="link"span="2">
+                                                <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $directors[$i]['id'] }}">{{ $directors[$i]['name'] }}</a>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endif
                             @endfor
                             @for($i = 0; $i < 2; $i++)
@@ -125,32 +127,34 @@
                                 @endif
                             @endfor
                             @for($i = 0; $i < 3; $i++)
-                                @if ($i === 0 && $i === count($screenwriters)-1)
-                                    <tr class="row-padding-botom">
-                                        <th span="2">Writer</th>
-                                        <td class="link" span="2">
-                                            <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $screenwriters[$i]['id'] }}">{{ $screenwriters[$i]['name'] }}</a>
-                                        </td>
-                                    </tr>
-                                @elseif ($i === 0)
-                                    <tr>
-                                        <th span="2">Writers</th>
-                                        <td class="link" span="2">
-                                            <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $screenwriters[$i]['id'] }}">{{ $screenwriters[$i]['name'] }}</a>
-                                        </td>
-                                    </tr>
-                                @elseif ($i === 2)
-                                    <tr class="table-flex-end row-padding-botom">
-                                        <td class="link" span="2">
-                                            <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $screenwriters[$i]['id'] }}">{{ $screenwriters[$i]['name'] }}</a>
-                                        </td>
-                                    </tr>
-                                @else
-                                    <tr class="table-flex-end">
-                                        <td class="link" span="2">
-                                            <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $screenwriters[$i]['id'] }}">{{ $screenwriters[$i]['name'] }}</a>
-                                        </td>
-                                    </tr>
+                                @if(isset($screenwriters[$i]))
+                                    @if ($i === 0 && $i === count($screenwriters)-1)
+                                        <tr class="row-padding-botom">
+                                            <th span="2">Writer</th>
+                                            <td class="link" span="2">
+                                                <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $screenwriters[$i]['id'] }}">{{ $screenwriters[$i]['name'] }}</a>
+                                            </td>
+                                        </tr>
+                                    @elseif ($i === 0)
+                                        <tr>
+                                            <th span="2">Writers</th>
+                                            <td class="link" span="2">
+                                                <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $screenwriters[$i]['id'] }}">{{ $screenwriters[$i]['name'] }}</a>
+                                            </td>
+                                        </tr>
+                                    @elseif ($i === 2)
+                                        <tr class="table-flex-end row-padding-botom">
+                                            <td class="link" span="2">
+                                                <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $screenwriters[$i]['id'] }}">{{ $screenwriters[$i]['name'] }}</a>
+                                            </td>
+                                        </tr>
+                                    @else
+                                        <tr class="table-flex-end">
+                                            <td class="link" span="2">
+                                                <a href="http://{{ $_SERVER['HTTP_HOST'] }}/people/{{ $screenwriters[$i]['id'] }}">{{ $screenwriters[$i]['name'] }}</a>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endif
                             @endfor
                             @for($i = 0; $i < 5; $i++)
