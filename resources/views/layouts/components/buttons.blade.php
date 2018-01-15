@@ -34,6 +34,7 @@
 
 
 
+<script src="{{ asset('js/buttons.js') }}"></script>
 </body>
 </html>
 
