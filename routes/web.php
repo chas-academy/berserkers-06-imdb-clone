@@ -17,10 +17,6 @@ Route::get('/', function () {
 
 Route::get('/catalog','TitlesController@index')->name('catalog');
 
-Route::get('/inputs', function () {
-    return view('layouts.components.input');
-});
-
 Auth::routes();
 
 Route::get('/titles', 'TitlesController@index')->name('catalog');
