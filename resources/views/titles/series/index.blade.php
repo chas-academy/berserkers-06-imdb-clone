@@ -20,5 +20,10 @@
             {{ $loop->first ? '' : ', ' }}
             {{ $genre->name }}
         @endforeach</p>
+        <form method="POST" action="/titles/series/{{$serie->title_id}}">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <button type="submit">Delete</button>
+        </form>
     @endforeach
 @endsection

@@ -23,13 +23,13 @@ class Series extends Model
     
     public $incrementing = [false];
 
-    public function title()
+    public function titles()
     {
-        return $this->belongsTo('App\Title', 'titles');
+        return $this->belongsTo('App\Title', 'title_id');
     }
 
     public function seasons()
     {
-        return $this->hasMany('App\Season', 'seasons');
+        return $this->hasMany('App\Season', 'series_id');
     }
 }

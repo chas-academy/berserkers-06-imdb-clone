@@ -47,29 +47,29 @@
                <!-- Active burger menu-->
                <div class="navbar-menu" id="Options">
                   <div class="navbar-start" id="mobile-start">
-                     <a class="nav-item" href="#">Home</a>
-                     <a class="nav-item" href="#">Movies</a>
-                     <a class="nav-item" href="#">TV Series</a>
+                     <a class="nav-item" href="http://berzerkers.test/">Home</a>
+                     <a class="nav-item" href="http://berzerkers.test/catalog?type=movie">Movies</a>
+                     <a class="nav-item" href="http://berzerkers.test/catalog?type=series">TV Series</a>
                      <a class="nav-item" href="#">Genres</a>
-                     <a class="nav-item" href="#">Charts</a>
+                     <a class="nav-item" href="http://berzerkers.test/catalog?rating=descending">Charts</a>
                   </div>
                </div>
                <!-- Search bar -->
-               <div class="panel-block">
+               <form class="panel-block" method="GET" action="/catalog">
                   <p class="control has-icons-left">
-                     <input class="input is-medium" type="text" placeholder="search">
+                     <input name="title" class="input is-medium" type="text" placeholder="search">
                      <span class="icon is-medium is-left">
                      <i class="fa fa-search"></i>
                      </span>
                   </p>
-               </div>
+                </form>
             </nav>
          </div>
          <!-- Modal -->
          <div class="modal">
             <div class="modal-background"></div>
             <div class="modal-content">
-               @if (!Auth::user())
+               @if (!Auth::check())
                <header class "modal-card-head">
                   <p class="modal-card-title">Log in or Register</p>
                </header>
@@ -114,24 +114,24 @@
                      <div class="column is-12" id="col-1"></div>
                      <div class="columns is-multiline">
                         <div class="column is-3" id="col2-1"></div>
-                        <a id="item1" href="#">
+                        <a id="item1" href="http://berzerkers.test/catalog?type=movie">
                            Movies 
                            <div class="is-divider" data-content="OR"></div>
                         </a>
-                        <a id="genre1" href="#">Genres</a> <a id="chart1" href="#">Charts</a>
-                        <a id="item2" href="#">
+                        <a id="genre1" href="http://berzerkers.test/catalog?type=movie">Genres</a> <a id="chart1" href="http://berzerkers.test/catalog?type=movie&rating=descending">Charts</a>
+                        <a id="item2" href="http://berzerkers.test/catalog?type=series">
                            Tv Series 
                            <div class="is-divider" data-content="OR"></div>
                         </a>
-                        <a id="genre2" href="#">Genres</a> <a id="chart2" href="#">Charts</a>
-                        <div class="field has-addons column is-3">
+                        <a id="genre2" href="http://berzerkers.test/catalog?type=series">Genres</a> <a id="chart2" href="http://berzerkers.test/catalog?type=movie&rating=descending">Charts</a>
+                        <form class="field has-addons column is-3" method="GET" action="/catalog">
                            <div class="control desktop-search">
-                              <input class="input is-hovered" id="input-search" type="text" placeholder="Search..">
+                              <input name="title" class="input is-hovered" id="input-search" type="text" placeholder="Search..">
                            </div>
                            <div class="control button-search">
-                              <a class="button is-info">Search</a>
+                              <button type="submit" class="button is-info">Search</button>
                            </div>
-                        </div>
+                        </form>
                         <div class="column is-2" id="col3-1">
                             <!-- Log in / Register button here -->
                            <div class="field is-grouped" id="sign-reg">

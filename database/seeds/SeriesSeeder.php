@@ -64,7 +64,7 @@ class SeriesSeeder extends Seeder
 
                 if (isset($series->videos->results[0])) {
 
-                    $seriesArray += ['trailer' => "https://www.youtube.com/watch?v={$series->videos->results[0]->key}"];
+                    $seriesArray += ['trailer' => "https://www.youtube.com/embed/{$series->videos->results[0]->key}"];
                 }
 
                 if ($series->status !== "Returning Series" ) {

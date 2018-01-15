@@ -2,7 +2,7 @@
     <article class="page-content">
         <div class="centered-content">
             <section class="item-header">
-                <h1 id="hero-header">{{$movie->title}}</h1>
+                <h1 class="hero-header">{{$movie->title}}</h1>
             </section>
             <article class="item">
                 <section class="item-meta-info">
@@ -143,7 +143,7 @@
                     <figure class="card-image is-16by9">
                     <a class="fa fa-3x fa-youtube-play modal-button2"></a>
                     <div class="video-container">
-                        <iframe id="video" src="https://www.youtube.com/embed/cxcegktcxSM?enablejsapi=1" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                        <iframe id="video" src="{{$movie->trailer}}" frameborder="1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     </div>
                     @foreach($title->photos as $photo)
                         @if($photo->width == 780 && $photo->photo_type == "backdrop")
@@ -157,7 +157,6 @@
                     </figure>
                 </section>
             </article>
-            <a href="http://{{ $_SERVER['HTTP_HOST'] }}/titles/movies">Back to all movies</a>        
             <p>Rating: 
                 <?php
                     $ratingSummary = 0;
@@ -179,31 +178,13 @@
             @endif
         </div>
     </article>
-
     <div id="hz-carousel">
-    <div class="slide">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm_vy_NyJkBlROS2oYrgTB-axHwhmFA51CxsdgKH1fHC93M-k"/>
+        @foreach($title->photos as $photo)
+            @if($photo->width == 300)
+            <div class="slide">
+                <img src="{{ $photo->photo_path }}" alt="poster">
+            </div>
+            @endif
+        @endforeach
     </div>
-    <div class="slide">
-        <img src="http://frontrowcentral.com/wp-content/uploads/2015/06/Love-Mercy-2015--350x150.jpg"/>
-    </div>
-    <div class="slide">
-        <img src="http://s3.crackedcdn.com/phpimages/article/3/1/9/619319_v4.jpg"/>
-    </div>
-    <div class="slide">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm_vy_NyJkBlROS2oYrgTB-axHwhmFA51CxsdgKH1fHC93M-k"/>
-    </div>
-    <div class="slide">
-        <img src="http://frontrowcentral.com/wp-content/uploads/2015/06/Love-Mercy-2015--350x150.jpg"/>
-    </div>
-    <div class="slide">
-        <img src="http://s3.crackedcdn.com/phpimages/article/3/1/9/619319_v4.jpg"/>
-    </div>
-    <div class="slide">
-        <img src="http://placehold.it/300x150"/>
-    </div>
-    <div class="slide">
-        <img src="http://placehold.it/300x150"/>
-    </div>
-</div>
 @include('layouts.footer')

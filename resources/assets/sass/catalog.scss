@@ -1,5 +1,9 @@
 @import "header";
 
+main {
+    margin-bottom:200px;
+}
+
 .card-container {
     display: flex;
     margin-left: 20%;
@@ -16,6 +20,8 @@
     height: 50px;
     padding-top: 10px;
     border: 1px solid $orange;
+    display:flex;
+    justify-content: center;
 }
 
 .fa-star {

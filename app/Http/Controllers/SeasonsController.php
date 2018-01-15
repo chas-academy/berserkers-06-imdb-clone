@@ -7,9 +7,13 @@ use App\Season;
 use App\Series;
 use App\Title;
 use Illuminate\Http\Request;
+use App\Traits\DatabaseHelpers;
+use Illuminate\Support\Facades\Auth;
 
 class SeasonsController extends Controller
 {
+    use DatabaseHelpers;
+    
     /**
      * Display a listing of the resource.
      *
@@ -54,7 +58,7 @@ class SeasonsController extends Controller
      */
     public function show($series_id, $season_number)
     {
-        //
+       
         $series = Series::find($series_id);
         $season = Season::where('series_id', '=', $series_id)->where('season_number', '=', $season_number)->first();
         $episodes = Episode::where('season_id', '=', $season->title_id)->get();
@@ -92,8 +96,36 @@ class SeasonsController extends Controller
      * @param  \App\Season  $season
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Season $season)
+    public function destroy(Request $request, Season $season)
     {
-        //
+        if (Auth::user()->role === 1) {
+            $seasonId = $request->season_id;
+            $season = Season::find($seasonId);
+            $seasonTitle = Title::find($seasonId);
+            $episodes = Episode::where('season_id', '=', $seasonId)->get();
+            $seriesId = $season->series_id;
+            $series = Series::find($seriesId);
+
+            try {
+
+                foreach($episodes as $episode) {
+
+                    $episodeId = $episode->title_id;
+                    $episodeTitle = Title::find($episodeId);
+
+                    $this->detachAllFromItemAndDelete($episodeTitle, Episode::class, $episodeId);
+                }
+
+                $this->detachAllFromItemAndDelete($seasonTitle, Season::class, $seasonId);
+
+                $this->updateNumOfEpisodesAndSeasonsColumns($series);
+
+            } catch(Exception $e) {
+
+                return $e;
+            }
+        }
+
+        return redirect("/titles/series/$seriesId");  
     }
 }
