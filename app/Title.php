@@ -82,4 +82,8 @@ class Title extends Model
         return $this->belongsToMany('App\User', 'title_user_rating');
     } // all users that have rated this title
 
+    public function lists()
+    {
+        return $this->belongsToMany('App\UserList', 'title_list');
+    }
 }
