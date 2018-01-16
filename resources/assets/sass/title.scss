@@ -46,7 +46,7 @@
     width: 60%;
 }
 
-.h1-button {
+.h1-button, .title-container, .user-container {
     display: flex;
 }
 
@@ -60,10 +60,6 @@
     margin-left: 1em;
 }
 
-.title-container {
-    display: flex;
-}
-
 .review-title {
     font-size: 1.4em;
     margin-right: 1em;
@@ -72,10 +68,6 @@
 //star color
 .fa-star {
     color: gold;
-}
-
-.user-container {
-    display: flex;
 }
 
 .review-date, .review-user {
@@ -118,6 +110,29 @@
     color: white;
 }
 
+#rating-container {
+    display: inline-flex;
+}
+
+@media screen and (min-width: 300px) and (max-width: 349px) {
+
+    .review-container {
+        display: grid;
+        margin-left: 1em;
+    }
+
+    .review-header {
+        margin-right: 0.5em;
+    }
+}
+
+@media screen and (min-width: 350px) and (max-width: 480px) {
+
+    .review-container {
+        display: grid;
+        margin-left: 1em;
+    }
+}
 
 @media screen and (max-width: 1024px) {
 

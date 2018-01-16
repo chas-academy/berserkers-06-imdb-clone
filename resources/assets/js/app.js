@@ -65,38 +65,35 @@ function showTrailer() {
 
 showTrailer();
 
-//Comment
+//Review container and Comment container
 
 function showContent() {
 
   //Unfinished, only works with 1 button atm
+  //cancel and submit-comment buttons uses Id selector for now
 
   var commentButton = document.getElementsByClassName("comment-button");
   var commentContainer = document.querySelector(".create-comment");
-  var cancelButton = document.querySelector("#cancel-button");
-  var submitButton = document.querySelector("#submit-button");
+  var cancelButton = document.querySelector("#cancel-comment");
+  var submitButton = document.querySelector("#submit-comment");
   var reviewButton = document.querySelector("#review-button");
   var reviewContainer = document.querySelector(".make-review");
-  var cancelReview = document.querySelector(".cancel-review");
-  var submitReview = document.querySelector(".submit-review");
+  var cancelReview = document.querySelector("#cancel-review");
+  var submitReview = document.querySelector("#submit-review");
 
   for (var i = 0; i < commentButton.length; i++) {
     commentButton[i].onclick = function (e) {
       e.target;
       commentContainer.style.display = "block";
-      //commentButton.style.display = "none";
     }
   }
 
-
   cancelButton.onclick = function () {
     commentContainer.style.display = "none";
-    commentButton.style.display = "inline-block";
   }
 
   submitButton.onclick = function () {
     commentContainer.style.display = "none";
-    commentButton.style.display = "inline-block";
   }
 
   reviewButton.onclick = function () {
