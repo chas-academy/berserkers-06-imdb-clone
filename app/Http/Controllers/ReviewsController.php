@@ -24,16 +24,12 @@ class ReviewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
         //
-        $id = session('title_id');
         $title = Title::find($id);
         if(!Auth::check()) {
             return redirect()->route('login');
-        }
-        if(empty(session('title_id'))) {
-            return back();
         }
         return view('reviews.create', ['title' => $title]);
     }

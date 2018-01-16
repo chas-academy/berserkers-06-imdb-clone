@@ -213,7 +213,7 @@
             </section>
         </article>     
         <p>Rating: 
-            <?php
+            @php
                 $ratingSummary = 0;
                 $i = 0;
                 foreach ($title->ratings as $rating) {
@@ -226,10 +226,10 @@
                     $ratingSummary = $ratingSummary / $i;
                     echo $ratingSummary;
                 }
-            ?>
+            @endphp
         </p>
         @if(Auth::check())
-            <a href="http://{{ $_SERVER['HTTP_HOST'] }}/reviews/create">Create a review</a>
+            <a href="{{ route('createReviews', $title->id) }}">Create a review</a>
         @endif
     </div>
 </article>

@@ -44,5 +44,6 @@ Route::get('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_
 
 Route::resource('people', 'PeopleController');
 Route::resource('reviews', 'ReviewsController');
+Route::get('reviews/create/{title_id}', 'ReviewsController@create')->name('createReviews');
 Route::resource('comments', 'CommentsController');
 Route::resource('users', 'UsersController');

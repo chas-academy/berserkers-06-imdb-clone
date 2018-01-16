@@ -1,8 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <h2>Creating review about "{{$title->title}}"</h2>
-    <h1>ID: {{$title->title_id}} (test)</h1>
+    @if($title->movie)
+    <h2>Creating review about "{{$title->movie->title}}"</h2>
+    @elseif($title->series)
+    <h2>Creating review about "{{$title->series->title}}"</h2>
+    @else
+        @php
+            header('location: /');
+        @endphp
+        if not a serie or movie - redirect back somehow pls be done
+    @endif
     <form method="post" action="{{ route('reviews.store') }}">
         {{ csrf_field() }}
         <input type="hidden" name="_method" value="put">
