@@ -46,6 +46,6 @@ class User extends Authenticatable
     }
 
     public function ratedTitles(){
-        return $this->belongsToMany('App\Title', 'title_user_rating');
+        return $this->belongsToMany('App\Title', 'title_user_rating', 'user_id');
     } // all titles a user have rated
 }
