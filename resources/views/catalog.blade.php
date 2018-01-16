@@ -39,30 +39,30 @@
                 <div class="image-content">
                     <p>
                         <form method="POST" action="/titles/{{$title['id']}}/rate">
-                                {{ csrf_field() }}
-                                {{ method_field('PUT') }}
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }}
                             <select type="hidden" name="rating">
                                 @foreach ($all_ratings as $rating)
                                 <option value="{{$rating->id}}">{{$rating->rating}}</option>
                                 @endforeach
                             </select>
                             <button class="rating" type="submit" border="none"><i class="fa fa-lg fa-star" aria-hidden="true"></i></button>
+                            <?php
+                                $ratingSummary = 0;
+                                $i = 0;
+                                foreach ($title['ratings'] as $rating) {
+                                    $ratingSummary = $ratingSummary + $rating['rating'];
+                                    $i++;
+                                }
+                                if ($i == 0) {
+                                    echo "-";
+                                } else {
+                                    $ratingSummary = $ratingSummary / $i;
+                                    echo $ratingSummary;
+                                }
+                            ?>
                         </form>
-                        <?php
-                            $ratingSummary = 0;
-                            $i = 0;
-                            foreach ($title['ratings'] as $rating) {
-                                $ratingSummary = $ratingSummary + $rating['rating'];
-                                $i++;
-                            }
-                            if ($i == 0) {
-                                echo "-";
-                            } else {
-                                $ratingSummary = $ratingSummary / $i;
-                                echo $ratingSummary;
-                            }
-                        ?>
-                           |
+                        |
                         @foreach ($title['genres'] as $key => $genre)
                             @if($key < 2)
                             {{$genre['name']}}
@@ -71,8 +71,9 @@
                                 @endif
                             @endif
                         @endforeach
-                        | Add
-                        <a href="#">
+                        | 
+                        <a href="#"> 
+                            Add 
                             <i class="fa fa-lg fa-bookmark" aria-hidden="true"></i>
                         </a>
                     </p>
@@ -123,23 +124,31 @@
                 </a>
                 <div class="image-content">
                     <p>
-                        <a href="#">
-                            <i class="fa fa-lg fa-star" aria-hidden="true"></i>
-                        </a> 
-                        <?php
-                            $ratingSummary = 0;
-                            $i = 0;
-                            foreach ($title['ratings'] as $rating) {
-                                $ratingSummary = $ratingSummary + $rating->rating;
-                                $i++;
-                            }
-                            if ($i == 0) {
-                                echo "-";
-                            } else {
-                                $ratingSummary = $ratingSummary / $i;
-                                echo $ratingSummary;
-                            }
-                        ?>
+                        <form method="POST" action="/titles/{{$title['id']}}/rate">
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }}
+                            <select type="hidden" name="rating">
+                                @foreach ($all_ratings as $rating)
+                                <option value="{{$rating->id}}">{{$rating->rating}}</option>
+                                @endforeach
+                            </select>
+                            <button class="rating" type="submit" border="none"><i class="fa fa-lg fa-star" aria-hidden="true"></i></button>
+                            <?php
+                                $ratingSummary = 0;
+                                $i = 0;
+                                foreach ($title['ratings'] as $rating) {
+                                    $ratingSummary = $ratingSummary + $rating->rating;
+                                    $i++;
+                                }
+                                if ($i == 0) {
+                                    echo "-";
+                                } else {
+                                    $ratingSummary = $ratingSummary / $i;
+                                    echo $ratingSummary;
+                                }
+                            ?>
+                        </form>
+                      
                         |
                         @foreach ($title['genres'] as $key => $genre)
                             @if($key < 2)
@@ -149,8 +158,9 @@
                                 @endif
                             @endif
                         @endforeach
-                        | Add
+                        |
                         <a href="#">
+                            Add 
                             <i class="fa fa-lg fa-bookmark" aria-hidden="true"></i>
                         </a>
                     </p>
@@ -203,10 +213,16 @@
             </a>
             <div class="image-content">
                 <p>
-                    <a href="#">
-                        <i class="fa fa-lg fa-star" aria-hidden="true"></i>
-                    </a> 
-                    <?php
+                    <form method="POST" action="/titles/{{$title['id']}}/rate">
+                        {{ csrf_field() }}
+                        {{ method_field('PUT') }}
+                        <select type="hidden" name="rating">
+                            @foreach ($all_ratings as $rating)
+                            <option value="{{$rating->id}}">{{$rating->rating}}</option>
+                            @endforeach
+                        </select>
+                        <button class="rating" type="submit" border="none"><i class="fa fa-lg fa-star" aria-hidden="true"></i></button>
+                        <?php
                         $ratingSummary = 0;
                         $i = 0;
                         foreach ($title['ratings'] as $rating) {
@@ -219,7 +235,8 @@
                             $ratingSummary = $ratingSummary / $i;
                             echo $ratingSummary;
                         }
-                    ?>
+                        ?>
+                    </form>
                     |
                     @foreach ($title['genres'] as $key => $genre)
                         @if($key < 2)
@@ -229,8 +246,9 @@
                             @endif
                         @endif
                     @endforeach
-                    | Add
+                    | 
                     <a href="#">
+                        Add 
                         <i class="fa fa-lg fa-bookmark" aria-hidden="true"></i>
                     </a>
                 </p>
