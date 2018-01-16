@@ -38,14 +38,21 @@
                 </a>
                 <div class="image-content">
                     <p>
-                        <a href="#">
-                            <i class="fa fa-lg fa-star" aria-hidden="true"></i>
-                        </a> 
+                        <form method="POST" action="/titles/{{$title['id']}}/rate">
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
+                            <select type="hidden" name="rating">
+                                @foreach ($all_ratings as $rating)
+                                <option value="{{$rating->id}}">{{$rating->rating}}</option>
+                                @endforeach
+                            </select>
+                            <button class="rating" type="submit" border="none"><i class="fa fa-lg fa-star" aria-hidden="true"></i></button>
+                        </form>
                         <?php
                             $ratingSummary = 0;
                             $i = 0;
                             foreach ($title['ratings'] as $rating) {
-                                $ratingSummary = $ratingSummary + $rating->rating;
+                                $ratingSummary = $ratingSummary + $rating['rating'];
                                 $i++;
                             }
                             if ($i == 0) {
