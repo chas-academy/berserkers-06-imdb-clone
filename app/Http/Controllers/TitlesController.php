@@ -6,6 +6,7 @@ use App\Title;
 use App\Movie;
 use App\Series;
 use App\Episode;
+use App\Rating;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Traits\DatabaseHelpers;
@@ -20,9 +21,11 @@ class TitlesController extends Controller
      */
     public function index(Request $request)
     {   
+        $allRatings = Rating::all();
+
         $q = $request->title;
         $t = $request->type;
-
+        
         $titlesIds = [];
         
         if(!isset($q)) {
@@ -130,8 +133,8 @@ class TitlesController extends Controller
             $page,
             ['path' => $request->url(), 'query' => $request->query()]
         );
-        
-        return view('catalog', ['titles' => $titles]);
+        //dd($titles->items()[0]['ratings']);
+        return view('catalog', ['titles' => $titles, 'all_ratings' => $allRatings]);
     }
 
     /**
@@ -198,5 +201,30 @@ class TitlesController extends Controller
     public function destroy(Title $title)
     {
         //
+    }
+
+    public function rate(Request $request, Title $title) 
+    {
+        $user = $request->user();
+        $titleId = $title->id;
+        $ratingId = $request->rating;
+
+        try {
+            
+            $title = $user->ratedTitles->where('id', '=', $titleId)->first();
+            
+            if (isset($title)) {
+    
+                $title->users()->detach();
+            }
+            
+            $user->ratedTitles()->attach($titleId, ['rating_id' => $ratingId]);
+
+        } catch (Exception $e) {
+
+            return redirect(url()->previous())->with('error', $e);
+        }
+        
+        return redirect(url()->previous());
     }
 }
