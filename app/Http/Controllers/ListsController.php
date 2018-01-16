@@ -50,11 +50,11 @@ class ListsController extends Controller
           ]);
 
         } catch (Exception $e) {
-          
-          return redirect('/lists')->with('erroe', $e);
+
+          return redirect(url()->previous())->with('error', $e);
         }
 
-        return redirect('/lists');
+        return redirect(url()->previous());
     }
 
     /**
@@ -124,7 +124,7 @@ class ListsController extends Controller
       
       $list->titles()->toggle($title_id);
 
-      return redirect('/lists');
+      return redirect(url()->previous());
 
     }
 
@@ -145,9 +145,9 @@ class ListsController extends Controller
  
        } catch (Excepition $e) {
 
-         return redirect('/lists')->with('error', $e);
+         return redirect(url()->previous())->with('error', $e);
        }
       
-       return redirect('/lists');
+       return redirect(url()->previous());
     }
 }
