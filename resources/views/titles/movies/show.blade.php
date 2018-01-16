@@ -173,9 +173,6 @@
                     }
                 @endphp
             </p>
-            @if(Auth::check())
-                <a href="{{ route('createReviews', $title->id) }}">Create a review</a>
-            @endif
         </div>
     </article>
     <div id="hz-carousel">
@@ -185,6 +182,20 @@
                 <img src="{{ $photo->photo_path }}" alt="poster">
             </div>
             @endif
+        @endforeach
+    </div>
+
+    <div>
+        <h2>Reviews</h2>
+        @if(Auth::check())
+            <a href="{{ route('createReviews', $title->id) }}">Create a review</a>
+        @endif
+        @foreach($title->reviews as $review)
+            <article>
+                <h3>{{ $review->title }}</h3>
+                <h4>by {{ $review->user->username }}</h4>
+                <p>{{ $review->body }}</p>
+            </article>
         @endforeach
     </div>
 @include('layouts.footer')

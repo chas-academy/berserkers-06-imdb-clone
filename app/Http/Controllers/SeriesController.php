@@ -65,7 +65,6 @@ class SeriesController extends Controller
         $seasons = $series->seasons;
         $title = $series->titles;
 
-        session(['title_id' => $id]);
         $actors = [];
         $producers = [];
         $directors = [];
