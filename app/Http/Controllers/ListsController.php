@@ -99,31 +99,44 @@ class ListsController extends Controller
      */
     public function update(Request $request, UserList $list)
     { 
+
       if (isset($request->title_id)) {
 
         $title_id = $request->title_id;
 
       } else {
 
+
         if ($request->type === 'movie') {
-          
-          $title = Movie::where('title', $request->name)->firstOrFail(); 
+
+          $title = Movie::where('title', $request->name)->first(); 
+
   
         } elseif ($request->type === 'series'){
   
-          $title = Series::where('title', $request->name)->firstOrFail(); 
+          $title = Series::where('title', $request->name)->first(); 
   
         } elseif ($request->type === 'episode'){
           
-          $title = Episode::where('name', $request->name)->firstOrFail(); 
+          $title = Episode::where('name', $request->name)->first(); 
           
         }
 
-        $title_id = $title->title_id;
+        if(isset($title)) {
+          $title_id = $title->title_id;
+        }
+        
+      }
+
+      if (isset($title_id)) {
+        
+        $list->titles()->toggle($title_id);
+
+      } else {
+
+        return redirect(url()->previous())->with('error', 'Title not found in database');  
       }
       
-      $list->titles()->toggle($title_id);
-
       return redirect(url()->previous());
 
     }
