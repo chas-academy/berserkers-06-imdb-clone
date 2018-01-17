@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/userpage','UsersController@index')->name('userpage');
+
 Route::get('/catalog','TitlesController@index')->name('catalog');
 
 Auth::routes();
