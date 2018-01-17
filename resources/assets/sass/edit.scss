@@ -2,7 +2,47 @@
 
 main {
 
+  display:flex;
+  justify-content: center;
   margin-bottom:200px;
+  width: 80%;
+  margin-left:auto;
+  margin-right: auto;
+
+  .title-to-add-search {
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin:10em;
+    
+    section {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      input {
+        margin: 2em;
+      }
+
+      div{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        margin: 2em;
+
+        h4 {
+          border: 0.2em dotted $pink;
+        }
+
+        button {
+          margin: auto 2em;
+        }
+      }
+    }
+  }
 }
+
+
 
 @import "footer";
