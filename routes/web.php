@@ -32,6 +32,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}/edit', 'EpisodesController@edit')->name('edit');
     Route::put('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@update');
     Route::delete('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@destroy');
+    Route::resource('lists', 'ListsController')->name('index', 'lists');
+    Route::put('titles/{title}/rate', 'TitlesController@rate');
 });
 
 Route::get('titles/series/{series}','SeriesController@show' )->name("title");
@@ -46,3 +48,4 @@ Route::resource('people', 'PeopleController');
 Route::resource('reviews', 'ReviewsController');
 Route::resource('comments', 'CommentsController');
 Route::resource('users', 'UsersController');
+

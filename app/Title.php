@@ -74,12 +74,16 @@ class Title extends Model
 
     public function ratings()
     {
-        return $this->belongsToMany('App\Rating', 'title_user_rating');
+        return $this->belongsToMany('App\Rating', 'title_user_rating', 'title_id');
     } // all 1 - 10 ratings this title recieved
 
     public function users()
     {
-        return $this->belongsToMany('App\User', 'title_user_rating');
+        return $this->belongsToMany('App\User', 'title_user_rating', 'title_id');
     } // all users that have rated this title
 
+    public function lists()
+    {
+        return $this->belongsToMany('App\UserList', 'title_list');
+    }
 }
