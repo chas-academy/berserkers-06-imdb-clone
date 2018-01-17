@@ -48,7 +48,11 @@
             <input name="season" required>
             @endif
             <input name="type" type="hidden" value="{{$type}}">
+            @if($type == 'movie')
+            <button type="submit" class="button is-success">Add</button>
+            @else()
             <button type="submit" class="button is-success">Add/Update</button>
+            @endif
           </form>
         </div>
       @endforeach
