@@ -7,6 +7,10 @@ use App\Movie;
 use App\Series;
 use App\Episode;
 use App\Rating;
+use App\Genre;
+use App\Photo;
+use App\Person;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Traits\DatabaseHelpers;
@@ -59,8 +63,6 @@ class TitlesController extends Controller
             }
 
         }
-
-
 
         $titles = Title::whereIn('id', $titlesIds)->get();
       
@@ -115,7 +117,6 @@ class TitlesController extends Controller
                 $title['genres'] = $genres;
                 $title['photos'] = $series->titles->photos;
                 $title->load(['directors', 'ratings', 'episode']);
-
             } 
         }
         
@@ -133,7 +134,7 @@ class TitlesController extends Controller
             $page,
             ['path' => $request->url(), 'query' => $request->query()]
         );
-        //dd($titles->items()[0]['ratings']);
+        
         return view('catalog', ['titles' => $titles, 'all_ratings' => $allRatings]);
     }
 
@@ -142,9 +143,32 @@ class TitlesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 251]);
+
+        if(isset($request->name)) {
+
+            $name = $request->name;
+            $type = $request->type;
+
+            if($request->type == 'series') {
+
+                $response = $client->request('GET',"search/tv?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
+                $response = json_decode($response->getBody());
+                $titles = $response->results;
+    
+            } else {
+            
+                $response = $client->request('GET',"search/movie?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
+                $response = json_decode($response->getBody());
+                $titles = $response->results;
+            }
+
+            return view('admin.addtitle', ['titles' => $titles, 'type' => $type]);    
+        }
+        return view('admin.addtitle');
+
     }
 
     /**
@@ -155,7 +179,20 @@ class TitlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $titleId = $request->title_id;
+
+        if ($request->type == 'movie') {
+
+            $this->addMovieToDb($titleId);
+
+        } elseif ($request->type == 'series') {
+
+            $this->addSeriesToDb($titleId);
+
+        } 
+
+        return redirect(url()->previous())->with('messege', 'sucess');
     }
 
     /**
