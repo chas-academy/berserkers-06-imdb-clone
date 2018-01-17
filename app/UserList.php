@@ -19,9 +19,8 @@ class UserList extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
-    public function titles()
+    public function titleLists() 
     {
-        return $this->belongsToMany('App\Title', 'title_list');
+        return $this->hasMany('App\TitleList', 'user_list_id');
     }
-
 }
