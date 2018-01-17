@@ -29,6 +29,11 @@
           @else 
           <h3>{{$title->title}}</h3>
           @endif
+          @if(isset($title->release_date))
+          <p>({{substr($title->release_date, 0 , 4)}})</p>
+          @else
+          <p>({{substr($title->first_air_date, 0 , 4)}})</p>
+          @endif
           <form method="POST" action="/titles/store">
             {{ csrf_field() }}
             <input name="title_id" type="hidden" value="{{$title->id}}">
