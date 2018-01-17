@@ -5,35 +5,63 @@
       <section class="mylists">
         <h3>{{$list->name}}</h3>
         <ul>
-        @foreach ($list->titles as $title)
-          <li class="list-item">
-            @if($title->type == 'movie')
-              <a href="/titles/movies/{{$title->id}}">
-                {{$title->movie->title}}
-              </a>
-            @endif
-            @if($title->type == 'series')
-              <a href="/titles/series/{{$title->id}}">
-                {{$title->series->title}}            
-              </a>
-            @endif
-            @if($title->type == 'episode')
-              <a href="/titles/series/{{$title->episode->first()->season->series_id}}/seasons/{{$title->episode->first()->season->season_number}}/episodes/{{$title->episode->first()->episode_number}}">
-                {{$title->episode->first()->name}}           
-              </a> 
-            @endif
-            <form method="POST" action="/lists/{{$list->id}}">
-              {{ csrf_field() }}
-              {{ method_field('PUT') }}
-              <input type="hidden" name="type" value="{{$title->type}}">
-              <input type="hidden" name="title_id" value="{{$title->id}}">
-              <button class="button is-danger" type="submit">Remove from List</button>
-            </form>
-          </li>
+        @foreach ($list->titleLists->sortBy('list_index') as $titleList)
+            <li class="list-item">
+              @if($titleList->title->type == 'movie')
+                <a href="/titles/movies/{{$titleList->title->id}}">
+                  {{$titleList->title->movie->title}}
+                </a>
+              @endif
+              @if($titleList->title->type == 'series')
+                <a href="/titles/series/{{$titleList->title->id}}">
+                  {{$titleList->title->series->title}}            
+                </a>
+              @endif
+              @if($titleList->title->type == 'episode')
+                <a href="/titles/series/{{$titleList->title->episode->first()->season->series_id}}/seasons/{{$title->episode->first()->season->season_number}}/episodes/{{$title->episode->first()->episode_number}}">
+                  {{$titleList->title->episode->first()->name}}           
+                </a> 
+              @endif
+              <form method="POST" action="/lists/{{$list->id}}">
+                {{ csrf_field() }}
+                {{ method_field('PUT') }}
+                <input type="hidden" name="title_id" value="{{$titleList->title->id}}">
+                <input type="hidden" name="old_list_index" value="{{$titleList->list_index}}">
+                <select name="list_index">
+                    @foreach($list->titleLists->sortBy('list_index') as $titleListIndex)
+                      @if($titleList->list_index == $titleListIndex->list_index )
+                      <option value="{{$titleListIndex->list_index}}" selected="selected">{{$titleListIndex->list_index}}</option>
+                      @else 
+                      <option value="{{$titleListIndex->list_index}}" >{{$titleListIndex->list_index}}</option>
+                      @endif
+                    @endforeach
+                </select>
+                <button class="button is-primary" type="submit">Change Order</button>
+              </form>
+              <form method="POST" action="/lists/{{$list->id}}">
+                {{ csrf_field() }}
+                {{ method_field('PUT') }}
+                <input type="hidden" name="title_id" value="{{$titleList->title->id}}">
+                <input type="hidden" name="list_index" value="{{$titleList->list_index}}">
+                <input type="hidden" name="remove" value="true">
+                <button class="button is-danger" type="submit">Remove from List</button>
+              </form>
+            </li>
         @endforeach
         <form method="POST" action="/lists/{{$list->id}}">
           {{ csrf_field() }}
           {{ method_field('PUT') }}
+          <lable for="list_index">Placement in List: </lable>
+          <select name="list_index">
+              @if(isset($list->titleLists[0]))
+                @foreach($list->titleLists->sortBy('list_index') as $titleList)
+                <option value="{{$titleList->list_index}}">{{$titleList->list_index}}</option>
+                @endforeach
+                <option value ="{{$list->titleLists->last()->list_index +1 }}">{{$list->titleLists->sortBy('list_index')->last()->list_index + 1 }}</option>
+              @else
+                <option value ="1">1</option>
+              @endif
+          </select>
           <lable for="type">Type: </lable>
           <select name="type">
             <option value="movie">Movie</option>
