@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Userlist;
+use App\TitleList;
 use App\User;
 use App\Title;
 use App\Movie;
@@ -24,11 +25,11 @@ class ListsController extends Controller
      */
     public function index(Request $request)
     {
-        $user = $request->user();
 
-        $lists = $user->lists;
+      $user = $request->user();
 
-
+      $lists = $user->lists;
+     
       return view('users.lists', [
         'lists' => $lists, 
         ]);
@@ -50,11 +51,11 @@ class ListsController extends Controller
           ]);
 
         } catch (Exception $e) {
-          
-          return redirect('/lists')->with('erroe', $e);
+
+          return redirect(url()->previous())->with('error', $e);
         }
 
-        return redirect('/lists');
+        return redirect(url()->previous());
     }
 
     /**
@@ -99,32 +100,130 @@ class ListsController extends Controller
      */
     public function update(Request $request, UserList $list)
     { 
+
+      $orderdList = $list->titleLists->sortBy('list_index')->values()->all();
+
+      $listIndex = $request->list_index;
+      
       if (isset($request->title_id)) {
 
-        $title_id = $request->title_id;
+        $titleId = $request->title_id;
+        
+        if (isset($request->old_list_index)) {
+
+          $oldIndex = $request->old_list_index;
+          
+          if ($listIndex < $oldIndex) {
+            
+            foreach ($orderdList as $key => $title) {
+                
+                if ($listIndex == $title->list_index) {
+                  
+                    for ($i = $key; $i < $oldIndex ; $i++) {
+
+                      $orderdList[$i]->increment('list_index');
+                    } 
+
+                    $rowToUpdate = $list->titleLists->where('title_id', '=', $titleId)->first();
+                    $rowToUpdate->list_index = $listIndex;
+                    $rowToUpdate->save();
+
+                    return redirect(url()->previous());
+                } 
+            }
+
+          } elseif ($listIndex > $oldIndex) {
+            
+            foreach ($orderdList as $key => $title) {
+              
+              if (($oldIndex + 1) == $title->list_index) {
+                
+                for ($i = $key; $i < $listIndex ; $i++) {
+                  
+                  $orderdList[$i]->decrement('list_index');
+                }
+
+                $rowToUpdate = $list->titleLists->where('title_id', '=', $titleId)->first();
+                $rowToUpdate->list_index = $listIndex;
+                $rowToUpdate->save();
+
+                return redirect(url()->previous());
+              } 
+            }        
+          }
+
+        } elseif (isset($request->remove)) {
+          
+          foreach ($orderdList as $key => $title) {
+            
+            if (($listIndex+1) == $title->list_index) {
+              
+              for ($i = $key; $i < count($orderdList); $i++) {
+        
+                $orderdList[$i]->decrement('list_index');
+              }
+
+              $toBeRemoved= TitleList::where([['user_list_id', '=', $list->id],[ 'title_id', '=', $titleId]])->first();
+              $toBeRemoved->delete();
+              return redirect(url()->previous());
+            } 
+          }
+          
+        } else {
+
+          $listIndex = count($list->titleLists) +1;
+          TitleList::insert(['user_list_id' => $list->id, 'title_id' => $titleId, 'list_index' => $listIndex ]);
+          
+        }
+        
+        return redirect(url()->previous());
 
       } else {
+        
 
         if ($request->type === 'movie') {
-          
-          $title = Movie::where('title', $request->name)->firstOrFail(); 
+
+          $title = Movie::where('title', $request->name)->first(); 
+
   
         } elseif ($request->type === 'series'){
-  
-          $title = Series::where('title', $request->name)->firstOrFail(); 
-  
+          
+          $title = Series::where('title', $request->name)->first(); 
+
         } elseif ($request->type === 'episode'){
           
-          $title = Episode::where('name', $request->name)->firstOrFail(); 
+          $title = Episode::where('name', $request->name)->first(); 
           
         }
 
-        $title_id = $title->title_id;
+        if(isset($title)) {
+
+          $titleId = $title->title_id;
+        }
+        
+      }
+
+      if (isset($titleId)) {
+        
+        foreach ($orderdList as $key => $title) {
+            
+            if ($listIndex == $title->list_index) {
+              
+                for ($i = $key; $i < count($orderdList) ; $i++) {
+
+                  $orderdList[$i]->increment('list_index');
+                } 
+            } 
+        }
+
+        TitleList::insert(['user_list_id' => $list->id, 'title_id' => $titleId, 'list_index' => $listIndex ]);
+        return redirect(url()->previous());
+
+      } else {
+
+        return redirect(url()->previous())->with('error', 'Title not found in database');  
       }
       
-      $list->titles()->toggle($title_id);
-
-      return redirect('/lists');
 
     }
 
@@ -139,15 +238,14 @@ class ListsController extends Controller
 
        try {
 
-        $list->titles()->detach();
-
+        TitleList::where('user_list_id','=', $list->id)->delete();
         UserList::where('id', '=',  $list->id)->delete();
  
        } catch (Excepition $e) {
 
-         return redirect('/lists')->with('error', $e);
+         return redirect(url()->previous())->with('error', $e);
        }
       
-       return redirect('/lists');
+       return redirect(url()->previous());
     }
 }
