@@ -64,3 +64,49 @@ function showTrailer() {
 }
 
 showTrailer();
+
+//Review container and Comment container
+
+function showContent() {
+
+  //Unfinished, only works with 1 button atm
+  //cancel and submit-comment buttons uses Id selector for now
+
+  var commentButton = document.getElementsByClassName("comment-button");
+  var commentContainer = document.querySelector(".create-comment");
+  var cancelButton = document.querySelector("#cancel-comment");
+  var submitButton = document.querySelector("#submit-comment");
+  var reviewButton = document.querySelector("#review-button");
+  var reviewContainer = document.querySelector(".make-review");
+  var cancelReview = document.querySelector("#cancel-review");
+  var submitReview = document.querySelector("#submit-review");
+
+  for (var i = 0; i < commentButton.length; i++) {
+    commentButton[i].onclick = function (e) {
+      e.target;
+      commentContainer.style.display = "block";
+    }
+  }
+
+  cancelButton.onclick = function () {
+    commentContainer.style.display = "none";
+  }
+
+  submitButton.onclick = function () {
+    commentContainer.style.display = "none";
+  }
+
+  reviewButton.onclick = function () {
+    reviewContainer.style.display = "block";
+  }
+
+  cancelReview.onclick = function () {
+    reviewContainer.style.display = "none";
+  }
+
+  submitReview.onclick = function () {
+    reviewContainer.style.display = "none";
+  }
+}
+
+showContent();
