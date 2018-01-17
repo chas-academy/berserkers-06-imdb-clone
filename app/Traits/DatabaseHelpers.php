@@ -1256,7 +1256,7 @@ trait DatabaseHelpers
             
             foreach($series->seasons as $key => $season) {
               
-                if ($seasonNumber -1 == $key || ($series->seasons[0]->season_number == 0 && $seasonNumber == $key)) {
+                if ( ($seasonNumber -1 == $key && $series->seasons[0]->season_number != 0 ) || ($series->seasons[0]->season_number == 0 && $seasonNumber == $key) ) {
                   
                     $seasonTitle = $existingSeries->seasons[$seasonNumber-1];
                     
