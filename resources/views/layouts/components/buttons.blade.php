@@ -18,6 +18,9 @@
     <div class="rating"> 
 
 <span class="heading">User Rating</span>
+
+<p>based on user rates.</p>
+<hr style="border:3px solid #f1f1f1">
   <button class="star1"><i class="fa fa-star"></i></button>
   <button class="star2"><i class="fa fa-star"></i></button> 
   <button class="star3"><i class="fa fa-star"></i></button>
