@@ -4,19 +4,24 @@
     <div>
     <form method="GET" action="/titles/create">
       {{ csrf_field() }}
-      <select name="type" required>
-        <option value="movie">Movie</option>
-        <option value="series">Series</option>
-      </select>
-      <input name="name" placeholder="title name here" required>
-      <button type="submit" >Search</button>
+      <div class="select">
+        <select name="type" required>
+          <option value="movie">Movie</option>
+          <option value="series">Series</option>
+        </select>
+      </div>
+      <div>
+        <input class="input" name="name" placeholder="Search" required>
+        <button type="submit" class="button is-success">Search</button>
+      </div>
     </form>
   </div>
   </section>
   <section>
     @isset($titles)
       @foreach ($titles as $title)
-        <div>
+        <div class="card">
+          <figure class="card image is-9By16">
           @if($title->poster_path != null)
           <img src="https://image.tmdb.org/t/p/w90{{$title->poster_path}}">
           @elseif ($title->poster_path != null)
@@ -24,6 +29,7 @@
           @else 
             <h4>No Image available</h4>
           @endif
+          </figure>
           @if(isset($title->name))
           <h3>{{$title->name}}</h3>
           @else 
@@ -42,7 +48,7 @@
             <input name="season" required>
             @endif
             <input name="type" type="hidden" value="{{$type}}">
-            <button type="submit">Add to Database</button>
+            <button type="submit" class="button is-success">Add/Update</button>
           </form>
         </div>
       @endforeach
