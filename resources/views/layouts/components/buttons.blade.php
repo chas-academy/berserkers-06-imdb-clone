@@ -14,18 +14,19 @@
       <link href="{{asset('css/buttons.css')}}" rel="stylesheet">
    </head>
   </body>
-<div class="container">
+  <div class="buttons has-addons is-centered">
+    <div class="rating"> 
 
-<div class="box has-text-centered">
-  <div class="rating"> 
-  <span class="fa fa-star icon is-large" id="star"></span>
-  <span class="fa fa-star icon is-large" id="star"></span>
-  <span class="fa fa-star icon is-large" id="star"></span>
-  <span class="fa fa-star icon is-large" id="star"></span>
-  <span class="fa fa-star icon is-large" id="star"></span>
+<span class="heading">User Rating</span>
+  <button class="star1"><i class="fa fa-star"></i></button>
+  <button class="star2"><i class="fa fa-star"></i></button> 
+  <button class="star3"><i class="fa fa-star"></i></button>
+  <button class="star4"><i class="fa fa-star"></i></button>
+  <button class="star5"><i class="fa fa-star"></i></button>
+
 </div>
-</div> 
 </div>
+
 
 
 

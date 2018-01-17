@@ -7,51 +7,17 @@ body{
   background: 
   rgba(51, 51, 51, 0.7);
 }
-.rating{
 
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
+.star1:hover {
+  background-color: rgba(132, 150, 29, 0.555);
 }
 
-.rating label{
-display: block;
-cursor: pointer;
-width: 50%;
-background: yellow;
-
-
+.heading {
+  font-size: 25px;
+  margin-right: 25px;
 }
 
-.rating label before{
 
-  content: '\f005';
-  font-family: fontAwesome;
-  position: relative;
-  display: block; 
-color: blue;
-}
-
-.rating label after
-
-{
-content: '\f005';
-font-family: fontAwesome;
-position: relative;
-display: block;
-font-size: 50%;
-color: red;
-top: 0;
-opacity: 1;
-transition: -5;
-text-shadow: 0 2px 5px #FCA135;
-
-}
-
-.rating label:hover:after
-.rating input:checked~label:after{
-
-  opacity: 1,
+.fa {
+  font-size: 25px;
 }
