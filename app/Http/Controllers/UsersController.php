@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -57,8 +58,11 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        dd('hej');
-        return view('users.settings',['user' => $user]);
+        
+        if(Auth::user()->id == $user->id) {
+            
+            return view('users.settings',['user' => $user]);
+        }
     }
 
     /**
@@ -69,8 +73,40 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
-    {
-        //
+    {   
+        
+        $request->validate([
+            'firstname' => 'required|max:191',
+            'surname' => 'required|max:191',
+            'username' => 'required|max:255',
+            'email' => 'required|max:191'
+        ]);
+
+        $existingUser = User::where('username', '=', $request->username)->first();
+    
+
+        if (!isset($existingUser->id) || $existingUser->id == $user->id) {
+            
+            $existingUser = User::where('email', '=', $request->email)->first();
+
+            if(!isset($existingUser->id) || $existingUser->id == $user->id){
+
+                try {
+                    
+                    $user->firstname = $request->firstname;
+                    $user->surname = $request->surname;
+                    $user->username = $request->username;
+                    $user->email = $request->email;
+                    $user->save();
+        
+                }catch (Exception $e) {
+                    dd($e);
+                }
+
+            }
+        }
+        
+        return redirect("/users/$user->id/edit");
     }
 
     /**
