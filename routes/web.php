@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@destroy');
     Route::resource('lists', 'ListsController')->name('index', 'lists');
     Route::put('titles/{title}/rate', 'TitlesController@rate');
+    Route::get('titles/create', 'TitlesController@create')->name('edit');
+    Route::post('titles/store', 'TitlesController@store');
     Route::resource('users', 'UsersController');
 });
 
