@@ -232,7 +232,7 @@
                                 <button type="button" class="button is-light" id="cancel-button">Cancel</button>
                             </p>
                         </div>
-                    </div>
+                    </form>
                 @endif
                 @foreach($review->comments as $comment)
                     <div class="user-comment">

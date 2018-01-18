@@ -39,7 +39,7 @@ class CommentsController extends Controller
     {
         //
         if(Auth::check()) {
-            $review = Comment::create([
+            $comment = Comment::create([
                 'review_id' => $request->input('review_id'),
                 'user_id' => $request->user()->id,
                 'body' => $request->input('body'),
