@@ -58,7 +58,7 @@ footer {
     margin-bottom: 2em; 
 }
 
-#latest-title, #watchlist-title, .list-title {
+#latest-title, #watchlist-title, .list-title, .my-reviews {
     font-size: 1.5em;
     text-align: center;
     margin-bottom: 10px;
@@ -111,7 +111,17 @@ footer {
     flex: 1 1 25%
 }
 
-#Lists {
+.message.is-primary {
+    margin-bottom: 2em;
+}
+
+.text-container {
+    margin-bottom: 2em;
+    flex: 1 1 30%;
+    margin: 0 1em;
+}
+
+#Lists, #Reviews {
     flex-wrap: wrap;
 }
 

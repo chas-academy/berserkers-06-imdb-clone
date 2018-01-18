@@ -4,6 +4,7 @@
 <div class="tab">
    <button class="tablinks" id="default-tab">Home</button>
    <button class="tablinks">Lists</button>
+   <button class="tablinks">Reviews</button>
    <button class="tablinks">Settings</button>
 </div>
 <!-- Tab content -->
@@ -97,7 +98,7 @@
 <!-- List Tab -->
 <div id="Lists" class="tabcontent">
    <div class="list-container"> <!-- List Container -->
-      <h1 class="list-title">Action</h1>
+      <h1 class="list-title">Planning to Review</h1>
       <div class="watchlist">
          <div class="watchlist-box">
             <!-- Container -->
@@ -154,7 +155,7 @@
       </div>
    </div>
    <div class="list-container"> <!-- List Container -->
-      <h1 class="list-title">Comedies</h1>
+      <h1 class="list-title">Have Reviewed</h1>
       <div class="watchlist">
          <div class="watchlist-box">
             <!-- Container -->
@@ -211,7 +212,7 @@
       </div>
    </div>
    <div class="list-container"> <!-- List Container -->
-      <h1 class="list-title">Drama</h1>
+      <h1 class="list-title">Currently Reviewing</h1>
       <div class="watchlist">
          <div class="watchlist-box">
             <!-- Container -->
@@ -496,5 +497,96 @@
       </div>
    </div>
 </div>
+
+<div id="Reviews" class="tabcontent">
+
+    <div class="text-container">
+        <h1 class="my-reviews">Game of Thrones</h1>
+        <article class="message is-primary">
+            <div class="message-header">
+                <p>My favorite movie by far</p>
+                <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+            </div>
+         </article>
+    </div>
+    <div class="text-container">
+        <h1 class="my-reviews">Black Mirror</h1>
+        <article class="message is-primary">
+            <div class="message-header">
+                <p>My favorite movie by far</p>
+                <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+            </div>
+         </article>
+    </div>
+    <div class="text-container">
+        <h1 class="my-reviews">Westworld</h1>
+        <article class="message is-primary">
+            <div class="message-header">
+                <p>My favorite movie by far</p>
+                <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+            </div>
+         </article>
+    </div>
+    <div class="text-container">
+        <h1 class="my-reviews">Black Mirror</h1>
+        <article class="message is-primary">
+            <div class="message-header">
+                <p>My favorite movie by far</p>
+                <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+            </div>
+         </article>
+    </div>
+    <div class="text-container">
+        <h1 class="my-reviews">Black Mirror</h1>
+        <article class="message is-primary">
+            <div class="message-header">
+                <p>My favorite movie by far</p>
+                <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+            </div>
+         </article>
+    </div>
+    <div class="text-container">
+        <h1 class="my-reviews">Black Mirror</h1>
+        <article class="message is-primary">
+            <div class="message-header">
+                <p>My favorite movie by far</p>
+                <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+            </div>
+         </article>
+    </div>
+    <div class="text-container">
+        <h1 class="my-reviews">Black Mirror</h1>
+        <article class="message is-primary">
+            <div class="message-header">
+                <p>My favorite movie by far</p>
+                <button class="delete" aria-label="delete"></button>
+            </div>
+            <div class="message-body">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+            </div>
+         </article>
+    </div>
+</div>    
+
 <div id="Settings" class="tabcontent"></div>
 @include('layouts.footer')
