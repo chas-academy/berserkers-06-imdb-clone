@@ -19,6 +19,12 @@ Route::get('/catalog','TitlesController@index')->name('catalog');
 
 Auth::routes();
 
+Route::group(['namespace' => 'Auth'], function() {
+
+    Route::post('/login/checkifdeactivated', 'LoginController@checkIfDeactivated');
+});
+
+
 Route::get('/titles', 'TitlesController@index')->name('catalog');
 
 Route::group(['middleware' => ['auth']], function () {
