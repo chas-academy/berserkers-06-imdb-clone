@@ -23,53 +23,64 @@ class TitlesController extends Controller
     {   
         $allRatings = Rating::all();
 
-        $q = $request->title;
-        $t = $request->type;
-        
-        $titlesIds = [];
-        
-        if(!isset($q)) {
+        $name = $request->title;
+        $type = $request->type;
+        $genre = $request->genre;
+        $hasGenre = false;
 
-            $titles; 
+        if (!isset($type)) {
 
-            if (!isset($t)|| $t == 'movie' ) {
-                $titles = Movie::all();
-            } elseif ($t == 'series'){
-                $titles = Series::all();
-            } else {
-                $titles = Episode::all();
-            }
-            
-            foreach($titles as $title) {
-                array_push($titlesIds,$title->title_id);
-            }
-
-        }  else {
-
-            $movies = Movie::where('title', 'like', '%' . $q .'%' )->get();
-            $series = Series::where('title', 'like', '%' . $q .'%' )->get();
-            $episodes = Episode::where('name', 'like', '%' . $q .'%' )->get();
-
-            $titles = $movies->merge($series);
-            
-            $titles = $titles->merge($episodes);
-
-            foreach($titles as $title) {
-                array_push($titlesIds,$title->title_id);
-            }
-
+            $type = 'movie';
         }
 
+        if ($type == 'episode') {
 
+            $titleColumn = 'name';
 
-        $titles = Title::whereIn('id', $titlesIds)->get();
+        } else {
+
+            $titleColumn = 'title';
+        }
+        
+        if (isset($genre)) {
+            
+           $hasGenre = true;
+        }
+
+        if (!$hasGenre) {
+               
+                $titles=  Title::whereHas($type, function($q) use($name,$titleColumn) {
+                    $q->where($titleColumn, 'like', '%' . $name .'%' );
+                })->get();
+
+        } else {
+
+                $titles =  Title::whereHas($type, function($q) use($name,$titleColumn) {
+                    $q->where($titleColumn, 'like', '%' . $name .'%' );
+                })->whereHas('genres', function($q) use($genre){
+                    $q->where('name',$genre);
+                })->get();
+        }
       
         foreach ($titles as $title) {
-
-                
+           
             if($title->type == 'movie') {
 
                 $title->load(['directors','photos','actors','genres', 'ratings', 'movie']);
+
+                $ratingSummary = 0;
+                $i = 0;
+
+                foreach ($title->ratings as $rating) {
+                    $ratingSummary = $ratingSummary + $rating->rating;
+                    $i++;
+                }
+
+                if ($i != 0) {
+                    $ratingSummary = $ratingSummary / $i;
+                } 
+
+                $title['rating'] = $ratingSummary;
 
             } elseif ($title->type == 'series') {
 
@@ -90,6 +101,20 @@ class TitlesController extends Controller
                 $title['actors'] = $actors;
 
                 $title->load(['creators','photos','genres', 'ratings']);
+
+                $ratingSummary = 0;
+                $i = 0;
+
+                foreach ($title->ratings as $rating) {
+                    $ratingSummary = $ratingSummary + $rating->rating;
+                    $i++;
+                }
+
+                if ($i != 0) {
+                    $ratingSummary = $ratingSummary / $i;
+                } 
+
+                $title['rating'] = $ratingSummary;
                 
             } elseif ($title->type == 'episode') {
 
@@ -116,8 +141,24 @@ class TitlesController extends Controller
                 $title['photos'] = $series->titles->photos;
                 $title->load(['directors', 'ratings', 'episode']);
 
+                $ratingSummary = 0;
+                $i = 0;
+                
+                foreach ($title->ratings as $rating) {
+                    $ratingSummary = $ratingSummary + $rating->rating;
+                    $i++;
+                }
+
+                if ($i != 0) {
+                    $ratingSummary = $ratingSummary / $i;
+                } 
+
+                $title['rating'] = $ratingSummary;
+
             } 
         }
+
+        $titles = $titles->sortByDesc('rating')->values();
         
         $page = $request->page;
         if (!isset($request->page)) {
