@@ -500,7 +500,7 @@
 
 <div id="Reviews" class="tabcontent">
     <div class="text-container">
-        <h1 class="my-reviews">Game of Thrones</h1>
+        <h1 class="my-reviews">Game of Thrones (2011)</h1>
         <article class="message is-primary">
             <div class="message-header">
                 <p>My favorite movie by far</p>
@@ -512,7 +512,7 @@
          </article>
     </div>
     <div class="text-container">
-        <h1 class="my-reviews">Black Mirror</h1>
+        <h1 class="my-reviews">Black Mirror (2011)</h1>
         <article class="message is-primary">
             <div class="message-header">
                 <p>My favorite movie by far</p>
