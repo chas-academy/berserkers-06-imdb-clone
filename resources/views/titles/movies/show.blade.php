@@ -199,7 +199,7 @@
         @endif
     </div>
     @foreach($title->reviews as $review)
-        @if($review->status === 2)
+        @if($review->status == 1)
             <div class="review-content">
                 <div class="title-container">
                     <h2 class="review-title">{{ $review->title }}</h2>
@@ -235,11 +235,13 @@
                     </form>
                 @endif
                 @foreach($review->comments as $comment)
-                    <div class="user-comment">
-                        <p class="review-date">{{ $comment->created_at }} &nbsp;</p>
-                        <p class="review-user">|&nbsp;&nbsp;by user: {{ $comment->user->username }}</p>
-                        <p class="comment-content">{{ $comment->body }}</p>
-                    </div>
+                    @if($comment->status == 1)
+                        <div class="user-comment">
+                            <p class="review-date">{{ $comment->created_at }} &nbsp;</p>
+                            <p class="review-user">|&nbsp;&nbsp;by user: {{ $comment->user->username }}</p>
+                            <p class="comment-content">{{ $comment->body }}</p>
+                        </div>
+                    @endif
                 @endforeach
             </div>
         @endif
