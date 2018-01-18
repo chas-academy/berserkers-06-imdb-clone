@@ -57,7 +57,8 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        dd('hej');
+        return view('users.settings',['user' => $user]);
     }
 
     /**

@@ -26,17 +26,9 @@ class ReviewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
         //
-        $title = Title::find($id);
-        if(!Auth::check()) {
-            return redirect()->route('login');
-        }
-        if($title->type != 'movie' && $title->type != 'series'){
-            return back();
-        }
-        return view('reviews.create', ['title' => $title]);
     }
 
     /**
@@ -53,7 +45,8 @@ class ReviewsController extends Controller
                 'title_id' => $request->input('title_id'),
                 'user_id' => $request->user()->id,
                 'title' => $request->input('title'),
-                'body' => $request->input('body')
+                'body' => $request->input('body'),
+                'stars' => $request->input('stars')
             ]);
             
             if($review) {

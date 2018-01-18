@@ -13,6 +13,7 @@ class Review extends Model
         'user_id',
         'title',
         'body',
+        'stars',
         'created_at',
         'status'
     ];

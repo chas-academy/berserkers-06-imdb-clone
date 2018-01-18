@@ -41,6 +41,99 @@
     border-radius: 10px;
 }
 
+.review-container {
+    margin-left: 8%;
+    width: 60%;
+}
+
+.h1-button, .title-container, .user-container {
+    display: flex;
+}
+
+.review-header{
+    font-size: 1.8em;
+    margin-right: 2em;
+    margin-bottom: 1.5em;
+}
+
+.review-content {
+    margin-left: 1em;
+}
+
+.review-title {
+    font-size: 1.4em;
+    margin-right: 1em;
+}
+
+//star color
+.fa-star {
+    color: gold;
+}
+
+.review-date, .review-user {
+    color: orange;
+    display: inline-block;
+    margin-bottom: 1em;
+}
+
+.comment-button {
+    margin-bottom: 1em;
+}
+
+.review-text {
+    margin-bottom: 1em;
+    font-size: 1.1em;
+}
+
+.create-comment {
+    margin-bottom: 1em;
+    display: none;
+}
+
+.user-comment {
+    margin-left: 1em;
+}
+
+.comment-title {
+    font-size: 1.3em;
+}
+
+.comment-content {
+    margin-bottom: 2em;
+}
+
+.make-review {
+    display: none;
+}
+
+.label {
+    color: white;
+}
+
+#rating-container {
+    display: inline-flex;
+}
+
+@media screen and (min-width: 300px) and (max-width: 349px) {
+
+    .review-container {
+        display: grid;
+        margin-left: 1em;
+    }
+
+    .review-header {
+        margin-right: 0.5em;
+    }
+}
+
+@media screen and (min-width: 350px) and (max-width: 480px) {
+
+    .review-container {
+        display: grid;
+        margin-left: 1em;
+    }
+}
+
 @media screen and (max-width: 1024px) {
 
     .video-container {

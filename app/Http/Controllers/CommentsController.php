@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Title;
 use App\Comment;
+use Auth;
 use Illuminate\Http\Request;
 
 class CommentsController extends Controller
@@ -36,6 +38,25 @@ class CommentsController extends Controller
     public function store(Request $request)
     {
         //
+        if(Auth::check()) {
+            $review = Comment::create([
+                'review_id' => $request->input('review_id'),
+                'user_id' => $request->user()->id,
+                'body' => $request->input('body'),
+            ]);
+            
+            if($comment) {
+                $title = Title::find($request->input('title_id'));
+                switch($title->type) {
+                    case 'movie':
+                        return redirect()->route('titleMovie', $request->input('title_id'));
+                    case 'series':
+                        return redirect()->route('titleSeries', $request->input('title_id'));
+                }
+            } else {
+                return back()->withInput()->with('error', 'Error creating comment');
+            }
+        }
     }
 
     /**

@@ -13,7 +13,7 @@ class Rating extends Model
 
     public function titles()
     {
-        return $this->belongsToMany('App\Title', 'title_user_rating');
+        return $this->belongsToMany('App\Title', 'title_user_rating', 'rating_id');
     } // all titles with ungiven rating
     
 }
