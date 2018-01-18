@@ -57,6 +57,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/carousel.js') }}"></script>
+    <script src="{{ asset('js/userpage.js') }}"></script>
 </body>
 
 </html>

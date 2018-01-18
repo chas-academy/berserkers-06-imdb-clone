@@ -14,6 +14,7 @@ let mix = require("laravel-mix");
 mix
   .js("resources/assets/js/app.js", "public/js")
   .js("resources/assets/js/carousel.js", "public/js")
+  .js("resources/assets/js/userpage.js", "public/js")
   .js("resources/assets/js/filter_panel.js", "public/js")
   .sass("resources/assets/sass/app.scss", "public/css")
   .sass("resources/assets/sass/edit.scss", "public/css")

@@ -1,5 +1,9 @@
 @import "header";
 
+#Home {
+    display: flex;
+    justify-content: center;
+}
 
 #welcome-h1 {
     color: orange;
@@ -7,7 +11,86 @@
     font-size: 1.5em;
 }
 
+#container-list, #container-settings, #container-home {
+    display: none;
+}
+
+footer {
+    margin-top: 20%;
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
 
 
+#latest-reviews {
+    width: 40%; 
+}
+
+#latest-title, #watchlist-title {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.box {
+    padding: 0;
+    text-align: center;
+}
+
+.box-title, .image-container {
+    margin-bottom: 10px;
+}
+
+.watchlist-container {
+    width: 25%;
+    margin-left: 10%;
+}
+
+.watchlist {
+    height: 600px;
+    overflow: scroll;
+}
+
+.box-img {
+    border-radius: 5px;
+}
+
+.field.is-grouped {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
 
 @import "footer";
