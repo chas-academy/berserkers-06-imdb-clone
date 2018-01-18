@@ -3,18 +3,13 @@
 <!-- Tab links -->
 <div class="tab">
    <button class="tablinks" id="default-tab">Home</button>
-    <form method="GET" action="/userpage/lists">
-    {{ csrf_field() }}
+    
         <button class="tablinks" type="submit">Lists</button>
-    </form>
-    <form>
-        {{ csrf_field() }}
+    
         <button class="tablinks" type="submit">Reviews</button>
-    </form>
-    <form  method="GET" action="/userpage/settings/{{Auth::user()->id}}">
-        {{ csrf_field() }}
+
         <button class="tablinks" type="submit">Settings</button>
-    </form>
+   
 </div>
 <!-- Tab content -->
 <!--Home -->
@@ -181,7 +176,7 @@
                 <input name="name" placeholder="which title would you like to add?" required>
                 <button class="button is-primary" type="submit">Add to List</button>
                 </form>
-                <form method="POST" action="userpage/lists/{{$list->id}}">
+                <form method="POST" action="/userpage/lists/{{$list->id}}">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <button class="button is-danger" type="submit">Delete List</button>
