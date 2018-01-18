@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('titles/create', 'TitlesController@create')->name('edit');
     Route::post('titles/store', 'TitlesController@store');
     Route::resource('users', 'UsersController')->name('edit', 'edit');
+    Route::get('admin/users', 'AdminUserController@index')->name('edit');
+    Route::put('admin/users/{user}', 'AdminUserController@update');
 });
 
 Route::get('titles/series/{series}','SeriesController@show' )->name("title");
