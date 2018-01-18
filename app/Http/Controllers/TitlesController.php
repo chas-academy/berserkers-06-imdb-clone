@@ -133,7 +133,7 @@ class TitlesController extends Controller
             $page,
             ['path' => $request->url(), 'query' => $request->query()]
         );
-        //dd($titles->items()[0]['ratings']);
+        
         return view('catalog', ['titles' => $titles, 'all_ratings' => $allRatings]);
     }
 
