@@ -499,7 +499,6 @@
 </div>
 
 <div id="Reviews" class="tabcontent">
-
     <div class="text-container">
         <h1 class="my-reviews">Game of Thrones</h1>
         <article class="message is-primary">
