@@ -30,7 +30,7 @@ class ListsController extends Controller
 
       $lists = $user->lists;
      
-      return view('users.lists', [
+      return view('users.userpage', [
         'lists' => $lists, 
         ]);
     }

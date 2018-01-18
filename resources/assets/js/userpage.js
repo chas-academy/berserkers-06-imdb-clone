@@ -5,11 +5,11 @@ var tabButtons = document.querySelectorAll('.tablinks');
 
 tabButtons.forEach(button => {
     button.addEventListener('click', (e) => {
-        openCity(e, e.target.innerText)
+        openTab(e, e.target.innerText)
     })
 })
 
-function openCity(evt, cityName) {
+function openTab(evt, tabName) {
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -26,6 +26,6 @@ function openCity(evt, cityName) {
     }
 
     // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(cityName).style.display = "flex";
+    document.getElementById(tabName).style.display = "flex";
     evt.currentTarget.className += " active";
 }
