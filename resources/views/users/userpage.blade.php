@@ -37,7 +37,8 @@
    <div class="watchlist-container">
       <h1 id="watchlist-title">My Watchlist</h1>
       <div class="watchlist">
-         <div class="watchlist-box"> <!-- Container -->
+         <div class="watchlist-box">
+            <!-- Container -->
             <figure class="image-container">
                <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
             </figure>
@@ -49,7 +50,8 @@
                </div>
             </div>
          </div>
-         <div class="watchlist-box"> <!-- Container -->
+         <div class="watchlist-box">
+            <!-- Container -->
             <figure class="image-container">
                <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
             </figure>
@@ -61,7 +63,8 @@
                </div>
             </div>
          </div>
-         <div class="watchlist-box"> <!-- Container -->
+         <div class="watchlist-box">
+            <!-- Container -->
             <figure class="image-container">
                <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
             </figure>
@@ -73,7 +76,8 @@
                </div>
             </div>
          </div>
-         <div class="watchlist-box"> <!-- Container -->
+         <div class="watchlist-box">
+            <!-- Container -->
             <figure class="image-container">
                <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
             </figure>
@@ -90,12 +94,407 @@
 </div>
 </div>
 
+<!-- List Tab -->
 <div id="Lists" class="tabcontent">
-    
-
+   <div class="list-container"> <!-- List Container -->
+      <h1 class="list-title">Action</h1>
+      <div class="watchlist">
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="list-container"> <!-- List Container -->
+      <h1 class="list-title">Comedies</h1>
+      <div class="watchlist">
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="list-container"> <!-- List Container -->
+      <h1 class="list-title">Drama</h1>
+      <div class="watchlist">
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="list-container"> <!-- List Container -->
+      <h1 class="list-title">Romantic</h1>
+      <div class="watchlist">
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="list-container"> <!-- List Container -->
+      <h1 class="list-title">Crime</h1>
+      <div class="watchlist">
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="list-container"> <!-- List Container -->
+      <h1 class="list-title">Crime</h1>
+      <div class="watchlist">
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="list-container"> <!-- List Container -->
+      <h1 class="list-title">Crime</h1>
+      <div class="watchlist">
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+         <div class="watchlist-box">
+            <!-- Container -->
+            <figure class="image-container">
+               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
+            </figure>
+            <div class="box">
+               <p class="box-title">Movie Title (2017)</p>
+               <div class="field is-grouped btn-container">
+                  <a class="button is-primary">Move up/down</a>
+                  <a class="button is-danger">Remove</a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
-
-
-<div id="Settings" class="tabcontent">
-</div>
+<div id="Settings" class="tabcontent"></div>
 @include('layouts.footer')
