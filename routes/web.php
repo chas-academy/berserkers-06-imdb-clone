@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('adminpage', 'UsersController')->name('index','adminpage');
+
 Route::get('/catalog','TitlesController@index')->name('catalog');
 
 Auth::routes();
