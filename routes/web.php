@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/addtitle', function () {
+    return view('admin.addtitle');
+});
+
 Route::resource('adminpage', 'UsersController')->name('index','adminpage');
 
 Route::get('/catalog','TitlesController@index')->name('catalog');
