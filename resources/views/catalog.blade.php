@@ -13,7 +13,9 @@
                         <div class="fade-overlay">
                             <h1 class="overlay-title">{{$title['movie']['title']}} ({{substr($title['movie']['release_year'], 0, 4)}})</h1>
                             <ul>
+                                @if(isset($title['directors'][0]))
                                 <li class="overlay-content">Director:&nbsp; {{$title['directors'][0]['name']}}</li>
+                                @endif
                                 <li class="overlay-content">Stars:&nbsp; 
                                     @foreach ($title['actors'] as $key => $actor)
                                     @if ($key < 4)
