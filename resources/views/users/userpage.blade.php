@@ -184,42 +184,7 @@
                 </ul>
             </section>
         @endforeach
-<<<<<<< HEAD
-        <form method="POST" action="/userpage/{{$list->id}}">
-          {{ csrf_field() }}
-          {{ method_field('PUT') }}
-          <lable for="list_index">Placement in List: </lable>
-          <select name="list_index">
-              @if(isset($list->titleLists[0]))
-                @foreach($list->titleLists->sortBy('list_index') as $titleList)
-                <option value="{{$titleList->list_index}}">{{$titleList->list_index}}</option>
-                @endforeach
-                <option value ="{{$list->titleLists->last()->list_index +1 }}">{{$list->titleLists->sortBy('list_index')->last()->list_index + 1 }}</option>
-              @else
-                <option value ="1">1</option>
-              @endif
-          </select>
-          <lable for="type">Type: </lable>
-          <select name="type">
-            <option value="movie">Movie</option>
-            <option value="series">Series</option>
-            <option value="episode">Episode</option>
-          </select>
-          <lable for="name">Title: </lable>
-          <input name="name" placeholder="which title would you like to add?" required>
-          <button class="button is-primary" type="submit">Add to List</button>
-        </form>
-        <form method="POST" action="/userpage/{{$list->id}}">
-          {{ csrf_field() }}
-          {{ method_field('DELETE') }}
-          <button class="button is-danger" type="submit">Delete List</button>
-        </form>
-        </ul>
-      </section>
-    @endforeach
-=======
     @endif
->>>>>>> e3556d1fcea8986de69451b57386da7f23daef9b
   </article>
   <article>
     <h2>Do you want to create a new list?</h2>
