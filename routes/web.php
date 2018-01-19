@@ -59,13 +59,4 @@ Route::resource('people', 'PeopleController');
 Route::resource('reviews', 'ReviewsController');
 Route::resource('comments', 'CommentsController');
 
-Route::get('send_test_email', function(){
-	Mail::raw('Sending emails with Mailgun and Laravel is easy!', function($message)
-	{
-		$message->subject('Mailgun and Laravel are awesome!');
-		$message->from('mail@mail.berzerkermovies.me', 'Berzerker Movies');
-		$message->to('sebastiangerstelsollerman@htomail.com');
-	});
-});
-
 
