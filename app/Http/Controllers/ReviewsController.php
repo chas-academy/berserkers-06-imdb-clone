@@ -7,10 +7,14 @@ use App\Title;
 use App\Movie;
 use App\Series;
 use Illuminate\Http\Request;
+use App\Traits\DatabaseHelpers;
 use Auth;
 
 class ReviewsController extends Controller
 {
+    const ITEMCOLUMNS = ['title_id', 'user_id', 'title', 'body', 'stars', 'created_at', 'updated_at', 'status'];
+    const PIVOTTABLES = ['titles', 'comments', 'users'];
+    use DatabaseHelpers;
     /**
      * Display a listing of the resource.
      *
@@ -84,6 +88,8 @@ class ReviewsController extends Controller
     public function edit(Review $review)
     {
         //
+        $review = Review::find($review->id);
+        return view('reviews.edit', ['review' => $review]);
     }
 
     /**
@@ -96,6 +102,12 @@ class ReviewsController extends Controller
     public function update(Request $request, Review $review)
     {
         //
+        if (Auth::user()->role === 1) {
+            $this->updateItem($request, $review);
+            return back();
+        }
+
+        return back();
     }
 
     /**
