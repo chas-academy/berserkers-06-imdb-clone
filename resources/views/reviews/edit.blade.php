@@ -53,4 +53,9 @@
             </form>
         </section>
     @endif
+    <form method="POST" action="{{ route('reviews.destroy', [$review->id]) }}">
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+        <button type="submit">Delete</button>
+    </form>
 @include('layouts.footer')
