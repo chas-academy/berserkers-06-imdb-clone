@@ -35,11 +35,19 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}/edit', 'EpisodesController@edit')->name('edit');
     Route::put('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@update');
     Route::delete('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@destroy');
-    Route::resource('userpage', 'ListsController')->name('index', 'userpage');
+    
+    Route::get('userpage/lists', 'ListsController@index')->name('userpage');
+    Route::get('userpage/lists/create', 'ListsController@create');
+    Route::put('userpage/lists/{list}', 'ListsController@update');
+    Route::delete('userpage/lists/{list}', 'ListsController@destroy');
+    
+    Route::get('userpage/settings/{user}', 'UsersController@edit')->name('userpage');
+    Route::put('userpage/settings/{user}', 'UsersController@update');
+
     Route::put('titles/{title}/rate', 'TitlesController@rate');
     Route::get('titles/create', 'TitlesController@create')->name('edit');
     Route::post('titles/store', 'TitlesController@store');
-    Route::resource('users', 'UsersController')->name('edit', 'edit');
+   
 });
 
 Route::get('titles/series/{series}','SeriesController@show' )->name("title");

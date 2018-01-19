@@ -62,7 +62,7 @@ class UsersController extends Controller
         
         if(Auth::user()->id == $user->id) {
             
-            return view('users.settings',['user' => $user]);
+            return view('users.userpage',['user' => $user]);
         }
     }
 
@@ -107,7 +107,7 @@ class UsersController extends Controller
             }
         }
         
-        return redirect("/users/$user->id/edit");
+        return redirect("/userpage/settings/$user->id");
     }
 
     /**
