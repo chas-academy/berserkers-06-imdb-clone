@@ -2,7 +2,189 @@
 
 main {
 
-  margin-bottom:200px;
+  display:flex;
+  justify-content: center;
+  margin-bottom: 200px;
+  
+  margin-left:auto;
+  margin-right: auto;
+
+  article.handleusers-list {
+    
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+
+    section {
+
+      width:100%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      
+      .table {
+
+        width:95%;
+
+        tr {
+
+          td {
+
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+
+  .title-to-add-search {
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin:5em;
+    width: 80%;
+    
+    section {
+
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      div {
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        margin: 2em;
+        color: $text-color;
+        font-family: $paragraph-font;
+
+        form {
+
+          display: flex;
+          justify-content: space-around;
+          flex-direction: row;
+          align-items: center;
+
+          .select {
+
+         
+            select {
+
+              font-family: $paragraph-font;
+            }
+
+            option {
+
+              font-family: $paragraph-font;
+            }
+          }
+
+          .input {
+
+            font-family: $paragraph-font;
+            font-size: $paragraph-font-size;
+          }
+        }
+
+        button {
+
+          font-family: $paragraph-font;
+          margin-left: 2em;
+        }
+
+        &.card {
+
+          background-color: $yellow; 
+          padding: 0.5em;
+          box-shadow: 0.1em 0.15em 0.2em $laravel-border-color;
+          
+
+          .card {
+
+            background-color: $text-color;
+            padding: 0.25em;
+            border-radius: 5%; 
+            margin: 0.5em;
+          }
+        }
+      }
+    }
+  }
 }
+
+@media only screen and (max-width: 800px) {
+
+  main {
+
+    width: 100%;
+    font-size: $paragraph-font-size;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  
+  main {
+    
+    .title-to-add-search {
+
+      margin: 0;
+
+    }
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  
+  main {
+    
+    .title-to-add-search {
+
+      margin: 0;
+
+      .button {
+
+        width: 6em;
+        font-size: $paragraph-font-size;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  
+  main {
+
+    font-size: $smal-paragraph-font-size;
+    
+    .title-to-add-search {
+
+      margin: 0;
+
+      .input {
+        
+        height: 1.5em;
+      }
+
+      .button {
+
+        font-size: $smal-paragraph-font-size;
+      }
+
+      .card {
+        h4 {
+          font-size: 8px;
+        }
+        
+      }
+    }
+  }
+}
+
+
 
 @import "footer";

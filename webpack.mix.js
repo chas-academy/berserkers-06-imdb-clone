@@ -19,4 +19,5 @@ mix
   .sass("resources/assets/sass/edit.scss", "public/css")
   .sass("resources/assets/sass/register.scss", "public/css")
   .sass("resources/assets/sass/title.scss", "public/css")
+  .sass("resources/assets/sass/lists.scss", "public/css")
   .sass("resources/assets/sass/catalog.scss", "public/css");

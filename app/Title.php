@@ -31,7 +31,6 @@ class Title extends Model
         return $this->hasMany('App\Episode', 'title_id');
     }
 
-    /******** */
     public function actors()
     {
         return $this->belongsToMany('App\Person', 'title_actor_character');
@@ -74,12 +73,16 @@ class Title extends Model
 
     public function ratings()
     {
-        return $this->belongsToMany('App\Rating', 'title_user_rating');
+        return $this->belongsToMany('App\Rating', 'title_user_rating', 'title_id');
     } // all 1 - 10 ratings this title recieved
 
     public function users()
     {
-        return $this->belongsToMany('App\User', 'title_user_rating');
+        return $this->belongsToMany('App\User', 'title_user_rating', 'title_id');
     } // all users that have rated this title
 
+    public function lists()
+    {
+        return $this->belongsToMany('App\TitleList');
+    }
 }
