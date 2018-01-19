@@ -1,23 +1,110 @@
 @import "/../_variables";
 
-body{
+body {
+  background-color: $background-color;
+  }
+h1 {
+  color: #FCA135;
+  text-transform: uppercase;
+  font-size: 3em;
+  font-weight: bold;
+  font-style: italic;
+  }
+h2 {
+  color: #FCA135;
+  font-size: 2em;
+  padding-bottom: 0.8em;
+  font-weight: normal;
+  } 
+h3 {
+  font-size: 1.5em;
+  }
+p {
+  color: #999;
+  font-size: 1.5em;
+  margin-bottom: 2em;
+  }
+#user_rating{
+  border-right: 2px dashed #FCA135;
+  display: table-cell;
+  padding: 0 2.5em;
+  width: 30%;
+  }
+#movie_rating, #movie_form {
+  display: table-cell;
+  text-align: left;
+  padding: 0 2.5em;
+  }
+#movie_form {
+  display: none;
+  }
+.container {
+  display: table;
+  padding: 3%;
+  max-width: 56em;
+  margin: 5% auto 0;
+  background-color:background-color;
+  }
+.rating {
+  float: left;
+  }
+.rating:not(:checked) > input[type="radio"] {
+  position: absolute;
+  top: -9999px;
+  clip: rect(0,0,0,0);
+  }
+.rating:not(:checked) > label {
+  float: right;
+  width: 1em;
+  padding: 0 .1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 230%;
+  line-height: 1.2;
+  color: #c7c7c7;
+  }
 
-  margin: 0;
-  padding: 0;
-  background: 
-  rgba(51, 51, 51, 0.7);
-}
+.rating:not(:checked) > label:before {
+  content: '\2605 ';
+  }
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #aaa38e;
+  }
+.rating > input[type="radio"]:checked + label:hover,
+.rating > input[type="radio"]:checked + label:hover ~ label,
+.rating > input[type="radio"]:checked ~ label:hover,
+.rating > input[type="radio"]:checked ~ label:hover ~ label,
+.rating > label:hover ~ input[type="radio"]:checked ~ label,
+.rating > input[type="radio"]:checked ~ label{
+  color: #aaa38e;
+  }
 
-.star1:hover {
-  background-color: rgba(132, 150, 29, 0.555);
-}
-
-.heading {
-  font-size: 25px;
-  margin-right: 25px;
-}
-
-
-.fa {
-  font-size: 25px;
-}
+button {
+  background-color:$background-color;
+  border: none;
+  color: #fff;
+  font-size: 1em;
+  letter-spacing: 0.03em;
+  font-style: italic;
+  font-weight: bold;
+  padding: 1em 1.5em;
+  text-transform: uppercase;
+  }
+button:hover {
+  background-color: $background-color;
+  border: none;
+  transition: all 0.4s ease-out 0s;
+  cursor: pointer;
+  }
+#rating_link {
+  margin: 2em 0;
+  }
+#submit_link{
+  clear: left;
+  color: #FCA135;
+  font-size: 1em;
+  font-weight: bold;
+  padding-top: 1em;
+  }

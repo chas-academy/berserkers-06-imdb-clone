@@ -1,17 +1,13 @@
-
-
-function rate(rating) {
-
-    document.rating.star.value = rating;
-    document.rating.submit();
-    return true;
-}
-
-function star(rating){
-
-if(!(rating>=1 && rating<=5)) return;
-
-for (var i=1;i<=rating;i++)
-document.getElementById("star" +rating);
-
-} //kolla upp id
+function movieRate() {
+    var rating = document.forms[0];
+    var txt = "";
+    var i;
+    for (i = 0; i < rating.length; i++) {
+        if (rating[i].checked) {
+            txt = txt + rating[i].value + " ";
+        } 
+    }
+    document.getElementById('user_rating').style.display = 'none';
+    document.getElementById('movie_rating').style.display = 'block';
+    document.getElementById("description").textContent = txt;
+    }

@@ -15,18 +15,33 @@
    </head>
   </body>
   <div class="buttons has-addons is-centered">
-    <div class="rating"> 
+    <div class="container"> 
+<div id="user_rating"> 
+  <h1>User rating</h2> 
+</div> 
+<form class="movie_rating" name="movie_form">  
+<input type="radio" id="star_5" name="rating" value="5 star of 5"/><i class="fa fa-star-o" aria-hidden="true"></i><label for ="star_5"> 
 
-<span class="heading">User Rating</span>
+<input type="radio" id="star_4" name="rating" value="4 star of 5"/><i class="fa fa-star-o" aria-hidden="true"></i><label for ="star_4"> 
 
-<p>based on user rates.</p>
-<hr style="border:3px solid #f1f1f1">
-  <button class="star1"><i class="fa fa-star"></i></button>
-  <button class="star2"><i class="fa fa-star"></i></button> 
-  <button class="star3"><i class="fa fa-star"></i></button>
-  <button class="star4"><i class="fa fa-star"></i></button>
-  <button class="star5"><i class="fa fa-star"></i></button>
+<input type="radio" id="star_3" name="rating" value="3 star of 5"/><i class="fa fa-star-o" aria-hidden="true"></i><label for ="star_3"> 
 
+<input type="radio" id="star_2" name="rating" value="2 star of 5"/><i class="fa fa-star-o" aria-hidden="true"></i><label for ="star_2"> 
+
+<input type="radio" id="star_1" name="rating" value="1 star of 5"/><i class="fa fa-star-o" aria-hidden="true"></i><label for ="star_1"> 
+</form>
+
+<div id="submit_link"></div> 
+            <div id="rating_link">
+                <button type="button" onclick="movieRate()">Send Rating</button>
+            </div>
+        </div>
+        <div id="review">
+            <h2>Thanks for submitting</h2>
+            <p id="description"></p>
+        </div>  
+    </div> 
+</body>
 </div>
 </div>
 
