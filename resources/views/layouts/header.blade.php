@@ -74,7 +74,7 @@
                   <p class="modal-card-title">Log in or Register</p>
                </header>
                <!-- Any other Bulma elements you want -->
-               <form method ="POST" action="{{ route('login') }}" >
+               <form method ="POST" action="/login/checkifdeactivated" >
                   {{ csrf_field() }}
                   <div class="field">
                      <p class="control has-icons-left has-icons-right">
@@ -135,7 +135,9 @@
                         <div class="column is-2" id="col3-1">
                             <!-- Log in / Register button here -->
                            <div class="field is-grouped" id="sign-reg">
-                              <a class="button is-primary modal-button">Sign In</a>
+                               <form method="POST" action="/login/checkifdeactivated">
+                              <button class="button is-primary modal-button">Sign In</button>
+                               </form>
                               <a class="button is-primary" type="submit" href="/register" id="border-button">Register</a>
                            </div>
                         </div>
