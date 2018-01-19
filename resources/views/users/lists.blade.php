@@ -62,7 +62,7 @@
                 <option value ="1">1</option>
               @endif
           </select>
-          <lasble for="type">Type: </lable>
+          <lable for="type">Type: </lable>
           <select name="type">
             <option value="movie">Movie</option>
             <option value="series">Series</option>
