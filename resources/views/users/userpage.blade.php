@@ -171,7 +171,7 @@
           <input name="name" placeholder="which title would you like to add?" required>
           <button class="button is-primary" type="submit">Add to List</button>
         </form>
-        <form method="POST" action="/lists/{{$list->id}}">
+        <form method="POST" action="/userpage/{{$list->id}}">
           {{ csrf_field() }}
           {{ method_field('DELETE') }}
           <button class="button is-danger" type="submit">Delete List</button>
