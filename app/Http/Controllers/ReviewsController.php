@@ -23,6 +23,9 @@ class ReviewsController extends Controller
     public function index()
     {
         //
+        $reviews = Review::orderByRaw('created_at DESC')->get();
+
+        return view('reviews.index', ['reviews' => $reviews]);
     }
 
     /**
@@ -119,5 +122,20 @@ class ReviewsController extends Controller
     public function destroy(Review $review)
     {
         //
+        if (Auth::user()->role === 1) {
+            $id = $review->id;
+            $review = Review::find($id);
+
+            try{
+                $review->comments()->delete();
+                $review->delete();
+            } catch(Exception $e) {
+                $dd($e);
+            }
+        
+            return back();  
+        }
+
+        return back();
     }
 }
