@@ -9,7 +9,7 @@ class Review extends Model
     //
     protected $fillable = [
         'id',
-        'movie_id',
+        'title_id',
         'user_id',
         'title',
         'body',
@@ -21,8 +21,8 @@ class Review extends Model
         return $this->hasMany('App\Comment');
     }
 
-    public function movie(){
-        return $this->belongsTo('App\Movie');
+    public function title(){
+        return $this->belongsTo('App\Title');
     }
 
     public function user(){
