@@ -54,13 +54,12 @@ class CommentsController extends Controller
             
             if($comment) {
                 $title = Title::find($request->input('title_id'));
-                switch($title->type) {
-                    case 'movie':
-                        return redirect()->route('titleMovie', $request->input('title_id'));
-                    case 'series':
-                        return redirect()->route('titleSeries', $request->input('title_id'));
+                if($title->type != 'episode') {
+
+                    return redirect(url()->previous()); 
                 }
             } else {
+
                 return back()->withInput()->with('error', 'Error creating comment');
             }
         }

@@ -12,7 +12,7 @@ use Auth;
 
 class ReviewsController extends Controller
 {
-    const ITEMCOLUMNS = ['title_id', 'user_id', 'title', 'body', 'stars', 'created_at', 'updated_at', 'status'];
+    const ITEMCOLUMNS = ['title_id', 'user_id', 'title', 'body', 'created_at', 'updated_at', 'status'];
     const PIVOTTABLES = ['titles', 'comments', 'users'];
     use DatabaseHelpers;
     /**
@@ -48,23 +48,27 @@ class ReviewsController extends Controller
     {
         //
         if(Auth::check()) {
+
             $review = Review::create([
                 'title_id' => $request->input('title_id'),
                 'user_id' => $request->user()->id,
                 'title' => $request->input('title'),
                 'body' => $request->input('body'),
-                'stars' => $request->input('stars')
             ]);
             
+            if ($request->has('rating')) {
+                
+                $this->attachRating($request, $request->title_id);
+            }
+
             if($review) {
                 $title = Title::find($request->input('title_id'));
-                switch($title->type) {
-                    case 'movie':
-                        return redirect()->route('titleMovie', $request->input('title_id'));
-                    case 'series':
-                        return redirect()->route('titleSeries', $request->input('title_id'));
+                if($title->type != 'episode') {    
+                    return redirect(url()->previous())->with('success', 'Review successfully created!');; 
                 }
+
             } else {
+
                 return back()->withInput()->with('error', 'Error creating review');
             }
         }
