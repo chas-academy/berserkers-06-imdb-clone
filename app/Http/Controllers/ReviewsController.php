@@ -137,7 +137,7 @@ class ReviewsController extends Controller
                 $dd($e);
             }
         
-            return back();  
+            return redirect('/');  
         }
 
         return back();
