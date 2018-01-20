@@ -53,11 +53,11 @@ Route::get('titles/series/{series_id}/seasons', 'SeasonsController@index');
 Route::get('titles/series/{series_id}/seasons/{season_number}', 'SeasonsController@show');
 Route::get('titles/series/{series_id}/seasons/{season_number}/episodes', 'EpisodesController@index');
 Route::get('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_number}', 'EpisodesController@show')->name('title');
-Route::get('reviews/{review_id}/comments', 'CommentsController@index');
+Route::get('reviews/{review_id}/comments', 'CommentsController@index')->name('edit');
 
 
 Route::resource('people', 'PeopleController');
-Route::resource('reviews', 'ReviewsController');
+Route::resource('reviews', 'ReviewsController')->name('edit','edit');
 Route::resource('comments', 'CommentsController');
 
 
