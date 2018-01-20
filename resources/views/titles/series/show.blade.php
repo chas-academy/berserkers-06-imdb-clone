@@ -2,6 +2,13 @@
 <article class="page-content">
     <div class="centered-content">
         <section class="item-header">
+            @if(Auth::User()->role == 1)
+            <form  method="POST" action="/titles/series/{{$series->title_id}}">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button class="button is-danger"type="submit">Delete</button>
+            </form>
+            @endif
             <h1 class="hero-header">{{$series->title}}</h1>
         </section>
         <article class="item">
