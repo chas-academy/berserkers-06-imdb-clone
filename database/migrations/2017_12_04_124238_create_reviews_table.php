@@ -19,7 +19,6 @@ class CreateReviewsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('title');
             $table->string('body');
-            $table->integer('stars');
             $table->timestamps();
             $table->integer('status')->default(2);
 
