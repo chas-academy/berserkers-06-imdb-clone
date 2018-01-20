@@ -16,7 +16,7 @@ return [
 
     'mailgun' => [
         'domain' => 'mail.berzerkermovies.me',
-        'secret' => 'key-d540ee1af9020ec5ea1ddd7a4bc10c9c',
+        'secret' => 'pubkey-67d41e49cbe5819541ff6090905f5e9d',
     ],
 
     'ses' => [
