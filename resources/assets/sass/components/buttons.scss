@@ -14,12 +14,12 @@ h1 {
   padding: 3%;
   max-width: 56em;
   margin: 5% auto 0;
-  background-color:#FCA135;
+  background-color:rgb(245, 243, 241);
   }
 
   .rating_star > span:hover:before{
 
-    content: "\2605";
+    content: "\f006";
     position: absolute;
   }
 
@@ -31,7 +31,7 @@ h1 {
 
   .rating_star > span:hover:before, 
   .rating_star > span:hover ~ span:before{
-    content: "\2605";
+    content: "\f005";
    position: absolute;
 }
 
