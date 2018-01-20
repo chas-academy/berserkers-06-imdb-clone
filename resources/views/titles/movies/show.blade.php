@@ -203,9 +203,6 @@
             <div class="review-content">
                 <div class="title-container">
                     <h2 class="review-title">{{ $review->title }}</h2>
-                    @for($i=0;$i<$review->stars;$i++)
-                        <i class="fa fa-2x fa-star" aria-hidden="true"></i>
-                    @endfor
                 </div>
                 <div class="user-container">
                     <p class="review-date">{{ $review->created_at }} &nbsp;</p>
@@ -229,7 +226,7 @@
                                 <input type="submit" class="button is-primary" id="submit-comment" value="Submit comment">
                             </p>
                             <p class="control">
-                                <button type="button" class="button is-light" id="cancel-button">Cancel</button>
+                                <button type="button" class="button is-light" id="cancel-comment">Cancel</button>
                             </p>
                         </div>
                     </form>
@@ -257,8 +254,9 @@
                 <div class="control" id="rating-container">
                     <input class="input" type="text" name="title" placeholder="Title">
                     <div class="select">
-                    <select name="stars">
-                        <option value="0">Rate this movie</option>
+                    <select name="rating">
+                        <option value="">Rate this movie</option>
+                        <option value="0">0 Stars</option>
                         <option value="1">1 Star</option>
                         <option value="2">2 Stars</option>
                         <option value="3">3 Stars</option>
