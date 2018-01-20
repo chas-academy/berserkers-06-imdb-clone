@@ -14,7 +14,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    @if (isset($routeName))
+    @if ($routeName == 'password.reset' || $routeName == 'password.request')
+    <link href="{{ asset('css/register.css') }}" rel="stylesheet">
+    @elseif (isset($routeName))
     <link href="{{ asset('css/' . $routeName . '.css') }}" rel="stylesheet">
     @else
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -99,6 +101,7 @@
                      <p class="control">
                         <button type="submit" class="button is-success">Login</button>
                         <span class="button is-danger">Cancel</span>
+                        <a href="/password/reset"><span class="button is-primary">Forgot Your Password?</span></a>
                         <a href="/register"><span class="button is-info" id="register" >Register</span></a>
                      </p>
                   </div>
