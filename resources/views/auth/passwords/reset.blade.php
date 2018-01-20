@@ -27,5 +27,4 @@
         <button type="submit" class="button is-success">Reset Password</button>
     </form>
 </section>
-
 @include('layouts.footer')

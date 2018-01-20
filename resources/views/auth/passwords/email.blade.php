@@ -12,5 +12,4 @@
         <button type="submit" class="button is-primary">Send Password Reset Link</button>
     </form>
 </section>
-
 @include('layouts.footer')
