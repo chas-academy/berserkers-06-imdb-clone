@@ -53,6 +53,7 @@
                                 $ratingSummary = 0;
                                 $i = 0;
                                 foreach ($title['ratings'] as $rating) {
+                                    
                                     $ratingSummary = $ratingSummary + $rating['rating'];
                                     $i++;
                                 }
@@ -139,7 +140,7 @@
                                 $ratingSummary = 0;
                                 $i = 0;
                                 foreach ($title['ratings'] as $rating) {
-                                    $ratingSummary = $ratingSummary + $rating->rating;
+                                    $ratingSummary = $ratingSummary + $rating['rating'];
                                     $i++;
                                 }
                                 if ($i == 0) {
@@ -228,7 +229,7 @@
                         $ratingSummary = 0;
                         $i = 0;
                         foreach ($title['ratings'] as $rating) {
-                            $ratingSummary = $ratingSummary + $rating->rating;
+                            $ratingSummary = $ratingSummary + $rating['rating'];
                             $i++;
                         }
                         if ($i == 0) {
