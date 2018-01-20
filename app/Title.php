@@ -91,8 +91,4 @@ class Title extends Model
         return $this->belongsToMany('App\TitleList', 'title_lists', 'title_id' );
     }
 
-    public function reviews()
-    {
-        return $this->hasMany('App\Review');
-    }
 }
