@@ -248,4 +248,31 @@ trait DatabaseHelpers
 
       return $persons;
   }
+
+  protected function attachRating($request, $titleId)
+  {
+
+    $user = $request->user();
+    $ratingId = $request->rating;
+
+    try {
+
+      $previouslyRatedTitle = $user->ratedTitles->where('id', '=', $titleId)->first();
+      
+      if (isset($previouslyRatedTitle)) {
+
+        $previouslyRatedTitle->users()->detach();
+      }
+      
+      $user->ratedTitles()->attach($titleId, ['rating_id' => $ratingId]);
+
+   } catch(Exception $e) {
+      
+      return ['error' => $e ];
+      
+    }
+
+    return ['success' => 'Rating added!'];
+
+  }
 }
