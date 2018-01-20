@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Review;
 use App\Title;
+use App\Movie;
+use App\Series;
 use Illuminate\Http\Request;
+use App\Traits\DatabaseHelpers;
 use Auth;
 
 class ReviewsController extends Controller
 {
+    const ITEMCOLUMNS = ['title_id', 'user_id', 'title', 'body', 'created_at', 'updated_at', 'status'];
+    const PIVOTTABLES = ['titles', 'comments', 'users'];
+    use DatabaseHelpers;
     /**
      * Display a listing of the resource.
      *
@@ -17,6 +23,9 @@ class ReviewsController extends Controller
     public function index()
     {
         //
+        $reviews = Review::orderByRaw('created_at DESC')->get();
+
+        return view('reviews.index', ['reviews' => $reviews]);
     }
 
     /**
@@ -27,15 +36,6 @@ class ReviewsController extends Controller
     public function create()
     {
         //
-        $id = session('title_id');
-        $title = Title::find($id);
-        if(!Auth::check()) {
-            return redirect()->route('login');
-        }
-        if(empty(session('title_id'))) {
-            return back();
-        }
-        return view('reviews.create', ['title' => $title]);
     }
 
     /**
@@ -48,19 +48,31 @@ class ReviewsController extends Controller
     {
         //
         if(Auth::check()) {
+
             $review = Review::create([
-                'movie_id' => $request->input('movie_id'),
-                'user_id' => Auth::user()->id,
+                'title_id' => $request->input('title_id'),
+                'user_id' => $request->user()->id,
                 'title' => $request->input('title'),
                 'body' => $request->input('body'),
             ]);
             
+            if ($request->has('rating')) {
+                
+                $this->attachRating($request, $request->title_id);
+            }
+
             if($review) {
-                return redirect()->route('reviews.show', ['review' => $review->id])->with('success', 'Review created successfully');
+                $title = Title::find($request->input('title_id'));
+                if($title->type != 'episode') {    
+                    return redirect(url()->previous())->with('success', 'Review successfully created!');; 
+                }
+
+            } else {
+
+                return back()->withInput()->with('error', 'Error creating review');
             }
         }
 
-        return back()->withInput()->with('error', 'Error creating review');
     }
 
     /**
@@ -83,6 +95,8 @@ class ReviewsController extends Controller
     public function edit(Review $review)
     {
         //
+        $review = Review::find($review->id);
+        return view('reviews.edit', ['review' => $review]);
     }
 
     /**
@@ -95,6 +109,12 @@ class ReviewsController extends Controller
     public function update(Request $request, Review $review)
     {
         //
+        if (Auth::user()->role === 1) {
+            $this->updateItem($request, $review);
+            return back();
+        }
+
+        return back();
     }
 
     /**
@@ -106,5 +126,20 @@ class ReviewsController extends Controller
     public function destroy(Review $review)
     {
         //
+        if (Auth::user()->role === 1) {
+            $id = $review->id;
+            $review = Review::find($id);
+
+            try{
+                $review->comments()->delete();
+                $review->delete();
+            } catch(Exception $e) {
+                $dd($e);
+            }
+        
+            return back();  
+        }
+
+        return back();
     }
 }

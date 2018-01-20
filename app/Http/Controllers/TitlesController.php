@@ -297,26 +297,16 @@ class TitlesController extends Controller
 
     public function rate(Request $request, Title $title) 
     {
-        $user = $request->user();
-        $titleId = $title->id;
-        $ratingId = $request->rating;
+        $message = $this->attachRating($request, $title->id);
+       
+        if(isset($message['success'])) {
 
-        try {
-            
-            $title = $user->ratedTitles->where('id', '=', $titleId)->first();
-            
-            if (isset($title)) {
-    
-                $title->users()->detach();
-            }
-            
-            $user->ratedTitles()->attach($titleId, ['rating_id' => $ratingId]);
+            return redirect(url()->previous())->with(['success' => $message['success']]);
 
-        } catch (Exception $e) {
+        } else {
 
-            return redirect(url()->previous())->with('error', $e);
+            return redirect(url()->previous())->with(['error' => $message['error']]);
         }
         
-        return redirect(url()->previous());
     }
 }
