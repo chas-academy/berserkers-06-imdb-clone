@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => 'mail.berzerkermovies.me',
+        'secret' => 'key-d540ee1af9020ec5ea1ddd7a4bc10c9c',
     ],
 
     'ses' => [
