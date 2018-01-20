@@ -2,6 +2,13 @@
 <article class="page-content">
    <div class="centered-content">
       <section class="item-header">
+        @if(Auth::User()->role == 1)
+        <form  method="POST" action="/titles/movies/{{$movie->title_id}}">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <button class="button is-danger"type="submit">Delete movie</button>
+        </form>
+        @endif
          <h1 class="hero-header">{{$movie->title}}</h1>
          <p>Add icons here for review title, add to WL and rating</p>
       </section>

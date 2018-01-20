@@ -88,6 +88,11 @@ class Title extends Model
 
     public function lists()
     {
-        return $this->belongsToMany('App\TitleList');
+        return $this->belongsToMany('App\TitleList', 'title_lists', 'title_id' );
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
     }
 }

@@ -2,6 +2,14 @@
 <article class="page-content">
     <div class="centered-content">
         <section class="item-header">
+            @if(Auth::User()->role == 1)
+            <form  method="POST" action="/titles/series/{{$series->title_id}}/seasons/{{ $season->season_number }}/episodes/{{$episode->episode_number}}">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <input name="title_id" value="{{$episode->title_id}}" type="hidden">
+                <button class="button is-danger"type="submit">Delete</button>
+            </form>
+            @endif
             <h1  class="hero-header link"><a href="http://{{$_SERVER['HTTP_HOST'] }}/titles/series/{{$series->title_id}}">{{$series->title}}</a></h1> <h2 class="hero-header">{{$episode->name}}</h1>
         </section>
         <article class="item">

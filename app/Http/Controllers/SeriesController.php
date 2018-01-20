@@ -198,9 +198,9 @@ class SeriesController extends Controller
                 return $e;
             }
         
-            return redirect("/titles/series/");  
+            return redirect("/catalog?type=series");  
         }
-        return redirect("/titles/series/"); 
+        return redirect("/"); 
     }
 
     

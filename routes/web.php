@@ -28,7 +28,7 @@ Route::group(['namespace' => 'Auth'], function() {
 Route::get('/titles', 'TitlesController@index')->name('catalog');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::delete('titles/series/{series}','SeriesController@destory' );
+    Route::delete('titles/series/{series}','SeriesController@destroy' );
     Route::delete('titles/movies/{movie}', 'MoviesController@destroy');
     Route::put('titles/series/{series}','SeriesController@update' );
     Route::put('titles/movies/{movie}', 'MoviesController@update');

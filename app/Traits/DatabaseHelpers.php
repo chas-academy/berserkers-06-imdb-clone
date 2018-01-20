@@ -189,6 +189,14 @@ trait DatabaseHelpers
         $item->genres()->detach();
         $item->actors()->detach();
         $item->ratings()->detach();
+
+        foreach($item->reviews as $review) {
+            $review->comments()->delete();
+        }
+
+        $item->reviews()->delete();
+        $item->lists()->detach();
+        $item->ratings()->detach();
         $type::where('title_id', '=', $id)->delete();
         Photo::where('imageable_id' ,'=' , $id)->delete();
         Title::where('id', '=', $id)->delete();
