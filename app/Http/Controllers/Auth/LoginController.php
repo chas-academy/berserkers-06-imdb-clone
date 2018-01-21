@@ -39,7 +39,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function checkIfDeactivated(Request $request) 
+    protected function checkIfDeactivated(Request $request) 
     {
 
         $user = User::where('username', '=', $request->username)->first();
@@ -52,12 +52,30 @@ class LoginController extends Controller
         }
 
         $this->login($request);
-        $request->session()->flash('message', ['success' => 'You Where Sucessfully Logged In!']);
+
         return redirect('/');
 
     }
 
-    public function validateLogin(Request $request)
+
+    /**
+     * Log the user out of the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    protected function logout(Request $request)
+    {
+        $this->guard()->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->flash('message', ['success' => 'You Where Sucessfully Logged out!']);
+
+        return redirect('/');
+    }
+
+    protected function validateLogin(Request $request)
     {
         $this->validate($request, [
             $this->username() => 'required|string',
@@ -66,15 +84,31 @@ class LoginController extends Controller
 
     }
 
-    public function credentials(Request $request)
+    protected function credentials(Request $request)
     {
         
         return $request->only($this->username(), 'password');
     }
 
-    public function username()
+    protected function username()
     {
         return 'username';
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        $request->session()->flash('message', ['error' => 'Incorect Password or Username']);
+    }
+
+    protected function sendLoginResponse(Request $request)
+    {   
+        $request->session()->regenerate();
+       
+        $request->session()->flash('message', ['success' => 'You Where Sucessfully Logged In!']);
+        
+        $this->clearLoginAttempts($request);
+        return $this->authenticated($request, $this->guard()->user())
+                ?: redirect()->intended($this->redirectPath());
     }
 
 }
