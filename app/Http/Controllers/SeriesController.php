@@ -169,7 +169,7 @@ class SeriesController extends Controller
      * @param  \App\Series  $series
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Series $series)
+    public function destroy(Request $request, Series $series)
     {
         if (Auth::user()->role === 1) {
             $seriesId = $series->title_id;
@@ -199,7 +199,7 @@ class SeriesController extends Controller
                 return $e;
             }
 
-            Request::session()->flash('message', ['success' =>'The series was successfully deleted']);
+            $request->session()->flash('message', ['success' =>'The series was successfully deleted']);
             return redirect("/catalog?type=series");  
         }
         

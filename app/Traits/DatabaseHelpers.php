@@ -689,13 +689,13 @@ trait DatabaseHelpers
           }
 
           if (!is_null($series->seasons)){
-
+               
               $seasonNumber = $series->seasons[0]->season_number;
 
               foreach($series->seasons as $season) {
 
-                  if ($seasonNumber != 0) {
-
+                  if ($seasonNumber != 0 && $series->name != 'Preacher') {
+                    
                       $seasonTitle = Title::create(['type' => 'season']);
                       Season::create(['title_id' => $seasonTitle->id, 'series_id' => $title->id, 'season_number' => $seasonNumber]);
                       
@@ -987,7 +987,7 @@ trait DatabaseHelpers
 
           foreach($series->seasons as $key => $season) {
 
-              if (($key >= $seasonNumber && $series->seasons[0]->season_number != 0 ) || ($key > $seasonNumber && $series_seasons[0]->season_number == 0)) {
+              if (($key >= $seasonNumber && $series->seasons[0]->season_number != 0 && $series->name != 'Preacher') || ($key > $seasonNumber && $series_seasons[0]->season_number == 0)) {
 
                   $seasonTitle = Title::create(['type' => 'season']);
                   Season::create(['title_id' => $seasonTitle->id, 'series_id' => $title->id, 'season_number' => $seasonNumber]);
@@ -1280,7 +1280,7 @@ trait DatabaseHelpers
           
           foreach($series->seasons as $key => $season) {
             
-              if ( ($seasonNumber -1 == $key && $series->seasons[0]->season_number != 0 ) || ($series->seasons[0]->season_number == 0 && $seasonNumber == $key) ) {
+              if ( ($seasonNumber -1 == $key && $series->seasons[0]->season_number != 0  && $series->name != 'Preacher') || ($series->seasons[0]->season_number == 0 && $seasonNumber == $key) ) {
                 
                   $seasonTitle = $title->seasons[$seasonNumber-1];
                   
