@@ -223,10 +223,19 @@ class TitlesController extends Controller
                     $response = json_decode($response->getBody());
                     $titles = $response->results;
                 }
+                
+                if (!empty($titles)) {
 
-                if (isset($titles)) {
+                    if ($_SERVER['REQUEST_URI']  =! url()->previous()) {
+                        
+                        $request->session()->reflash();
 
-                    $request->session()->flash('message', ['success' =>'Here are your ressults! Please note that series with several seasons can take a while to add']);
+                    } else {
+
+                        $request->session()->flash('message', ['success' =>'Here are your ressults! Please note that series with several seasons can take a while to add']);
+                    }
+                    
+                   
                     return view('admin.addtitle', ['titles' => $titles, 'type' => $type]); 
                 }
 
@@ -278,13 +287,13 @@ class TitlesController extends Controller
                 $request->session()->flash('message', ['error' =>'The title could not be added']);
             }
             
-
             return redirect(url()->previous());
+        
         }
 
         $request->session()->flash('message', ['unauthorised' =>'You are not authorised to perform this action']);
 
-        return redirect(url()->previous());
+        return redirect('/');
     }
 
     /**
