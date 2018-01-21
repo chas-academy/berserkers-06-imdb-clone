@@ -26,6 +26,8 @@ class TitlesController extends Controller
      */
     public function index(Request $request)
     {   
+        ini_set('max_execution_time', 3000);
+        
         $allRatings = Rating::all();
 
         $name = $request->title;

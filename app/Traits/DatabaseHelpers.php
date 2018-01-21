@@ -271,6 +271,8 @@ trait DatabaseHelpers
 
   protected function addMovieToDb($titleId) 
   {
+      ini_set('max_execution_time', 3000);
+
       $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 251]);
       $omdbClient = new Client(['base_uri' => 'http://www.omdbapi.com/', 'delay' => 251]);
 
@@ -532,7 +534,9 @@ trait DatabaseHelpers
   }
 
   protected function addSeriesToDb($seriesId) 
-  {
+  {   
+      ini_set('max_execution_time', 3000);
+      
       $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 251]);
       
       $response = $client->request('GET',"tv/{$seriesId}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=external_ids,content_ratings,videos,credits");
@@ -1560,7 +1564,7 @@ trait DatabaseHelpers
 
           $this->updateNumOfEpisodesAndSeasonsColumns($existingSeries);
       }
-      return $title;
+      return $seriesId;
   }
 
   protected function attachRating($request, $titleId)

@@ -199,7 +199,7 @@ class SeriesController extends Controller
                 return $e;
             }
 
-            $request->session()->flash('message', ['success' =>'The series was successfully deleted']);
+            Request::session()->flash('message', ['success' =>'The series was successfully deleted']);
             return redirect("/catalog?type=series");  
         }
         
