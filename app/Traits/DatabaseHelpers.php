@@ -72,7 +72,7 @@ trait DatabaseHelpers
           $charactersIds = [];
           for ($i = 0; $i < count($names); $i++) {
             if ( ($i % 2) === 0) {
-              $table = Person::where(['name' => $names[$i]]);
+              $table = Person::where(['name' => $names[$i]])->first();
               if (isset($table)) {
                 array_push($personsIds, $table->id);
               } else {
