@@ -56,7 +56,7 @@ class ReviewsController extends Controller
                 'body' => $request->input('body'),
             ]);
             
-            if ($request->has('rating')) {
+            if (!is_null($request->rating)) {
                 
                 $this->attachRating($request, $request->title_id);
             }
