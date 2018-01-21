@@ -133,7 +133,7 @@ class MoviesController extends Controller
      * @param  \App\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movie)
+    public function destroy(Request $request, Movie $movie)
     {
         if (Auth::user()->role === 1) {
             $id = $movie->title_id;
