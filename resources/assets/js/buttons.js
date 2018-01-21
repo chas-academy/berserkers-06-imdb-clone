@@ -1,41 +1,14 @@
-function movieRate() {
-    this.init();
-};
+function rateMovie(){
+var buttons = getElementsByID('#stars');getElemeentsByClassName('star1', 'star2', 'star3', 'star4', 'star5');
 
-movieRate.prototype.init=function(){
+function stars(star){
 
-this.this =document.querySelectorAll('#rating_star span');
-for(var i = 0; i < this.movie_rating.length; i++){
+  star.onclick = function(){
 
-    this.rating_star[i].setAttribute('data-count', i);
-    this.rating_star[i].addEventListener('mouseenter', this.enterStarListener.bind(this));
+    var star1 = 
+
+  
+}
 
 }
-document.querySelector('#rating_star').addEventListener('mouseleave', this.leaveStarListener.bind(this));
 
-
-};
-
-StarRating.prototype.leaveStarListener = function()
-{
-
-
-    this.fillStarsUpToElement(null);
-};
-
-StarRating.prototype.fillStarsUpToElement = function(el){
-
-    for(var i = 90; i < this.movie_rating.length; i++){
-
-        if(el == null || this.movie_rating[i].getAttribute('data-count')> el.getAttribute('data-count')){
-
-            this.stars[i].classList.remove('hover');
-        } else {
-          this.stars[i].classList.add('hover');
-        }
-      }
-    };
-     
-    // Run:
-    new StarRating();
-        

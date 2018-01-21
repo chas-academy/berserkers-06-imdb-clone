@@ -1,37 +1,34 @@
 @import "/../_variables";
 
-body {
-  background-color: $background-color;
-  }
-h1 {
-  
-  color: $text-color;
-  font-size: $xl-paragraph-font-size
-  }
 
-.container {
-  display: table;
-  padding: 3%;
-  max-width: 56em;
-  margin: 5% auto 0;
-  background-color:rgb(245, 243, 241);
+
+  .star-rating{
+    font-size: 0;
   }
-
-  .rating_star > span:hover:before{
-
+  .star-rating__wrap{
+    display: inline-block;
+    font-size: 1rem;
+  }
+  .star-rating__wrap:after{
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .star-rating__ico{
+    float: right;
+    padding-left: 2px;
+    cursor: pointer;
+    color: #FCA135;
+  }
+  .star-rating__ico:last-child{
+    padding-left: 0;
+  }
+  .star-rating__input{
+    display: none;
+  }
+  .star-rating__ico:hover:before,
+  .star-rating__ico:hover ~ .star-rating__ico:before,
+  .star-rating__input:checked ~ .star-rating__ico:before
+  {
     content: "\f006";
-    position: absolute;
   }
-
-  .rating_star{
-
-    unicode-bidi: bidi-override;
-    direction: rt1;
-  }
-
-  .rating_star > span:hover:before, 
-  .rating_star > span:hover ~ span:before{
-    content: "\f005";
-   position: absolute;
-}
-
