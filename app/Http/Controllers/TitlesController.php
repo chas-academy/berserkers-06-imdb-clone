@@ -222,7 +222,7 @@ class TitlesController extends Controller
                     $titles = $response->results;
                 }
 
-                if (isseet($titles)) {
+                if (isset($titles)) {
 
                     $request->session()->flash('message', ['success' =>'Here are your ressults! Please note that series with several seasons can take a while to add']);
                     return view('admin.addtitle', ['titles' => $titles, 'type' => $type]); 
