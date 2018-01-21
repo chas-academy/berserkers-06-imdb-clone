@@ -2,30 +2,46 @@
 
 //document.getElementById("default-tab").click();
 var tabButtons = document.querySelectorAll('.tablinks');
+var tabcontent = document.getElementsByClassName("tabcontent");
+var tablinks = document.getElementsByClassName("tablinks");
 
-tabButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        openTab(e, e.target.innerText)
-    })
-})
+const SetHashedTab = function(){
 
-function openTab(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
+    let regExp, tabName;
 
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+    for (var i = 0; i < tabcontent.length; i++) {
+
+        tabName = tablinks[i].innerText.toLocaleLowerCase();
+        regExp = RegExp(tabName + '*');
+
+        if (window.location.pathname.length > 10) {
+
+            if(regExp.test(window.location.pathname)) {
+    
+                tabcontent[i].style.display = "flex";
+                tablinks[i].className += " active";
+            
+            } else {
+
+                tabcontent[i].style.display = "none";
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+        } else {
+
+            if (tablinks[i].innerText == 'Home') {
+
+                tabcontent[i].style.display = "flex";
+                tablinks[i].className += " active";
+            } else {
+
+                tabcontent[i].style.display = "none";
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+        }
+
     }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "flex";
-    evt.currentTarget.className += " active";
 }
+
+SetHashedTab();
+
+

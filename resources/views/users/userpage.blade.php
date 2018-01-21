@@ -2,14 +2,23 @@
 <h1 id="welcome-h1">Hello Filmcritic007!</h1>
 <!-- Tab links -->
 <div class="tab">
-   <button class="tablinks" id="default-tab">Home</button>
-    
-        <button class="tablinks" type="submit">Lists</button>
-    
-        <button class="tablinks" type="submit">Reviews</button>
-
-        <button class="tablinks" type="submit">Settings</button>
    
+    <form  method="GET"  action="/userpage">
+        {{ csrf_field() }}
+        <button class="tablinks" id="default-tab">Home</button>
+    </form>
+    <form  method="GET"  action="/userpage/lists">
+        {{ csrf_field() }}
+        <button class="tablinks" type="submit">Lists</a>
+    </form>
+    <form  method="GET" action="/userpage/reviews">
+        {{ csrf_field() }}
+        <button class="tablinks" type="submit">Reviews</a>
+    </form>
+    <form  method="GET" action="/userpage/settings/{{Auth::user()->id}}">
+        {{ csrf_field() }}
+        <button class="tablinks" type="submit">Settings</a>
+    </form> 
 </div>
 <!-- Tab content -->
 <!--Home -->
