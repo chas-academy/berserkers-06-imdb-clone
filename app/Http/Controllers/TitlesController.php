@@ -236,12 +236,14 @@ class TitlesController extends Controller
                 return view('admin.addtitle');    
             }
 
-            if(session()->has('message')) {
+            $uri = substr(url()->previous(), 23, 13);
+            
+            if(session()->has('message') && $uri == 'titles/create' ) {
 
                 $request->session()->reflash();
 
             } else {
-                
+
                 $request->session()->flash('message', ['error' =>'Search for a title you would like to add or update']);
             }
             
