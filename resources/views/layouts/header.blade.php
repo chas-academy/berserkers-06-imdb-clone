@@ -151,4 +151,19 @@
             </nav>
          </div>
       </header>
+      @if(session()->has('message'))
+        @if(session()->has('message.error'))   
+            <div class="notification is-info">
+                <p>{{session()->get('message.error')}}</p>
+            </div>
+        @elseif(session()->has('message.success'))   
+        <div class="notification is-success">
+            <p>{{session()->get('message.success')}}</p>
+        </div>
+        @elseif(session()->has('message.unauthorised'))   
+        <div class="notification is-warning">
+            <p>{{session()->get('message.unauthorised')}}</p>
+        </div>
+        @endif
+      @endif
       <main>
