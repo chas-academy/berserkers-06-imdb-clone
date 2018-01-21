@@ -105,6 +105,8 @@ class EpisodesController extends Controller
                 ]);
         }
 
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised visit this page']);
+
         return redirect("/titles/series/{$series->title_id}/seasons/{$season->season_number}/episodes/{$episode->episode_number}");
     }
 
@@ -125,8 +127,12 @@ class EpisodesController extends Controller
 
             $this->updateItem($request, $episode);
 
+            $request->session()->flash('message', ['success' =>'the episode was successfully updated!']);
+
             return redirect("$path/edit")->with('title_id', $episode->title_id); 
         }
+
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
 
         return redirect("$path");
         
@@ -161,9 +167,12 @@ class EpisodesController extends Controller
 
             $seasonNumber = $season[0]->season_number;
 
+            $request->session()->flash('message', ['success' =>'The episode was successfully removed']);
+
             return redirect("/titles/series/$seriesId/seasons/$seasonNumber");  
         }
 
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
         return redirect("/");  
     }
 }

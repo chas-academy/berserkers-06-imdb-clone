@@ -52,9 +52,11 @@ class ListsController extends Controller
 
         } catch (Exception $e) {
 
-          return redirect(url()->previous())->with('error', $e);
+          $request->session()->flash('message', ['error' =>'The list could not be created']);
+          return redirect(url()->previous());
         }
 
+        $request->session()->flash('message', ['success' =>'A list was successfully created']);
         return redirect(url()->previous());
     }
 
@@ -147,6 +149,8 @@ class ListsController extends Controller
                 $rowToUpdate->list_index = $listIndex;
                 $rowToUpdate->save();
 
+                $request->session()->flash('message', ['success' =>'The list was successfully updated']);
+
                 return redirect(url()->previous());
               } 
             }        
@@ -165,6 +169,8 @@ class ListsController extends Controller
 
               $toBeRemoved= TitleList::where([['user_list_id', '=', $list->id],[ 'title_id', '=', $titleId]])->first();
               $toBeRemoved->delete();
+
+              $request->session()->flash('message', ['success' =>'The title was sucessfully removed from the list']);
               return redirect(url()->previous());
             } 
           }
@@ -176,6 +182,7 @@ class ListsController extends Controller
           
         }
         
+        $request->session()->flash('message', ['success' =>'The title was sucessfully added to your list']);
         return redirect(url()->previous());
 
       } else {
@@ -217,11 +224,14 @@ class ListsController extends Controller
         }
 
         TitleList::insert(['user_list_id' => $list->id, 'title_id' => $titleId, 'list_index' => $listIndex ]);
+
+        $request->session()->flash('message', ['success' =>'The title was sucessfully added to your list']);
         return redirect(url()->previous());
 
       } else {
 
-        return redirect(url()->previous())->with('error', 'Title not found in database');  
+        $request->session()->flash('message', ['error' =>'The title could not be added, it was not found in our database']);
+        return redirect(url()->previous()); 
       }
       
 

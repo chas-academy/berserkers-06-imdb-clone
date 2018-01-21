@@ -64,11 +64,12 @@ class ReviewsController extends Controller
             if($review) {
                 $title = Title::find($request->input('title_id'));
                 if($title->type != 'episode') {    
-                    return redirect(url()->previous())->with('success', 'Review successfully created!');; 
+                    $request->session()->flash('message', ['success' =>'Review successfully created!']);
+                    return redirect(url()->previous());
                 }
 
             } else {
-
+                $request->session()->flash('message', ['error' =>'Error creating review']);
                 return back()->withInput()->with('error', 'Error creating review');
             }
         }
@@ -110,10 +111,13 @@ class ReviewsController extends Controller
     {
         //
         if (Auth::user()->role === 1) {
+
             $this->updateItem($request, $review);
+            $request->session()->flash('message', ['success' =>'Review successfully updated!']);
             return back();
         }
 
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
         return back();
     }
 
@@ -136,10 +140,12 @@ class ReviewsController extends Controller
             } catch(Exception $e) {
                 $dd($e);
             }
-        
+            
+            $request->session()->flash('message', ['success' =>'Review successfully been deleted!']);
             return redirect('/');  
         }
 
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
         return back();
     }
 }

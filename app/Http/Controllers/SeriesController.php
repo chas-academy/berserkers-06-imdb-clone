@@ -153,6 +153,7 @@ class SeriesController extends Controller
 
         $path = $request->path();
 
+        $request->session()->flash('message', ['success' =>'The series was successfully updated']);
         return redirect("$path/edit"); 
 
         }
@@ -197,9 +198,12 @@ class SeriesController extends Controller
 
                 return $e;
             }
-        
+
+            $request->session()->flash('message', ['success' =>'The series was successfully deleted']);
             return redirect("/catalog?type=series");  
         }
+        
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
         return redirect("/"); 
     }
 

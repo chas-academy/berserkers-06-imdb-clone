@@ -101,6 +101,7 @@ class MoviesController extends Controller
                 ]);
         }
 
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to visit this page']);
         return redirect("/titles/movies/{$movie->title_id}"); 
     }
 
@@ -118,9 +119,11 @@ class MoviesController extends Controller
 
             $path = $request->path();
 
+            $request->session()->flash('message', ['success' =>'The movie was successfully updated']);
             return redirect("$path/edit"); 
         }
 
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
         return redirect("/titles/movies/{$movie->title_id}"); 
     }
 
@@ -137,14 +140,19 @@ class MoviesController extends Controller
             $title = Title::find($id);
 
             try{
-            $this->detachAllFromItemAndDelete($title, Movie::class , $id);
+
+                $this->detachAllFromItemAndDelete($title, Movie::class , $id);
+
             } catch(Exception $e) {
+
                 $dd($e);
             }
-        
+            
+            $request->session()->flash('message', ['success' =>'The movie was successfully removed']);
             return redirect("/titles/movies/");  
         }
 
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
         return redirect("/");  
     }
 }

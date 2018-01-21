@@ -21,6 +21,9 @@ class AdminUserController extends Controller
 
           return view('admin.handleusers', ['users' => $users]);
         }
+
+        $request->session()->flash('message', ['unauthorised' =>'You are not authorised to acces this page']);
+        return redirect('/');
     }
 
     /**
@@ -82,10 +85,14 @@ class AdminUserController extends Controller
           
             $user->role = $request->role;
             $user->save();
+
+            return redirect ('/admin/users');
           
         }
 
-        return redirect ('/admin/users');
+        $request->session()->flash('message', ['unauthorised' =>'You are not authorised to perform this action']);
+        
+        return redirect ('/');
        
     }
 

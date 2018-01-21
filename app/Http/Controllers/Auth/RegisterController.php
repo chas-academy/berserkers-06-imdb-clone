@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\UserList;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -71,5 +74,29 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+
+      /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    protected function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+       
+        event(new Registered($user = $this->create($request->all())));
+
+        UserList::create([
+            'name' => 'Watchlist',
+            'user_id' => $user->id
+          ]);
+
+        $this->guard()->login($user);
+        $request->session()->flash('message', ['success' => 'User Created And Sucessfully Logged In!']);
+        return $this->registered($request, $user)
+                        ?: redirect($this->redirectPath());
     }
 }

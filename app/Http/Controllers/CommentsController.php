@@ -55,12 +55,13 @@ class CommentsController extends Controller
             if($comment) {
                 $title = Title::find($request->input('title_id'));
                 if($title->type != 'episode') {
-
+                    $request->session()->flash('message', ['success' =>'Your comment was added sucessfully, it pending approval from an siteadmin']);
                     return redirect(url()->previous()); 
                 }
             } else {
 
-                return back()->withInput()->with('error', 'Error creating comment');
+                $request->session()->flash('message', ['error' =>'Something went wrong and your comment was not registered, please try again']);
+                return back();
             }
         }
     }
@@ -99,9 +100,11 @@ class CommentsController extends Controller
         //
         if (Auth::user()->role === 1) {
             $this->updateItem($request, $comment);
+            $request->session()->flash('message', ['success' =>'the comment status was successfully updated!']);
             return back();
         }
 
+        $request->session()->flash('message', ['unauthorised' =>'You are not authorised to perform this action']);
         return back();
     }
 
@@ -123,10 +126,12 @@ class CommentsController extends Controller
             } catch(Exception $e) {
                 $dd($e);
             }
-        
+
+            $request->session()->flash('message', ['success' => 'The comment was sucessfully deleted']);
             return back();  
         }
 
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
         return back();
     }
 }

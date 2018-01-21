@@ -72,8 +72,14 @@ trait DatabaseHelpers
           $charactersIds = [];
           for ($i = 0; $i < count($names); $i++) {
             if ( ($i % 2) === 0) {
-              $table = Person::firstOrCreate(['name' => $names[$i]]);
-              array_push($personsIds, $table->id);
+              $table = Person::where(['name' => $names[$i]]);
+              if (isset($table)) {
+                array_push($personsIds, $table->id);
+              } else {
+
+                return ['error' => 'person entered is not in our database'];
+              }
+              
             } else {
               $table = Character::firstOrCreate(['character_name' => $names[$i]]);
               array_push($charactersIds, ['character_id' => $table->id]);
@@ -84,7 +90,7 @@ trait DatabaseHelpers
           
           $title->actors()->sync($actorsAsCharactersIds);
 
-          return; 
+          return ['success' => 'all Actors and character in this title where updated']; 
 
         } elseif($request->has('photos')) {
 
@@ -136,7 +142,7 @@ trait DatabaseHelpers
           Photo::where('id', '=', $photo->id)->delete();
         }
         
-        return; 
+        return ['success' => 'All photos for the title where updated']; 
 
         } else {
 
@@ -153,15 +159,20 @@ trait DatabaseHelpers
     
                 } else {
     
-                  $table = Person::firstOrCreate(['name' => $name]);
-                  
-                  array_push($pivotIds, $table->id);
+                  $table = Person::where(['name' => $name])->first();
+                    
+                  if (isset($table)) {
+                    array_push($pivotIds, $table->id);
+                  } else {
+    
+                    return ['error' => 'person entered is not in our database'];
+                  }
                 }
               }
             }
           $title->$pivot()->sync($pivotIds);
 
-          return; 
+          return ['success' => 'pivottable was sucessfully updated'];
         }
       }
     }
@@ -173,7 +184,7 @@ trait DatabaseHelpers
           $item->$column = $request->get($column);
           $item->save();
           
-          return;         
+          return ['success' => 'title column where sucessfully updated'];         
       } 
     }
   }    
@@ -203,10 +214,10 @@ trait DatabaseHelpers
 
     } catch (Exceptions $e) {
 
-        return $e;
+        return ['error' => 'Title could not be deleted'];
     }
 
-    return;
+    return ['success' => 'title was sucessfully deleted'];
   }
 
   protected function updateNumOfEpisodesAndSeasonsColumns($series)
@@ -517,7 +528,7 @@ trait DatabaseHelpers
               }
           }
       }
-      return;
+      return $title;
   }
 
   protected function addSeriesToDb($seriesId) 
@@ -1549,7 +1560,7 @@ trait DatabaseHelpers
 
           $this->updateNumOfEpisodesAndSeasonsColumns($existingSeries);
       }
-      return;
+      return $title;
   }
 
   protected function attachRating($request, $titleId)
@@ -1571,7 +1582,7 @@ trait DatabaseHelpers
 
    } catch(Exception $e) {
       
-      return ['error' => $e ];
+      return ['error' => 'rating could not be added for this title' ];
       
     }
 

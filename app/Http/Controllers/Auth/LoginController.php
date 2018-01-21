@@ -46,13 +46,14 @@ class LoginController extends Controller
         
         if ($user->role == 0) {
 
-            return redirect('/')->with('error', 'Your userprofile has been deleted');
+            $request->session()->flash('message', ['unauthorised' =>'Your userprofile has been deactivated']);
+            return redirect('/');
 
         }
 
         $this->login($request);
-
-        return redirect('/')->with('success', 'You are loggedin!');
+        $request->session()->flash('message', ['success' => 'You Where Sucessfully Logged In!']);
+        return redirect('/');
 
     }
 
