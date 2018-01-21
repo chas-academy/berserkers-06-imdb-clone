@@ -226,16 +226,8 @@ class TitlesController extends Controller
                 
                 if (!empty($titles)) {
 
-                    if ($_SERVER['REQUEST_URI']  =! url()->previous()) {
-                        
-                        $request->session()->reflash();
-
-                    } else {
-
-                        $request->session()->flash('message', ['success' =>'Here are your ressults! Please note that series with several seasons can take a while to add']);
-                    }
-                    
-                   
+                
+                    $request->session()->flash('message', ['success' =>'Here are your ressults! Please note that series with several seasons can take a while to add']);
                     return view('admin.addtitle', ['titles' => $titles, 'type' => $type]); 
                 }
 
@@ -244,8 +236,15 @@ class TitlesController extends Controller
                 return view('admin.addtitle');    
             }
 
-            $request->session()->flash('message', ['error' =>'Search for a title you would like to add or update']);
+            if(session()->has('message')) {
 
+                $request->session()->reflash();
+
+            } else {
+                
+                $request->session()->flash('message', ['error' =>'Search for a title you would like to add or update']);
+            }
+            
             return view('admin.addtitle');
 
             }
@@ -287,7 +286,7 @@ class TitlesController extends Controller
                 $request->session()->flash('message', ['error' =>'The title could not be added']);
             }
             
-            return redirect(url()->previous());
+            return redirect('/titles/create');
         
         }
 

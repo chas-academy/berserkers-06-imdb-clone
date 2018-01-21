@@ -278,8 +278,9 @@ trait DatabaseHelpers
 
       $response = $client->request('GET',"movie/{$titleId}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=credits,videos");
       $movie = json_decode($response->getBody());
+      $title = Movie::where([['title', '=', $movie->title],['release_year', '=', $movie->release_date]])->first();
       
-      if (is_null(Movie::where([['title', '=', $movie->title],['release_year', '=', $movie->release_date]])->first())) {
+      if (is_null($title)) {
           
           $response = $omdbClient->request('GET',"?t={$movie->title}&apikey=c73f9c20");
           $response = json_decode($response->getBody());
@@ -541,9 +542,9 @@ trait DatabaseHelpers
       
       $response = $client->request('GET',"tv/{$seriesId}?api_key=be55d92a645f3fe8c6ca67ff5093076e&append_to_response=external_ids,content_ratings,videos,credits");
       $series = json_decode($response->getBody());
-      $existingSeries = Series::where([['title', '=', $series->name],['countries', '=',$series->origin_country[0]],['release_year', '=', $series->first_air_date]])->first();
+      $title = Series::where([['title', '=', $series->name],['countries', '=',$series->origin_country[0]],['release_year', '=', $series->first_air_date]])->first();
       
-      if (is_null($existingSeries)) {
+      if (is_null($title)) {
           
           $title = Title::create(['type' => 'series']);
 
@@ -980,9 +981,9 @@ trait DatabaseHelpers
           }
 
       
-    } elseif ($series->number_of_seasons > $existingSeries->num_of_seasons) {
+    } elseif ($series->number_of_seasons > $title->num_of_seasons) {
 
-          $seasonNumber = $existingSeries->num_of_seasons;
+          $seasonNumber = $title->num_of_seasons;
 
           foreach($series->seasons as $key => $season) {
 
@@ -1271,17 +1272,17 @@ trait DatabaseHelpers
               $seasonNumber++;
           }
 
-          $this->updateNumOfEpisodesAndSeasonsColumns($existingSeries);
+          $this->updateNumOfEpisodesAndSeasonsColumns($title);
 
-      } elseif ($series->number_of_episodes > $existingSeries->num_of_episodes) {
+      } elseif ($series->number_of_episodes > $title->num_of_episodes) {
         
-          $seasonNumber = $existingSeries->num_of_seasons;
+          $seasonNumber = $title->num_of_seasons;
           
           foreach($series->seasons as $key => $season) {
             
               if ( ($seasonNumber -1 == $key && $series->seasons[0]->season_number != 0 ) || ($series->seasons[0]->season_number == 0 && $seasonNumber == $key) ) {
                 
-                  $seasonTitle = $existingSeries->seasons[$seasonNumber-1];
+                  $seasonTitle = $title->seasons[$seasonNumber-1];
                   
                   for($episodeNumber = count($seasonTitle->episodes)+1; $episodeNumber <= $season->episode_count; $episodeNumber++) {
                     
@@ -1562,9 +1563,9 @@ trait DatabaseHelpers
 
           }
 
-          $this->updateNumOfEpisodesAndSeasonsColumns($existingSeries);
+          $this->updateNumOfEpisodesAndSeasonsColumns($title);
       }
-      return $seriesId;
+      return $title;
   }
 
   protected function attachRating($request, $titleId)
