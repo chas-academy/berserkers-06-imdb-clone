@@ -1,5 +1,6 @@
 @import "variables";
 @import "components/links";
+@import "components/messagefade";
 @import "~bulma";
 
 html,
@@ -23,6 +24,7 @@ main {
     background-color: $background;
     color: white;
     margin-top: 25px;
+
 }
 
 #mobile-navbar {
