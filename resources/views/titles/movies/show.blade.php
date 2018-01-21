@@ -2,6 +2,7 @@
 <article class="page-content">
    <div class="centered-content">
       <section class="item-header">
+      @auth
         @if(Auth::User()->role == 1)
         <form  method="POST" action="/titles/movies/{{$movie->title_id}}">
             {{ csrf_field() }}
@@ -9,6 +10,7 @@
             <button class="button is-danger"type="submit">Delete movie</button>
         </form>
         @endif
+      @endauth
          <h1 class="hero-header">{{$movie->title}}</h1>
          <p>Add icons here for review title, add to WL and rating</p>
       </section>
@@ -200,7 +202,7 @@
 
 <div class="review-container">
     <div class="h1-button">
-        <h1 class="review-header">Reviews & Comments</h1>
+        <h1 class="review-header">Reviews</h1>
         @if(Auth::check())
             <a class="button is-primary" id="review-button" href="#anchor-review">Review this title</a>
         @endif
@@ -238,6 +240,7 @@
                         </div>
                     </form>
                 @endif
+                <h2 class="review-header">Comments</h2>
                 @foreach($review->comments as $comment)
                     @if($comment->status == 1)
                         <div class="user-comment">
@@ -250,7 +253,6 @@
             </div>
         @endif
     @endforeach
-
     <!-- Review Form -->
     @if(Auth::check())
         <form class="make-review" id="anchor-review" method="post" action="{{ route('reviews.store') }}">
