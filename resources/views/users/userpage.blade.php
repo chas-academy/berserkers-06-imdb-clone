@@ -108,90 +108,7 @@
 <!-- List Tab -->
 <div id="Lists" class="tabcontent">
 
-<article>
-    <h2>Your Lists</h2>
-    @if(isset($lists))
-        @foreach ($lists as $list)
-            <section class="mylists">
-                <h3>{{$list->name}}</h3>
-                <ul>
-                @foreach ($list->titleLists->sortBy('list_index') as $titleList)
-                    <li class="list-item">
-                    @if($titleList->title->type == 'movie')
-                        <a href="/titles/movies/{{$titleList->title->id}}">
-                        {{$titleList->title->movie->title}}
-                        </a>
-                    @endif
-                    @if($titleList->title->type == 'series')
-                        <a href="/titles/series/{{$titleList->title->id}}">
-                        {{$titleList->title->series->title}}            
-                        </a>
-                    @endif
-                    @if($titleList->title->type == 'episode')
-                        <a href="/titles/series/{{$titleList->title->episode->first()->season->series_id}}/seasons/{{$title->episode->first()->season->season_number}}/episodes/{{$title->episode->first()->episode_number}}">
-                        {{$titleList->title->episode->first()->name}}           
-                        </a> 
-                    @endif
-                    <form method="POST" action="/userpage/lists/{{$list->id}}">
-                        {{ csrf_field() }}
-                        {{ method_field('PUT') }}
-                        <input type="hidden" name="title_id" value="{{$titleList->title->id}}">
-                        <input type="hidden" name="old_list_index" value="{{$titleList->list_index}}">
-                        <select name="list_index">
-                            @foreach($list->titleLists->sortBy('list_index') as $titleListIndex)
-                            @if($titleList->list_index == $titleListIndex->list_index )
-                            <option value="{{$titleListIndex->list_index}}" selected="selected">{{$titleListIndex->list_index}}</option>
-                            @else 
-                            <option value="{{$titleListIndex->list_index}}" >{{$titleListIndex->list_index}}</option>
-                            @endif
-                            @endforeach
-                        </select>
-                        <button class="button is-primary" type="submit">Change Order</button>
-                    </form>
-                    <form method="POST" action="/userpage/lists/{{$list->id}}">
-                        {{ csrf_field() }}
-                        {{ method_field('PUT') }}
-                        <input type="hidden" name="title_id" value="{{$titleList->title->id}}">
-                        <input type="hidden" name="list_index" value="{{$titleList->list_index}}">
-                        <input type="hidden" name="remove" value="true">
-                        <button class="button is-danger" type="submit">Remove from List</button>
-                    </form>
-                    </li>
-                @endforeach
-                <form method="POST" action="/userpage/lists/{{$list->id}}">
-                {{ csrf_field() }}
-                {{ method_field('PUT') }}
-                <lable for="list_index">Placement in List: </lable>
-                <select name="list_index">
-                    @if(isset($list->titleLists[0]))
-                        @foreach($list->titleLists->sortBy('list_index') as $titleList)
-                        <option value="{{$titleList->list_index}}">{{$titleList->list_index}}</option>
-                        @endforeach
-                        <option value ="{{$list->titleLists->last()->list_index +1 }}">{{$list->titleLists->sortBy('list_index')->last()->list_index + 1 }}</option>
-                    @else
-                        <option value ="1">1</option>
-                    @endif
-                </select>
-                <lable for="type">Type: </lable>
-                <select name="type">
-                    <option value="movie">Movie</option>
-                    <option value="series">Series</option>
-                    <option value="episode">Episode</option>
-                </select>
-                <lable for="name">Title: </lable>
-                <input name="name" placeholder="which title would you like to add?" required>
-                <button class="button is-primary" type="submit">Add to List</button>
-                </form>
-                <form method="POST" action="/userpage/lists/{{$list->id}}">
-                {{ csrf_field() }}
-                {{ method_field('DELETE') }}
-                <button class="button is-danger" type="submit">Delete List</button>
-                </form>
-                </ul>
-            </section>
-        @endforeach
-    @endif
-  </article>
+
   <article>
     <h2>Do you want to create a new list?</h2>
     <form method="GET" action="/userpage/lists/create">
@@ -201,410 +118,95 @@
     </form>
   </article>
 
-
-
-
+  @if(isset($lists))
+  @foreach ($lists as $list)
    <div class="list-container"> <!-- List Container -->
-      <h1 class="list-title">Planning to Review</h1>
+      <h1 class="list-title">{{$list->name}}</h1>
       <div class="watchlist">
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
+            @foreach ($list->titleLists->sortBy('list_index') as $titleList)
+                <div class="watchlist-box">
+                    <!-- Container -->
+                    <figure class="image-container">
+                        @foreach ($listItem->title->photos as $photo)
+                            @if($photo->width == '300' && $photo->photo_type == 'backdrop')
+                                <img class="box-img" src="{{$photo->photo_path}}">
+                            @endif
+                        @endforeach
+                    </figure>
+                    <div class="box">
+                        @switch($listItem->title->type)
+                            @case('movie')
+                                <p class="box-title">{{$listItem->title->movie->title}}</p>
+                                @break
+                            @case('series')
+                                <p class="box-title">{{$listItem->title->series->title}}</p>
+                                @break
+                            @case('episode')
+                                <p class="box-title">{{$listItem->title->episode->name}}</p>
+                                @break
+                        @endswitch
+                    <div class="field is-grouped btn-container">
+                        <form method="POST" action="/userpage/lists/{{$list->id}}">
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }}
+                            <input type="hidden" name="title_id" value="{{$listItem->title->id}}">
+                            <input type="hidden" name="old_list_index" value="{{$listItem->list_index}}">
+                            <select name="list_index">
+                                @foreach($list->titleLists->sortBy('list_index') as $titleListIndex)
+                                @if($listItem->list_index == $titleListIndex->list_index )
+                                <option value="{{$titleListIndex->list_index}}" selected="selected">{{$titleListIndex->list_index}}</option>
+                                @else 
+                                <option value="{{$titleListIndex->list_index}}" >{{$titleListIndex->list_index}}</option>
+                                @endif
+                                @endforeach
+                            </select>
+                            <button class="button is-primary" type="submit">Move Up/Move Down</button>
+                        </form>
+                        <form method="POST" action="/userpage/lists/{{$list->id}}">
+                            {{ csrf_field() }}
+                            {{ method_field('PUT') }}
+                            <input type="hidden" name="title_id" value="{{$listItem->title->id}}">
+                            <input type="hidden" name="list_index" value="{{$listItem->list_index}}">
+                            <input type="hidden" name="remove" value="true">
+                            <button class="button is-danger" type="submit">Remove from List</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
+         @endforeach
       </div>
+    <form method="POST" action="/userpage/lists/{{$list->id}}">
+        {{ csrf_field() }}
+        {{ method_field('PUT') }}
+        <lable for="list_index">Placement in List: </lable>
+        <select name="list_index">
+            @if(isset($list->titleLists[0]))
+                @foreach($list->titleLists->sortBy('list_index') as $titleList)
+                <option value="{{$titleList->list_index}}">{{$titleList->list_index}}</option>
+                @endforeach
+                <option value ="{{$list->titleLists->last()->list_index +1 }}">{{$list->titleLists->sortBy('list_index')->last()->list_index + 1 }}</option>
+            @else
+                <option value ="1">1</option>
+            @endif
+        </select>
+        <lable for="type">Type: </lable>
+        <select name="type">
+            <option value="movie">Movie</option>
+            <option value="series">Series</option>
+            <option value="episode">Episode</option>
+        </select>
+        <lable for="name">Title: </lable>
+        <input name="name" placeholder="which title would you like to add?" required>
+        <button class="button is-primary" type="submit">Add to List</button>
+        </form>
+        <form method="POST" action="/userpage/lists/{{$list->id}}">
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+        <button class="button is-danger" type="submit">Delete List</button>
+    </form>
    </div>
-   <div class="list-container"> <!-- List Container -->
-      <h1 class="list-title">Have Reviewed</h1>
-      <div class="watchlist">
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="list-container"> <!-- List Container -->
-      <h1 class="list-title">Currently Reviewing</h1>
-      <div class="watchlist">
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="list-container"> <!-- List Container -->
-      <h1 class="list-title">Romantic</h1>
-      <div class="watchlist">
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="list-container"> <!-- List Container -->
-      <h1 class="list-title">Crime</h1>
-      <div class="watchlist">
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="list-container"> <!-- List Container -->
-      <h1 class="list-title">Crime</h1>
-      <div class="watchlist">
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <div class="list-container"> <!-- List Container -->
-      <h1 class="list-title">Crime</h1>
-      <div class="watchlist">
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
-
+   @endforeach
+   @endif
 <div id="Reviews" class="tabcontent">
     <div class="text-container">
         <h1 class="my-reviews">Game of Thrones (2011)</h1>
