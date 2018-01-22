@@ -6,6 +6,7 @@ use App\Review;
 use App\Title;
 use Illuminate\Http\Request;
 use Auth;
+use App\User;
 
 class ReviewsController extends Controller
 {
@@ -16,7 +17,9 @@ class ReviewsController extends Controller
      */
     public function index()
     {
-        //
+        if(Auth::check()) {
+            return view('users.userpage');
+        }
     }
 
     /**

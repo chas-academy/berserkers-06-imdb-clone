@@ -21,7 +21,7 @@ class Review extends Model
         return $this->hasMany('App\Comment');
     }
 
-    public function movie(){
+    public function title(){
         return $this->belongsTo('App\Movie');
     }
 

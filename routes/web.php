@@ -38,11 +38,13 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('userpage/lists/create', 'ListsController@create');
     Route::put('userpage/lists/{list}', 'ListsController@update');
     Route::delete('userpage/lists/{list}', 'ListsController@destroy');
-    
+
     Route::get('/userpage','UsersController@index')->name('userpage');
 
     Route::get('userpage/settings/{user}', 'UsersController@edit')->name('userpage');
     Route::put('userpage/settings/{user}', 'UsersController@update');
+
+    Route::get('userpage/reviews/', 'reviewsController@index')->name('userpage');
 
     Route::put('titles/{title}/rate', 'TitlesController@rate');
     Route::get('titles/create', 'TitlesController@create')->name('edit');
