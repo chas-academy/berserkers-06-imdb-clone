@@ -1,8 +1,7 @@
 @include('layouts.header')
-<h1 id="welcome-h1">Hello Filmcritic007!</h1>
+<h1 id="welcome-h1">Hello {{Auth::user()->username}}!</h1>
 <!-- Tab links -->
 <div class="tab">
-   
     <form  method="GET"  action="/userpage">
         {{ csrf_field() }}
         <button class="tablinks" id="default-tab">Home</button>
@@ -26,84 +25,82 @@
    <!-- Latest Reviews -->
    <div id="latest-reviews">
       <h1 id="latest-title">Latest Reviews</h1>
-      <!-- Review 1 -->
-      <article class="message is-primary">
-         <div class="message-header">
-            <p>My favorite movie by far</p>
-            <button class="delete" aria-label="delete"></button>
-         </div>
-         <div class="message-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
-         </div>
-      </article>
-      <!-- Review 2 -->
-      <article class="message is-primary">
-         <div class="message-header">
-            <p>Kind of dissapointed..</p>
-            <button class="delete" aria-label="delete"></button>
-         </div>
-         <div class="message-body">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Aenean ac <em>eleifend lacus</em>, in mollis lectus. Donec sodales, arcu et sollicitudin porttitor, tortor urna tempor ligula, id porttitor mi magna a neque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
-         </div>
-      </article>
+      @if (isset(Auth::user()->reviews[0]))
+        @foreach (Auth::user()->reviews as $key => $review)
+            @if($key < 1)
+            <article class="message is-primary">
+                <div class="message-header">
+                    <p>{{$review->title}}</p>
+                </div>
+                <div class="message-body">
+                {{$review->body}}
+                </div>
+            </article>
+            @endif
+        @endforeach
+      @endif
    </div>
+
    <!-- Watch-list-->
    <div class="watchlist-container">
-      <h1 id="watchlist-title">My Watchlist</h1>
-      <div class="watchlist">
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-         <div class="watchlist-box">
-            <!-- Container -->
-            <figure class="image-container">
-               <img class="box-img" src="https://bulma.io/images/placeholders/256x256.png">
-            </figure>
-            <div class="box">
-               <p class="box-title">Movie Title (2017)</p>
-               <div class="field is-grouped btn-container">
-                  <a class="button is-primary">Move up/down</a>
-                  <a class="button is-danger">Remove</a>
-               </div>
-            </div>
-         </div>
-      </div>
+        <h1 id="watchlist-title">My Watchlist</h1>
+        @foreach (Auth::user()->lists as $list)
+            @if($list->name == 'Watchlist')
+                <div class="watchlist">
+                    @foreach ($list->titleLists->sortBy('list_index') as $listItem)
+                        <div class="watchlist-box">
+                            <!-- Container -->
+                            <figure class="image-container">
+                                @foreach ($listItem->title->photos as $photo)
+                                    @if($photo->width == '300' && $photo->photo_type == 'backdrop')
+                                        <img class="box-img" src="{{$photo->photo_path}}">
+                                    @endif
+                                @endforeach
+                            </figure>
+                            <div class="box">
+                            @switch($listItem->title->type)
+                                @case('movie')
+                                    <p class="box-title">{{$listItem->title->movie->title}}</p>
+                                    @break
+                                @case('series')
+                                    <p class="box-title">{{$listItem->title->series->title}}</p>
+                                    @break
+                                @case('episode')
+                                    <p class="box-title">{{$listItem->title->episode->name}}</p>
+                                    @break
+                            @endswitch
+                            </div>
+                            <div class="field btn-container">
+                                <form method="POST" action="/userpage/lists/{{$list->id}}">
+                                    {{ csrf_field() }}
+                                    {{ method_field('PUT') }}
+                                    <input type="hidden" name="title_id" value="{{$listItem->title->id}}">
+                                    <input type="hidden" name="old_list_index" value="{{$listItem->list_index}}">
+                                    <select name="list_index">
+                                        @foreach($list->titleLists->sortBy('list_index') as $titleListIndex)
+                                        @if($listItem->list_index == $titleListIndex->list_index )
+                                        <option value="{{$titleListIndex->list_index}}" selected="selected">{{$titleListIndex->list_index}}</option>
+                                        @else 
+                                        <option value="{{$titleListIndex->list_index}}" >{{$titleListIndex->list_index}}</option>
+                                        @endif
+                                        @endforeach
+                                    </select>
+                                    <button class="button is-primary" type="submit">Move Up/Move Down</button>
+                                </form>
+                                <form method="POST" action="/userpage/lists/{{$list->id}}">
+                                    {{ csrf_field() }}
+                                    {{ method_field('PUT') }}
+                                    <input type="hidden" name="title_id" value="{{$listItem->title->id}}">
+                                    <input type="hidden" name="list_index" value="{{$listItem->list_index}}">
+                                    <input type="hidden" name="remove" value="true">
+                                    <button class="button is-danger" type="submit">Remove from List</button>
+                                </form>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        @endforeach
    </div>
 </div>
 </div>

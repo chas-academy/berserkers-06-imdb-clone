@@ -15,8 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/userpage','UsersController@index')->name('userpage');
-
 
 Route::get('/catalog','TitlesController@index')->name('catalog');
 
@@ -41,13 +39,16 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('userpage/lists/{list}', 'ListsController@update');
     Route::delete('userpage/lists/{list}', 'ListsController@destroy');
     
+    Route::get('/userpage','UsersController@index')->name('userpage');
+
     Route::get('userpage/settings/{user}', 'UsersController@edit')->name('userpage');
     Route::put('userpage/settings/{user}', 'UsersController@update');
 
     Route::put('titles/{title}/rate', 'TitlesController@rate');
     Route::get('titles/create', 'TitlesController@create')->name('edit');
     Route::post('titles/store', 'TitlesController@store');
-   
+    Route::resource('reviews', 'ReviewsController');
+    
 });
 
 Route::get('titles/series/{series}','SeriesController@show' )->name("title");
@@ -59,7 +60,7 @@ Route::get('titles/series/{series_id}/seasons/{season_number}/episodes/{episode_
 
 
 Route::resource('people', 'PeopleController');
-Route::resource('reviews', 'ReviewsController');
+
 Route::resource('comments', 'CommentsController');
 
 

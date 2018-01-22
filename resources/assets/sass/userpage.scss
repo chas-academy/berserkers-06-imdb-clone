@@ -108,9 +108,28 @@ footer {
 
 .list-container {
     margin-bottom: 2em;
-    flex: 1 1 25%
-}
+    flex: 1 1 25%;
 
+}
+.btn-container {
+    
+    display: flex;
+    flex-direction: column;
+   
+
+    form {
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 1em 0;
+
+        button.is-danger {
+
+            justify-self: flex-end;
+        }
+    }
+}
 .message.is-primary {
     margin-bottom: 2em;
 }
