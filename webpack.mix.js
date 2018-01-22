@@ -12,6 +12,16 @@ let mix = require("laravel-mix");
  */
 
 mix
+  .options({
+    postCss: [
+      require('autoprefixer')({
+        browsers: ['last 2 versions'],
+        cascade: false
+      })
+    ]
+  });
+  
+mix
   .js("resources/assets/js/app.js", "public/js")
   .js("resources/assets/js/carousel.js", "public/js")
   .js("resources/assets/js/filter_panel.js", "public/js")
