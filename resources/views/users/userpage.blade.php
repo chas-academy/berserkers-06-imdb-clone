@@ -205,7 +205,7 @@
  <!-- reviews Tab --> 
 <div id="Reviews" class="tabcontent">
     @if(isset(Auth::user()->reviews[0]))
-        @foreach (Auth::user()->reviews as $rewiew)
+        @foreach (Auth::user()->reviews as $review)
             <div class="text-container">
                 @switch($review->title->type)
                     @case('movie')
