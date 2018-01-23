@@ -21,8 +21,8 @@ class Review extends Model
         return $this->hasMany('App\Comment');
     }
 
-    public function title(){
-        return $this->belongsTo('App\Title');
+    public function getTitle(){
+        return $this->belongsTo('App\Title', 'title_id');
     }
 
     public function user(){
