@@ -21,6 +21,9 @@
 </div>
 <!-- Tab content -->
 <!--Home -->
+@php
+    dd(Auth::user()->reviwes[0]->title->type);
+@phpend
 <div id="Home" class="tabcontent">
    <!-- Latest Reviews -->
    <div id="latest-reviews">

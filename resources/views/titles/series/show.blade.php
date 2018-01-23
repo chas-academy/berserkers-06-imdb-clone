@@ -2,6 +2,15 @@
 <article class="page-content">
     <div class="centered-content">
         <section class="item-header">
+        @auth
+            @if(Auth::User()->role == 1)
+            <form  method="POST" action="/titles/series/{{$series->title_id}}">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button class="button is-danger"type="submit">Delete</button>
+            </form>
+            @endif
+        @endauth
             <h1 class="hero-header">{{$series->title}}</h1>
         </section>
         <article class="item">
@@ -213,7 +222,7 @@
             </section>
         </article>     
         <p>Rating: 
-            <?php
+            @php
                 $ratingSummary = 0;
                 $i = 0;
                 foreach ($title->ratings as $rating) {
@@ -226,16 +235,12 @@
                     $ratingSummary = $ratingSummary / $i;
                     echo $ratingSummary;
                 }
-            ?>
+            @endphp
         </p>
-        @if(Auth::check())
-            <a href="http://{{ $_SERVER['HTTP_HOST'] }}/reviews/create">Create a review</a>
-        @endif
     </div>
 </article>
 </p>
 {{--  <a href="http://{{ $_SERVER['HTTP_HOST'] }}/titles/series/{{ $series->title_id }}/seasons">All Seasons</a><br>  --}}
-
 <div id="hz-carousel">
     @foreach($title->photos as $photo)
         @if($photo->width == 300)
@@ -244,6 +249,98 @@
         </div>
         @endif
     @endforeach
+</div>
+<div class="review-container">
+    <div class="h1-button">
+        <h1 class="review-header">Reviews</h1>
+        @if(Auth::check())
+            <a class="button is-primary" id="review-button" href="#anchor-review">Review this title</a>
+        @endif
+    </div>
+    @foreach($title->reviews as $review)
+        @if($review->status == 1)
+            <div class="review-content">
+                <div class="title-container">
+                    <h2 class="review-title">{{ $review->title }}</h2>
+                </div>
+                <div class="user-container">
+                    <p class="review-date">{{ $review->created_at }} &nbsp;</p>
+                    <p class="review-user">|&nbsp;&nbsp;by user: {{ $review->user->username }}</p>
+                </div>
+                <p class="review-text">{{ $review->body }}</p>
+                <!-- Comment form and buttons -->
+                @if(Auth::check())
+                    <button class="button is-primary comment-button" value="Button One">Comment this review</button>
+                    <form class="create-comment" method="post" action="{{ route('comments.store') }}">
+                        {{ csrf_field() }}
+                        <input type="hidden" name="title_id" value="{{ $title->id }}">
+                        <input type="hidden" name="review_id" value="{{ $review->id }}">
+                        <div class="field">
+                            <div class="control">
+                                <textarea class="textarea is-primary" type="text" name="body" placeholder="Comment"></textarea>
+                            </div>
+                        </div>
+                        <div class="field is-grouped">
+                            <p class="control">
+                                <input type="submit" class="button is-primary" id="submit-comment" value="Submit comment">
+                            </p>
+                            <p class="control">
+                                <button type="button" class="button is-light" id="cancel-comment">Cancel</button>
+                            </p>
+                        </div>
+                    </form>
+                @endif
+                <h2 class="review-header">Comments</h2>
+                @foreach($review->comments as $comment)
+                    @if($comment->status == 1)
+                        <div class="user-comment">
+                            <p class="review-date">{{ $comment->created_at }} &nbsp;</p>
+                            <p class="review-user">|&nbsp;&nbsp;by user: {{ $comment->user->username }}</p>
+                            <p class="comment-content">{{ $comment->body }}</p>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        @endif
+    @endforeach
+    <!-- Review Form -->
+    @if(Auth::check())
+        <form class="make-review" id="anchor-review" method="post" action="{{ route('reviews.store') }}">
+            {{ csrf_field() }}
+            <input type="hidden" name="title_id" value="{{ $title->id }}">
+            <div class="field">
+                <label class="label">Title</label>
+                <div class="control" id="rating-container">
+                    <input class="input" type="text" name="title" placeholder="Title">
+                    <div class="select">
+                    <select name="rating">
+                        <option value="">Rate this Series</option>
+                        <option value="0">0 Stars</option>
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Review</label>
+                <div class="control">
+                    <textarea class="textarea is-primary" type="text" name="body" placeholder="Your review"></textarea>
+                </div>
+            </div>
+            <div class="field is-grouped">
+                <p class="control">
+                    <input class="button is-primary" id="submit-review" type="submit" value="Submit review">
+                </p>
+                <p class="control">
+                    <button type="button" class="button is-light" id="cancel-review">Cancel</button>
+                </p>
+            </div>
+        </form>
+    @endif
 </div>
 {{--  <a href="http://{{ $_SERVER['HTTP_HOST'] }}/series">Back to all series</a>
 <time datetime="{{ $series->release_year }}">{{ date('d F Y', strtotime($series->release_year)) }}</time><br> --}}

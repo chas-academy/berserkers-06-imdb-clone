@@ -71,6 +71,11 @@ class Title extends Model
         return $this->belongsToMany('App\Genre', 'title_genre');
     }
 
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
+
     public function ratings()
     {
         return $this->belongsToMany('App\Rating', 'title_user_rating', 'title_id');
@@ -83,6 +88,7 @@ class Title extends Model
 
     public function lists()
     {
-        return $this->belongsToMany('App\TitleList');
+        return $this->belongsToMany('App\TitleList', 'title_lists', 'title_id' );
     }
+
 }

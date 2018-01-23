@@ -14,7 +14,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    @if (isset($routeName))
+    @if ($routeName == 'password.reset' || $routeName == 'password.request')
+    <link href="{{ asset('css/register.css') }}" rel="stylesheet">
+    @elseif (isset($routeName))
     <link href="{{ asset('css/' . $routeName . '.css') }}" rel="stylesheet">
     @else
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -74,7 +76,7 @@
                   <p class="modal-card-title">Log in or Register</p>
                </header>
                <!-- Any other Bulma elements you want -->
-               <form method ="POST" action="{{ route('login') }}" >
+               <form method ="POST" action="/login/checkifdeactivated" >
                   {{ csrf_field() }}
                   <div class="field">
                      <p class="control has-icons-left has-icons-right">
@@ -99,6 +101,7 @@
                      <p class="control">
                         <button type="submit" class="button is-success">Login</button>
                         <span class="button is-danger">Cancel</span>
+                        <a href="/password/reset"><span class="button is-primary">Forgot Your Password?</span></a>
                         <a href="/register"><span class="button is-info" id="register" >Register</span></a>
                      </p>
                   </div>
@@ -135,7 +138,9 @@
                         <div class="column is-2" id="col3-1">
                             <!-- Log in / Register button here -->
                            <div class="field is-grouped" id="sign-reg">
-                              <a class="button is-primary modal-button">Sign In</a>
+                               <form method="POST" action="/login/checkifdeactivated">
+                              <button class="button is-primary modal-button">Sign In</button>
+                               </form>
                               <a class="button is-primary" type="submit" href="/register" id="border-button">Register</a>
                            </div>
                         </div>
@@ -146,4 +151,19 @@
             </nav>
          </div>
       </header>
+      @if(session()->has('message'))
+        @if(session()->has('message.error'))   
+            <div class="notification is-info">
+                <p>{{session()->get('message.error')}}</p>
+            </div>
+        @elseif(session()->has('message.success'))   
+        <div class="notification is-success">
+            <p>{{session()->get('message.success')}}</p>
+        </div>
+        @elseif(session()->has('message.unauthorised'))   
+        <div class="notification is-warning">
+            <p>{{session()->get('message.unauthorised')}}</p>
+        </div>
+        @endif
+      @endif
       <main>

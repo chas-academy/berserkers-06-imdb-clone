@@ -87,6 +87,7 @@ function showContent() {
       commentContainer.style.display = "block";
     }
   }
+if (submitButton) {
 
   cancelButton.onclick = function () {
     commentContainer.style.display = "none";
@@ -95,6 +96,9 @@ function showContent() {
   submitButton.onclick = function () {
     commentContainer.style.display = "none";
   }
+
+}
+ 
 
   reviewButton.onclick = function () {
     reviewContainer.style.display = "block";

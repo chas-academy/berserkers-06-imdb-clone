@@ -4,12 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Review;
 use App\Title;
+use App\Movie;
+use App\Series;
 use Illuminate\Http\Request;
+use App\Traits\DatabaseHelpers;
 use Auth;
 use App\User;
 
 class ReviewsController extends Controller
 {
+    const ITEMCOLUMNS = ['title_id', 'user_id', 'title', 'body', 'created_at', 'updated_at', 'status'];
+    const PIVOTTABLES = ['titles', 'comments', 'users'];
+    use DatabaseHelpers;
     /**
      * Display a listing of the resource.
      *
@@ -30,15 +36,6 @@ class ReviewsController extends Controller
     public function create()
     {
         //
-        $id = session('title_id');
-        $title = Title::find($id);
-        if(!Auth::check()) {
-            return redirect()->route('login');
-        }
-        if(empty(session('title_id'))) {
-            return back();
-        }
-        return view('reviews.create', ['title' => $title]);
     }
 
     /**
@@ -51,19 +48,32 @@ class ReviewsController extends Controller
     {
         //
         if(Auth::check()) {
+
             $review = Review::create([
-                'movie_id' => $request->input('movie_id'),
-                'user_id' => Auth::user()->id,
+                'title_id' => $request->input('title_id'),
+                'user_id' => $request->user()->id,
                 'title' => $request->input('title'),
                 'body' => $request->input('body'),
             ]);
             
+            if (!is_null($request->rating)) {
+                
+                $this->attachRating($request, $request->title_id);
+            }
+
             if($review) {
-                return redirect()->route('reviews.show', ['review' => $review->id])->with('success', 'Review created successfully');
+                $title = Title::find($request->input('title_id'));
+                if($title->type != 'episode') {    
+                    $request->session()->flash('message', ['success' =>'Review successfully created!']);
+                    return redirect(url()->previous());
+                }
+
+            } else {
+                $request->session()->flash('message', ['error' =>'Error creating review']);
+                return back()->withInput()->with('error', 'Error creating review');
             }
         }
 
-        return back()->withInput()->with('error', 'Error creating review');
     }
 
     /**
@@ -86,6 +96,8 @@ class ReviewsController extends Controller
     public function edit(Review $review)
     {
         //
+        $review = Review::find($review->id);
+        return view('reviews.edit', ['review' => $review]);
     }
 
     /**
@@ -98,6 +110,15 @@ class ReviewsController extends Controller
     public function update(Request $request, Review $review)
     {
         //
+        if (Auth::user()->role === 1) {
+
+            $this->updateItem($request, $review);
+            $request->session()->flash('message', ['success' =>'Review successfully updated!']);
+            return back();
+        }
+
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
+        return back();
     }
 
     /**
@@ -109,5 +130,22 @@ class ReviewsController extends Controller
     public function destroy(Review $review)
     {
         //
+        if (Auth::user()->role === 1) {
+            $id = $review->id;
+            $review = Review::find($id);
+
+            try{
+                $review->comments()->delete();
+                $review->delete();
+            } catch(Exception $e) {
+                $dd($e);
+            }
+            
+            $request->session()->flash('message', ['success' =>'Review successfully been deleted!']);
+            return redirect('/');  
+        }
+
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
+        return back();
     }
 }

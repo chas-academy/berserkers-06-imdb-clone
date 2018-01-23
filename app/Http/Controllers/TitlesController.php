@@ -26,6 +26,8 @@ class TitlesController extends Controller
      */
     public function index(Request $request)
     {   
+        ini_set('max_execution_time', 3000);
+        
         $allRatings = Rating::all();
 
         $name = $request->title;
@@ -162,25 +164,35 @@ class TitlesController extends Controller
 
             } 
         }
-
-        $titles = $titles->sortByDesc('rating')->values();
         
-        $page = $request->page;
-        if (!isset($request->page)) {
-            $page = 1;
+        if (isset($titles[0])) {
+
+            $titles = $titles->sortByDesc('rating')->values();
+            
+            $page = $request->page;
+            if (!isset($request->page)) {
+                $page = 1;
+            }
+            $ItemPerPage = 9;
+            $start = ($page * $ItemPerPage) -$ItemPerPage;
+    
+            $titles = new LengthAwarePaginator(
+                array_slice($titles->toArray(),$start,$ItemPerPage,true),
+                count($titles),
+                $ItemPerPage,
+                $page,
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+            
+            return view('catalog', ['titles' => $titles, 'all_ratings' => $allRatings]);
+            
+        } else {
+
+            $request->session()->flash('message', ['error' => 'Ther are no titles that matches your query']);
+
+            return view('catalog');
         }
-        $ItemPerPage = 9;
-        $start = ($page * $ItemPerPage) -$ItemPerPage;
-
-        $titles = new LengthAwarePaginator(
-            array_slice($titles->toArray(),$start,$ItemPerPage,true),
-            count($titles),
-            $ItemPerPage,
-            $page,
-            ['path' => $request->url(), 'query' => $request->query()]
-        );
-        
-        return view('catalog', ['titles' => $titles, 'all_ratings' => $allRatings]);
+       
     }
 
     /**
@@ -211,12 +223,35 @@ class TitlesController extends Controller
                     $response = json_decode($response->getBody());
                     $titles = $response->results;
                 }
+                
+                if (!empty($titles)) {
 
-                return view('admin.addtitle', ['titles' => $titles, 'type' => $type]);    
+                
+                    $request->session()->flash('message', ['success' =>'Here are your ressults! Please note that series with several seasons can take a while to add']);
+                    return view('admin.addtitle', ['titles' => $titles, 'type' => $type]); 
+                }
+
+                $request->session()->flash('message', ['error' =>'No title was found. Are you sure you spelled the name correctly?']);
+
+                return view('admin.addtitle');    
             }
 
+            $uri = substr(url()->previous(), 23, 13);
+            
+            if(session()->has('message') && $uri == 'titles/create' ) {
+
+                $request->session()->reflash();
+
+            } else {
+
+                $request->session()->flash('message', ['error' =>'Search for a title you would like to add or update']);
+            }
+            
             return view('admin.addtitle');
+
             }
+
+        $request->session()->flash('message', ['unauthorised' =>'You are not authorised to acces this page']);
 
         return redirect(url()->previous());
     }
@@ -236,18 +271,30 @@ class TitlesController extends Controller
 
             if ($request->type == 'movie') {
 
-                $this->addMovieToDb($titleId);
+                $title = $this->addMovieToDb($titleId);
 
             } elseif ($request->type == 'series') {
 
-                $this->addSeriesToDb($titleId);
+                $title = $this->addSeriesToDb($titleId);
 
             } 
 
-            return redirect(url()->previous())->with('messege', 'sucess');
+            if (isset($title)){
+
+                $request->session()->flash('message', ['success' =>'The title was added/updated']);    
+
+            } else {
+
+                $request->session()->flash('message', ['error' =>'The title could not be added']);
+            }
+            
+            return redirect('/titles/create');
+        
         }
 
-        return redirect(url()->previous());
+        $request->session()->flash('message', ['unauthorised' =>'You are not authorised to perform this action']);
+
+        return redirect('/');
     }
 
     /**
@@ -297,26 +344,18 @@ class TitlesController extends Controller
 
     public function rate(Request $request, Title $title) 
     {
-        $user = $request->user();
-        $titleId = $title->id;
-        $ratingId = $request->rating;
+        $message = $this->attachRating($request, $title->id);
+       
+        if(isset($message['success'])) {
 
-        try {
-            
-            $title = $user->ratedTitles->where('id', '=', $titleId)->first();
-            
-            if (isset($title)) {
-    
-                $title->users()->detach();
-            }
-            
-            $user->ratedTitles()->attach($titleId, ['rating_id' => $ratingId]);
+            $request->session()->flash('message', ['success' =>'Your rating was sucessfully added!']);
+            return redirect(url()->previous());
 
-        } catch (Exception $e) {
+        } else {
 
-            return redirect(url()->previous())->with('error', $e);
+            $request->session()->flash('message', ['error' =>'Somthing when wrong, pleas try to register you vote again']);
+            return redirect(url()->previous())->with(['error' => $message['error']]);
         }
         
-        return redirect(url()->previous());
     }
 }

@@ -9,7 +9,7 @@ class Review extends Model
     //
     protected $fillable = [
         'id',
-        'movie_id',
+        'title_id',
         'user_id',
         'title',
         'body',
@@ -22,7 +22,7 @@ class Review extends Model
     }
 
     public function title(){
-        return $this->belongsTo('App\Movie');
+        return $this->belongsTo('App\Title');
     }
 
     public function user(){
