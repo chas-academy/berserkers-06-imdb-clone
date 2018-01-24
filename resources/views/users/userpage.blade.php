@@ -207,14 +207,14 @@
             @endforeach
         @endif 
     </div>
-    <article>
+    <div class="lists">
         <h2>Do you want to create a new list?</h2>
         <form method="GET" action="/userpage/lists/create">
-        {{ csrf_field() }}
-        <input name="name" placeholder="Name of your new list" required>
-        <button class="button is-primary" type="submit">Create new List</button>
+            {{ csrf_field() }}
+            <input name="name" placeholder="Name of your new list" required>
+            <button class="button is-primary" type="submit">Create new List</button>
         </form>
-    </article>
+    </div>
 </div>
  <!-- reviews Tab --> 
 <div id="Reviews" class="tabcontent">
@@ -243,7 +243,12 @@
                 </article>
             </div>
         @endforeach
+    @else 
+    <div class="text-container">
+        <h3>You haven't written any reviews yet</h3>
+    <div>
     @endif   
+    
 </div>
 <!-- Settings Tab --> 
 <div id="Settings" class="tabcontent">

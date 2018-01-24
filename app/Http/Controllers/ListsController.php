@@ -108,7 +108,7 @@ class ListsController extends Controller
       $listIndex = $request->list_index;
       
       if (isset($request->title_id)) {
-
+        
         $titleId = $request->title_id;
         
         if (isset($request->old_list_index)) {
@@ -161,19 +161,19 @@ class ListsController extends Controller
           foreach ($orderdList as $key => $title) {
             
             if (($listIndex+1) == $title->list_index) {
-              
+
               for ($i = $key; $i < count($orderdList); $i++) {
         
                 $orderdList[$i]->decrement('list_index');
               }
-
-              $toBeRemoved= TitleList::where([['user_list_id', '=', $list->id],[ 'title_id', '=', $titleId]])->first();
-              $toBeRemoved->delete();
-
-              $request->session()->flash('message', ['success' =>'The title was sucessfully removed from the list']);
-              return redirect(url()->previous());
-            } 
+            }
           }
+          
+          $toBeRemoved= TitleList::where([['user_list_id', '=', $list->id],[ 'title_id', '=', $titleId]])->first();
+          $toBeRemoved->delete();
+
+          $request->session()->flash('message', ['success' =>'The title was sucessfully removed from the list']);
+          return redirect(url()->previous());
           
         } else {
 

@@ -3,6 +3,7 @@
 #Home {
     display: flex;
     justify-content: center;
+    min-height: 200px;
 }
 
 #welcome-h1 {
@@ -13,6 +14,7 @@
 
 #container-list, #container-settings, #container-home {
     display: none;
+    
 }
 
 footer {
@@ -152,6 +154,7 @@ footer {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    min-height:200px;
 }
 .btn-container {
     
@@ -181,6 +184,10 @@ footer {
     margin-bottom: 2em;
     flex: 1 1 30%;
     margin: 0 1em;
+    min-height: 200px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #Lists, #Reviews {
