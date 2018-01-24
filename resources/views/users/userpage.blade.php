@@ -246,7 +246,7 @@
     @else 
     <div class="text-container">
         <h3>You haven't written any reviews yet</h3>
-    <div>
+    </div>
     @endif   
     
 </div>
