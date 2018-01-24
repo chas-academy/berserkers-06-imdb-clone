@@ -15,7 +15,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+       
+        return view('users.userpage');
     }
 
     /**
@@ -61,7 +62,7 @@ class UsersController extends Controller
         
         if(Auth::user()->id == $user->id) {
             
-            return view('users.settings',['user' => $user]);
+            return view('users.userpage',['user' => $user]);
         }
     }
 
@@ -102,17 +103,17 @@ class UsersController extends Controller
                 } catch (Exception $e) {
                     
                     $request->session()->flash('message', ['error' =>'Error updating profile']);
-                    return redirect("/users/$user->id/edit");
+                    return redirect(url()->previous());
                 }
 
             }
 
             $request->session()->flash('message', ['success' =>'Your profile information was sucessfully updated!']);
-            return redirect("/users/$user->id/edit");
+            return redirect(url()->previous());
         }
 
         $request->session()->flash('message', ['error' =>'The username you selected is not availible']);
-        return redirect("/users/$user->id/edit");
+        return redirect(url()->previous());
     }
 
     /**

@@ -9,6 +9,7 @@ use App\Series;
 use Illuminate\Http\Request;
 use App\Traits\DatabaseHelpers;
 use Auth;
+use App\User;
 
 class ReviewsController extends Controller
 {
@@ -22,10 +23,9 @@ class ReviewsController extends Controller
      */
     public function index()
     {
-        //
-        $reviews = Review::orderByRaw('created_at DESC')->get();
-
-        return view('reviews.index', ['reviews' => $reviews]);
+        if(Auth::check()) {
+            return view('users.userpage');
+        }
     }
 
     /**

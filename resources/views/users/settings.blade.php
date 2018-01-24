@@ -1,6 +1,6 @@
 @include('layouts.header')
 <section>
-  <form class="" method="POST" action="/users/{{$user->id}}">
+  <form class="" method="POST" action="{{$user->id}}">
       {{ csrf_field() }}
       {{ method_field('PUT') }}
       <div>
