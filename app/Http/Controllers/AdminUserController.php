@@ -17,12 +17,12 @@ class AdminUserController extends Controller
     {
         if (Auth::user()->role = 1) {
 
-          $users = User::all();
+            $users = User::all();
 
-          return view('admin.handleusers', ['users' => $users]);
+            return view('admin.handleusers', ['users' => $users]);
         }
 
-        $request->session()->flash('message', ['unauthorised' =>'You are not authorised to acces this page']);
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to acces this page']);
         return redirect('/');
     }
 
@@ -55,7 +55,7 @@ class AdminUserController extends Controller
      */
     public function show(User $user)
     {
-        
+
     }
 
     /**
@@ -66,8 +66,8 @@ class AdminUserController extends Controller
      */
     public function edit(User $user)
     {
-        
-       
+
+
     }
 
     /**
@@ -78,22 +78,21 @@ class AdminUserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
-    {   
-        
+    {
 
-        if(Auth::user()->role == 1) {
-          
+        if (Auth::user()->role == 1) {
+
             $user->role = $request->role;
             $user->save();
 
-            return redirect ('/admin/users');
-          
+            return redirect('/admin/users');
+
         }
 
-        $request->session()->flash('message', ['unauthorised' =>'You are not authorised to perform this action']);
-        
-        return redirect ('/');
-       
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
+
+        return redirect('/');
+
     }
 
     /**
@@ -104,6 +103,6 @@ class AdminUserController extends Controller
      */
     public function destroy(User $user)
     {
-       
+
     }
 }

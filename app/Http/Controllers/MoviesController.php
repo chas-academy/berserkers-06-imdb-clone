@@ -149,7 +149,7 @@ class MoviesController extends Controller
             }
             
             $request->session()->flash('message', ['success' =>'The movie was successfully removed']);
-            return redirect("/titles/movies/");  
+            return redirect("/catalog");  
         }
 
         $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);

@@ -29,6 +29,7 @@ mix
   .sass("resources/assets/sass/app.scss", "public/css")
   .sass("resources/assets/sass/edit.scss", "public/css")
   .sass("resources/assets/sass/register.scss", "public/css")
+  .sass("resources/assets/sass/adminpage.scss", "public/css")
   .sass("resources/assets/sass/title.scss", "public/css")
   .sass("resources/assets/sass/userpage.scss", "public/css")
   .sass("resources/assets/sass/lists.scss", "public/css")
