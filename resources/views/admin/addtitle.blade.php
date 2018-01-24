@@ -2,7 +2,7 @@
 <article class="title-to-add-search">
   <section>
     <div>
-    <form method="GET" action="/titles/create">
+    <form method="GET" action="/admin/addtitle">
       {{ csrf_field() }}
       <div class="select">
         <select name="type" required>
@@ -40,7 +40,7 @@
           @else
           <p>({{substr($title->first_air_date, 0 , 4)}})</p>
           @endif
-          <form method="POST" action="/titles/store">
+          <form method="POST" action="/admin/addtitle/store">
             {{ csrf_field() }}
             <input name="title_id" type="hidden" value="{{$title->id}}">
             @if($type == 'episode')
