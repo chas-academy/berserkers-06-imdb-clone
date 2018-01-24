@@ -254,7 +254,7 @@
 <div id="Settings" class="tabcontent">
     <h1>Settings</h1>
     <section>
-        <form method="POST" action="{{$user->id}}">
+        <form method="POST" action="{{Auth::user()->id}}">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
             <div>
