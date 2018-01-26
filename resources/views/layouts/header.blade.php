@@ -50,6 +50,12 @@
                <div class="navbar-menu" id="Options">
                   <div class="navbar-start" id="mobile-start">
                      <a class="nav-item" href="/">Home</a>
+                     @auth
+                     <a class="nav-item" type="submit" href="/userpage">{{Auth::user()->username}}</a>
+                        @if (Auth::user()->role === 1)
+                        <a class="nav-item" type="submit" href="/admin">Admin</a>
+                        @endif
+                     @endauth
                      <a class="nav-item" href="/catalog?type=movie">Movies</a>
                      <a class="nav-item" href="/catalog?type=series">TV Series</a>
                      <a class="nav-item" href="#">Genres</a>
@@ -82,7 +88,7 @@
                      <p class="control has-icons-left has-icons-right">
                         <input class="input" type="username" placeholder="Username" name="username" value="{{ old('username') }}" required>
                         <span class="icon is-medium is-left">
-                          <i class="fa fa-envelope"></i>
+                          <i class="fa fa-user"></i>
                         </span>
                         <span class="icon is-medium is-right">
                         <i class="fa fa-check"></i>
@@ -127,6 +133,14 @@
                            <div class="is-divider" data-content="OR"></div>
                         </a>
                         <a id="genre2" href="/catalog?type=series">Genres</a> <a id="chart2" href="/catalog?type=movie&rating=descending">Charts</a>
+                        @auth
+                        @if (Auth::user()->role === 1)
+                        <a href="/admin" id="item3">
+                            Admin
+                            <div class="is-divider" data-content="OR"></div>
+                        </a>  
+                        @endif
+                        @endauth
                         <form class="field has-addons column is-3" method="GET" action="/catalog">
                            <div class="control desktop-search">
                               <input name="title" class="input is-hovered" id="input-search" type="text" placeholder="Search..">
@@ -137,11 +151,18 @@
                         </form>
                         <div class="column is-2" id="col3-1">
                             <!-- Log in / Register button here -->
+                            
                            <div class="field is-grouped" id="sign-reg">
-                               <form method="POST" action="/login/checkifdeactivated">
-                              <button class="button is-primary modal-button">Sign In</button>
-                               </form>
-                              <a class="button is-primary" type="submit" href="/register" id="border-button">Register</a>
+                                @if (Auth::check())
+                                <form method="POST" action="/logout">
+                                    {{ csrf_field() }}
+                                    <button class="button is-primary" type="submit" href="/logout">Logout</button>
+                                </form>
+                                <a class="button is-primary" type="submit" href="/userpage" id="border-button">{{Auth::user()->username}}</a>
+                                @else
+                                <a class="button is-primary modal-button">Sign In</a>
+                                <a class="button is-primary" type="submit" href="/register" id="border-button">Register</a>
+                               @endif  
                            </div>
                         </div>
                         <div class="column is-2 is-offset-8" id="col3-2"></div>
