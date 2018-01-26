@@ -15,7 +15,7 @@ set('git_tty', true);
 set('ssh_multiplexing', true);
 
 // Shared files/dirs between deploys 
-add('shared_files', []);
+add('shared_files', ['config/services.php']);
 add('shared_dirs', []);
 
 // Writable dirs by web server 
@@ -45,7 +45,7 @@ task('build', function () {
 });
 
 task('npm:build', function () {
-  run("cd {{release_path}} && {{bin/npm}} run production");
+  run("cd {{release_path}} && {{npm}} run production");
 });
 
 desc('Restart PHP-FPM service');
@@ -68,11 +68,8 @@ after('deploy:failed', 'deploy:unlock');
 
 //after('deploy:update_code', 'npm:install');
 
-//after('deploy:symlink', 'npm:build');
-
-// Migrate database before symlink new release.
-
-//before('deploy:symlink', 'artisan:migrate:fresh');
+before('deploy:symlink', 'artisan:migrate:fresh');
+after('deploy:symlink', 'npm:build');
 after('deploy:symlink', 'php-fpm:restart');
 after('deploy:symlink', 'artisan:db:seed');
 
