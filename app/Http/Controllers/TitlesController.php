@@ -6,7 +6,13 @@ use App\Title;
 use App\Movie;
 use App\Series;
 use App\Episode;
+use App\Rating;
+use App\Genre;
+use App\Photo;
+use App\Person;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Traits\DatabaseHelpers;
 
@@ -20,53 +26,68 @@ class TitlesController extends Controller
      */
     public function index(Request $request)
     {   
-        $q = $request->title;
-        $t = $request->type;
-
-        $titlesIds = [];
+        ini_set('max_execution_time', 3000);
         
-        if(!isset($q)) {
+        $allRatings = Rating::all();
 
-            $titles; 
+        $name = $request->title;
+        $type = $request->type;
+        $genre = $request->genre;
+        $hasGenre = false;
 
-            if (!isset($t)|| $t == 'movie' ) {
-                $titles = Movie::all();
-            } elseif ($t == 'series'){
-                $titles = Series::all();
-            } else {
-                $titles = Episode::all();
-            }
-            
-            foreach($titles as $title) {
-                array_push($titlesIds,$title->title_id);
-            }
+        if (!isset($type)) {
 
-        }  else {
-
-            $movies = Movie::where('title', 'like', '%' . $q .'%' )->get();
-            $series = Series::where('title', 'like', '%' . $q .'%' )->get();
-            $episodes = Episode::where('name', 'like', '%' . $q .'%' )->get();
-
-            $titles = $movies->merge($series);
-            
-            $titles = $titles->merge($episodes);
-
-            foreach($titles as $title) {
-                array_push($titlesIds,$title->title_id);
-            }
-
+            $type = 'movie';
         }
 
+        if ($type == 'episode') {
 
+            $titleColumn = 'name';
 
-        $titles = Title::whereIn('id', $titlesIds)->get();
+        } else {
+
+            $titleColumn = 'title';
+        }
+        
+        if (isset($genre)) {
+            
+           $hasGenre = true;
+        }
+
+        if (!$hasGenre) {
+               
+                $titles=  Title::whereHas($type, function($q) use($name,$titleColumn) {
+                    $q->where($titleColumn, 'like', '%' . $name .'%' );
+                })->get();
+
+        } else {
+
+                $titles =  Title::whereHas($type, function($q) use($name,$titleColumn) {
+                    $q->where($titleColumn, 'like', '%' . $name .'%' );
+                })->whereHas('genres', function($q) use($genre){
+                    $q->where('name',$genre);
+                })->get();
+        }
       
         foreach ($titles as $title) {
-
-                
+           
             if($title->type == 'movie') {
 
                 $title->load(['directors','photos','actors','genres', 'ratings', 'movie']);
+
+                $ratingSummary = 0;
+                $i = 0;
+
+                foreach ($title->ratings as $rating) {
+                    $ratingSummary = $ratingSummary + $rating->rating;
+                    $i++;
+                }
+
+                if ($i != 0) {
+                    $ratingSummary = $ratingSummary / $i;
+                } 
+
+                $title['rating'] = $ratingSummary;
 
             } elseif ($title->type == 'series') {
 
@@ -87,6 +108,20 @@ class TitlesController extends Controller
                 $title['actors'] = $actors;
 
                 $title->load(['creators','photos','genres', 'ratings']);
+
+                $ratingSummary = 0;
+                $i = 0;
+
+                foreach ($title->ratings as $rating) {
+                    $ratingSummary = $ratingSummary + $rating->rating;
+                    $i++;
+                }
+
+                if ($i != 0) {
+                    $ratingSummary = $ratingSummary / $i;
+                } 
+
+                $title['rating'] = $ratingSummary;
                 
             } elseif ($title->type == 'episode') {
 
@@ -113,25 +148,51 @@ class TitlesController extends Controller
                 $title['photos'] = $series->titles->photos;
                 $title->load(['directors', 'ratings', 'episode']);
 
+                $ratingSummary = 0;
+                $i = 0;
+                
+                foreach ($title->ratings as $rating) {
+                    $ratingSummary = $ratingSummary + $rating->rating;
+                    $i++;
+                }
+
+                if ($i != 0) {
+                    $ratingSummary = $ratingSummary / $i;
+                } 
+
+                $title['rating'] = $ratingSummary;
+
             } 
         }
         
-        $page = $request->page;
-        if (!isset($request->page)) {
-            $page = 1;
-        }
-        $ItemPerPage = 9;
-        $start = ($page * $ItemPerPage) -$ItemPerPage;
+        if (isset($titles[0])) {
 
-        $titles = new LengthAwarePaginator(
-            array_slice($titles->toArray(),$start,$ItemPerPage,true),
-            count($titles),
-            $ItemPerPage,
-            $page,
-            ['path' => $request->url(), 'query' => $request->query()]
-        );
-        
-        return view('catalog', ['titles' => $titles]);
+            $titles = $titles->sortByDesc('rating')->values();
+            
+            $page = $request->page;
+            if (!isset($request->page)) {
+                $page = 1;
+            }
+            $ItemPerPage = 9;
+            $start = ($page * $ItemPerPage) -$ItemPerPage;
+    
+            $titles = new LengthAwarePaginator(
+                array_slice($titles->toArray(),$start,$ItemPerPage,true),
+                count($titles),
+                $ItemPerPage,
+                $page,
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
+            
+            return view('catalog', ['titles' => $titles, 'all_ratings' => $allRatings]);
+            
+        } else {
+
+            $request->session()->flash('message', ['error' => 'Ther are no titles that matches your query']);
+
+            return view('catalog');
+        }
+       
     }
 
     /**
@@ -139,9 +200,60 @@ class TitlesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if (Auth::user()->role == 1) {
+
+            $client = new Client(['base_uri' => 'https://api.themoviedb.org/3/', 'delay' => 251]);
+
+            if(isset($request->name)) {
+
+                $name = $request->name;
+                $type = $request->type;
+
+                if($request->type == 'series') {
+
+                    $response = $client->request('GET',"search/tv?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
+                    $response = json_decode($response->getBody());
+                    $titles = $response->results;
+        
+                } else {
+                
+                    $response = $client->request('GET',"search/movie?api_key=be55d92a645f3fe8c6ca67ff5093076e&query={$name}");
+                    $response = json_decode($response->getBody());
+                    $titles = $response->results;
+                }
+                
+                if (!empty($titles)) {
+
+                
+                    $request->session()->flash('message', ['success' =>'Here are your ressults! Please note that series with several seasons can take a while to add']);
+                    return view('admin.addtitle', ['titles' => $titles, 'type' => $type]); 
+                }
+
+                $request->session()->flash('message', ['error' =>'No title was found. Are you sure you spelled the name correctly?']);
+
+                return view('admin.addtitle');    
+            }
+
+            $uri = substr(url()->previous(), 23, 13);
+            
+            if(session()->has('message') && $uri == 'titles/create' ) {
+
+                $request->session()->reflash();
+
+            } else {
+
+                $request->session()->flash('message', ['error' =>'Search for a title you would like to add or update']);
+            }
+            
+            return view('admin.addtitle');
+
+            }
+
+        $request->session()->flash('message', ['unauthorised' =>'You are not authorised to acces this page']);
+
+        return redirect(url()->previous());
     }
 
     /**
@@ -152,7 +264,37 @@ class TitlesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        if(Auth::user()->role == 1) {
+
+            $titleId = $request->title_id;
+
+            if ($request->type == 'movie') {
+
+                $title = $this->addMovieToDb($titleId);
+
+            } elseif ($request->type == 'series') {
+
+                $title = $this->addSeriesToDb($titleId);
+
+            } 
+
+            if (isset($title)){
+
+                $request->session()->flash('message', ['success' =>'The title was added/updated']);    
+
+            } else {
+
+                $request->session()->flash('message', ['error' =>'The title could not be added']);
+            }
+            
+            return redirect('/titles/create');
+        
+        }
+
+        $request->session()->flash('message', ['unauthorised' =>'You are not authorised to perform this action']);
+
+        return redirect('/');
     }
 
     /**
@@ -198,5 +340,22 @@ class TitlesController extends Controller
     public function destroy(Title $title)
     {
         //
+    }
+
+    public function rate(Request $request, Title $title) 
+    {
+        $message = $this->attachRating($request, $title->id);
+       
+        if(isset($message['success'])) {
+
+            $request->session()->flash('message', ['success' =>'Your rating was sucessfully added!']);
+            return redirect(url()->previous());
+
+        } else {
+
+            $request->session()->flash('message', ['error' =>'Somthing when wrong, pleas try to register you vote again']);
+            return redirect(url()->previous())->with(['error' => $message['error']]);
+        }
+        
     }
 }

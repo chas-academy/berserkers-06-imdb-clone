@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -14,7 +15,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+       
+        return view('users.userpage');
     }
 
     /**
@@ -57,7 +59,11 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        
+        if(Auth::user()->id == $user->id) {
+            
+            return view('users.userpage',['user' => $user]);
+        }
     }
 
     /**
@@ -68,8 +74,46 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
-    {
-        //
+    {   
+        
+        $request->validate([
+            'firstname' => 'required|max:191',
+            'surname' => 'required|max:191',
+            'username' => 'required|max:255',
+            'email' => 'required|max:191'
+        ]);
+
+        $existingUser = User::where('username', '=', $request->username)->first();
+    
+
+        if (!isset($existingUser->id) || $existingUser->id == $user->id) {
+            
+            $existingUser = User::where('email', '=', $request->email)->first();
+
+            if(!isset($existingUser->id) || $existingUser->id == $user->id){
+
+                try {
+                    
+                    $user->firstname = $request->firstname;
+                    $user->surname = $request->surname;
+                    $user->username = $request->username;
+                    $user->email = $request->email;
+                    $user->save();
+        
+                } catch (Exception $e) {
+                    
+                    $request->session()->flash('message', ['error' =>'Error updating profile']);
+                    return redirect(url()->previous());
+                }
+
+            }
+
+            $request->session()->flash('message', ['success' =>'Your profile information was sucessfully updated!']);
+            return redirect(url()->previous());
+        }
+
+        $request->session()->flash('message', ['error' =>'The username you selected is not availible']);
+        return redirect(url()->previous());
     }
 
     /**

@@ -23,6 +23,6 @@ class Movie extends Model
 
     public function title()
     {
-        return $this->belongsTo('App\Title', 'titles');
+        return $this->belongsTo('App\Title');
     }
 }

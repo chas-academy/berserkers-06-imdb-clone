@@ -21,15 +21,40 @@ main {
     padding-top: 10px;
     border: 1px solid $orange;
     display:flex;
-    justify-content: center;
+    justify-content: space-between;
+
+    form {
+        select {
+
+            border:none;
+            background: none;
+            outline:none;
+            color: gold;
+            width:1em;
+            options {
+
+                color: gold;
+            }
+        }
+
+        button.rating, {
+            
+            border:none;
+            background: none;
+            outline:none;
+            margin-right:0.1em;
+            .fa-star {
+                color: gold;
+            }
+        }
+    }  
 }
 
-.fa-star {
-    color: gold;
-}
+
 
 .fa-bookmark {
     color: orange;
+    margin-left: 0.2em;
 }
 
 .fade-container{

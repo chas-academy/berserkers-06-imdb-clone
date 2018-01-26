@@ -65,7 +65,6 @@ class SeriesController extends Controller
         $seasons = $series->seasons;
         $title = $series->titles;
 
-        session(['title_id' => $id]);
         $actors = [];
         $producers = [];
         $directors = [];
@@ -154,6 +153,7 @@ class SeriesController extends Controller
 
         $path = $request->path();
 
+        $request->session()->flash('message', ['success' =>'The series was successfully updated']);
         return redirect("$path/edit"); 
 
         }
@@ -169,7 +169,7 @@ class SeriesController extends Controller
      * @param  \App\Series  $series
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Series $series)
+    public function destroy(Request $request, Series $series)
     {
         if (Auth::user()->role === 1) {
             $seriesId = $series->title_id;
@@ -198,10 +198,13 @@ class SeriesController extends Controller
 
                 return $e;
             }
-        
-            return redirect("/titles/series/");  
+
+            $request->session()->flash('message', ['success' =>'The series was successfully deleted']);
+            return redirect("/catalog?type=series");  
         }
-        return redirect("/titles/series/"); 
+        
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
+        return redirect("/"); 
     }
 
     

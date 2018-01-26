@@ -64,7 +64,6 @@ class MoviesController extends Controller
         $id = $movie->title_id;
         $movie = Movie::find($id);
         $title = Title::find($id);
-        session(['title_id' => $id]);
         
         return view('titles/movies.show', ['movie' => $movie, 'title' => $title]);
     }
@@ -102,6 +101,7 @@ class MoviesController extends Controller
                 ]);
         }
 
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to visit this page']);
         return redirect("/titles/movies/{$movie->title_id}"); 
     }
 
@@ -119,9 +119,11 @@ class MoviesController extends Controller
 
             $path = $request->path();
 
+            $request->session()->flash('message', ['success' =>'The movie was successfully updated']);
             return redirect("$path/edit"); 
         }
 
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
         return redirect("/titles/movies/{$movie->title_id}"); 
     }
 
@@ -131,21 +133,26 @@ class MoviesController extends Controller
      * @param  \App\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movie)
+    public function destroy(Request $request, Movie $movie)
     {
         if (Auth::user()->role === 1) {
             $id = $movie->title_id;
             $title = Title::find($id);
 
             try{
-            $this->detachAllFromItemAndDelete($title, Movie::class , $id);
+
+                $this->detachAllFromItemAndDelete($title, Movie::class , $id);
+
             } catch(Exception $e) {
+
                 $dd($e);
             }
-        
-            return redirect("/titles/movies/");  
+            
+            $request->session()->flash('message', ['success' =>'The movie was successfully removed']);
+            return redirect("/catalog");  
         }
 
+        $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
         return redirect("/");  
     }
 }

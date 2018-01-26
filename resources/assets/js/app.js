@@ -45,7 +45,7 @@ for (var i = 0; i < modalButton.length; i++) {
     document.querySelector(".is-danger").addEventListener("click", function (eventtwo) {
       eventtwo.preventDefault();
       modal.classList.remove("is-active");
-      html.classList.remove("is-active");
+      html.classList.remove("is-clipped");
     });
   });
 }
@@ -53,7 +53,7 @@ for (var i = 0; i < modalButton.length; i++) {
 
 //Trailer
 
-function trailerShow() {
+function showTrailer() {
   var triggerButton = document.querySelector(".modal-button2");
   var videoContainer = document.querySelector(".video-container");
 
@@ -63,4 +63,54 @@ function trailerShow() {
   }
 }
 
-trailerShow();
+showTrailer();
+
+//Review container and Comment container
+
+function showContent() {
+
+  //Unfinished, only works with 1 button atm
+  //cancel and submit-comment buttons uses Id selector for now
+
+  var commentButton = document.getElementsByClassName("comment-button");
+  var commentContainer = document.querySelector(".create-comment");
+  var cancelButton = document.querySelector("#cancel-comment");
+  var submitButton = document.querySelector("#submit-comment");
+  var reviewButton = document.querySelector("#review-button");
+  var reviewContainer = document.querySelector(".make-review");
+  var cancelReview = document.querySelector("#cancel-review");
+  var submitReview = document.querySelector("#submit-review");
+
+  for (var i = 0; i < commentButton.length; i++) {
+    commentButton[i].onclick = function (e) {
+      e.target;
+      commentContainer.style.display = "block";
+    }
+  }
+if (submitButton) {
+
+  cancelButton.onclick = function () {
+    commentContainer.style.display = "none";
+  }
+
+  submitButton.onclick = function () {
+    commentContainer.style.display = "none";
+  }
+
+}
+ 
+
+  reviewButton.onclick = function () {
+    reviewContainer.style.display = "block";
+  }
+
+  cancelReview.onclick = function () {
+    reviewContainer.style.display = "none";
+  }
+
+  submitReview.onclick = function () {
+    reviewContainer.style.display = "none";
+  }
+}
+
+showContent();

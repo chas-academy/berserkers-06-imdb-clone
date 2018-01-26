@@ -1,0 +1,238 @@
+@import "header";
+
+#Home {
+    display: flex;
+    justify-content: center;
+    min-height: 200px;
+}
+
+#welcome-h1 {
+    color: orange;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+#container-list, #container-settings, #container-home {
+    display: none;
+    
+}
+
+footer {
+    margin-top: 20%;
+}
+
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+}
+
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+}
+
+.tab button:hover {
+    background-color: #ddd;
+}
+
+.tab button.active {
+    background-color: #ccc;
+}
+
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+
+#latest-reviews {
+    width: 40%;
+    margin-bottom: 2em; 
+}
+
+#latest-title, #watchlist-title, .list-title, .my-reviews {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 10px;
+}
+#Lists {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#watchlist-title, .list-title {
+    width: 300px;
+}
+
+.box {
+    padding: 0;
+    text-align: center;
+}
+
+.box-title, .image-container {
+    margin-bottom: 10px;
+}
+
+.image-container {
+    width: 300px;
+    height: auto;
+}
+
+.watchlist-container {
+    width: 25%;
+    margin-left: 10%;
+}
+
+.watchlist {
+    height: 600px;
+    overflow: scroll;
+    width: 300px;
+}
+
+.box-img {
+    border-radius: 5px;
+    width: 100%;
+    height: 210px;
+}
+
+.field.is-grouped {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.list-container {
+
+    margin-bottom: 2em;
+    flex: 1 1 25%;
+    margin-right: 1em;
+
+    .control {
+
+        background-color: $background-color;
+        padding:1em;
+
+        div {
+            padding:0.5em;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+             
+            *{
+                margin: 0 0.25em;
+            }
+
+            .button {
+
+                margin-top: 0.5em;
+
+            }
+        }
+
+        .input {
+            width: 80%;
+        }
+
+      
+    }
+}
+
+.lists {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-height:200px;
+}
+.btn-container {
+    
+    display: flex;
+    flex-direction: column;
+   
+
+    form {
+        
+        display: flex;
+        flex: 1;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: 1em 0;
+
+        button.is-danger {
+
+            justify-self: flex-end;
+        }
+    }
+}
+.message.is-primary {
+    margin-bottom: 2em;
+}
+
+.text-container {
+    margin-bottom: 2em;
+    flex: 1 1 30%;
+    margin: 0 1em;
+    min-height: 200px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#Lists, #Reviews {
+    flex-wrap: wrap;
+}
+
+
+@media screen and (max-width: 1024px) {
+
+    .field.is-grouped {
+        flex-direction: column;
+    }
+
+    #Home {
+        flex-direction: column;
+    }
+
+    .watchlist-container {
+        margin: 0 auto;
+        width: unset;
+    }
+
+    #latest-reviews {
+        width: 80%;
+        margin-left: 10%;
+    }
+
+    .text-container {
+        flex: unset;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+
+    .list-container {
+        flex: 0 1 20%;
+    }
+}
+
+@media screen and (min-width: 1921px) {
+
+    .list-container {
+        flex: 1 1 15%;
+    }
+}
+
+
+@import "footer";

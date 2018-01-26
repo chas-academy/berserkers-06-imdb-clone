@@ -1,6 +1,6 @@
 @include('layouts.header')
     <div>
-        <div class="notification is-hidden-mobile">
+        <div class="hero is-hidden-mobile">
             <figure class="image is-16by9">
                 <img src="https://image.tmdb.org/t/p/w1280/5Iw7zQTHVRBOYpA0V6z0yypOPZh.jpg">
             </figure>

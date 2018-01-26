@@ -19,7 +19,7 @@ class CreateMoviesTable extends Migration
             $table->date('release_year');
             $table->text('plot_summary')->nullable();
             $table->integer('runtime')->unsigned()->nullable();
-            $table->text('countries');
+            $table->text('countries')->nullable();
             $table->string('pg_rating')->nullable();
             $table->text('trailer')->nullable();
             $table->timestamps();

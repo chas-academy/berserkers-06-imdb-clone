@@ -12,11 +12,25 @@ let mix = require("laravel-mix");
  */
 
 mix
+  .options({
+    postCss: [
+      require('autoprefixer')({
+        browsers: ['last 2 versions'],
+        cascade: false
+      })
+    ]
+  });
+  
+mix
   .js("resources/assets/js/app.js", "public/js")
   .js("resources/assets/js/carousel.js", "public/js")
+  .js("resources/assets/js/userpage.js", "public/js")
   .js("resources/assets/js/filter_panel.js", "public/js")
   .sass("resources/assets/sass/app.scss", "public/css")
   .sass("resources/assets/sass/edit.scss", "public/css")
   .sass("resources/assets/sass/register.scss", "public/css")
+  .sass("resources/assets/sass/adminpage.scss", "public/css")
   .sass("resources/assets/sass/title.scss", "public/css")
+  .sass("resources/assets/sass/userpage.scss", "public/css")
+  .sass("resources/assets/sass/lists.scss", "public/css")
   .sass("resources/assets/sass/catalog.scss", "public/css");

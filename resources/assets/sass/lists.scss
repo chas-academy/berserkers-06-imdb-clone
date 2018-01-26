@@ -1,0 +1,31 @@
+@import "header";
+
+main {
+
+  margin: 100px 200px 200px 200px;
+
+  .mylists {
+
+    margin: 3em;
+
+    ul {
+
+      .list-item {
+
+        display: flex;
+        margin:1em;
+
+        * {
+          margin: 0 1em;
+        }
+      }
+    }
+
+    form {
+      
+      margin: 2em 1em;
+    }
+  }
+}
+
+@import "footer";
