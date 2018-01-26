@@ -45,7 +45,7 @@
         </div>
         <div class="field">
             <p class="control has-icons-left">
-                <input class="input is-hovered" type="password" name="password" placeholder="Password" required>
+                <input class="input is-hovered" type="password" name="password" placeholder="Password"  minlength="6"required>
                 <span class="icon is-small is-left">
                 <i class="fa fa-lock"></i>
                 </span>
@@ -53,7 +53,7 @@
         </div>
         <div class="field">
             <p class="control has-icons-left">
-                <input class="input is-hovered" type="password" name="password_confirmation" placeholder="Confirm Password" required>
+                <input class="input is-hovered" type="password" name="password_confirmation" placeholder="Confirm Password" minlength="6" required>
                 <span class="icon is-small is-left">
                 <i class="fa fa-lock"></i>
                 </span>
