@@ -45,7 +45,7 @@ task('build', function () {
 });
 
 task('npm:build', function () {
-  run("cd {{release_path}} && {{npm}} run production");
+  run("cd {{release_path}} && {{bin/npm}} run production");
 });
 
 desc('Restart PHP-FPM service');
@@ -69,7 +69,7 @@ after('deploy:failed', 'deploy:unlock');
 //after('deploy:update_code', 'npm:install');
 
 before('deploy:symlink', 'artisan:migrate');
-after('deploy:symlink', 'npm:build');
+//after('deploy:symlink', 'npm:build');
 after('deploy:symlink', 'php-fpm:restart');
 after('deploy:symlink', 'artisan:db:seed');
 
