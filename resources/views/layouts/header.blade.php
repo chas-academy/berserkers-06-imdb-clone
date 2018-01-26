@@ -156,7 +156,7 @@
                                 @if (Auth::check())
                                 <form method="POST" action="/logout">
                                     {{ csrf_field() }}
-                                    <button class="button is-primary" type="submit" href="/logout">Logout</button>
+                                    <button class="button is-primary logout-button" type="submit" href="/logout">Logout</button>
                                 </form>
                                 <a class="button is-primary" type="submit" href="/userpage" id="border-button">{{Auth::user()->username}}</a>
                                 @else
@@ -174,7 +174,7 @@
       </header>
       @if(session()->has('message'))
         @if(session()->has('message.error'))   
-            <div class="notification is-info">
+            <div class="notification is-primary">
                 <p>{{session()->get('message.error')}}</p>
             </div>
         @elseif(session()->has('message.success'))   
