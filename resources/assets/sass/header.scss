@@ -86,7 +86,11 @@ a#usermodal {
     margin-top: 3em;
     border: none;
 }
-
+.logout-button {
+    border:none;
+    outline:none;
+    margin-left:2em;
+}
 .modal-card-title {
     background-color: white;
     color: black;
