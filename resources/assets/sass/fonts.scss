@@ -1,54 +1,9 @@
 @font-face {
-  font-family: 'oswaldbold';
-  src: url('./../../../public/fonts/Oswald/oswald-bold-webfont.woff2') format('woff2'),
-       url('./../../../public/fonts/Oswald/oswald-bold-webfont.woff') format('woff'),
-       url('./../../../public/fonts/Oswald/Oswald-Bold.ttf') format('truetype'),
-       url('./../../../public/fonts/Oswald/oswald-bold-webfont.eot');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-@font-face {
-  font-family: 'oswaldlight';
-  src: url('./../../../public/fonts/Oswald/oswald-light-webfont.woff2') format('woff2'),
-       url('./../../../public/fonts/Oswald/oswald-light-webfont.woff') format('woff'),
-       url('./../../../public/fonts/Oswald/Oswald-Light.ttf') format('truetype'),
-       url('./../../../public/fonts/Oswald/oswald-light-webfont.eot');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-@font-face {
-  font-family: 'oswaldmedium';
-  src: url('./../../../public/fonts/Oswald/oswald-medium-webfont.woff2') format('woff2'),
-       url('./../../../public/fonts/Oswald/oswald-medium-webfont.woff') format('woff'),
-       url('./../../../public/fonts/Oswald/Oswald-Medium.ttf') format('truetype'),
-       url('./../../../public/fonts/Oswald/oswald-medium-webfont.eot');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-
-@font-face {
   font-family: 'oswaldregular';
   src: url('./../../../public/fonts/Oswald/oswald-regular-webfont.woff2') format('woff2'),
        url('./../../../public/fonts/Oswald/oswald-regular-webfont.woff') format('woff'),
        url('./../../../public/fonts/Oswald/Oswald-Regular.ttf') format('truetype'),
        url('./../../../public/fonts/Oswald/oswald-regular-webfont.eot');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-@font-face {
-  font-family: 'josefin_sansbold';
-  src: url('./../../../public/fonts/Josefin_Sans/josefinsans-bold-webfont.woff2') format('woff2'),
-       url('./../../../public/fonts/Josefin_Sans/josefinsans-bold-webfont.woff') format('woff'),
-       url('./../../../public/fonts/Josefin_Sans/JosefinSans-Bold.ttf') format('truetype'),
-       url('./../../../public/fonts/Josefin_Sans/josefinsans-bold-webfont.eot');
   font-weight: normal;
   font-style: normal;
 
@@ -66,17 +21,6 @@
 }
 
 @font-face {
-  font-family: 'josefin_sanslight';
-  src: url('./../../../public/fonts/Josefin_Sans/josefinsans-light-webfont.woff2') format('woff2'),
-       url('./../../../public/fonts/Josefin_Sans/josefinsans-light-webfont.woff') format('woff'),
-       url('./../../../public/fonts/Josefin_Sans/JosefinSans-Light.ttf') format('truetype'),
-       url('./../../../public/fonts/Josefin_Sans/josefinsans-light-webfont.eot');
-  font-weight: normal;
-  font-style: normal;
-
-}
-
-@font-face {
   font-family: 'josefin_sansregular';
   src: url('./../../../public/fonts/Josefin_Sans/josefinsans-regular-webfont.woff2') format('woff2'),
        url('./../../../public/fonts/Josefin_Sans/josefinsans-regular-webfont.woff') format('woff'),
@@ -84,15 +28,4 @@
        url('./../../../public/fonts/Josefin_Sans/josefinsans-regular-webfont.eot');
   font-weight: normal;
   font-style: normal;
-}
-
-@font-face {
-  font-family: 'josefin_sansthin';
-  src: url('./../../../public/fonts/Josefin_Sans/josefinsans-thin-webfont.woff2') format('woff2'),
-       url('./../../../public/fonts/Josefin_Sans/josefinsans-thin-webfont.woff') format('woff'),
-       url('./../../../public/fonts/Josefin_Sans/JosefinSans-Thin.ttf') format('truetype'),
-       url('./../../../public/fonts/Josefin_Sans/josefinsans-thin-webfont.eot');
-  font-weight: normal;
-  font-style: normal;
-
 }
