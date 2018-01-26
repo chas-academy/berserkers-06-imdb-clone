@@ -7,7 +7,11 @@
             <form  method="POST" action="/titles/series/{{$series->title_id}}">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
-                <button class="button is-danger"type="submit">Delete</button>
+                <button class="button is-danger"type="submit">Delete Series</button>
+            </form>
+            <form  method="GET" action="/titles/series/{{$series->title_id}}/edit">
+                {{ csrf_field() }}
+                <button class="button is-primary"type="submit">Edit Series</button>
             </form>
             @endif
         @endauth

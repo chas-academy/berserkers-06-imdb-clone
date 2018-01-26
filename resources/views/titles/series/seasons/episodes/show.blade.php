@@ -7,7 +7,11 @@
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <input name="title_id" value="{{$episode->title_id}}" type="hidden">
-                <button class="button is-danger"type="submit">Delete</button>
+                <button class="button is-primary"type="submit">Delete Episode</button>
+            </form>
+            <form  method="GET" action="/titles/series/{{$series->title_id}}/seasons/{{ $season->season_number }}/episodes/{{$episode->episode_number}}/edit">
+                {{ csrf_field() }}
+                <button class="button is-danger"type="submit">Edit Episode</button>
             </form>
             @endif
             <h1  class="hero-header link"><a href="http://{{$_SERVER['HTTP_HOST'] }}/titles/series/{{$series->title_id}}">{{$series->title}}</a></h1> <h2 class="hero-header">{{$episode->name}}</h1>
