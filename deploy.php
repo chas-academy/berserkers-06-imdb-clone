@@ -60,7 +60,7 @@ task('artisan:db:seed', function () {
 });
 
 task('artisan:migrate', function () {
-  run('{{bin/php}} {{release_path}}/artisan migrate:fresh');
+  run('{{bin/php}} {{release_path}}/artisan migrate');
 });
 
 // [Optional] if deploy fails automatically unlock.
@@ -68,7 +68,7 @@ after('deploy:failed', 'deploy:unlock');
 
 //after('deploy:update_code', 'npm:install');
 
-//before('deploy:symlink', 'artisan:migrate');
+before('deploy:symlink', 'artisan:migrate');
 //after('deploy:symlink', 'npm:build');
 after('deploy:symlink', 'php-fpm:restart');
 after('deploy:symlink', 'artisan:db:seed');
