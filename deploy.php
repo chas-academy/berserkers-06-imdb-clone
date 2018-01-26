@@ -60,7 +60,7 @@ task('artisan:db:seed', function () {
 });
 
 task('artisan:migrate', function () {
-  run('{{bin/php}} {{release_path}}/artisan migrate');
+  run('{{bin/php}} {{release_path}}/artisan migrate:fresh');
 });
 
 // [Optional] if deploy fails automatically unlock.
