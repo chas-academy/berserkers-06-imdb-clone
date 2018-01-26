@@ -68,7 +68,7 @@ after('deploy:failed', 'deploy:unlock');
 
 //after('deploy:update_code', 'npm:install');
 
-//before('deploy:symlink', 'artisan:migrate');
+before('deploy:symlink', 'artisan:migrate');
 //after('deploy:symlink', 'npm:build');
 after('deploy:symlink', 'php-fpm:restart');
 //after('deploy:symlink', 'artisan:db:seed');
