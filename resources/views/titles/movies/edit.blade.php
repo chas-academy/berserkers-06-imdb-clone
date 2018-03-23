@@ -22,8 +22,8 @@
       <form method="POST" action="/titles/movies/{{$title->id}}">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
-        <h3>Relesae Year</h3>
-        <input class="input" name="release_year"value="{{ $movie->release_year }}">
+        <h3>Release Date (Please use the folowing format: YYYY-MM-DD)</h3>
+        <input class="input" name="release_year" value="{{ $movie->release_year }}" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
         <button class="button is-info" type="submit">Submit</button>   
       </form>
     </section>
@@ -32,7 +32,7 @@
         {{ csrf_field() }}
         {{ method_field('PUT') }}
         <h3>Runtime</h3>
-        <input class="input" name="runtime"value="{{ $movie->runtime }}">
+        <input class="input" name="runtime" type="number" value="{{ $movie->runtime }}" >
         <button class="button is-info" type="submit">Submit</button>   
       </form>
     </section>
@@ -41,7 +41,7 @@
         {{ csrf_field() }}
         {{ method_field('PUT') }}
         <h3>Countries</h3>
-        <input class="input" name="countries"value="{{ $movie->countries }}">
+        <input class="input" name="countries" value="{{ $movie->countries }}" >
         <button class="button is-info" type="submit">Submit</button>   
       </form>
     </section>
@@ -50,14 +50,14 @@
         {{ csrf_field() }}
         {{ method_field('PUT') }}
         <h3>PG Rating</h3>
-        <input class="input" name="pg_rating"value="{{ $movie->pg_rating }}">
+        <input class="input" name="pg_rating" value="{{ $movie->pg_rating }}">
         <button class="button is-info" type="submit">Submit</button>   
       </form>
     </section>
     <section>
       <form method="PUT" action="/titles/movies/{{$title->id}}">
         <h3>Trailer URL</h3>
-        <input class="input" name="trailer"value="{{ $movie->trailer }}">
+        <input class="input" name="trailer" value="{{ $movie->trailer }}">
         <button class="button is-info" type="submit">Submit</button>   
       </form>
     </section>
@@ -110,7 +110,7 @@
       <form method="POST" action="/titles/movies/{{$title->id}}">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
-        <h3>Photos:</h3>
+        <h3>Photos: (please use the folowing format: photo_path: https://PATH_TO_FILE | photo_type: PHOTO_TYPE (poster or backdrop) | width: WIDTH_IN_PX | ratio: HEIGHT_TO WIDTH_RATIO (two decimals)</h3>
         <textarea class="textarea" name="photos">{{$photos}}</textarea>
         <button class="button is-info" type="submit">Submit</button>   
       </form>

@@ -25,7 +25,7 @@
       {{ csrf_field() }}
       {{ method_field('PUT') }}
       <h3>Episode Number</h3>
-      <input class="input" name="release_year"value="{{ $episode->episode_number }}">
+      <input class="input" type="number" name="episode_number"value="{{ $episode->episode_number }}">
       <input name="title_id" value="{{$episode->title_id}}" type="hidden">
       <button class="button is-info"type="submit">Submit</button>   
     </form>
@@ -34,8 +34,8 @@
     <form method="POST" action="/titles/series/{{$series->title_id}}/seasons/{{$season->season_number}}/episodes/{{$episode->episode_number}}">
       {{ csrf_field() }}
       {{ method_field('PUT') }}
-      <h3>Air Date</h3>
-      <input class="input" name="air_date"value="{{ $episode->air_date }}">
+      <h3>Air Date (Please use the folowing format: YYYY-MM-DD)</h3>
+      <input class="input" name="air_date" value="{{ $episode->air_date }}" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}">
       <input name="title_id" value="{{$episode->title_id}}" type="hidden">
       <button class="button is-info"type="submit">Submit</button>   
     </form>
@@ -74,7 +74,7 @@
     <form method="POST" action="/titles/series/{{$series->title_id}}/seasons/{{$season->season_number}}/episodes/{{$episode->episode_number}}">
       {{ csrf_field() }}
       {{ method_field('PUT') }}
-      <h3>Photos:</h3>
+      <h3>Photos: (please use the folowing format:  photo_path: https://PATH_TO_FILE | photo_type: PHOTO_TYPE (poster or backdrop) | width: WIDTH_IN_PX | ratio: HEIGHT_TO WIDTH_RATIO (two decimals) )</h3>
       <textarea class="textarea" name="photos">{{$photos}}</textarea>
       <input name="title_id" value="{{$episode->title_id}}" type="hidden">
       <button class="button is-info"type="submit">Submit</button>   
