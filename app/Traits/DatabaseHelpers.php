@@ -159,14 +159,9 @@ trait DatabaseHelpers
     
                 } else {
     
-                  $table = Person::where(['name' => $name])->first();
-                    
-                  if (isset($table)) {
-                    array_push($pivotIds, $table->id);
-                  } else {
-    
-                    return ['error' => 'person entered is not in our database'];
-                  }
+                  $table = Person::firstOrCreate(['name' => $name]);
+                  array_push($pivotIds, $table->id);
+                  
                 }
               }
             }
