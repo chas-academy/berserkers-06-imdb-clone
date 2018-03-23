@@ -72,13 +72,8 @@ trait DatabaseHelpers
           $charactersIds = [];
           for ($i = 0; $i < count($names); $i++) {
             if ( ($i % 2) === 0) {
-              $table = Person::where(['name' => $names[$i]])->first();
-              if (isset($table)) {
-                array_push($personsIds, $table->id);
-              } else {
-
-                return ['error' => 'person entered is not in our database'];
-              }
+              $table = Person::firstOrCreate(['name' => $names[$i]]);
+              array_push($personsIds, $table->id);
               
             } else {
               $table = Character::firstOrCreate(['character_name' => $names[$i]]);
