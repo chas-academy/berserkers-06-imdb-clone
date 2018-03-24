@@ -102,11 +102,11 @@ class ListsController extends Controller
      */
     public function update(Request $request, UserList $list)
     { 
-
+      
       $orderdList = $list->titleLists->sortBy('list_index')->values()->all();
 
       $listIndex = $request->list_index;
-      
+     
       if (isset($request->title_id)) {
         
         $titleId = $request->title_id;
