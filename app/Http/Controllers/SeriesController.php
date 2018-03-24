@@ -13,7 +13,7 @@ class SeriesController extends Controller
 {
    
     const ITEMCOLUMNS = ['title', 'release_year', 'plot_summary', 'end_date', 'countries', 'pg_rating', 'trailer'];
-    const PIVOTTABLES = ['genres', 'photos', 'creators' ];
+    const PIVOTTABLES = ['genres', 'photo', 'creators' ];
 
     use DatabaseHelpers;
     
@@ -122,7 +122,7 @@ class SeriesController extends Controller
             $title = Title::find($id);
             $genres = $this->formatForEditing($title->genres);
             $creators = $this->formatForEditing($title->creators);
-            $photos = $this->formatForEditing($title->photos);
+            $photos = $title->photos;
 
             session(['title_id' => $id]);
 
@@ -148,6 +148,15 @@ class SeriesController extends Controller
     public function update(Request $request, Series $series)
     {
         if (Auth::user()->role === 1) {
+            if($request->photo_id) {
+                $request["photo"] = [
+                    "id" => (int) $request->photo_id
+                ];
+            } else if($request->photo_path) {
+                $request["photo"] = [
+                  
+                ];
+            }
 
         $this->updateItem($request, $series);
 
