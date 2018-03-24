@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Review;
+use App\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminReviewController extends Controller
+class AdminCommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,20 +17,21 @@ class AdminReviewController extends Controller
     {
         if (Auth::user()->role = 1) {
 
-            $reviews = Review::where('status', '!=', '1')->get();
-            foreach ($reviews as $review) {
-                $review->load(['getTitle', 'user']);
+            $comments = Comment::where('status', '!=', '1')->get();
+            foreach ($comments as $comment) {
+                $comment->load(['review', 'user']);
+                $comment->review->load(['getTitle']);
 
-                if($review->getTitle->type === 'movie') {
-                    $review->getTitle->load(['movie']);
-                } else if ($review->getTitle->type === 'series') {
-                    $review->getTitle->load(['series']);
-                } else if ($review->getTitle->type === 'episode') {
-                    $review->getTitle->load(['episode']);
+                if($comment->review->getTitle->type === 'movie') {
+                    $comment->review->getTitle->load(['movie']);
+                } else if ($comment->getTitle->type === 'series') {
+                    $comment->review->getTitle->load(['series']);
+                } else if ($comment->getTitle->type === 'episode') {
+                    $comment->review->getTitle->load(['episode']);
                 }
             }
-
-            return view('admin.handlereviews', ['reviews' => $reviews]);
+            
+            return view('admin.handlecomments', ['comments' => $comments]);
         }
 
         $request->session()->flash('message', ['unauthorised' => 'You are not authorised to acces this page']);
@@ -88,14 +89,14 @@ class AdminReviewController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Review $review)
+    public function update(Request $request, Comment $comment)
     {
 
         if (Auth::user()->role === 1) {
 
-            $review->status = $request->status;
-            $review->save();
-            $request->session()->flash('message', ['success' =>'Review status successfully updated!']);
+            $comment->status = $request->status;
+            $comment->save();
+            $request->session()->flash('message', ['success' =>'Comment status successfully updated!']);
             return back();
         }
 
