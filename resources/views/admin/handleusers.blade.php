@@ -10,7 +10,7 @@
         <input class="input" minlength="6" name="password" placeholder="password" required/>
         <div class="select">
           <select name="role" required>
-            <option value="0">Deleted User</option>
+            <option value="0">Deactivated</option>
             <option value="1">Admin</option>
             <option selected="selected" value="2">User</option>
           </select>
@@ -44,15 +44,15 @@
                 <div class="select">
                     <select name="role">
                       @if($user->role == 1)
-                        <option value="0">Deleted User</option>
+                        <option value="0">Deactivated</option>
                         <option selected="selected" value="1">Admin</option>
                         <option value="2">User</option>
                       @elseif ($user->role == 2)
-                        <option value="0">Deleted User</option>
+                        <option value="0">Deactivated</option>
                         <option  value="1">Admin</option>
                         <option selected="selected" value="2">User</option>
                       @else ($user->role == 0)
-                        <option selected="selected" value="0">Deleted User</option>
+                        <option selected="selected" value="0">Deactivated</option>
                         <option  value="1">Admin</option>
                         <option  value="2">User</option>
                       @endif

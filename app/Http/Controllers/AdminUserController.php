@@ -17,7 +17,7 @@ class AdminUserController extends Controller
     {
         if (Auth::user()->role = 1) {
 
-            $users = User::all();
+            $users = User::where('id', '!=', Auth::user()->id)->get();
           
             return view('admin.handleusers', ['users' => $users]);
         }
