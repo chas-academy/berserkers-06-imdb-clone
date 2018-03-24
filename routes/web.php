@@ -31,6 +31,7 @@ Route::get('/titles', 'TitlesController@index')->name('catalog');
 Route::group(['middleware' => ['auth']], function () {
     /** Admin */
     Route::get('admin/users', 'AdminUserController@index')->name('edit');
+    Route::post('admin/users', 'AdminUserController@store');
     Route::put('admin/users/{user}', 'AdminUserController@update');
 
     Route::get('admin/addtitle', 'TitlesController@create')->name('edit');
@@ -69,7 +70,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::put('userpage/settings/{user}', 'UsersController@update');
     Route::get('userpage/settings/{user}', 'UsersController@edit')->name('userpage');
 
-    Route::get('userpage/reviews/', 'reviewsController@index')->name('userpage');
+    Route::get('userpage/reviews/', 'ReviewsController@index')->name('userpage');
     Route::get('reviews/{review_id}/comments', 'CommentsController@index')->name('edit');
     Route::put('titles/{title}/rate', 'TitlesController@rate');
 

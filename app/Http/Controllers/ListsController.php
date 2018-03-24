@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Userlist;
+use App\UserList;
 use App\TitleList;
 use App\User;
 use App\Title;
@@ -77,7 +77,7 @@ class ListsController extends Controller
      * @param  \App\Userlist  $list
      * @return \Illuminate\Http\Response
      */
-    public function show(Userlist $list)
+    public function show(UserList $list)
     {
       
     }
@@ -88,7 +88,7 @@ class ListsController extends Controller
      * @param  \App\UserList  $list
      * @return \Illuminate\Http\Response
      */
-    public function edit(Userlist $list)
+    public function edit(UserList $list)
     {
         
     }
@@ -102,11 +102,11 @@ class ListsController extends Controller
      */
     public function update(Request $request, UserList $list)
     { 
-
+      
       $orderdList = $list->titleLists->sortBy('list_index')->values()->all();
 
       $listIndex = $request->list_index;
-      
+     
       if (isset($request->title_id)) {
         
         $titleId = $request->title_id;
@@ -160,18 +160,18 @@ class ListsController extends Controller
           
           foreach ($orderdList as $key => $title) {
             
-            if (($listIndex+1) == $title->list_index) {
-
+            if ($listIndex == $key) {
+              
               for ($i = $key; $i < count($orderdList); $i++) {
-        
+
                 $orderdList[$i]->decrement('list_index');
               }
+            
             }
           }
           
           $toBeRemoved= TitleList::where([['user_list_id', '=', $list->id],[ 'title_id', '=', $titleId]])->first();
           $toBeRemoved->delete();
-
           $request->session()->flash('message', ['success' =>'The title was sucessfully removed from the list']);
           return redirect(url()->previous());
           
@@ -243,7 +243,7 @@ class ListsController extends Controller
      * @param  \App\UserList  $list
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Userlist $list)
+    public function destroy(UserList $list)
     {
 
        try {

@@ -173,9 +173,9 @@
                                         @foreach($list->titleLists->sortBy('list_index') as $titleList)
                                         <option value="{{$titleList->list_index}}">{{$titleList->list_index}}</option>
                                         @endforeach
-                                        <option value ="{{$list->titleLists->last()->list_index +1 }}">{{$list->titleLists->sortBy('list_index')->last()->list_index + 1 }}</option>
+                                        <option selected value="{{$list->titleLists->sortBy('list_index')->last()->list_index +1 }}">{{$list->titleLists->sortBy('list_index')->last()->list_index + 1 }}</option>
                                     @else
-                                        <option value ="1">1</option>
+                                        <option selected value="1">1</option>
                                     @endif
                                 </select>
                             </div>
