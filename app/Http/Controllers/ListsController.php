@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Userlist;
+use App\UserList;
 use App\TitleList;
 use App\User;
 use App\Title;
@@ -77,7 +77,7 @@ class ListsController extends Controller
      * @param  \App\Userlist  $list
      * @return \Illuminate\Http\Response
      */
-    public function show(Userlist $list)
+    public function show(UserList $list)
     {
       
     }
@@ -88,7 +88,7 @@ class ListsController extends Controller
      * @param  \App\UserList  $list
      * @return \Illuminate\Http\Response
      */
-    public function edit(Userlist $list)
+    public function edit(UserList $list)
     {
         
     }
@@ -243,7 +243,7 @@ class ListsController extends Controller
      * @param  \App\UserList  $list
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Userlist $list)
+    public function destroy(UserList $list)
     {
 
        try {
