@@ -23,12 +23,12 @@ class Title extends Model
 
     public function season()
     {
-        return $this->hasMany('App\Season', 'title_id');
+        return $this->hasOne('App\Season', 'title_id');
     }
 
     public function episode()
     {
-        return $this->hasMany('App\Episode', 'title_id');
+        return $this->hasOne('App\Episode', 'title_id');
     }
 
     public function actors()
