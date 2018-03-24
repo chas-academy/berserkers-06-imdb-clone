@@ -31,6 +31,7 @@ Route::get('/titles', 'TitlesController@index')->name('catalog');
 Route::group(['middleware' => ['auth']], function () {
     /** Admin */
     Route::get('admin/users', 'AdminUserController@index')->name('edit');
+    Route::post('admin/users', 'AdminUserController@store');
     Route::put('admin/users/{user}', 'AdminUserController@update');
 
     Route::get('admin/addtitle', 'TitlesController@create')->name('edit');

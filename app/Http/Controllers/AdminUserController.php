@@ -17,8 +17,8 @@ class AdminUserController extends Controller
     {
         if (Auth::user()->role = 1) {
 
-            $users = User::all();
-
+            $users = User::where('id', '!=', Auth::user()->id)->get();
+          
             return view('admin.handleusers', ['users' => $users]);
         }
 
@@ -44,7 +44,16 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create([
+            "firstname" => $request->firstname,
+            "surname" => $request->surname,
+            "username" => $request->username,
+            "email" => $request->email,
+            "password" => bcrypt($request->password),
+            "role" => $request->role
+        ]);
+
+        return redirect('/admin/users');
     }
 
     /**
@@ -81,9 +90,18 @@ class AdminUserController extends Controller
     {
 
         if (Auth::user()->role == 1) {
-
-            $user->role = $request->role;
-            $user->save();
+            $user->update([
+                "firstname" => $request->firstname,
+                "surname" => $request->surname,
+                "username" => $request->username,
+                "email" => $request->email,
+                "role" => $request->role
+            ]);
+            if(isset($request->password)) {
+                $user->password = bcrypt($request->password);
+                $user->save();
+            }
+            
 
             return redirect('/admin/users');
 
