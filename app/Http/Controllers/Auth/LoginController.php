@@ -43,14 +43,16 @@ class LoginController extends Controller
     {
 
         $user = User::where('username', '=', $request->username)->first();
-        
-        if ($user->role == 0) {
-
-            $request->session()->flash('message', ['unauthorised' =>'Your userprofile has been deactivated']);
+        if($user) {
+            if ($user->role == 0) {
+                $request->session()->flash('message', ['unauthorised' =>'Your userprofile has been deactivated']);
+                return redirect('/');
+            }  
+        } else {
+            $request->session()->flash('message', ['unauthorised' =>'The username you entered is not registerd in our database']);
             return redirect('/');
-
         }
-
+        
         $this->login($request);
 
         return redirect('/');
