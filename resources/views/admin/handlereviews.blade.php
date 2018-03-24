@@ -26,7 +26,7 @@
           <td>{{$review->title}}</td>
           <td><textarea class="textarea" readonly> {{$review->body}}</textarea></td>
           <td>
-            <form method="POST" action="/admin/users/{{$review->id}}">
+            <form method="POST" action="/admin/reviews/{{$review->id}}">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
               <div class="select">

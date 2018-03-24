@@ -36,7 +36,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('admin/addtitle', 'TitlesController@create')->name('edit');
     Route::post('admin/addtitle/store', 'TitlesController@store');
 
-    Route::get('admin/reviews', 'AdminReviewsController@index')->name('edit');
+    Route::get('admin/reviews', 'AdminReviewController@index')->name('edit');
+    Route::put('admin/reviews/{review}', 'AdminReviewController@update');
     
     Route::get('titles/create', 'TitlesController@create')->name('edit');
     Route::post('titles/store', 'TitlesController@store');

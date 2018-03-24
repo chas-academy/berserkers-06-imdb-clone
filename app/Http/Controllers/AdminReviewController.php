@@ -8,7 +8,7 @@ use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AdminReviewsController extends Controller
+class AdminReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -90,20 +90,18 @@ class AdminReviewsController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Review $review)
     {
 
-        if (Auth::user()->role == 1) {
+        if (Auth::user()->role === 1) {
 
-            $user->role = $request->role;
-            $user->save();
-
-            return redirect('/admin/users');
-
+            $review->status = $request->status;
+            $review->save();
+            $request->session()->flash('message', ['success' =>'Review status successfully updated!']);
+            return back();
         }
 
         $request->session()->flash('message', ['unauthorised' => 'You are not authorised to perform this action']);
-
         return redirect('/');
 
     }
