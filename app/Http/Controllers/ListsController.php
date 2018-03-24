@@ -172,7 +172,6 @@ class ListsController extends Controller
           
           $toBeRemoved= TitleList::where([['user_list_id', '=', $list->id],[ 'title_id', '=', $titleId]])->first();
           $toBeRemoved->delete();
-          dd('test');
           $request->session()->flash('message', ['success' =>'The title was sucessfully removed from the list']);
           return redirect(url()->previous());
           
