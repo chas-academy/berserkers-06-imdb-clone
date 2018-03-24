@@ -1,0 +1,9 @@
+*,
+fieldset {
+  border: none;
+}
+
+#filter-panel {
+  width: 320px;
+}
+

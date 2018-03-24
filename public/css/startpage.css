@@ -1,0 +1,128 @@
+main {
+  background-color: #333333;
+  color: white;
+}
+
+main .breadcrumb a {
+  color: #FCA135;
+}
+
+main .breadcrumb a:hover {
+  color: #0D7070;
+  text-decoration: underline;
+}
+
+main h2 {
+  color: #3a6a8a;
+}
+
+.notification {
+  background-color: #333333 !important;
+}
+
+.flex-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+.flex-item1 {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  text-align: left;
+  padding: 2px;
+  width: 200px;
+}
+
+.flex-item2 {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  text-align: left;
+  padding: 2px;
+  padding-top: 25px;
+  margin-left: 25px;
+  width: 400px;
+  height: 100px;
+}
+
+.flex-item3 {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  text-align: left;
+  padding: 2px;
+  width: 200px;
+}
+
+.flex-item4 {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  text-align: left;
+  padding: 2px;
+  width: 200px;
+}
+
+.flex-item5 {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  text-align: left;
+  padding: 2px;
+  width: 630px;
+}
+
+article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+}
+
+.column {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  margin: 0;
+  border-bottom: 4px solid #D2ADB5;
+}
+
+article h3 {
+  color: #D2ADB5;
+  font-family: Fjalla One;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+article h4 {
+  color: #F2F2F2;
+  font-family: Fjalla One;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+
+article p {
+  color: #F2F2F2;
+  font-family: Josefin Sans;
+  font-size: 20px;
+}
+
