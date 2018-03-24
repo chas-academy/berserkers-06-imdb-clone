@@ -51,7 +51,7 @@
                         <option value="0">Deactivated</option>
                         <option  value="1">Admin</option>
                         <option selected="selected" value="2">User</option>
-                      @else ($user->role == 0)
+                      @else
                         <option selected="selected" value="0">Deactivated</option>
                         <option  value="1">Admin</option>
                         <option  value="2">User</option>
