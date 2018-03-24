@@ -160,18 +160,19 @@ class ListsController extends Controller
           
           foreach ($orderdList as $key => $title) {
             
-            if (($listIndex+1) == $title->list_index) {
-
+            if ($listIndex == $key) {
+              
               for ($i = $key; $i < count($orderdList); $i++) {
-        
+
                 $orderdList[$i]->decrement('list_index');
               }
+            
             }
           }
           
           $toBeRemoved= TitleList::where([['user_list_id', '=', $list->id],[ 'title_id', '=', $titleId]])->first();
           $toBeRemoved->delete();
-
+          dd('test');
           $request->session()->flash('message', ['success' =>'The title was sucessfully removed from the list']);
           return redirect(url()->previous());
           
