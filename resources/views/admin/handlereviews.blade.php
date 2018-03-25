@@ -19,9 +19,9 @@
           @if($review->getTitle->type === 'movie')
           <td>{{$review->getTitle->movie->title}}</td>
           @elseif($review->getTitle->type === 'series')
-          <td>{{$review->getTitle->series->title}}</td>)
+          <td>{{$review->getTitle->series->title}}</td>
           @elseif($review->getTitle->type === 'episode')
-          <td>{{$review->getTitle->episode->name}}</td>)
+          <td>{{$review->getTitle->episode->name}}</td>
           @endif
           <td>{{$review->title}}</td>
           <td><textarea class="textarea" readonly> {{$review->body}}</textarea></td>
