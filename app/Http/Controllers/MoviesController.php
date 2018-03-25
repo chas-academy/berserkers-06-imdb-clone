@@ -13,7 +13,7 @@ class MoviesController extends Controller
 {
    
     const ITEMCOLUMNS = ['title', 'release_year', 'plot_summary', 'runtime', 'countries', 'pg_rating', 'trailer'];
-    const PIVOTTABLES = ['genres', 'directors', 'producers', 'screenwriters','actorsAsCharacters', 'photos' ];
+    const PIVOTTABLES = ['genres', 'directors', 'producers', 'screenwriters','actorsAsCharacters', 'photo' ];
 
     use DatabaseHelpers;
 
@@ -85,7 +85,7 @@ class MoviesController extends Controller
             $producers = $this->formatForEditing($title->producers);
             $screenwriters = $this->formatForEditing($title->screenwriters);
             $actorsAsCharacters = $this->formatForEditing($title->characters);
-            $photos = $this->formatForEditing($title->photos);
+            $photos = $title->photos;
 
             session(['title_id' => $id]);
 
@@ -115,6 +115,16 @@ class MoviesController extends Controller
     public function update(Request $request, Movie $movie)
     { 
         if (Auth::user()->role === 1) {
+            if($request->photo_id) {
+                $request["photo"] = [
+                    "id" => (int) $request->photo_id
+                ];
+            } else if($request->photo_path) {
+                $request["photo"] = [
+                  
+                ];
+            }
+           
             $this->updateItem($request, $movie);
 
             $path = $request->path();

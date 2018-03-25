@@ -14,7 +14,7 @@ class EpisodesController extends Controller
 {
 
     const ITEMCOLUMNS = ['name', 'episode_number', 'plot_summary', 'end_date', 'air_date'];
-    const PIVOTTABLES = ['photos', 'actorsAsCharacters', 'directors', 'producers', 'screenwriters' ];
+    const PIVOTTABLES = ['photo', 'actorsAsCharacters', 'directors', 'producers', 'screenwriters' ];
 
     use DatabaseHelpers;
 
@@ -92,7 +92,7 @@ class EpisodesController extends Controller
             $directors = $this->formatForEditing($title->directors);
             $screenwriters = $this->formatForEditing($title->screenwriters);
             $actorsAsCharacters = $this->formatForEditing($title->characters);
-            $photos = $this->formatForEditing($title->photos);
+            $photos = $title->photos;
             
             return view('titles.series.seasons.episodes.edit', [
                 'episode' => $episode, 
@@ -124,6 +124,16 @@ class EpisodesController extends Controller
         if (Auth::user()->role === 1) {
             $id = $request->title_id;
             $episode = Episode::find($id);
+
+            if($request->photo_id) {
+                $request["photo"] = [
+                    "id" => (int) $request->photo_id
+                ];
+            } else if($request->photo_path) {
+                $request["photo"] = [
+                  
+                ];
+            }
 
             $this->updateItem($request, $episode);
 

@@ -40,8 +40,13 @@
                             @foreach($seasons as $season)
                             <tr>
                                 <td class="link" span="2"><a href="http://{{ $_SERVER['HTTP_HOST'] }}/titles/series/{{ $series->title_id }}/seasons/{{ $season->season_number }}">{{$season->season_number}}</a></td>
-                                <td span="2">{{ count($season->episodes) }}</td>
-                                <td span="2">{{ substr($season->episodes[0]['air_date'], 0,4) }}</td>
+                                @if(count($season->episodes) != 0) 
+                                    <td span="2">{{ count($season->episodes) }}</td>
+                                    <td span="2">{{ substr($season->episodes[0]['air_date'], 0,4) }}</td>
+                                @else
+                                    <td span="2">??</td>
+                                    <td span="2">????</td>
+                                @endif
                             </tr>
                             @endforeach
                             </tbody>

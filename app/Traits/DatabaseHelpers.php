@@ -72,13 +72,8 @@ trait DatabaseHelpers
           $charactersIds = [];
           for ($i = 0; $i < count($names); $i++) {
             if ( ($i % 2) === 0) {
-              $table = Person::where(['name' => $names[$i]])->first();
-              if (isset($table)) {
-                array_push($personsIds, $table->id);
-              } else {
-
-                return ['error' => 'person entered is not in our database'];
-              }
+              $table = Person::firstOrCreate(['name' => $names[$i]]);
+              array_push($personsIds, $table->id);
               
             } else {
               $table = Character::firstOrCreate(['character_name' => $names[$i]]);
@@ -92,55 +87,24 @@ trait DatabaseHelpers
 
           return ['success' => 'all Actors and character in this title where updated']; 
 
-        } elseif($request->has('photos')) {
-
-          $photos = explode("\r\n",$request->get($pivot));
-
-          foreach($photos as $key => $photo) {
-
-            $keyvalues = (explode(' | ', $photo));
-            $photovalues = [];
-
-            foreach ($keyvalues as $newkey => $keyvalue) {
-
-              $keyvalues[$newkey] = explode(': ', $keyvalue);
-              $photovalues[$keyvalues[$newkey][0]] = $keyvalues[$newkey][1];
-            }
-            $photos[$key] = $photovalues;
-    
-          }
-
-          $photosIds = [];
-
-        foreach($photos as $photo) {
-
-          $item = $title->photos()->where('photo_path', $photo['photo_path'])->get(['*']);
-          
-          if (!isset($item[0])) {
-
-            $item = Photo::create([
-
-              'imageable_id' => $title->id,
-              'imageable_type' => get_class($title),
-              'photo_path' => $photo['photo_path'], 
-              'photo_type' => $photo['photo_type'],
-              'width' => $photo['width'],
-              'ratio' => $photo['ratio']
-              ]);
-
-              array_push($photosIds, $item->id);
-
+        } elseif($request->has('photo')) {
+          if($request->has('delete')) {
+              Title::find($item->title_id)->photos()->where('id', '=', $request["photo"]["id"])->delete();
+          } elseif (isset($request["photo"]["id"])) {
+            Photo::where('id', $request["photo"]["id"])->update([ 
+                "photo_path" => $request->photo_path,
+                "photo_type" => $request->photo_type,
+                "width" => (int) $request->width,
+                "ratio" => (float) $request->ratio
+                ]);
           } else {
-
-            array_push($photosIds, $item[0]->id);
+            Title::find($item->title_id)->photos()->create([
+                "photo_path" => $request->photo_path,
+                "photo_type" => $request->photo_type,
+                "width" => (int) $request->width,
+                "ratio" => (float) $request->ratio
+            ]);
           }
-        }
-        $tobeRemoved = $title->photos()->whereNotIn('id', $photosIds);
-        
-        foreach($tobeRemoved->get(['id']) as $photo) {
-
-          Photo::where('id', '=', $photo->id)->delete();
-        }
         
         return ['success' => 'All photos for the title where updated']; 
 
@@ -159,14 +123,9 @@ trait DatabaseHelpers
     
                 } else {
     
-                  $table = Person::where(['name' => $name])->first();
-                    
-                  if (isset($table)) {
-                    array_push($pivotIds, $table->id);
-                  } else {
-    
-                    return ['error' => 'person entered is not in our database'];
-                  }
+                  $table = Person::firstOrCreate(['name' => $name]);
+                  array_push($pivotIds, $table->id);
+                  
                 }
               }
             }
