@@ -4,7 +4,7 @@ Lets do it!
 # link to site: http://berzerkermovies.me
 # link to stageing http://stage.berzerkermovies.me
 
-#
+### Sitemape: https://app.dynomapper.com/sitemap/Vqg
 
 # How to get started:
 
